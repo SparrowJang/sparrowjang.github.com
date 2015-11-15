@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Tag: html5 | Sparrow&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sparrow's Blog">
+<meta property="og:url" content="http://www.sparrowjang.com/tags/html5/index.html">
+<meta property="og:site_name" content="Sparrow's Blog">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sparrow's Blog">
+<meta name="twitter:description">
+<meta name="twitter:creator" content="@Sparrow_Jang">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21959339-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sparrow&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="https://twitter.com/Sparrow_Jang">Twitter</a>
+        
+          <a class="main-nav-link" href="https://github.com/SparrowJang">Github</a>
+        
+          <a class="main-nav-link" href="https://hub.docker.com/u/peter1209/">DockerHub</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.sparrowjang.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-capture-a-image-block-on-angular" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/01/31/capture-a-image-block-on-angular/" class="article-date">
+  <time datetime="2014-01-31T13:54:55.000Z" itemprop="datePublished">Jan 31 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/01/31/capture-a-image-block-on-angular/">Capture a image block on angular</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近需要使用到一個圖片切割的工具，在angular的package中找了一下，沒有找到比較合適，因為只需要支援html5的瀏覽器，就實作了一個間單的工具(<a href="https://github.com/SparrowJang/ngImageEditor" target="_blank" rel="external">ngImageEditor</a>)。</p>
+<h2 id="以下是demo實際執行的畫面：">以下是demo實際執行的畫面：</h2><p><img src="/images/article/capture-a-image-block-on-angular/screenprint.png" alt="explain"></p>
+<h2 id="使用與安裝：">使用與安裝：</h2><h3 id="Demo">Demo</h3><p><a href="http://www.sparrowjang.com/ngImageEditor/public/index.html">demo</a></p>
+<h3 id="Install">Install</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bower install ngImageEditor</span><br></pre></td></tr></table></figure>
+<h3 id="Support">Support</h3><ul>
+<li>IE9+</li>
+<li>chrome</li>
+<li>firefox</li>
+</ul>
+<h3 id="設定editor的attributes">設定editor的attributes</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;div img-src=&#34;imgSrc&#34; ng-image-editor=&#34;imageEditor&#34; selected=&#34;selected&#34;&#62;&#60;/div&#62;</span><br></pre></td></tr></table></figure>
+<h3 id="載入要切割的圖片">載入要切割的圖片</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.imgSrc=&#39;/images/head.jpeg&#39;;</span><br></pre></td></tr></table></figure>
+<h3 id="設定切割的區塊位置及大小">設定切割的區塊位置及大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.selected = &#123;width:150,height:150,top:0,left:0&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="將區塊大小的image取出">將區塊大小的image取出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.imageEditor.toDataURL();</span><br></pre></td></tr></table></figure>
+<p>實作方式主要是透過canvas作轉換，至於cross domain，必須是同個domain，否則要從server上設定，允許哪個domain可以存取作編輯。</p>
+<h4 id="在server上設定你要跨網域的domain：">在server上設定你要跨網域的domain：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: http://your.domain.com</span><br></pre></td></tr></table></figure>
+<h4 id="在javascript中呼叫img-src之前，加入以下設定：">在javascript中呼叫<code>img.src</code>之前，加入以下設定：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img.crossOrigin = &#34;Anonymous&#34;;</span><br></pre></td></tr></table></figure>
+<p><a href="http://blog.codepen.io/2013/10/08/cross-domain-images-tainted-canvas/" target="_blank" rel="external">可參考這篇</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2014/01/31/capture-a-image-block-on-angular/" data-id="cih0hx1lu00a4tm64lh9mp18r" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2014/01/31/capture-a-image-block-on-angular/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angularjs/">angularjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-copy-canvas-on-html5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/12/26/copy-canvas-on-html5/" class="article-date">
+  <time datetime="2013-12-26T14:58:34.000Z" itemprop="datePublished">Dec 26 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/12/26/copy-canvas-on-html5/">Copy canvas on html5</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>要複製整張<code>canvas</code>，可以使用<code>getImageData</code>和<code>putImageData</code>。透過<code>getImageData</code>這個method，將整張<code>canvas</code>的資料取出來，在經由<code>putImageData</code>將資料覆蓋上去。</p>
+<h2 id="Copy：">Copy：</h2><p>取得整張canvas的data：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var ctx = canvas.getContext(&#34;2d&#34;);&#10;var imageData = ctx.getImageData( 0, 0, canvas.width, canvas.height );</span><br></pre></td></tr></table></figure></p>
+<p>在將<code>imageData</code>的資料，塞到copyCanvas對應的data區塊：(在這預設兩張canvas大小都相同)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var cctx = copyCanvas.getContext(&#34;2d&#34;);&#10;cctx.putImageData( imageData, 0 ,0 );</span><br></pre></td></tr></table></figure></p>
+<p>這樣你就會看到第一張的canvas，完整的copy到第二張上面。</p>
+<h2 id="Example：">Example：</h2><p><img src="/images/article/copy-canvas-on-html5/default.png" alt="最初的兩張canvas"></p>
+<p><strong>style</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">canvas &#123;                     &#10;    border:1px solid gray;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>html</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;canvas id=&#34;main&#34; width=&#34;300&#34; height=&#34;200&#34;&#62;&#60;/canvas&#62;&#10;&#60;canvas id=&#34;copy&#34; width=&#34;300&#34; height=&#34;200&#34;&#62;&#60;/canvas&#62;</span><br></pre></td></tr></table></figure></p>
+<p><strong>javascript</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//left canvas&#10;var canvas = document.querySelector( &#34;#main&#34; );&#10;var ctx = canvas.getContext(&#34;2d&#34;);&#10;ctx.fillStyle=&#34;#FF0000&#34;;  &#10;ctx.fillRect(0,0,150,75); &#10;&#10;//right canvas             &#10;var copy = document.querySelector( &#34;#copy&#34; );&#10;var cctx = copy.getContext(&#34;2d&#34;);&#10;cctx.fillStyle=&#34;#FF00FF&#34;; &#10;cctx.fillRect(20,20,150,75);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>把左邊的<code>canvas</code>透過<code>drawImage</code>畫到右邊的canvas：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cctx.drawImage( canvas, 0 ,0 );</span><br></pre></td></tr></table></figure>
+<p><img src="/images/article/copy-canvas-on-html5/drawImage.png" alt="透過drawImage畫到右邊canvas"></p>
+</li>
+<li><p>將左邊的<code>canvas</code>的資料，透過<code>putImageData</code>取代右邊<code>canvas</code>資料：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var imageData = ctx.getImageData( 0, 0, canvas.width, canvas.height );&#10;cctx.putImageData( imageData, 0 ,0 );</span><br></pre></td></tr></table></figure>
+<p><img src="/images/article/copy-canvas-on-html5/putImageData.png" alt="透過putImageData畫到右邊canvas"></p>
+</li>
+</ul>
+<p>如果使用<code>drawImage</code>，透明部份將不會畫上去，沒辦法完整複製，而<code>putImageData</code>，則是完全取代某區塊的的bytes。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/12/26/copy-canvas-on-html5/" data-id="cih0hx1lk009itm646hk34gzc" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/12/26/copy-canvas-on-html5/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/">canvas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-angularjs-fixed-a-placeholder-feature-on-ie" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/09/27/angularjs-fixed-a-placeholder-feature-on-ie/" class="article-date">
+  <time datetime="2013-09-27T15:22:51.000Z" itemprop="datePublished">Sep 27 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/09/27/angularjs-fixed-a-placeholder-feature-on-ie/">Fixed a placeholder feature on IE (angularjs)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Placeholder要支援老舊的IE7~IE9，使用jQuery也都有一堆plugin可以使用了。如果要在angularjs上使用，但是又不想載入jQuery，這時候可以使用<a href="https://github.com/SparrowJang/angularjs-placeholder" target="_blank" rel="external">angularjs-placeholder</a> module。</p>
+<h1 id="使用angularjs-placeholder">使用angularjs-placeholder</h1><h4 id="載入angular_module：">載入angular module：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34; src=&#34;../src/angularjs-placeholder.js&#34;&#62;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
+<h4 id="定義需要使用到的module，和初始化ng-app：">定義需要使用到的module，和初始化ng-app：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34;&#62;&#10;  var app = angular.module( &#34;demoApp&#34;, [&#34;html5.placeholder&#34;] );&#10;  angular.bootstrap( document, [app.name] );&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
+<h2 id="實作angularjs-placeholder遇到的小問題">實作angularjs-placeholder遇到的小問題</h2><p>在實作angularjs-placeholder module時，在<strong>IE7</strong>發現一個小問題，<strong>無法取得placeholder的值</strong>，但是在有的<strong>jQuery</strong>情況，都會幫忙處理掉了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/**&#10;* input default: &#60;input placeholder=&#34;Please,enter your name!&#34; type=&#34;text&#34; /&#62;&#10;*/&#10;&#10;//use native&#10;&#10;var attr = input.getAttribute(&#34;placeholder&#34;);&#10;&#10;// attr == null&#10;console.log( attr );&#10;&#10;//use jqlite&#10;var $elem = angular.element( input );&#10;&#10;// attr == null&#10;console.log( $elem.attr( &#34;placeholder&#34; ) );</span><br></pre></td></tr></table></figure>
+<p>所以如果要在<strong>IE7</strong>取得<strong>placeholder</strong>，這時候<strong>native</strong>有提供另一個api可以使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var node = input.getAttributeNode( &#34;placeholder&#34; );&#10;&#10;var attr = node?node.nodeValue:node;&#10;&#10;//Please,enter your name!&#10;console.log( attr );</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/09/27/angularjs-fixed-a-placeholder-feature-on-ie/" data-id="cih0hx1mh00b2tm64k4qelxis" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/09/27/angularjs-fixed-a-placeholder-feature-on-ie/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angularjs/">angularjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jquery-uploader" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/04/17/jquery-uploader/" class="article-date">
+  <time datetime="2013-04-17T02:02:06.000Z" itemprop="datePublished">Apr 17 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/04/17/jquery-uploader/">jquery uploader</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用ajax upload還滿常使用到，但是又不需要一些複雜的功能，所以就寫了一個簡單的<a href="https://github.com/SparrowJang/jquery-uploader" target="_blank" rel="external">jquery uploader</a>。</p>
+<h6 id="需求如下：">需求如下：</h6><ol>
+<li>將form經用ajax post出去。</li>
+<li>選擇要post的欄位包括file。</li>
+</ol>
+<h6 id="支援：">支援：</h6><ol>
+<li>firefox</li>
+<li>chrome</li>
+<li>IE10+</li>
+</ol>
+<p><strong>使用ajax submit整個form：</strong></p>
+<pre class="brush:js">//opts.success（result）:上傳成功
+//opts.progress：處理進度
+//opts.fail：上傳失敗
+
+$(&quot;form&quot;).uploadForm( opts );
+</pre>
+
+<p>uploadForm會自動抓取form的action連結，目前此plugin只能一次抓取一個form upload。</p>
+<p><strong>使用ajax submit部份欄位：</strong></p>
+<pre class="brush:js">//url：要上傳的目標連結
+
+$( &quot;input[name=&#39;file&#39;],input[name=&#39;id&#39;]&quot; ).upload( url, opts );</pre>
+
+<p>如果要支援IE10以下瀏覽器，現在已經另外實作iframe uploader，目前可以支援uploadForm這個功能，但是僅支援success這個參數。</p>
+<p><a href="https://github.com/SparrowJang/jquery-uploader" target="_blank" rel="external">github</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/04/17/jquery-uploader/" data-id="cih0hx1jk006ntm64u4d2i7ko" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/04/17/jquery-uploader/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-camera-snapshotgetusermedia" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/12/17/camera-snapshotgetusermedia/" class="article-date">
+  <time datetime="2012-12-17T07:05:43.000Z" itemprop="datePublished">Dec 17 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/17/camera-snapshotgetusermedia/">Camera Snapshot(getUserMedia)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>html5有提供一個可以取得視訊的api，使用<strong>navigator.getUserMedia</strong>，可以取得鏡頭的影像及聲音，example如下。</p>
+<p>html：</p>
+<pre class="brush:html">&lt;!DOCTYPE HTML&gt;    
+&lt;html lang=&quot;en&quot;&gt;   
+&lt;head&gt;             
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;            
+&lt;body&gt;             
+    &lt;video autoplay&gt;&lt;/video&gt;
+    &lt;img src=&quot;&quot;&gt;   
+    &lt;canvas style=&quot;display:none;&quot;&gt;&lt;/canvas&gt;     
+    &lt;script type=&quot;text/javascript&quot; src=&quot;cameraSnapshot.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;            
+&lt;/html&gt;         </pre>
+
+<p>cameraSnapshot.js：</p>
+<pre class="brush:js">(function(){     
+    navigator.getUserMedia = navigator.getUserMedia || 
+                             navigator.webkitGetUserMedia || 
+                             navigator.mozGetUserMedia || 
+                             navigator.msGetUserMedia;
+
+    var video = document.querySelector(&#39;video&#39;);
+    var canvas = document.querySelector(&#39;canvas&#39;);
+    var ctx = canvas.getContext(&#39;2d&#39;);
+    var localMediaStream = null;
+    var img = document.querySelector(&#39;img&#39;);
+
+    function snapshot() {
+      if (localMediaStream) {
+        canvas.width = img.width = video.clientWidth;
+        canvas.height = img.height = video.clientHeight;
+        ctx.drawImage(video, 0, 0); 
+        img.src = canvas.toDataURL(&#39;image/webp&#39;);
+      }             
+    }               
+
+    video.addEventListener(&#39;click&#39;, snapshot, false);
+
+    if( navigator.getUserMedia ){
+        navigator.getUserMedia({video: true}, function(stream) {
+        video.src = window.URL.createObjectURL(stream);
+        localMediaStream = stream;
+
+        },function( error ){
+            alert(&quot;User denied access to their camera!&quot;);  
+        });           
+    }else{         
+        alert(&quot;The browser is not support&quot;);
+    }               
+
+})();           </pre>
+
+<p>這個範例主要是使用<strong>getUserMedia</strong>取得user的授權，將會回傳user所選的鏡頭串流，接著觸發<strong>video</strong>的click event，把目前<strong>video</strong>的畫面，繪製在<strong>canvas</strong>，在轉換成image。<a href="http://caniuse.com/stream" target="_blank" rel="external">支援的瀏覽器</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2012/12/17/camera-snapshotgetusermedia/" data-id="cih0hx1m000adtm640y97krji" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2012/12/17/camera-snapshotgetusermedia/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-html5-cache-manifest" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/12/14/html5-cache-manifest/" class="article-date">
+  <time datetime="2012-12-14T05:57:56.000Z" itemprop="datePublished">Dec 14 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/14/html5-cache-manifest/">HTML5  Cache Manifest </a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>當網路無法使用的時候，html5提供一個可以預先儲存到本機端，讓沒有網路的情況也可以使用。當需要更新時，只要去修改manifest的版本，browser就會自動做update動作。</p>
+<p>如果是使用nginx需要在mime.types，加入以下設定：</p>
+<pre class="brush:js">text/cache-manifest      mf manifest;</pre>
+
+<p>以上動作只是針對server對browser需要吐回header，讓browser做解析，例如是php、java、node.js，這類型的語言，也可以直接在header自行加入。</p>
+<p>html example：</p>
+<pre class="brush:html">&lt;!DOCTYPE HTML&gt;        
+&lt;html lang=&quot;en&quot; manifest=&quot;test.manifest&quot;&gt;       
+&lt;head&gt;                 
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;&lt;/title&gt; 
+&lt;/head&gt;                
+&lt;body&gt;                 
+    &lt;script type=&quot;text/javascript&quot; src=&quot;test.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        test.hello();
+    &lt;/script&gt;
+    hello
+&lt;/body&gt;                
+&lt;/html&gt;    </pre>
+
+<p>test.manifest：</p>
+<pre class="brush:html">CACHE MANIFEST
+
+# VERSION 0.1 
+
+#需要cache path
+CACHE:
+test.js
+
+#需要連線至網路的path
+NETWORK:
+
+#找不到path，將去替換path
+FALLBACK:&nbsp;</pre>
+
+<p>以上這種作法，會有一個問題，如果當page不是靜態的，而是要做成動態方式，page會預先被cache住，即時在manifest裡面的network設定，也還是有一樣的情況。網路上查到可以使用iframe去內嵌入一個cache.html，但是這幫助並不大，實際頁面上讀取的static檔案，還是會重新去讀取，會與iframe裡面的cache沒有相關，反而會覆蓋iframe cache裡面的檔案（路徑相同，ex：test.js）。</p>
+<p>如果只是要cache js的話，那目前有個作法，可以解決這個問題，但不是一個好的解決方式，如下。</p>
+<p>index html：</p>
+<pre class="brush:html">&lt;!DOCTYPE HTML&gt;        
+&lt;html lang=&quot;en&quot;&gt;       
+&lt;head&gt;                 
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;&lt;/title&gt; 
+&lt;/head&gt;                
+&lt;body&gt;                 
+
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        function onload(){
+           &nbsp;document.querySelectorAll(&quot;iframe&quot;)[0].contentWindow.test.hello();        
+        }
+    &lt;/script&gt;
+    &lt;iframe src=&quot;cache.html&quot; style=&quot;display:none;&quot; &gt;&lt;/iframe&gt;
+    &lt;script&gt;
+         &nbsp;document.querySelectorAll(&quot;iframe&quot;)[0].onload = onload;
+    &lt;/script&gt;
+&lt;/body&gt;                
+&lt;/html&gt;     
+
+</pre>
+
+<p>cache html：</p>
+<pre class="brush:html">&lt;!DOCTYPE HTML&gt;                                    
+&lt;html lang=&quot;en&quot; manifest=&quot;test.manifest&quot;&gt;          
+&lt;head&gt;                                             
+    &lt;meta charset=&quot;UTF-8&quot;&gt;                         
+    &lt;title&gt;&lt;/title&gt;                                
+&lt;/head&gt;                                            
+&lt;body&gt;                                             
+    &lt;script type=&quot;text/javascript&quot; src=&quot;test.js&quot;&gt;&lt;/script&gt;
+
+&lt;/body&gt;                                  
+&lt;/html&gt;   </pre>
+
+<p>test.js：</p>
+<pre class="brush:js">test = { 
+    hello:function(){
+        console.log(&quot;hello&quot;);
+    }   
+};</pre>
+
+<p>test.manifest：</p>
+<pre class="brush:html">CACHE MANIFEST
+
+# VERSION 0.1 
+
+#
+CACHE:
+test.js
+
+#
+NETWORK:
+
+#
+FALLBACK:
+
+</pre>
+
+<p>以上作法，主要是利用iframe讀取到的cache script，在從主要頁面對iframe抓取相關javascript object。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2012/12/14/html5-cache-manifest/" data-id="cih0hx1kt008ntm64wrbt0d8s" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2012/12/14/html5-cache-manifest/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-canvas-event" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/04/17/canvas-event/" class="article-date">
+  <time datetime="2012-04-17T13:23:40.000Z" itemprop="datePublished">Apr 17 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/04/17/canvas-event/">canvas event</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在canvas上監聽event，最簡單的方式，就是將event綁在canvas，但是當canvas畫上各種不同的shape時，這時就必須另外實作監聽各個shape的event。另一種方式，則是在canvas上，在疊加一塊image或<strong>html5</strong>的<strong>svg</strong>(利用現成html的tag)，用來監聽不規則的形狀。</p>
+<p><strong>用image的方式，則是搭配map和area tag，這種方式再大部份的瀏覽器都支援。</strong></p>
+<h5 id="以下是個map_tag搭配canvas的example：">以下是個map tag搭配canvas的example：</h5><pre class="brush:html">&lt;canvas id=&quot;canvas&quot; width=&quot;200&quot; height=&quot;200&quot;&gt;&lt;/canvas&gt;
+&lt;img src=&quot;&quot; width=&quot;200&quot; height=&quot;200&quot; usemap=&quot;#map&quot; style=&quot;border:0px;position:absolute;z-index:1;opacity:0;&quot; id=&quot;mapImage&quot; /&gt;
+
+&lt;map name=&quot;map&quot; id=&quot;map&quot;&gt;
+  &lt;area id=&quot;areaCircle&quot; shape=&quot;circle&quot; coords=&quot;75,75,10&quot;  href=&quot;#&quot; /&gt;
+&lt;/map&gt;
+</pre>
+
+<p>image上的<strong>usemap</strong>屬性，是用來參照<strong>map tag</strong>的名稱，而<strong>area</strong>則是設定監聽的範圍，和綁定event的tag，範例都以圓形為例。<strong>圓的coords(x,y,r)，r為半徑</strong>。</p>
+<pre class="brush:js">var $canvas = $(&quot;#canvas&quot;);
+
+$(&quot;#mapImage&quot;).offset({
+    top:$canvas.offset().top,
+    left:$canvas.offset().left
+});
+$(&quot;#areaCircle&quot;).on(&quot;click&quot;,function(){
+    alert(&quot;click&quot;);
+});
+
+//get a reference to the canvas
+var ctx = $canvas[0].getContext(&quot;2d&quot;);
+
+//draw a circle
+ctx.beginPath();
+ctx.arc(75, 75, 10, 0, Math.PI*2, true); 
+ctx.closePath();
+ctx.fill();
+</pre>
+<div>上面程式做的事情，先將image疊在canvas上，綁定好event，接著用canvas畫一個圓。[map tag可參考w3c](http://www.w3schools.com/tags/tag_area.asp)</div>
+<div>&nbsp;</div>
+
+##### svg搭配canvas的example：
+
+<pre class="brush:html">&lt;canvas id=&quot;canvas&quot; width=&quot;200&quot; height=&quot;200&quot;&gt;&lt;/canvas&gt;
+&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; version=&quot;1.1&quot; id=&quot;svg&quot; style=&quot;position:absolute;z-index:1;opacity:0;&quot;&gt;
+   &lt;circle id=&quot;circle&quot; cx=&quot;75&quot; cy=&quot;75&quot; r=&quot;10&quot; stroke=&quot;black&quot; stroke-width=&quot;0&quot; style=&quot;cursor:pointer;opacity:0;&quot;/&gt;
+&lt;/svg&gt;</pre>
+
+<p><span style="color:#f00;"><strong>svg</strong>與<strong>map tag</strong>不同的是，<strong>map tag</strong>必須指定<strong>image</strong>作為參照，而svg可以自己產生不同的shape</span>，這裡的範例是用來搭配canvas使用，所以會設定為透明。</p>
+<div><pre class="brush:js">$(&quot;circle&quot;).on(&quot;click&quot;,function(){<br>        alert(&quot;click&quot;);<br>    });<br><br>    var $canvas = $(&quot;#canvas&quot;);<br><br>    $(&quot;#svg&quot;).offset({<br>        top:$canvas.offset().top,<br>        left:$canvas.offset().left<br>    });<br><br>    //get a reference to the canvas<br>    var ctx = $canvas[0].getContext(&quot;2d&quot;);<br><br>    //draw a circle<br>    ctx.beginPath();<br>    ctx.arc(75, 75, 10, 0, Math.PI<em>2, true);<br>    ctx.closePath();<br>    ctx.fill();</em></pre></div><br><div><em>*svg</em>的應用方式還有多種，可以參考<a href="http://www.tutorialspoint.com/html5/html5_svg.htm" target="_blank" rel="external">此頁面</a>。</div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2012/04/17/canvas-event/" data-id="cih0hx1ly00a9tm641un404co" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2012/04/17/canvas-event/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-讀取file的內容filereader" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/07/09/讀取file的內容filereader/" class="article-date">
+  <time datetime="2011-07-09T05:39:07.000Z" itemprop="datePublished">Jul 9 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/07/09/讀取file的內容filereader/">讀取file的內容(FileReader)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>讀取<span style="color:#00f;">file</span>的內容，可以使用<span style="color:#00f;">FileReader</span>，這功能是<span style="color:#00f;">html5</span>才加入的，依照不同瀏覽器，支援<span style="color:#00f;">file</span>相關物件的method，實作完整度不同。</p>
+<h6 id="example：">example：</h6><pre class="brush:js">&lt;script type=&quot;text/javascript&quot;&gt;
+  function load() {
+    var finput = document.getElementById(&quot;file&quot;);
+    //取得file
+    var f = finput.files[0];
+
+    if( f ){
+      var r = new FileReader();
+      //讀取完畢執行function
+      r.onload = function(e) { console.log(e.target.result); };
+        //使用utf8邊碼讀取
+        //r.readAsText(f);
+        //用base64格式讀取
+        //r.readAsDataURL(f);
+        //使用二進位方式讀取file
+        r.readAsBinaryString(f);
+
+       }
+    }
+&lt;/script&gt;
+
+&lt;input type=&quot;file&quot; id=&quot;file&quot; /&gt;
+&lt;a href=&quot;#&quot; onclick=&quot;load()&quot;&gt;Load&lt;/a&gt;
+</pre>
+
+<p><span style="color:#00f;">FileReader</span>還有一些event可以使用，例如<span style="color:#00f;">onloadstart</span>、<span style="color:#00f;">onprogress</span>、<span style="color:#00f;">onerror</span>….等，可以用來監聽讀取的進度，另外使用<span style="color:#00f;">drop</span>、<span style="color:#00f;">dragover</span>也可以利用div，製作一個框框，搭配<span style="color:#00f;">FileReader</span>，讓使用者方便拖拉檔案，直接載入檔案內容。</p>
+<p>如果要支援IE8、IE9可直接使用現成的<a href="https://github.com/Jahdrien/FileReader" target="_blank" rel="external">flash FileReader</a>。</p>
+<p><a href="http://www.w3.org/TR/FileAPI/" target="_blank" rel="external">w3c的定義格式</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/07/09/讀取file的內容filereader/" data-id="cih0hx1f70007tm647mkstqt0" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/07/09/讀取file的內容filereader/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iframe跨網域" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/06/22/iframe跨網域/" class="article-date">
+  <time datetime="2011-06-22T14:17:15.000Z" itemprop="datePublished">Jun 22 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/06/22/iframe跨網域/">iframe跨網域(iframe cross domain)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在大部分的瀏覽器中(chrome、firefox、IE8…)，可以<span style="color:#f00;">使用postMessage和onmessage，去互相傳遞資料</span>。<span class="Apple-style-span" style="color: rgb(255, 0, 0); ">postMessage負責丟到不同網域，</span><span class="Apple-style-span" style="color: rgb(255, 0, 0); ">onmessage則是監聽其他網域丟來的資料。</span></p>
+<h6 id="主要domain：">主要domain：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">window.onmessage = function()&#123;</span><br><span class="line">    console.log(arguments);</span><br><span class="line">&#125;;</span><br><span class="line">/*if(window.addEventListener)&#123;</span><br><span class="line">    window.addEventListener(&amp;quot;message&amp;quot;,function()&#123;</span><br><span class="line">        console.log(arguments);</span><br><span class="line">    &#125;,false);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    window.attachEvent(&amp;quot;onmessage&amp;quot;, function()&#123;</span><br><span class="line">        console.log(arguments);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;*/</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;iframe src=&amp;quot;http://127.0.0.1/otherDomain.html&amp;quot; id=&amp;quot;iframe1&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">var win = document.getElementById(&amp;quot;iframe1&amp;quot;).contentWindow;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">win.postMessage(&amp;quot;Hello Sparrow!&amp;quot;,&amp;quot;http://127.0.0.1/&amp;quot;);</span><br><span class="line">&#125;,1000);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<h6 id="其他domain(otherDomain-html)：">其他domain(<span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">otherDomain.html</span>)：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">window.onmessage = function()&#123;</span><br><span class="line">    console.log(arguments);</span><br><span class="line">&#125;;</span><br><span class="line">parent.postMessage(&amp;quot;test&amp;quot;,&amp;quot;http://localhost/&amp;quot;);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;</span><br></pre></td></tr></table></figure>
+<h6 id="那麼如果要運行在IE7、IE6底下呢?">那麼如果要運行在IE7、IE6底下呢?</h6><p>這時候可以<span style="color:#f00;">建立一個proxy.html</span>，<span style="color:#f00;">利用iframe的src嵌入一個proxy.html</span>，<span style="color:#f00;">至於proxy.html需要抓取網址上的參數</span>，<span style="color:#f00;">透過window.frames[&quot;iframe1&quot;]得方式傳遞</span>。動態載入proxy.html，當資料傳遞完畢，將proxy.html的iframe動態移除，監聽事件可以使用onload去監聽。(換句話說，每次傳遞資料都是一次request，另外也可以使用hash&quot;#&quot;去實作)</p>
+<p>圖中灰色的<span style="color:#00f;">proxy.html</span>可透過<span style="color:#00f;">window.parent.frames[&quot;iframe1&quot;]</span>的方式，而綠色則要使用<span style="color:#00f;">parent.parent</span> ，或<span style="color:#00f;">parent.frames[&quot;parent&quot;]</span>。同顏色可透過js語法直接呼叫，不同顏色必須透過<span style="color:#00f;">proxy.html</span>去抓取<span style="color:#00f;">url</span>參數，再丟到同網域的頁面。</p>
+<p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/iframe/1aac4d43.png" alt="" title="crossFrame"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/06/22/iframe跨網域/" data-id="cih0hx1km008btm649uym760f" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/06/22/iframe跨網域/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-javascript-storage" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/04/12/javascript-storage/" class="article-date">
+  <time datetime="2011-04-12T14:00:17.000Z" itemprop="datePublished">Apr 12 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/04/12/javascript-storage/">Javascript Storage</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="color:#00f;">storage</span>是<span style="color:#00f;">html5</span>的儲存資料的方式之一，主要分為<span style="color:#00f;">sessionStorage</span>和<span style="color:#00f;">localStorage</span>，這兩種儲存方式都只能在相同的<span style="color:#00f;">domain</span>才能讀取到，<span style="color:#00f;">sessionStorage</span>只要頁面關掉後，就會釋放儲存的資料，而<span style="color:#00f;">localStorage</span>是直接儲存在<span style="color:#00f;">brower</span>。</p>
+<h6 id="storage的物件成員有：">storage的物件成員有：</h6><pre class="brush:js">//設定資料
+setItem(key,val);
+//取得資料
+getItem(key);
+//移除資料
+removeItem(key,val);
+//取得儲存資料的筆數
+length;
+//利用索引取得資料
+key(index)&#39;
+//清除所有資料
+clear();</pre>
+
+<h6 id="其中以下方式功能是一樣的：">其中以下方式功能是一樣的：</h6><pre class="brush:js">sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
+sessionStorage[&quot;test&quot;] = &quot;test&quot;;
+//以上這兩種方式，是相同的效果。
+</pre>
+
+<p>從以上範例可以看出，<span style="color:#f00;">實際上是把直塞到object裡，所以要是儲存本身物件所擁有的成員，將會加以覆蓋</span>，所以不能用相同名稱。</p>
+<h6 id="例如：">例如：</h6><pre class="brush:js">sessionStorage.setItem(&quot;setItem&quot;,&quot;test&quot;);
+//將會出錯
+sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
+</pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/04/12/javascript-storage/" data-id="cih0hx1jz007dtm644yyxymsh" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/04/12/javascript-storage/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/tags/html5/page/2/">2</a><a class="extend next" rel="next" href="/tags/html5/page/2/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IE/">IE</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YQL/">YQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actionscript/">actionscript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/add-on/">add-on</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone/">backbone</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bluetooth/">bluetooth</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap3/">bootstrap3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boto/">boto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome-extension/">chrome extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-prototype/">javascript prototype</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-tool/">javascript tool</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neo4j/">neo4j</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pattern/">pattern</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell-script/">shell script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlite/">sqlite</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversion/">subversion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/titanium/">titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zend-framework/">zend framework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zeromq/">zeromq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第三方登入/">第三方登入</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IE/" style="font-size: 11.25px;">IE</a> <a href="/tags/Titanium/" style="font-size: 15px;">Titanium</a> <a href="/tags/YQL/" style="font-size: 10px;">YQL</a> <a href="/tags/actionscript/" style="font-size: 10px;">actionscript</a> <a href="/tags/add-on/" style="font-size: 10px;">add-on</a> <a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/angularjs/" style="font-size: 17.5px;">angularjs</a> <a href="/tags/arduino/" style="font-size: 10px;">arduino</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/backbone/" style="font-size: 12.5px;">backbone</a> <a href="/tags/bluetooth/" style="font-size: 10px;">bluetooth</a> <a href="/tags/bootstrap3/" style="font-size: 10px;">bootstrap3</a> <a href="/tags/boto/" style="font-size: 10px;">boto</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/chrome-extension/" style="font-size: 10px;">chrome extension</a> <a href="/tags/css/" style="font-size: 11.25px;">css</a> <a href="/tags/database/" style="font-size: 15px;">database</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/html5/" style="font-size: 18.75px;">html5</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/java/" style="font-size: 13.75px;">java</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-prototype/" style="font-size: 11.25px;">javascript prototype</a> <a href="/tags/javascript-tool/" style="font-size: 16.25px;">javascript tool</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/linux/" style="font-size: 13.75px;">linux</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/neo4j/" style="font-size: 11.25px;">neo4j</a> <a href="/tags/node-js/" style="font-size: 11.25px;">node.js</a> <a href="/tags/pattern/" style="font-size: 11.25px;">pattern</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 17.5px;">python</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/shell-script/" style="font-size: 10px;">shell script</a> <a href="/tags/sqlite/" style="font-size: 11.25px;">sqlite</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/subversion/" style="font-size: 11.25px;">subversion</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/titanium/" style="font-size: 10px;">titanium</a> <a href="/tags/vim/" style="font-size: 11.25px;">vim</a> <a href="/tags/yii/" style="font-size: 11.25px;">yii</a> <a href="/tags/zend-framework/" style="font-size: 12.5px;">zend framework</a> <a href="/tags/zeromq/" style="font-size: 10px;">zeromq</a> <a href="/tags/第三方登入/" style="font-size: 10px;">第三方登入</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/01/Titanium-Android-native-module/">Titanium Android native module</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/21/Connect-Arduino-Uno-via-Android-Bluetooth/">Connect Arduino Uno via Android Bluetooth</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/25/My-github/">My github</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/11/image-converter/">Image converter</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/">The unsafe resource URL and cross origin on angular</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Sparrow Jang<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://twitter.com/Sparrow_Jang" class="mobile-nav-link">Twitter</a>
+  
+    <a href="https://github.com/SparrowJang" class="mobile-nav-link">Github</a>
+  
+    <a href="https://hub.docker.com/u/peter1209/" class="mobile-nav-link">DockerHub</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'sparrowhome';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>

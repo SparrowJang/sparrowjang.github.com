@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives: 2011/7 | Sparrow&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sparrow's Blog">
+<meta property="og:url" content="http://www.sparrowjang.com/archives/2011/07/index.html">
+<meta property="og:site_name" content="Sparrow's Blog">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sparrow's Blog">
+<meta name="twitter:description">
+<meta name="twitter:creator" content="@Sparrow_Jang">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21959339-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sparrow&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="https://twitter.com/Sparrow_Jang">Twitter</a>
+        
+          <a class="main-nav-link" href="https://github.com/SparrowJang">Github</a>
+        
+          <a class="main-nav-link" href="https://hub.docker.com/u/peter1209/">DockerHub</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.sparrowjang.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-firefox-add-on" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/07/21/firefox-add-on/" class="article-date">
+  <time datetime="2011-07-21T15:12:22.000Z" itemprop="datePublished">Jul 21 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/07/21/firefox-add-on/">firefox add-on</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="color:#00f;">add-on</span>是用來開發<span style="color:#00f;">firefox</span>的附加元件，其中開發方式有兩種，一種是採用<span style="color:#00f;">browser</span>線上開發，另一種則是在本機端開發，利用<span style="color:#00f;">command line</span>去對執行。在開發之前，需要先下載<a href="https://addons.mozilla.org/en-US/developers/builder" target="_blank" rel="external">add-on sdk</a>。(<span style="color:#f00;">1.0版本只能運行在firefox4以上</span>)</p>
+<p><strong>sdk下載完後執行：</strong></p>
+<p>source bin/activate (linux環境，若是window直接執行activate即可，接著就可以執行cfx。)</p>
+<p><strong>接著建立一個目錄，到目錄底下執行：</strong></p>
+<p>cfx init &nbsp; (將會建立及配置基本的目錄檔案)</p>
+<p><strong>如果要執行可以使用：</strong></p>
+<p>cfx run</p>
+<p><strong>匯出檔案：</strong></p>
+<p>cfx xpi</p>
+<h6 id="以下是一個簡單範例：">以下是一個簡單範例：</h6><p><strong>main.js</strong></p>
+<pre class="brush:js">const widgets = require(&quot;widget&quot;);
+const pageMod = require(&#39;page-mod&#39;);
+const data = require(&#39;self&#39;).data;
+const tabs = require(&quot;tabs&quot;);
+var workers = [];
+var selector = pageMod.PageMod({
+  include: [&#39;*&#39;],
+  contentScriptWhen: &#39;ready&#39;,
+  contentScriptFile: [data.url(&#39;page.js&#39;)],
+  onAttach: function(worker) {
+    worker.on(&quot;message&quot;,function(data){
+        console.log(data);
+    }); 
+    workers.push(worker);
+  }   
+});   
+
+var widget = widgets.Widget({
+  id: &quot;mozilla-link&quot;,
+  label: &quot;Mozilla website&quot;,
+  contentURL: &quot;http://www.mozilla.org/favicon.ico&quot;,
+  onClick: function() {
+    for(var i in workers){
+        workers[i].postMessage(&quot;test&quot;);
+    }   
+  } 
+}); 
+
+console.log(&quot;The add-on is running.&quot;);&nbsp;</pre>
+
+<p><strong>data目錄的page.js</strong></p>
+<pre class="brush:js">self.on(&quot;message&quot;,function(data){
+
+    console.log(data);
+    self.postMessage(document.title);
+});&nbsp;</pre>
+
+<p>附加元件，會被顯示在<span style="color:#00f;">browser</span>的右下角，點選後即可觸發<span style="color:#00f;">click</span>事件，在終端機上即可看到<span style="color:#00f;">console.log</span>。</p>
+<p><a href="https://addons.mozilla.org/en-US/developers/docs/sdk/1.0/packages/addon-kit/addon-kit.html" target="_blank" rel="external">add-on api</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/07/21/firefox-add-on/" data-id="cih0hx1l90096tm64fccd504n" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/07/21/firefox-add-on/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/add-on/">add-on</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-chrome-extension" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/07/21/chrome-extension/" class="article-date">
+  <time datetime="2011-07-21T14:43:37.000Z" itemprop="datePublished">Jul 21 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/07/21/chrome-extension/">chrome extension</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="color:#00f;">chrome extension</span>是<span style="color:#00f;">chrome</span>的擴充元件，只需要有配置<span style="color:#00f;">manifest.json</span>，搭配一個<span style="color:#00f;">background_page</span>或<span class="Apple-style-span" style="font-family: monospace; white-space: pre; color: rgb(0, 0, 0); font-size: medium; "><span style="color:#00f;">popup</span>，就可以完成一個簡單的擴充元件。</span></p>
+<h6 id="以下是一個與頁面溝通example：">以下是一個與頁面溝通example：</h6><p><strong>manifest.json的配置：</strong></p>
+<pre class="brush:js">{
+  &quot;name&quot;: &quot;test&quot;,
+  &quot;version&quot;: &quot;1.0&quot;,
+  &quot;background_page&quot;: &quot;background.html&quot;,
+  &quot;permissions&quot;: [
+    &quot;tabs&quot;, &quot;http://*/*&quot;
+  ]
+}
+</pre>
+<div>其中<span style="color:#00f;">background_page</span>是主要運行在<span style="color:#00f;">extension</span>的程式，<span style="color:#00f;">permissions</span>則是可以使用的權限。</div>
+<div>[manifest的參數配置](http://code.google.com/chrome/extensions/contextMenus.html)</div>
+<div>&nbsp;</div>
+
+**background.html：**
+
+<pre class="brush:js">&lt;html&gt;
+&lt;head&gt;
+&lt;script&gt;
+
+  function click() {
+
+    chrome.tabs.executeScript(null,{file:&quot;page.js&quot;});
+  }
+  //監聽page request的event
+  chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+   console.log(arguments);
+  });
+   //配置icon
+  chrome.browserAction.setIcon({path:&quot;icon&quot; + current + &quot;.png&quot;});
+  chrome.browserAction.onClicked.addListener(click);
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;/html&gt;</pre>
+
+<p><strong>page.js：</strong></p>
+<pre class="brush:js">    chrome.extension.sendRequest({page:document.title});
+</pre>
+
+<p>接著只要將此目錄載入到擴充元件，即可使用。(<span style="color:#f00;">擴充元件console.log，要在點選擴充元件裡&quot;檢查運作中的檢視&quot;的頁面，才看的到喔~!</span>)</p>
+<p><a href="http://code.google.com/chrome/extensions/devguide.html" target="_blank" rel="external">chrome api 和配置</a></p>
+<p><a href="http://code.google.com/chrome/extensions/samples.html" target="_blank" rel="external">example</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/07/21/chrome-extension/" data-id="cih0hx1ls009ztm64sbkxlbka" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/07/21/chrome-extension/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chrome-extension/">chrome extension</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-讀取file的內容filereader" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/07/09/讀取file的內容filereader/" class="article-date">
+  <time datetime="2011-07-09T05:39:07.000Z" itemprop="datePublished">Jul 9 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/07/09/讀取file的內容filereader/">讀取file的內容(FileReader)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>讀取<span style="color:#00f;">file</span>的內容，可以使用<span style="color:#00f;">FileReader</span>，這功能是<span style="color:#00f;">html5</span>才加入的，依照不同瀏覽器，支援<span style="color:#00f;">file</span>相關物件的method，實作完整度不同。</p>
+<h6 id="example：">example：</h6><pre class="brush:js">&lt;script type=&quot;text/javascript&quot;&gt;
+  function load() {
+    var finput = document.getElementById(&quot;file&quot;);
+    //取得file
+    var f = finput.files[0];
+
+    if( f ){
+      var r = new FileReader();
+      //讀取完畢執行function
+      r.onload = function(e) { console.log(e.target.result); };
+        //使用utf8邊碼讀取
+        //r.readAsText(f);
+        //用base64格式讀取
+        //r.readAsDataURL(f);
+        //使用二進位方式讀取file
+        r.readAsBinaryString(f);
+
+       }
+    }
+&lt;/script&gt;
+
+&lt;input type=&quot;file&quot; id=&quot;file&quot; /&gt;
+&lt;a href=&quot;#&quot; onclick=&quot;load()&quot;&gt;Load&lt;/a&gt;
+</pre>
+
+<p><span style="color:#00f;">FileReader</span>還有一些event可以使用，例如<span style="color:#00f;">onloadstart</span>、<span style="color:#00f;">onprogress</span>、<span style="color:#00f;">onerror</span>….等，可以用來監聽讀取的進度，另外使用<span style="color:#00f;">drop</span>、<span style="color:#00f;">dragover</span>也可以利用div，製作一個框框，搭配<span style="color:#00f;">FileReader</span>，讓使用者方便拖拉檔案，直接載入檔案內容。</p>
+<p>如果要支援IE8、IE9可直接使用現成的<a href="https://github.com/Jahdrien/FileReader" target="_blank" rel="external">flash FileReader</a>。</p>
+<p><a href="http://www.w3.org/TR/FileAPI/" target="_blank" rel="external">w3c的定義格式</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/07/09/讀取file的內容filereader/" data-id="cih0hx1f70007tm647mkstqt0" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/07/09/讀取file的內容filereader/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IE/">IE</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YQL/">YQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actionscript/">actionscript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/add-on/">add-on</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone/">backbone</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bluetooth/">bluetooth</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap3/">bootstrap3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boto/">boto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome-extension/">chrome extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-prototype/">javascript prototype</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-tool/">javascript tool</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neo4j/">neo4j</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pattern/">pattern</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell-script/">shell script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlite/">sqlite</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversion/">subversion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/titanium/">titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zend-framework/">zend framework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zeromq/">zeromq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第三方登入/">第三方登入</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IE/" style="font-size: 11.25px;">IE</a> <a href="/tags/Titanium/" style="font-size: 15px;">Titanium</a> <a href="/tags/YQL/" style="font-size: 10px;">YQL</a> <a href="/tags/actionscript/" style="font-size: 10px;">actionscript</a> <a href="/tags/add-on/" style="font-size: 10px;">add-on</a> <a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/angularjs/" style="font-size: 17.5px;">angularjs</a> <a href="/tags/arduino/" style="font-size: 10px;">arduino</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/backbone/" style="font-size: 12.5px;">backbone</a> <a href="/tags/bluetooth/" style="font-size: 10px;">bluetooth</a> <a href="/tags/bootstrap3/" style="font-size: 10px;">bootstrap3</a> <a href="/tags/boto/" style="font-size: 10px;">boto</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/chrome-extension/" style="font-size: 10px;">chrome extension</a> <a href="/tags/css/" style="font-size: 11.25px;">css</a> <a href="/tags/database/" style="font-size: 15px;">database</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/html5/" style="font-size: 18.75px;">html5</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/java/" style="font-size: 13.75px;">java</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-prototype/" style="font-size: 11.25px;">javascript prototype</a> <a href="/tags/javascript-tool/" style="font-size: 16.25px;">javascript tool</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/linux/" style="font-size: 13.75px;">linux</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/neo4j/" style="font-size: 11.25px;">neo4j</a> <a href="/tags/node-js/" style="font-size: 11.25px;">node.js</a> <a href="/tags/pattern/" style="font-size: 11.25px;">pattern</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 17.5px;">python</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/shell-script/" style="font-size: 10px;">shell script</a> <a href="/tags/sqlite/" style="font-size: 11.25px;">sqlite</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/subversion/" style="font-size: 11.25px;">subversion</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/titanium/" style="font-size: 10px;">titanium</a> <a href="/tags/vim/" style="font-size: 11.25px;">vim</a> <a href="/tags/yii/" style="font-size: 11.25px;">yii</a> <a href="/tags/zend-framework/" style="font-size: 12.5px;">zend framework</a> <a href="/tags/zeromq/" style="font-size: 10px;">zeromq</a> <a href="/tags/第三方登入/" style="font-size: 10px;">第三方登入</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/01/Titanium-Android-native-module/">Titanium Android native module</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/21/Connect-Arduino-Uno-via-Android-Bluetooth/">Connect Arduino Uno via Android Bluetooth</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/25/My-github/">My github</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/11/image-converter/">Image converter</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/">The unsafe resource URL and cross origin on angular</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Sparrow Jang<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://twitter.com/Sparrow_Jang" class="mobile-nav-link">Twitter</a>
+  
+    <a href="https://github.com/SparrowJang" class="mobile-nav-link">Github</a>
+  
+    <a href="https://hub.docker.com/u/peter1209/" class="mobile-nav-link">DockerHub</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'sparrowhome';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>

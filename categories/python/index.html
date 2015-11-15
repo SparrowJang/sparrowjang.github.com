@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: python | Sparrow&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sparrow's Blog">
+<meta property="og:url" content="http://www.sparrowjang.com/categories/python/index.html">
+<meta property="og:site_name" content="Sparrow's Blog">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sparrow's Blog">
+<meta name="twitter:description">
+<meta name="twitter:creator" content="@Sparrow_Jang">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21959339-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sparrow&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="https://twitter.com/Sparrow_Jang">Twitter</a>
+        
+          <a class="main-nav-link" href="https://github.com/SparrowJang">Github</a>
+        
+          <a class="main-nav-link" href="https://hub.docker.com/u/peter1209/">DockerHub</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.sparrowjang.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-amazon-s3-on-python" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/02/16/amazon-s3-on-python/" class="article-date">
+  <time datetime="2014-02-16T03:19:46.000Z" itemprop="datePublished">Feb 16 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/02/16/amazon-s3-on-python/">Aws s3 on python</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在python要使用aws的s3，官方建議是透過<a href="https://github.com/boto/boto" target="_blank" rel="external">boto</a>這套libs。</p>
+<h2 id="Dependency">Dependency</h2><ul>
+<li>boto</li>
+</ul>
+<h2 id="Install">Install</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install boto</span><br></pre></td></tr></table></figure>
+<h2 id="Usage">Usage</h2><h3 id="Creating_a_Connection:">Creating a Connection:</h3><p>設定access和secret key，其中host為上傳s3位置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from boto.s3.connection import S3Connection&#10;&#10;conn = S3Connection(&#39;&#60;aws access key&#62;&#39;, &#39;&#60;aws secret key&#62;&#39;, host = &#39;s3.amazonaws.com&#39; )</span><br></pre></td></tr></table></figure></p>
+<h3 id="Getting_a_bucket：">Getting a bucket：</h3><p>如果你已經在s3的頁面建立好bucket了，可以直接使用get_bucket：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bucket = conn.get_bucket( &#39;mybucket&#39; )</span><br></pre></td></tr></table></figure></p>
+<p>或者自己建立：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bucket = conn.create_bucket(&#39;mybucket&#39;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Storing_Data：">Storing Data：</h3><p>使用key去建立一個檔案，其中<code>k.key</code>這個值，假設有多層<code>folder</code>直接設定在此：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from boto.s3.key import Key&#10;&#10;k = Key(bucket)&#10;k.key = &#39;folder/test.txt&#39;&#10;k.set_contents_from_string(&#39;This is a test of S3&#39;)</span><br></pre></td></tr></table></figure></p>
+<p>之後只要在重新連線，透過<code>k.get_contents_as_string()</code>就可以取得到資料了。</p>
+<p>如果要上傳一個file的話，可透過<code>set_contents_from_filename</code>，會將你local端的<code>foo.jpg</code>上傳至s3：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k.set_contents_from_filename(&#39;foo.jpg&#39;)</span><br></pre></td></tr></table></figure></p>
+<p>要下載則是採用<code>get_contents_to_filename</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k.get_contents_to_filename(&#39;bar.jpg&#39;)</span><br></pre></td></tr></table></figure></p>
+<p>最後如果想透過變數去儲存至s3，一樣使用<code>set_contents_from_string</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = open( &#34;foo.jpg&#34;, &#34;rb&#34; )&#10;&#10;data = f.read()&#10;&#10;f.close()&#10;&#10;k.set_contents_from_string( data )</span><br></pre></td></tr></table></figure>
+<p>以上這些方式，需檢查<code>k.key</code>是否對應好s3上面的路徑。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2014/02/16/amazon-s3-on-python/" data-id="cih0hx1mt00bmtm64llbd1f2s" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2014/02/16/amazon-s3-on-python/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/aws/">aws</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/boto/">boto</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-flask-babel-example" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/02/16/flask-babel-example/" class="article-date">
+  <time datetime="2014-02-15T16:40:10.000Z" itemprop="datePublished">Feb 16 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/02/16/flask-babel-example/">Flask-Babel example</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>flask的support多國語言的方式，與python本身的<code>gettext</code>方式相同，都是去parse檔案裡頭含有<code>gettext</code>這類的語法，然後在將檔案轉成<code>.po</code>檔，去編輯相關的對應文字，接著放在相對應的folder，例如<code>zh</code>和<code>en</code>的字眼，最後在轉成<code>.mo</code>，實際執行<code>gettext</code>會讀取<code>.mo</code>。</p>
+<h2 id="Demo_screenshot">Demo screenshot</h2><p><img src="/images/article/flask-babel-example/chrome_header.png" alt="Demo image"></p>
+<h2 id="假設預設的配置如下：">假設預設的配置如下：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#10;&#9500;&#9472;&#9472; app.py&#10;&#9500;&#9472;&#9472; babel.cfg&#10;&#9500;&#9472;&#9472; mysettings.cfg&#10;&#9500;&#9472;&#9472; README.md&#10;&#9492;&#9472;&#9472;&#9472; templates&#10; &#160;&#160; &#9492;&#9472;&#9472; index.html</span><br></pre></td></tr></table></figure>
+<p><code>mysettings.cfg</code>設定預設的語系(在多國語系找不到時，將會預設英文)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BABEL_DEFAULT_LOCALE=&#34;en&#34;</span><br></pre></td></tr></table></figure></p>
+<p>透過<code>from_pyfile</code>載入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.config.from_pyfile(&#39;mysettings.cfg&#39;)</span><br></pre></td></tr></table></figure></p>
+<p>預設web接受的語系：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@babel.localeselector&#10;def get_locale():&#10;    # if a user is logged in, use the locale from the user settings&#10;    user = getattr(g, &#39;user&#39;, None)&#10;    if user is not None:&#10;        return user.locale&#10;    # otherwise try to guess the language from the user accept&#10;    # header the browser transmits.  We support de/fr/en in this&#10;    # example.  The best match wins.&#10;    return request.accept_languages.best_match([&#39;en&#39;,&#39;zh&#39;])</span><br></pre></td></tr></table></figure></p>
+<h2 id="產生-po和-mo檔">產生.po和.mo檔</h2><p><code>babel.cfg</code>設定要parse的路徑：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[python: **.py]  &#10;[jinja2: **/templates/**.html]&#10;extensions=jinja2.ext.autoescape,jinja2.ext.with_</span><br></pre></td></tr></table></figure></p>
+<p>接著只要在專案的根目錄執行以下command，就會取得messages.pot檔案：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pybabel extract -F babel.cfg -o messages.pot .</span><br></pre></td></tr></table></figure>
+<p>編輯好message.mo，初始化語系路徑以及設定語系：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pybabel init -i messages.pot -d translations -l zh</span><br></pre></td></tr></table></figure>
+<p>產生<code>translations/de/LC_MESSAGES/messages.po</code>此路徑。</p>
+<p>最後在將<code>translations</code>底下的<code>.po</code>檔案轉換成<code>.mo</code>檔即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pybabel compile -d translations</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/SparrowJang/flask-babel-example" target="_blank" rel="external">完成範例</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2014/02/16/flask-babel-example/" data-id="cih0hx1l60091tm64xxahpc0o" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2014/02/16/flask-babel-example/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flask/">flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python-encode" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/09/15/python-encode/" class="article-date">
+  <time datetime="2013-09-15T15:49:29.000Z" itemprop="datePublished">Sep 15 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/09/15/python-encode/">python encode</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在作業系統上都有預設語言，例如windows上預設可能是big5，linux則是utf8。當python要轉換編碼的時候，可以使用encode，但是有個<strong>先決條件，必須要先把編碼轉換成作業系統的預設語言</strong>。</p>
+<p><strong>以linux為例，要轉成big5，需先decode成utf8，在encode成big5：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-&#10;&#10;u_hello = &#34;&#21704;&#22217;&#34;.decode(&#34;utf8&#34;)&#10;big5_hello = u_hello.encode(&#34;big5&#34;)&#10;&#10;print big5_hello</span><br></pre></td></tr></table></figure>
+<p>接著將轉換過得字串寫入到檔案，在用gedit、word…之類的軟體，以big5編碼開啟就能看到剛剛寫入文字。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#write to file&#10;f = open( &#34;big5_text.txt&#34;, &#34;w&#34; )&#10;f.write( big5_hello )&#10;f.close()</span><br></pre></td></tr></table></figure></p>
+<p><strong>另外在字串前面加個u，和decode成utf8相同：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#62;&#62;&#62; u&#34;&#21704;&#22217;&#34; == &#34;&#21704;&#22217;&#34;.decode(&#34;utf8&#34;)&#10;True&#10;&#10;&#62;&#62;&#62; type(&#34;&#21704;&#22217;&#34;)&#10;&#60;type &#39;str&#39;&#62;&#10;&#10;&#62;&#62;&#62; type(u&#34;&#21704;&#22217;&#34;)&#10;&#60;type &#39;unicode&#39;&#62;&#10;&#10;&#62;&#62;&#62; type(&#34;&#21704;&#22217;&#34;.decode(&#34;utf8&#34;))&#10;&#60;type &#39;unicode&#39;&#62;</span><br></pre></td></tr></table></figure>
+<p>如果是windows的作業系統，只要先將decode成big5，即可轉成其他編碼。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/09/15/python-encode/" data-id="cih0hx1ik0053tm648ruc3rmc" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/09/15/python-encode/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-icon-converter" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/06/20/icon-converter/" class="article-date">
+  <time datetime="2013-06-20T15:38:15.000Z" itemprop="datePublished">Jun 20 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/06/20/icon-converter/">icon converter</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在地圖上要顯示marker，大多數都是使用固定幾個icon，以類別當作區分。如果能更直覺得辨識marker，讓user不用經由點擊，就得知marker的意義，應該會讓user更有觀看地圖意願。所以就寫了一個簡單的功能，讓圖片轉成icon。</p>
+<p><strong>Install：</strong></p>
+<pre class="brush:bash">git clone https://github.com/SparrowJang/icon_converter
+
+cd icon_converter
+
+sudo python setup.py install</pre>
+
+<p><strong>經由url的image轉換成icon ：</strong></p>
+<pre class="brush:python">from icon_converter import converter
+
+#target image ( http or local )
+path = &quot;http://example.com/test.png&quot;
+
+#resize and crop image
+size = {&quot;width&quot;:40,&quot;height&quot;:40}
+
+border = {
+    &quot;size&quot;:{&quot;width&quot;:2,&quot;height&quot;:2},
+    &quot;color&quot;:&quot;#BBBBBB&quot;,
+    &quot;backgroundColor&quot;:&quot;#FFFFFF&quot;
+}
+
+blob = converter.convert_by_path( path, size, border )
+
+f = open( &quot;icon.png&quot;, &quot;w&quot; )
+
+f.write( blob.data )
+
+f.close()
+</pre>
+
+<p><a href="https://github.com/SparrowJang/icon_converter" target="_blank" rel="external">github</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/06/20/icon-converter/" data-id="cih0hx1kp008ftm640aq64b5w" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/06/20/icon-converter/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-sqlite-adapter-and-converter" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/03/28/sqlite-adapter-and-converter/" class="article-date">
+  <time datetime="2013-03-28T15:15:27.000Z" itemprop="datePublished">Mar 28 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/03/28/sqlite-adapter-and-converter/">sqlite adapter and converter</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在sqlite中，要將python的object存入sqlite，可以透過在class實作<a href="http://docs.python.org/2/library/sqlite3.html#letting-your-object-adapt-itself" target="_blank" rel="external"><strong>conform</strong> </a>method，或者是透過sqlite提供的<a href="http://docs.python.org/2/library/sqlite3.html#registering-an-adapter-callable" target="_blank" rel="external">register_adapter</a>，再者就是先將object轉換成sqlite有的type，在存入即可。不過透過以上的方式，其實實作邏輯都是相同，只有透過不同存取介面。</p>
+<p><strong>以<strong>conform</strong>為例：</strong></p>
+<pre class="brush:python">import sqlite3
+
+class Point(object):
+    def __init__(self, x, y):
+        self.x, self.y = x, y
+
+    def __conform__(self, protocol):
+        if protocol is sqlite3.PrepareProtocol:
+            return &quot;%f;%f&quot; % (self.x, self.y)
+
+con = sqlite3.connect(&quot;:memory:&quot;)
+cur = con.cursor()
+
+p = Point(4.0, -3.2)
+cur.execute(&quot;select ?&quot;, (p,))
+print cur.fetchone()[0]</pre>
+
+<p>point會將值轉成string，最後會輸出&quot;<span style="color:#f00;">4.000000;-3.200000</span>&quot;，另外%f指的是浮點數。</p>
+<p><strong>透過register_adapter：</strong></p>
+<pre class="brush:python">def adapt_point(point):
+    return &quot;%f;%f&quot; % (point.x, point.y)
+
+sqlite3.register_adapter(Point, adapt_point)</pre>
+
+<p>只要在connect之前註冊好adapter，point就會自動轉成定義後格式。</p>
+<p><strong>如果要將以存入的值，轉回原先的object，這時可透過<a href="http://docs.python.org/2/library/sqlite3.html#converting-sqlite-values-to-custom-python-types" target="_blank" rel="external">converter</a>：</strong></p>
+<pre class="brush:python">def convert_point(s):
+    x, y = map(float, s.split(&quot;;&quot;))
+    return Point(x, y)
+
+# Register the converter
+sqlite3.register_converter(&quot;point&quot;, convert_point)</pre>
+
+<p>以上方式定義後，還必須在connect的時候，設定<a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.connect" target="_blank" rel="external">detect_types</a>的參數，下面有3種方式。</p>
+<p><strong>第一種使用<a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.PARSE_DECLTYPES" target="_blank" rel="external">sqlite3.PARSE_DECLTYPES</a>：</strong></p>
+<pre class="brush:python">con = sqlite3.connect(&quot;:memory:&quot;, detect_types=sqlite3.PARSE_DECLTYPES)
+cur = con.cursor()
+cur.execute(&quot;create table test(p point)&quot;)
+
+cur.execute(&quot;insert into test(p) values (?)&quot;, (p,))
+cur.execute(&quot;select p from test&quot;)
+print &quot;with declared types:&quot;, cur.fetchone()[0]</pre>
+
+<p>必須要在create table的時候，就是先定義好point type，之後query出來會自訂轉成object。</p>
+<p><strong>第二種方式使用<a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.PARSE_COLNAMES" target="_blank" rel="external">sqlite3.PARSE_COLNAMES</a>：</strong></p>
+<pre class="brush:python">con = sqlite3.connect(&quot;:memory:&quot;, detect_types=sqlite3.PARSE_COLNAMES)
+cur = con.cursor()
+cur.execute(&quot;create table test(p)&quot;)
+
+cur.execute(&quot;insert into test(p) values (?)&quot;, (p,))
+cur.execute(&#39;select p as &quot;p [point]&quot; from test&#39;)
+print &quot;with column names:&quot;, cur.fetchone()[0]</pre>
+
+<p>這種方式則是在query的時候，指定query欄位的type( p [point] )。</p>
+<p><strong>最後一種方式，就是兩種一起用：</strong></p>
+<pre class="brush:python">con = sqlite3.connect(&quot;:memory:&quot;, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES)</pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/03/28/sqlite-adapter-and-converter/" data-id="cih0hx1hl003ktm64iftzcvuy" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/03/28/sqlite-adapter-and-converter/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/database/">database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python-sqlite3-row_factory-and-text_factory" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/03/27/python-sqlite3-row_factory-and-text_factory/" class="article-date">
+  <time datetime="2013-03-27T14:09:41.000Z" itemprop="datePublished">Mar 27 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/03/27/python-sqlite3-row_factory-and-text_factory/">python sqlite3 row_factory and text_factory</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="row_factory">row_factory</h4><p>主要功能是改變sqlite抓取到資料，回傳的output的格式。</p>
+<p>例如原先的output type是tuple：</p>
+<pre class="brush:python">cursor.execute(&quot;select 1 as a&quot;)
+result = cursor.fetchone()
+print type(result) is tuple
+</pre>
+
+<p>如果要使用dict，可以覆蓋<a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.row_factory" target="_blank" rel="external">row_factory</a>：</p>
+<pre class="brush:python">import sqlite3
+
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
+
+con = sqlite3.connect(&quot;:memory:&quot;)
+con.row_factory = dict_factory
+cur = con.cursor()
+cur.execute(&quot;select 1 as a&quot;)
+print cur.fetchone()[&quot;a&quot;]
+</pre>
+
+<p>其實也可以直接使用官方預設的<a href="javascript:void(0" target="_blank" rel="external"><span class="n" style="color: rgb(51, 51, 51); line-height: 15px;">sqlite3</span></a>/<em>336</em>/)<a href="javascript:void(0" target="_blank" rel="external"><span class="o" style="line-height: 15px; color: rgb(102, 102, 102);">.</span></a>/<em>336</em>/)<span class="n" style="color: rgb(51, 51, 51); line-height: 15px;"><a href="http://docs.python.org/2/library/sqlite3.html#row-objects" target="_blank" rel="external">Row</a>：</span></p>
+<pre class="brush:python">con.row_factory = sqlite3.Row
+cur = con.cursor()
+cur.execute(&quot;select 1 as a&quot;)
+result = cur.fetchone()
+#1
+print result[&quot;a&quot;]
+#1
+print result[0]
+#1
+print len( result )
+#[&quot;a&quot;]
+print result.keys()
+</pre>
+
+<h4 id="text_factory">text_factory</h4><p>只要query出來的內容是text，就會經過這個function，可以用於字串編碼轉換，當然也可以利用這個方式去修改內容.。</p>
+<p>以下是簡單example：</p>
+<pre class="brush:python">import sqlite3
+
+con = sqlite3.connect(&quot;:memory:&quot;)
+cur = con.cursor()
+
+AUSTRIA = u&quot;\xd6sterreich&quot;
+
+cur.execute(&quot;select ?&quot;, (AUSTRIA,))
+row = cur.fetchone()
+
+#&lt;type &#39;unicode&#39;&gt;
+print type(row[0])
+
+con.text_factory = str
+cur.execute(&quot;select ?&quot;, (AUSTRIA,))
+row = cur.fetchone()
+
+#&lt;type &#39;str&#39;&gt;
+print type(row[0])
+
+con.text_factory = lambda x: unicode(x, &quot;utf-8&quot;, &quot;ignore&quot;)
+cur.execute(&quot;select ?&quot;, (&quot;this is latin1 and would normally create errors&quot; +
+                         u&quot;\xe4\xf6\xfc&quot;.encode(&quot;latin1&quot;),))
+row = cur.fetchone()
+
+#&lt;type &#39;unicode&#39;&gt;
+print type(row[0])
+
+con.text_factory = sqlite3.OptimizedUnicode
+cur.execute(&quot;select ?&quot;, (AUSTRIA,))
+row = cur.fetchone()
+
+#&lt;type &#39;unicode&#39;&gt;
+print type(row[0])
+
+con.text_factory = sqlite3.OptimizedUnicode
+cur.execute(&quot;select ?&quot;, (&quot;test&quot;,))
+row = cur.fetchone()
+
+#&lt;type &#39;str&#39;&gt;
+print type(row[0])</pre>
+
+<p>其中sqlite3.OptimizedUnicode會自動偵測轉換不同編碼，如果字串是&nbsp;ASCII可以顯示的，將會回傳str，否則回傳unucode。</p>
+<p>&nbsp;</p>
+<p><strong>題外話：</strong></p>
+<p>如果發現import sqlite3找不到module…，讓就必須在重新編譯python…，在編譯之前先執行：</p>
+<pre>sudo apt-get install libsqlite3-dev</pre>
+
+<p>在重新編譯python安裝即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/03/27/python-sqlite3-row_factory-and-text_factory/" data-id="cih0hx1id004ptm648racf7mp" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/03/27/python-sqlite3-row_factory-and-text_factory/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/database/">database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqlite/">sqlite</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python-sqlite3-create-function、aggregate-and-collation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/03/26/python-sqlite3-create-function、aggregate-and-collation/" class="article-date">
+  <time datetime="2013-03-26T08:38:43.000Z" itemprop="datePublished">Mar 26 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/03/26/python-sqlite3-create-function、aggregate-and-collation/">python sqlite3 create function、aggregate and collation</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="create_function">create_function</h4><p>如果在sqlite想自訂function，可使用<strong><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_function" target="_blank" rel="external">create_function</a></strong>來處理，以下是範例：</p>
+<pre class="brush:python">import sqlite3
+import md5       
+
+def md5sum(t):
+    return md5.md5(t).hexdigest()
+
+con = sqlite3.connect(&quot;:memory:&quot;)
+con.create_function(&quot;md5&quot;, 1, md5sum)
+cur = con.cursor()
+cur.execute(&quot;create table test(i)&quot;)
+cur.execute(&quot;insert into test(i) values (1)&quot;)
+cur.execute(&quot;insert into test(i) values (2)&quot;)
+cur.execute(&quot;select md5(i) from test&quot;)
+print cur.fetchall()
+</pre>
+
+<p>執行後會回傳以下結果：</p>
+<pre class="brush:python">[(u&#39;c4ca4238a0b923820dcc509a6f75849b&#39;,), (u&#39;c81e728d9d4c2f636f067f89cc14862c&#39;,)]</pre>
+
+<p>從上面結果可以看出，在每筆資料中都是獨立的，只將原先輸入的值或欄位值去處理。另外connect的部份，是直接使用記憶體，而不是file方式，所以程式結束後，就釋放掉了。</p>
+<h4 id="create_aggregate">create_aggregate</h4><p>那麼如果製作一個類似count、sum之類的功能，可以使用<strong><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_aggregate" target="_blank" rel="external">create_aggregate</a></strong>，以下是官方範例：</p>
+<pre class="brush:python">import sqlite3 
+
+class MySum:   
+    def __init__(self):
+        self.count = 0
+
+    def step(self, value):
+        self.count += value 
+
+    def finalize(self):
+        return self.count
+
+con = sqlite3.connect(&quot;:memory:&quot;)
+con.create_aggregate(&quot;mysum&quot;, 1, MySum)
+cur = con.cursor()
+cur.execute(&quot;create table test(i)&quot;)
+cur.execute(&quot;insert into test(i) values (1)&quot;)
+cur.execute(&quot;insert into test(i) values (2)&quot;)
+cur.execute(&quot;select mysum(i) from test&quot;)
+print cur.fetchall()
+</pre>
+
+<p>執行後回傳結果：</p>
+<pre class="brush:python">[(3,)]</pre>
+
+<p>當執行select的時候，會呼叫mysum，mysum的step會將所有傳入值累加，在由finalize回傳結果，這樣就可以處理每筆資料之間的關係。</p>
+<h4 id="create_collation">create_collation</h4><p>最後<strong><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_collation" target="_blank" rel="external">create_</a><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_collation" target="_blank" rel="external">collation</a></strong>處理的功能，就是排序問題，可以依照自己自訂方式排序，官方提供的範例是反向功能(reverse)，如下：</p>
+<pre class="brush:python">import sqlite3 
+
+def collate_reverse(string1, string2):                
+    return -cmp(string1, string2)                     
+
+con = sqlite3.connect(&quot;:memory:&quot;)                     
+con.create_collation(&quot;reverse&quot;, collate_reverse)      
+
+cur = con.cursor()                                    
+cur.execute(&quot;create table test(x)&quot;)                   
+cur.executemany(&quot;insert into test(x) values (?)&quot;, [(&quot;a&quot;,), (&quot;b&quot;,)])
+cur.execute(&quot;select x from test order by x collate reverse&quot;)
+for row in cur:
+    print row
+
+con.close() </pre>
+
+<p>執行結果如下：</p>
+<pre class="brush:python">(u&#39;b&#39;,)
+(u&#39;a&#39;,)</pre>
+
+<p>collate<span style="font-family: Arial, Verdana, sans-serif;">_reverse(cmp)</span><span style="font-family: Arial, Verdana, sans-serif;">會將兩個值做比較，將會回傳-1、0、1這3種結果：</span></p>
+<pre>string1 &lt; string2 回傳 -1 
+string1 == string2 回傳 0 
+string1 &gt; string 2 回傳 1</pre>
+
+<p>所以官方範例，最後只要在cmp加個負號，所有排序都會相反。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/03/26/python-sqlite3-create-function、aggregate-and-collation/" data-id="cih0hx1ig004vtm642uaycrfs" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/03/26/python-sqlite3-create-function、aggregate-and-collation/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/database/">database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqlite/">sqlite</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python-class-decorators-for-classes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/03/21/python-class-decorators-for-classes/" class="article-date">
+  <time datetime="2013-03-21T13:47:10.000Z" itemprop="datePublished">Mar 21 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/03/21/python-class-decorators-for-classes/">Python class decorators for classes</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>decorator是一個滿常使用的方式，只要透過裝飾，就能很容易新增一個功能，然而被裝飾者，完全不必知道裝飾者的存在，減少耦合性。</p>
+<p>例如今天有一個Canvas，要將文字畫在canvas上，並且加上邊框，文字並不需要知道邊框存不存在，這時就可以使用decorator附加上去。</p>
+<p><strong>Example：</strong></p>
+<p>首先簡單定義一個canvas，draw會先將內容寫在變數裡，然後在由show將結果顯示在terminal上面。</p>
+<pre class="brush:python">class Canvas( object ):
+    &quot;&quot;&quot;
+    Define a sample canvas for terminal.
+    &quot;&quot;&quot;
+
+    def __init__( self, width=15, height=5 ):
+        &quot;&quot;&quot;
+        Init a params.
+        &quot;&quot;&quot;
+
+        self.__data = []
+        self.__width = width
+        self.__height = height
+        self.__setup( width, height )
+
+    def __setup( self, width, height ):
+        &quot;&quot;&quot;
+        Create a data block.
+        &quot;&quot;&quot;
+
+        for hi in range( height ):
+
+            self.__data.append( [] )
+
+            for wi in range( width ):
+
+                self.__data[ hi ].append( &quot; &quot; )
+
+    def draw( self, content, x, y ):
+        &quot;&quot;&quot;
+        Draw content to data block.
+        &quot;&quot;&quot;
+
+        width = self.__width
+
+        for char in content:
+
+            if x &gt;= width:
+
+                break
+
+            self.__data[y][x] = char
+
+            x = x + 1
+
+    def show( self ):
+        &quot;&quot;&quot;
+        Print to terminal.
+        &quot;&quot;&quot;
+
+        for hi in range( self.__height ):
+
+            print &quot;&quot;.join( self.__data[ hi ] )
+
+</pre>
+
+<p>接著View定義了基本的位置，和width計算，在由drawTo繪製到canvas。</p>
+<pre class="brush:python">class View( object ):
+    &quot;&quot;&quot;
+    Define a sample view.
+    &quot;&quot;&quot;
+
+    def setY( self, y ):
+        &quot;&quot;&quot;
+        Set a position of y.
+        &quot;&quot;&quot;
+
+        self._y = y
+
+    def getY( self ):
+        &quot;&quot;&quot;
+        Get a position of y.
+        &quot;&quot;&quot;
+
+        return self._y
+
+    def setX( self, x ):
+        &quot;&quot;&quot;
+        Set a position of x.
+        &quot;&quot;&quot;
+
+        self._x = x
+
+    def getX( self ):
+        &quot;&quot;&quot;
+        Get a position of x.
+        &quot;&quot;&quot;
+
+        return self._x
+
+    def getWidth( self ):
+        &quot;&quot;&quot;
+        Get the view width.
+        &quot;&quot;&quot;
+
+        return 0
+
+    def drawTo( self, canvas, parent = None ):
+        &quot;&quot;&quot;
+        Draw something to canvas.
+        &quot;&quot;&quot;
+
+        pass
+</pre>
+
+<p>定義一個decorator，讓border裝飾。</p>
+<pre class="brush:python">class ViewDecorator( object ):
+    &quot;&quot;&quot;
+    Decorator of View.
+    &quot;&quot;&quot;
+
+    def __init__( self, *views ):
+
+        self.__views = views
+
+    def __call__( self, drawTo ):
+        views  = self.__views;
+
+        def draw_chain( base_view, canvas ):
+
+            drawTo( base_view, canvas )
+
+            for view in views:
+
+                view.drawTo( canvas, base_view )
+
+        return draw_chain
+</pre>
+
+<p>Text和border分別繼承於View，text會將文字畫到canvas，而border則是畫框([])，此時可以看到text已經裝飾了border&nbsp;<code>&amp;quot;@ViewDecorator``( Border() )&amp;quot;</code>。</p>
+<pre class="brush:python">class Border( View ):
+    &quot;&quot;&quot;
+    Extend a View.
+    &quot;&quot;&quot;
+
+    def drawTo( self, canvas, parent = None ):
+        &quot;&quot;&quot;
+        Draw a border to canvas by parent position.
+        &quot;&quot;&quot;
+
+        if parent:
+
+            width = parent.getWidth()
+            x = parent.getX()
+            y = parent.getY()
+            canvas.draw( &quot;[&quot;, x - 1 , y )
+            canvas.draw( &quot;]&quot;, width + x , y )
+
+class Text( View ):
+    &quot;&quot;&quot;
+    Extend a view.
+    &quot;&quot;&quot;
+
+    def __init__( self, content ):
+        &quot;&quot;&quot;
+        Set a text.
+        &quot;&quot;&quot;
+
+        self.__content = content
+
+    def getWidth( self ):
+        &quot;&quot;&quot;
+        Get a width of text.
+        &quot;&quot;&quot;
+
+        return len( self.__content )
+
+    @ViewDecorator( Border() )
+    def drawTo( self, canvas, parent = None ):
+        &quot;&quot;&quot;
+        Draw a text to canvas.
+        &quot;&quot;&quot;
+        canvas.draw( self.__content, self.getX(), self.getY() )
+</pre>
+
+<p>執行python decorator.py</p>
+<pre class="brush:python">canvas = Canvas()
+text = Text( &quot;Sparrow&quot; )
+text.setX( 3 )
+text.setY( 2 )
+text.drawTo( canvas )
+canvas.show()
+</pre>
+
+<p>最後就會顯示下列資訊在螢幕上。</p>
+<p>[Sparrow]</p>
+<p><a href="https://github.com/SparrowJang/python_decorators_for_classes" target="_blank" rel="external">source code</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/03/21/python-class-decorators-for-classes/" data-id="cih0hx1im0056tm64zecir5po" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/03/21/python-class-decorators-for-classes/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pattern/">pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python-無法使用-https" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/03/13/python-無法使用-https/" class="article-date">
+  <time datetime="2013-03-13T10:00:16.000Z" itemprop="datePublished">Mar 13 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/03/13/python-無法使用-https/">python https</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>如果是https，可能會有以下錯誤：</strong></p>
+<p>urlerror urlopen error unknown url type https</p>
+<p><strong>解決方法：</strong></p>
+<p>需先安裝libssl-dev。</p>
+<p>sudo apt-get install libssl-dev</p>
+<p><strong>開啟Modules/Setup文件，把以下的#移除：</strong></p>
+<p>&nbsp;</p>
+<p>SSL=/usr/local/ssl</p>
+<p>_ssl _ssl.c \</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; -DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl \</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; -L$(SSL)/lib -lssl -lcrypto</p>
+<p>&nbsp;</p>
+<div><strong>重新編譯python即可。</strong></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/03/13/python-無法使用-https/" data-id="cih0hx1ib004mtm642err6q7j" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/03/13/python-無法使用-https/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python-install-easy_install" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/03/11/python-install-easy_install/" class="article-date">
+  <time datetime="2013-03-11T03:51:30.000Z" itemprop="datePublished">Mar 11 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/03/11/python-install-easy_install/">python install easy_install</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>先至官方下載</strong>：</p>
+<p><a href="https://pypi.python.org/pypi/setuptools" target="_blank" rel="external">https://pypi.python.org/pypi/setuptools</a></p>
+<p><strong>然後執行完成，就安裝完畢：</strong></p>
+<p>chmod +x&nbsp;setuptools-0.6c11-py2.7.egg</p>
+<p>./setuptools-0.6c11-py2.7.egg</p>
+<p>如果發生以下錯誤，需重新安裝python：</p>
+<p>zipimport.ZipImportError:&nbsp;can&#39;t&nbsp;decompress&nbsp;data;&nbsp;zlib&nbsp;not&nbsp;available&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>重新編譯python：</strong></p>
+<p>cd ~/tmp/Python-2.7.3</p>
+<p>./configure</p>
+<p>vi&nbsp;Modules/Setup</p>
+<p>找到#zlib&nbsp;zlibmodule.c&nbsp;-I$(prefix)/include&nbsp;-L$(exec_prefix)/lib&nbsp;-lz&nbsp; (移除#)</p>
+<p>make&nbsp;&amp;&nbsp;make&nbsp;install</p>
+<p><strong>然後在重新安裝easy_install即可。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/03/11/python-install-easy_install/" data-id="cih0hx1ii0050tm64tgbhf8ac" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/03/11/python-install-easy_install/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/categories/python/page/2/">2</a><a class="extend next" rel="next" href="/categories/python/page/2/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IE/">IE</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YQL/">YQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actionscript/">actionscript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/add-on/">add-on</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone/">backbone</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bluetooth/">bluetooth</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap3/">bootstrap3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boto/">boto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome-extension/">chrome extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-prototype/">javascript prototype</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-tool/">javascript tool</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neo4j/">neo4j</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pattern/">pattern</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell-script/">shell script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlite/">sqlite</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversion/">subversion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/titanium/">titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zend-framework/">zend framework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zeromq/">zeromq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第三方登入/">第三方登入</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IE/" style="font-size: 11.25px;">IE</a> <a href="/tags/Titanium/" style="font-size: 15px;">Titanium</a> <a href="/tags/YQL/" style="font-size: 10px;">YQL</a> <a href="/tags/actionscript/" style="font-size: 10px;">actionscript</a> <a href="/tags/add-on/" style="font-size: 10px;">add-on</a> <a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/angularjs/" style="font-size: 17.5px;">angularjs</a> <a href="/tags/arduino/" style="font-size: 10px;">arduino</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/backbone/" style="font-size: 12.5px;">backbone</a> <a href="/tags/bluetooth/" style="font-size: 10px;">bluetooth</a> <a href="/tags/bootstrap3/" style="font-size: 10px;">bootstrap3</a> <a href="/tags/boto/" style="font-size: 10px;">boto</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/chrome-extension/" style="font-size: 10px;">chrome extension</a> <a href="/tags/css/" style="font-size: 11.25px;">css</a> <a href="/tags/database/" style="font-size: 15px;">database</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/html5/" style="font-size: 18.75px;">html5</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/java/" style="font-size: 13.75px;">java</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-prototype/" style="font-size: 11.25px;">javascript prototype</a> <a href="/tags/javascript-tool/" style="font-size: 16.25px;">javascript tool</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/linux/" style="font-size: 13.75px;">linux</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/neo4j/" style="font-size: 11.25px;">neo4j</a> <a href="/tags/node-js/" style="font-size: 11.25px;">node.js</a> <a href="/tags/pattern/" style="font-size: 11.25px;">pattern</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 17.5px;">python</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/shell-script/" style="font-size: 10px;">shell script</a> <a href="/tags/sqlite/" style="font-size: 11.25px;">sqlite</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/subversion/" style="font-size: 11.25px;">subversion</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/titanium/" style="font-size: 10px;">titanium</a> <a href="/tags/vim/" style="font-size: 11.25px;">vim</a> <a href="/tags/yii/" style="font-size: 11.25px;">yii</a> <a href="/tags/zend-framework/" style="font-size: 12.5px;">zend framework</a> <a href="/tags/zeromq/" style="font-size: 10px;">zeromq</a> <a href="/tags/第三方登入/" style="font-size: 10px;">第三方登入</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/01/Titanium-Android-native-module/">Titanium Android native module</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/21/Connect-Arduino-Uno-via-Android-Bluetooth/">Connect Arduino Uno via Android Bluetooth</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/25/My-github/">My github</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/11/image-converter/">Image converter</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/">The unsafe resource URL and cross origin on angular</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Sparrow Jang<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://twitter.com/Sparrow_Jang" class="mobile-nav-link">Twitter</a>
+  
+    <a href="https://github.com/SparrowJang" class="mobile-nav-link">Github</a>
+  
+    <a href="https://hub.docker.com/u/peter1209/" class="mobile-nav-link">DockerHub</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'sparrowhome';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>

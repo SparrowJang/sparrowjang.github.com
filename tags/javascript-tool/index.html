@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Tag: javascript tool | Sparrow&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sparrow's Blog">
+<meta property="og:url" content="http://www.sparrowjang.com/tags/javascript-tool/index.html">
+<meta property="og:site_name" content="Sparrow's Blog">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sparrow's Blog">
+<meta name="twitter:description">
+<meta name="twitter:creator" content="@Sparrow_Jang">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21959339-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sparrow&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="https://twitter.com/Sparrow_Jang">Twitter</a>
+        
+          <a class="main-nav-link" href="https://github.com/SparrowJang">Github</a>
+        
+          <a class="main-nav-link" href="https://hub.docker.com/u/peter1209/">DockerHub</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.sparrowjang.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-weinre" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/05/15/weinre/" class="article-date">
+  <time datetime="2013-05-15T02:40:18.000Z" itemprop="datePublished">May 15 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/05/15/weinre/">weinre</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://people.apache.org/~pmuellr/weinre/docs/latest/" target="_blank" rel="external">weinre</a>是一個用於瀏覽器的遠端除錯工具，運作方式與<a href="http://jsconsole.com/" target="_blank" rel="external">jsconsole</a>相同，都是透過include一隻外部js script，來與server溝通傳遞資料。但是<a href="http://jsconsole.com/" target="_blank" rel="external">jsconsole</a>只提供一些很基本功能，如果要能像chrome一樣，查看dom element、network等功能，可以使用<a href="http://people.apache.org/~pmuellr/weinre/docs/latest/" target="_blank" rel="external">weinre</a>。</p>
+<h6 id="使用時機：">使用時機：</h6><p>使用android、ios等手持裝置的browser，或者對IE除錯的時候，都很適合。</p>
+<h6 id="weinre原理：">weinre原理：</h6><p><a href="http://people.apache.org/~pmuellr/weinre/docs/latest/" target="_blank" rel="external">weinre</a>基本原理是，建立一個console page，然後經由<a href="http://people.apache.org/~pmuellr/weinre/docs/latest/" target="_blank" rel="external">weinre</a>&nbsp;server，與development page（你要除錯的page）互相傳遞資料溝通。（&nbsp;溝通方式採用long polling）</p>
+<h6 id="時序圖如下：">時序圖如下：</h6><p><img src="/images/article/weinre.png" alt=""></p>
+<h6 id="&nbsp;">&nbsp;</h6><h6 id="透過node-js安裝：">透過node.js安裝：</h6><pre class="brush:shell">sudo npm install -g weinre</pre>
+
+<h6 id="操作流程：">操作流程：</h6><p>開啟weinre server：</p>
+<pre class="brush:shell">weinre --httpPort 8081 --boundHost localhost</pre>
+
+<p>打開瀏覽器輸入<a href="http://localhost:8081/" target="_blank" rel="external">http://localhost:8081/</a>：</p>
+<p><img src="/images/article/weinre_debug.png" alt=""></p>
+<p>然後在你想要除錯的頁面加上以下script：</p>
+<pre class="brush:js">&lt;script src=&quot;http://localhost:8081/target/target-script-min.js#anonymous&quot;&gt;&lt;/script&gt;</pre>
+
+<p>例如：</p>
+<pre class="brush:html">&lt;!DOCTYPE HTML&gt;                                                                                  
+&lt;html lang=&quot;en&quot;&gt;                                                                                 
+&lt;head&gt;                                                                                           
+    &lt;meta charset=&quot;UTF-8&quot;&gt;                                                                       
+    &lt;title&gt;&lt;/title&gt;                                                                              
+    &lt;script src=&quot;http://localhost:8081/target/target-script-min.js#anonymous&quot;&gt;&lt;/script&gt;       
+&lt;/head&gt;                        
+&lt;body&gt;                                                                                           
+    &lt;div&gt;weinre test&lt;/div&gt;                                                                       
+    &lt;script type=&quot;text/javascript&quot; src=&quot;//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js&quot;&gt;&lt;/script&gt; 
+&lt;/body&gt;                                                                                          
+&lt;/html&gt;                                                                                          
+</pre>
+
+<p>開啟<a href="http://localhost:8081/client/#anonymous" target="_blank" rel="external">http://localhost:8081/client/#anonymous</a>，就可以開始除錯了。</p>
+<h6 id=""><img src="/images/article/weinre-debug2.png" alt=""></h6>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/05/15/weinre/" data-id="cih0hx1gb001xtm64480x2zxa" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/05/15/weinre/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-tool/">javascript tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-javascript-event偵錯-visual-event-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/03/22/javascript-event偵錯-visual-event-2/" class="article-date">
+  <time datetime="2013-03-22T14:41:23.000Z" itemprop="datePublished">Mar 22 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/03/22/javascript-event偵錯-visual-event-2/">javascript event偵錯-Visual Event 2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.sprymedia.co.uk/article/Visual+Event+2" target="_blank" rel="external">Visual Event</a>會透過將javascript語法，注入到頁面的方式，取得每個element所綁定的事件。如果是常常include很多library時，或者寫一些比較複雜ui，可透<a href="http://www.sprymedia.co.uk/article/Visual+Event+2" target="_blank" rel="external">Visual Event</a>檢視綁定element上的event正不正確，方便除錯。</p>
+<p><strong>執行流程如下：</strong></p>
+<p>將以下script，加入到書籤的網址欄位：</p>
+<pre class="brush:js">javascript:(function()%20{var%20url%20=%20&#39;//www.sprymedia.co.uk/VisualEvent/VisualEvent_Loader.js&#39;;if(%20typeof%20VisualEvent!=&#39;undefined&#39;%20)%20{if%20(%20VisualEvent.instance%20!==%20null%20)%20{VisualEvent.close();}else%20{new%20VisualEvent();}}else%20{var%20n=document.createElement(&#39;script&#39;);n.setAttribute(&#39;language&#39;,&#39;JavaScript&#39;);n.setAttribute(&#39;src&#39;,url+&#39;?rand=&#39;+new%20Date().getTime());document.body.appendChild(n);}})();</pre>
+
+<p>然後在選擇你要測試的頁面，執行剛剛加入的書籤，或將以上script貼到網址列，再按enter，就能偵測到綁定的event：</p>
+<p><img src="/images/article/visualdebug.png" alt=""></p>
+<p><strong>目前support的library如下：</strong></p>
+<ul>
+<li>DOM 0 events</li>
+<li>jQuery 1.2+</li>
+<li>YUI 2</li>
+<li>MooTools 1.2+</li>
+<li>Prototype 1.6+</li>
+<li>Glow</li>
+<li>ExtJS 4.0.x</li>
+</ul>
+<p>注入的方式其實就是透過書籤、網址列可以執行javascript特性，當你點擊書籤時，就會執行script，將程式load當前頁面。在網址列執行script範例，如下：</p>
+<pre class="brush:js">//將以下程式碼貼到網址列按enter，就可以執行js語法
+javascript:alert(3);</pre>
+
+<p>至於偵測event的實作，大致上是將每個element上的attribute掃過，還有針對不同library綁定event方式去處理，最後將ui呈現畫面上。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/03/22/javascript-event偵錯-visual-event-2/" data-id="cih0hx1k9007ttm64z31inai8" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/03/22/javascript-event偵錯-visual-event-2/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-tool/">javascript tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mobile-web-debug-tooljsconsole" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/09/28/mobile-web-debug-tooljsconsole/" class="article-date">
+  <time datetime="2012-09-28T08:17:44.000Z" itemprop="datePublished">Sep 28 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/09/28/mobile-web-debug-tooljsconsole/">mobile web debug tool(jsconsole)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="font-size:14px;">如果要在<strong>android</strong>的<strong>browser debug</strong>，最早期的方式，是使用<strong>adb logcat</strong>然後過濾掉其他訊息，只顯示browser的log，而<strong>ios</strong><font face="arial, sans-serif"><span style="line-height: 16px; ">上的</span></font><span style="font-family: arial, sans-serif; line-height: 16px; "><strong>Safari</strong>，則是可在設定，直接在mobile上觀看log(在mac上，可以使用類似chrome同樣的除錯介面)。但是這種除錯方式不易，只能單方面看到browser訊息，並沒辦法直接從pc上對瀏覽器下指令，而<a href="http://jsconsole.com/" target="_blank" rel="external">jsconsole</a>剛好可以解決這個問題。</span></span></p>
+<p><span style="font-size:14px;"><a href="http://jsconsole.com/" target="_blank" rel="external">jsconsole</a>提供了一個<strong>console page</strong>(<a href="http://jsconsole.com/" target="_blank" rel="external">jsconsole.com</a>)，會產出一個<strong>listen key</strong>，同時<strong>test page</strong>(開發者寫得測試頁面)也會include一隻script，在透過server讓<strong>test page</strong>和<strong>console page</strong>溝通。</span></p>
+<p><strong>step 1 在console page輸入以下code：</strong></p>
+<pre class="brush:js">:listen
+</pre>
+
+<p>server會回傳</p>
+<pre class="brush:js">Creating connection...
+Connected to &quot;2A049E81-520B-4074-BB06-45BE8ADBE9E1&quot;
+&lt;script src=&quot;http://jsconsole.com/remote.js?2A049E81-520B-4074-BB06-45BE8ADBE9E1&quot;&gt;&lt;/script&gt;
+
+</pre>
+
+<p><strong>step 2 將回傳的script貼到test page:</strong></p>
+<pre class="brush:html">&lt;html&gt;
+  &lt;head&gt;
+     &lt;script src=&quot;http://jsconsole.com/remote.js?2A049E81-520B-4074-BB06-45BE8ADBE9E1&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+&lt;body&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+
+</pre>
+
+<p>這樣就配置完成，可以直接在<strong>console page</strong>，輸入javascript，也能同時接收<strong>test page</strong>裡的console.log。</p>
+<p><strong>step 3 在console page輸入:</strong></p>
+<pre class="brush:js">alert(&quot;test&quot;);
+</pre>
+
+<p>就會看到在mobile上，跑出訊息視窗。技術猜測應該是使用<strong>long polling</strong>或<strong>server push</strong>之類技術。</p>
+<p>&nbsp;</p>
+<p><strong>mobile chrome debug：</strong></p>
+<p>那如果使用chrome browser，可以直接在mobile選項，點選設定&rarr;開發人員工具&rarr;啟用usb網頁偵錯。</p>
+<p><strong>接著只要在終端機鍵入以下指令：</strong></p>
+<pre class="brush:js">adb forward tcp:9222 localabstract:chrome_devtools_remote
+</pre>
+
+<p>然後在到pc上，打開chrome，在網址上輸入<strong>localhost:9222</strong>，就可以直接使用pc上的除錯工具了，比起<a href="http://jsconsole.com/" target="_blank" rel="external">jsconsle</a>，對於開發者相對於友善多了。可以參考<a href="https://developers.google.com/chrome/mobile/docs/debugging?hl=zh-TW" target="_blank" rel="external">remote debugging</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2012/09/28/mobile-web-debug-tooljsconsole/" data-id="cih0hx1j40060tm64bdxi3tkc" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2012/09/28/mobile-web-debug-tooljsconsole/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-tool/">javascript tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-qunit" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/05/07/qunit/" class="article-date">
+  <time datetime="2011-05-07T05:52:01.000Z" itemprop="datePublished">May 7 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/05/07/qunit/">Qunit</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="color:#00f;">Qunit</span>是<span style="color:#00f;">javascript</span>的<span style="color:#00f;">unit test</span>之一，這套工具由<span style="color:#00f;">jquery team</span>撰寫的，使用的方式比起<span style="color:#00f;">Jsunit</span>，更有<span style="color:#00f;">javascript</span>風格。</p>
+<h6 id="首先要先配置html：">首先要先配置html：</h6><pre class="brush:html">&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;QUnit Test Suite&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;../qunit/qunit.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot;&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;../qunit/qunit.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 id=&quot;qunit-header&quot;&gt;QUnit Test Suite&lt;/h1&gt;
+    &lt;h2 id=&quot;qunit-banner&quot;&gt;&lt;/h2&gt;
+    &lt;div id=&quot;qunit-testrunner-toolbar&quot;&gt;&lt;/div&gt;
+    &lt;h2 id=&quot;qunit-userAgent&quot;&gt;&lt;/h2&gt;
+    &lt;ol id=&quot;qunit-tests&quot;&gt;&lt;/ol&gt;
+    &lt;div id=&quot;qunit-fixture&quot;&gt;test markup&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<p><span style="color:#f00;">在html配置部分，id名稱必須依照官方的命名，簡單來說只需要將測試的程式，加入到head裡面即可</span>。</p>
+<h6 id="Qunit所提供的幾個function：">Qunit所提供的幾個function：</h6><pre class="brush:js">/**
+* @param {String} name 單元測試的名稱
+* @param {Number} expected 要比對的數量(可選)
+* @param {function} test 要測試的function
+* asyncTest需要在測試完後，多呼叫一個start()
+* 否則將不會向下測試
+*/
+test(name,expected,test)
+asyncTest(name,expected,test)
+
+/**
+* @param {Number} amount 要比對的數量
+*/
+expect(amount)
+
+/**
+* @param {String} name module的名稱
+* @param {Object} lifecycle 用來配置初始化和結束執行的function(可選)
+* 分別為setup和teardown
+*/
+module(name,lifecycle)
+
+/**
+* @param {boolean} state
+* @param {String} message
+*/
+ok(state,message)
+
+/**
+* @param {*} actual 比對值
+* @param {*} expected 期望值
+* @param {String} message (可選)
+* equal:actual == expected
+* deepEqual:actual === expected(深度比對,會一層一層比對)
+* strictEqual:actual === expected
+*/
+equal(actual,expected,message)
+notEqual(actual,expected,message)
+deepEqual(actual,expected,message)
+notDeepEqual(actual,expected,message)
+strictEqual(actual,expected,message)
+notStrictEqual(actual,expected,message)
+
+/**
+* 繼續往下執行測試
+*/
+start()
+/**
+* @param {Number} timeout 延遲向下執行的時間(可選)
+* 若無輸入參數會等待呼叫start才會向下執行測試
+*/
+stop(timeout)</pre>
+
+<h6 id="幾個簡單範例：">幾個簡單範例：</h6><pre class="brush:js">/*
+* 一個簡單範例
+*/
+test(&quot;module without setup/teardown (default)&quot;, function() {
+    expect(1);
+    ok(true);
+});
+/*
+* setup將會先執行，而teardown會最後執行
+*/
+var state;
+module(&quot;setup/teardown test&quot;, {
+    setup: function() {
+        state = true;
+        ok(true);
+    },
+    teardown: function() {
+        ok(true);
+    }
+});
+
+test(&quot;module with setup/teardown&quot;, function() {
+    expect(3);
+    ok(true);
+});
+
+/**
+* stop和start運用
+*/
+module(&quot;asyncTest&quot;);
+
+// stop呼叫2次，start也必須呼叫兩次
+// 才會向下執行下個test
+
+test(&quot;sync&quot;, 2, function() {
+    stop();
+    setTimeout(function() {
+        ok(true);
+        start();
+    }, 13);
+    stop();
+    setTimeout(function() {
+        ok(true);
+        start();
+    }, 125);
+});
+
+// 必須呼叫start才會執行下個test
+
+asyncTest(&quot;asyncTest&quot;, 2, function() {
+    ok(true);
+    setTimeout(function() {
+        state = &quot;done&quot;;
+        ok(true);
+        start();
+    }, 13);
+});
+
+</pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/05/07/qunit/" data-id="cih0hx1i9004itm648mx2fmh8" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/05/07/qunit/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-tool/">javascript tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jsdoc-toolkit使用在anonymous-function寫法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/03/10/jsdoc-toolkit使用在anonymous-function寫法/" class="article-date">
+  <time datetime="2011-03-10T08:12:16.000Z" itemprop="datePublished">Mar 10 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/03/10/jsdoc-toolkit使用在anonymous-function寫法/">jsdoc toolkit使用在anonymous function寫法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="tag:">tag:</h4><div><span style="color: #0000ff;">@name &nbsp;<span style="color: #000000;">當無法辨識類型時，使用此tag直接定義名稱。(範例如下)</span></span> <span style="color: #0000ff;"><span style="color: #000000;"> </span></span></div><br><pre class="brush:js">//利用字串建立一個function<br>eval(&quot;window.test= function() {};&quot;)</pre><br><div><span style="color: #0000ff;">@lends</span> 幫助function去參照其他class和object。</div>
+
+<h4 id="example:"><strong>example:</strong></h4><p><pre class="brush:js">/<em>*
+</em></pre></p>
+<ul>
+<li>@name View</li>
+<li>@class</li>
+<li>@constructor<br><em>/<br>(function(){<br>/*</em></li>
+<li><p>@lends View<br>*/<br>function View(){</p>
+<pre><code><span class="keyword">var</span> _name;
+
+<span class="comment">/**
+* @param {String} name
+*/</span>
+<span class="keyword">this</span>.setName = <span class="function"><span class="keyword">function</span><span class="params">(name)</span></span>{
+        _name = name;
+};
+</code></pre><p>}</p>
+</li>
+</ul>
+<p>/**</p>
+<ul>
+<li>@param {string} str<br>*/<br>View.prototype.show = function(str){<pre><code><span class="function">alert</span>(&amp;quot;show<span class="value">:&amp;quot;</span>+str);
+</code></pre>}</li>
+</ul>
+<p>})();</p>
+<div>直接定義一個View，並將<span style="color:#00f;">type</span>設成<span style="color:#00f;">class</span>，再由內部的<span style="color:#00f;">lends tag</span>去參照之前所定義的名稱。 &nbsp;</div><br><div><strong>下圖為產生的文件:</strong> <img src="http://i198.photobucket.com/albums/aa84/foreverangle/jsDoc_toolkit/example_jsdoc_toolkit_anonymous_function.png" alt="jsDoc toolkit document" title="jsDoc toolkit document"></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/03/10/jsdoc-toolkit使用在anonymous-function寫法/" data-id="cih0hx1jd006atm646ow2dwj6" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/03/10/jsdoc-toolkit使用在anonymous-function寫法/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-tool/">javascript tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jsdoc-tookit-introduction" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/03/09/jsdoc-tookit-introduction/" class="article-date">
+  <time datetime="2011-03-09T08:00:00.000Z" itemprop="datePublished">Mar 9 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/03/09/jsdoc-tookit-introduction/">Jsdoc toolkit Introduction</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>jsdoc toolkit是一個能夠將javascript註解產成文件的工具。 tag的寫法和download可以參考<a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank" rel="external">相關資訊</a>。 以下是一個簡單的example:</p>
+<pre class="brush:js">/**
+* @author Sparrow
+*/
+
+/**
+* @class Dog is an animal.
+* @constructor
+*/
+function Dog(){
+
+    var _name;
+
+    /**
+    * @description Set the dog name.
+    * @param {string} name
+    */
+    this.setName = function(name){
+        _name = name;
+    }
+
+    /**
+    * @description Get the dog name.
+    * @type String
+    */
+    this.getName = function(){
+        return _name;
+    }
+
+}
+
+/**
+* @description Attack a target.
+* @param {String} target
+*/
+Dog.prototype.attack = function(target){
+    alert(&quot;attack:&quot;+target);
+}</pre>
+
+<p>最後只要在terminal執行以下指令: java -jar jsrun.jar app/run.js Dog.js -t=templates/jsdoc/</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/03/09/jsdoc-tookit-introduction/" data-id="cih0hx1jf006etm640d7gpzyw" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/03/09/jsdoc-tookit-introduction/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-tool/">javascript tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IE/">IE</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YQL/">YQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actionscript/">actionscript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/add-on/">add-on</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone/">backbone</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bluetooth/">bluetooth</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap3/">bootstrap3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boto/">boto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome-extension/">chrome extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-prototype/">javascript prototype</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-tool/">javascript tool</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neo4j/">neo4j</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pattern/">pattern</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell-script/">shell script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlite/">sqlite</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversion/">subversion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/titanium/">titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zend-framework/">zend framework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zeromq/">zeromq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第三方登入/">第三方登入</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IE/" style="font-size: 11.25px;">IE</a> <a href="/tags/Titanium/" style="font-size: 15px;">Titanium</a> <a href="/tags/YQL/" style="font-size: 10px;">YQL</a> <a href="/tags/actionscript/" style="font-size: 10px;">actionscript</a> <a href="/tags/add-on/" style="font-size: 10px;">add-on</a> <a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/angularjs/" style="font-size: 17.5px;">angularjs</a> <a href="/tags/arduino/" style="font-size: 10px;">arduino</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/backbone/" style="font-size: 12.5px;">backbone</a> <a href="/tags/bluetooth/" style="font-size: 10px;">bluetooth</a> <a href="/tags/bootstrap3/" style="font-size: 10px;">bootstrap3</a> <a href="/tags/boto/" style="font-size: 10px;">boto</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/chrome-extension/" style="font-size: 10px;">chrome extension</a> <a href="/tags/css/" style="font-size: 11.25px;">css</a> <a href="/tags/database/" style="font-size: 15px;">database</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/html5/" style="font-size: 18.75px;">html5</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/java/" style="font-size: 13.75px;">java</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-prototype/" style="font-size: 11.25px;">javascript prototype</a> <a href="/tags/javascript-tool/" style="font-size: 16.25px;">javascript tool</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/linux/" style="font-size: 13.75px;">linux</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/neo4j/" style="font-size: 11.25px;">neo4j</a> <a href="/tags/node-js/" style="font-size: 11.25px;">node.js</a> <a href="/tags/pattern/" style="font-size: 11.25px;">pattern</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 17.5px;">python</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/shell-script/" style="font-size: 10px;">shell script</a> <a href="/tags/sqlite/" style="font-size: 11.25px;">sqlite</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/subversion/" style="font-size: 11.25px;">subversion</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/titanium/" style="font-size: 10px;">titanium</a> <a href="/tags/vim/" style="font-size: 11.25px;">vim</a> <a href="/tags/yii/" style="font-size: 11.25px;">yii</a> <a href="/tags/zend-framework/" style="font-size: 12.5px;">zend framework</a> <a href="/tags/zeromq/" style="font-size: 10px;">zeromq</a> <a href="/tags/第三方登入/" style="font-size: 10px;">第三方登入</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/01/Titanium-Android-native-module/">Titanium Android native module</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/21/Connect-Arduino-Uno-via-Android-Bluetooth/">Connect Arduino Uno via Android Bluetooth</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/25/My-github/">My github</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/11/image-converter/">Image converter</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/">The unsafe resource URL and cross origin on angular</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Sparrow Jang<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://twitter.com/Sparrow_Jang" class="mobile-nav-link">Twitter</a>
+  
+    <a href="https://github.com/SparrowJang" class="mobile-nav-link">Github</a>
+  
+    <a href="https://hub.docker.com/u/peter1209/" class="mobile-nav-link">DockerHub</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'sparrowhome';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>

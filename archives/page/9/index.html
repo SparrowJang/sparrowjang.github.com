@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives | Sparrow&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sparrow's Blog">
+<meta property="og:url" content="http://www.sparrowjang.com/archives/page/9/index.html">
+<meta property="og:site_name" content="Sparrow's Blog">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sparrow's Blog">
+<meta name="twitter:description">
+<meta name="twitter:creator" content="@Sparrow_Jang">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21959339-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sparrow&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="https://twitter.com/Sparrow_Jang">Twitter</a>
+        
+          <a class="main-nav-link" href="https://github.com/SparrowJang">Github</a>
+        
+          <a class="main-nav-link" href="https://hub.docker.com/u/peter1209/">DockerHub</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.sparrowjang.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-node-js-multi-thread" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/05/18/node-js-multi-thread/" class="article-date">
+  <time datetime="2011-05-18T15:45:49.000Z" itemprop="datePublished">May 18 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node-js/">node.js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/05/18/node-js-multi-thread/">node.js multi-process</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="color:#00f;">node.js</span>本身並不支援<span style="color:#00f;">multi-process</span>，但是有其他方式可以達成。簡單來說，就是<span style="color:#f00;">利用node.js的不會阻塞IO的特性，然後去執行終端機(terminal)的command line，然建立監聽事件，就可以達成multi-process</span>。以有人實作出來，使用方法如同<span style="color:#00f;">browser</span>的<span style="color:#00f;">Worker</span>，可以參考<a href="https://github.com/cramforce/node-worker" target="_blank" rel="external">node.js的Worker</a>。</p>
+<h6 id="以下是一個簡單實作原理的範例：">以下是一個簡單實作原理的範例：</h6><p><div>main.js</div></p>
+<pre class="brush:js">var spawn = require(&#39;child_process&#39;).spawn,
+    child_process = spawn(&#39;node&#39;, [&#39;child.js&#39;]);
+
+    child_process.stdout.on(&#39;data&#39;, function (data) {
+      console.log(&#39;stdout: &#39; + data);
+    }); 
+
+    setInterval(function(){
+      child_process.stdin.write(&quot;test&quot;);
+    },199);</pre>
+
+<p>child.js</p>
+<pre class="brush:js">//當程式執行完畢，不關閉此程序
+process.stdin.resume();
+process.stdin.setEncoding(&#39;utf8&#39;);
+
+process.stdin.on(&#39;data&#39;, function (chunk) {
+    console.log(&#39;data: &#39; + chunk);
+});
+</pre>
+
+<p>如果想要理解更多，請參考<span style="color:#00f;">process</span>和<span style="color:#00f;">child_process</span>的相關<span style="color:#00f;">event</span>，或者其他人實作的<span style="color:#00f;">source code</span>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/05/18/node-js-multi-thread/" data-id="cih0hx1ip005btm644dqbhvm4" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/05/18/node-js-multi-thread/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-qunit" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/05/07/qunit/" class="article-date">
+  <time datetime="2011-05-07T05:52:01.000Z" itemprop="datePublished">May 7 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/05/07/qunit/">Qunit</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="color:#00f;">Qunit</span>是<span style="color:#00f;">javascript</span>的<span style="color:#00f;">unit test</span>之一，這套工具由<span style="color:#00f;">jquery team</span>撰寫的，使用的方式比起<span style="color:#00f;">Jsunit</span>，更有<span style="color:#00f;">javascript</span>風格。</p>
+<h6 id="首先要先配置html：">首先要先配置html：</h6><pre class="brush:html">&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;QUnit Test Suite&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;../qunit/qunit.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot;&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;../qunit/qunit.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 id=&quot;qunit-header&quot;&gt;QUnit Test Suite&lt;/h1&gt;
+    &lt;h2 id=&quot;qunit-banner&quot;&gt;&lt;/h2&gt;
+    &lt;div id=&quot;qunit-testrunner-toolbar&quot;&gt;&lt;/div&gt;
+    &lt;h2 id=&quot;qunit-userAgent&quot;&gt;&lt;/h2&gt;
+    &lt;ol id=&quot;qunit-tests&quot;&gt;&lt;/ol&gt;
+    &lt;div id=&quot;qunit-fixture&quot;&gt;test markup&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+<p><span style="color:#f00;">在html配置部分，id名稱必須依照官方的命名，簡單來說只需要將測試的程式，加入到head裡面即可</span>。</p>
+<h6 id="Qunit所提供的幾個function：">Qunit所提供的幾個function：</h6><pre class="brush:js">/**
+* @param {String} name 單元測試的名稱
+* @param {Number} expected 要比對的數量(可選)
+* @param {function} test 要測試的function
+* asyncTest需要在測試完後，多呼叫一個start()
+* 否則將不會向下測試
+*/
+test(name,expected,test)
+asyncTest(name,expected,test)
+
+/**
+* @param {Number} amount 要比對的數量
+*/
+expect(amount)
+
+/**
+* @param {String} name module的名稱
+* @param {Object} lifecycle 用來配置初始化和結束執行的function(可選)
+* 分別為setup和teardown
+*/
+module(name,lifecycle)
+
+/**
+* @param {boolean} state
+* @param {String} message
+*/
+ok(state,message)
+
+/**
+* @param {*} actual 比對值
+* @param {*} expected 期望值
+* @param {String} message (可選)
+* equal:actual == expected
+* deepEqual:actual === expected(深度比對,會一層一層比對)
+* strictEqual:actual === expected
+*/
+equal(actual,expected,message)
+notEqual(actual,expected,message)
+deepEqual(actual,expected,message)
+notDeepEqual(actual,expected,message)
+strictEqual(actual,expected,message)
+notStrictEqual(actual,expected,message)
+
+/**
+* 繼續往下執行測試
+*/
+start()
+/**
+* @param {Number} timeout 延遲向下執行的時間(可選)
+* 若無輸入參數會等待呼叫start才會向下執行測試
+*/
+stop(timeout)</pre>
+
+<h6 id="幾個簡單範例：">幾個簡單範例：</h6><pre class="brush:js">/*
+* 一個簡單範例
+*/
+test(&quot;module without setup/teardown (default)&quot;, function() {
+    expect(1);
+    ok(true);
+});
+/*
+* setup將會先執行，而teardown會最後執行
+*/
+var state;
+module(&quot;setup/teardown test&quot;, {
+    setup: function() {
+        state = true;
+        ok(true);
+    },
+    teardown: function() {
+        ok(true);
+    }
+});
+
+test(&quot;module with setup/teardown&quot;, function() {
+    expect(3);
+    ok(true);
+});
+
+/**
+* stop和start運用
+*/
+module(&quot;asyncTest&quot;);
+
+// stop呼叫2次，start也必須呼叫兩次
+// 才會向下執行下個test
+
+test(&quot;sync&quot;, 2, function() {
+    stop();
+    setTimeout(function() {
+        ok(true);
+        start();
+    }, 13);
+    stop();
+    setTimeout(function() {
+        ok(true);
+        start();
+    }, 125);
+});
+
+// 必須呼叫start才會執行下個test
+
+asyncTest(&quot;asyncTest&quot;, 2, function() {
+    ok(true);
+    setTimeout(function() {
+        state = &quot;done&quot;;
+        ok(true);
+        start();
+    }, 13);
+});
+
+</pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/05/07/qunit/" data-id="cih0hx1i9004itm648mx2fmh8" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/05/07/qunit/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-tool/">javascript tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jquery-mobile" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/04/20/jquery-mobile/" class="article-date">
+  <time datetime="2011-04-20T14:04:08.000Z" itemprop="datePublished">Apr 20 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/04/20/jquery-mobile/">jQuery mobile</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="color:#f00;">要使用jquery mobile必須要有符合的html定義</span>，在<span style="color:#00f;">jquery mobile</span>初始化時，它會將頁面上相關的<span style="color:#00f;">tag</span>和<span style="color:#00f;">attribute</span>，轉成對應的樣式。以下是一個基本的<span style="color:#00f;">page</span>結構：</p>
+<pre class="brush:html">&lt;div data-role=&quot;page&quot;&gt;
+
+    &lt;div data-role=&quot;header&quot;&gt;
+        &lt;h1&gt;Page Title&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;!--   /header   --&gt;
+
+    &lt;div data-role=&quot;content&quot;&gt;   
+        &lt;p&gt;Page content goes here.&lt;/p&gt;  
+    &lt;/div&gt;
+    &lt;!--   /content   --&gt;
+
+    &lt;div data-role=&quot;footer&quot;&gt;
+        &lt;h4&gt;Page Footer&lt;/h4&gt;
+    &lt;/div&gt;
+    &lt;!--   /footer   --&gt;
+&lt;/div&gt;
+&lt;!-- /page --&gt;&nbsp;</pre>
+<div>&nbsp;</div>
+
+###### <span class="Apple-style-span" style="font-family: Arial, Verdana, sans-serif; white-space: normal; ">每個</span>tag attribute<span class="Apple-style-span" style="font-family: Arial, Verdana, sans-serif; white-space: normal; ">功能如下：</span>
+
+<div>data-role：每個tag在jquery mobile的type，會根據不同type去設定樣式 。</div>
+<div>(ex:page、button....)</div>
+<div>&nbsp;</div>
+<div>data-rel：有dialog和back兩個屬性值，dialog根據href對應不同動作，back則回上一頁。</div>
+<pre class="brush:html">&lt;!-- 跳到id是page2的頁面(利用錨點的特性) --&gt;
+&lt;a href=&quot;#page2&quot; data-rel=&quot;dialog&quot;&gt;Open dialog&lt;/a&gt;
+&lt;!-- 發ajax取得頁面 --&gt;
+&lt;a href=&quot;index.html&quot; data-rel=&quot;dialog&quot;&gt;Open dialog&lt;/a&gt;</pre>
+<div>&nbsp;</div>
+<div>data-transition：切換page的效果。(pop、slide、slideup、sildedown、flip、fade)</div>
+<pre class="brush:html">&lt;a href=&quot;index.html&quot; data-transition=&quot;pop&quot;&gt;I&#39;ll pop&lt;/a&gt;</pre>
+<div>&nbsp;</div>
+
+###### 若是以js動態插入html可使用以下語法：
+
+<pre class="brush:js">//
+var html = &quot;&lt;a href=&#39;index.html&#39; data-role=&#39;button&#39;&gt;Link button&lt;/a&gt;&quot;;
+$(&quot;#content&quot;).append(html)
+             .page();</pre><pre></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/04/20/jquery-mobile/" data-id="cih0hx1jm006stm64ozyuehcc" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/04/20/jquery-mobile/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-javascript-storage" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/04/12/javascript-storage/" class="article-date">
+  <time datetime="2011-04-12T14:00:17.000Z" itemprop="datePublished">Apr 12 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/04/12/javascript-storage/">Javascript Storage</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="color:#00f;">storage</span>是<span style="color:#00f;">html5</span>的儲存資料的方式之一，主要分為<span style="color:#00f;">sessionStorage</span>和<span style="color:#00f;">localStorage</span>，這兩種儲存方式都只能在相同的<span style="color:#00f;">domain</span>才能讀取到，<span style="color:#00f;">sessionStorage</span>只要頁面關掉後，就會釋放儲存的資料，而<span style="color:#00f;">localStorage</span>是直接儲存在<span style="color:#00f;">brower</span>。</p>
+<h6 id="storage的物件成員有：">storage的物件成員有：</h6><pre class="brush:js">//設定資料
+setItem(key,val);
+//取得資料
+getItem(key);
+//移除資料
+removeItem(key,val);
+//取得儲存資料的筆數
+length;
+//利用索引取得資料
+key(index)&#39;
+//清除所有資料
+clear();</pre>
+
+<h6 id="其中以下方式功能是一樣的：">其中以下方式功能是一樣的：</h6><pre class="brush:js">sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
+sessionStorage[&quot;test&quot;] = &quot;test&quot;;
+//以上這兩種方式，是相同的效果。
+</pre>
+
+<p>從以上範例可以看出，<span style="color:#f00;">實際上是把直塞到object裡，所以要是儲存本身物件所擁有的成員，將會加以覆蓋</span>，所以不能用相同名稱。</p>
+<h6 id="例如：">例如：</h6><pre class="brush:js">sessionStorage.setItem(&quot;setItem&quot;,&quot;test&quot;);
+//將會出錯
+sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
+</pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/04/12/javascript-storage/" data-id="cih0hx1jz007dtm644yyxymsh" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/04/12/javascript-storage/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-javascript-workerhtml5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/04/05/javascript-workerhtml5/" class="article-date">
+  <time datetime="2011-04-05T13:26:09.000Z" itemprop="datePublished">Apr 5 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/04/05/javascript-workerhtml5/">Javascript Worker</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="color:#f00;">Worker是javascript的thead</span>，只有在支援<span style="color:#00f;">html5</span>的brower才提供，<span style="color:#f00;">目前支援最完整的是firefox，firefox可以在Worker理面在使用Worker</span>。Worker目前只提供簡單的傳值、物件、陣列，並沒辦法傳遞function，其中要特別注意的是object，當<span style="color:#f00;">Worker接收到的是一個object，會與原先的object屬於不同記憶體位址</span>。</p>
+<h6 id="example：">example：</h6><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">var ary = [2,3,4];</span><br><span class="line">var thead = new Worker(&amp;quot;./thead.js&amp;quot;);</span><br><span class="line">    thead.onmessage = function(event)&#123;</span><br><span class="line">        console.log(&amp;quot;new:&amp;quot;+event.data);</span><br><span class="line">        console.log(&amp;quot;old:&amp;quot;+ary);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    thead.postMessage(ary);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;</span><br></pre></td></tr></table></figure>
+<div><span style="color:#00f;">index.html</span></div><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;                                                                                                                         </span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> event.data ===&amp;quot;object&amp;quot;)                                              </span><br><span class="line">    event.data.push(<span class="number">5</span>);                                                            </span><br><span class="line">    postMessage(event.data);                                                       </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br><br><div><span style="color:#00f;">thead.js</span></div>
+
+<h6 id="result：">result：</h6><div><span class="Apple-style-span" style="font-family: Consolas, 'Lucida Console', monospace; white-space: pre-wrap; color: rgb(0, 0, 0); ">new:2,3,4,5</span></div><br><div><span class="Apple-style-span" style="font-family: Consolas, 'Lucida Console', monospace; white-space: pre-wrap; color: rgb(0, 0, 0); ">old:2,3,4</span></div><br><div>&nbsp;</div>
+
+<h6 id="Worker的Global成員(指的是上方範例的thead-js)：">Worker的Global成員(指的是上方範例的thead.js)：</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//寄送訊息</span></span><br><span class="line">postMessage(msg);</span><br><span class="line"><span class="comment">//關閉thead</span></span><br><span class="line">close();</span><br><span class="line"><span class="comment">//與時間有關的</span></span><br><span class="line">setTimeout(func,num);</span><br><span class="line">clearTimeout(num);</span><br><span class="line">setInterVal(func,num);</span><br><span class="line">clearInterVal(num);</span><br><span class="line"><span class="comment">//目前只有firefox有提供</span></span><br><span class="line">Worker</span><br><span class="line"><span class="comment">//</span></span><br><span class="line">XMLHttpRequest</span><br><span class="line"><span class="comment">//接收訊息的event</span></span><br><span class="line">onmessage</span><br><span class="line"><span class="comment">//引用其他程式</span></span><br><span class="line">importScripts(url1,url2....);</span><br></pre></td></tr></table></figure>
+<h6 id="Worker的物件成員：">Worker的物件成員：</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//寄送訊息</span></span><br><span class="line">postMessage(msg);</span><br><span class="line"><span class="comment">//event</span></span><br><span class="line">onerror</span><br><span class="line"><span class="comment">//接收訊息的event</span></span><br><span class="line">onMessage</span><br><span class="line"><span class="comment">//立即關閉thread</span></span><br><span class="line">terminate()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/04/05/javascript-workerhtml5/" data-id="cih0hx1jx0079tm64n27iof2s" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/04/05/javascript-workerhtml5/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-html5-placeholder" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/04/03/html5-placeholder/" class="article-date">
+  <time datetime="2011-04-03T15:22:34.000Z" itemprop="datePublished">Apr 3 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/04/03/html5-placeholder/">Html5 Placeholder</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="color:#f00;">placeholder是html5新增的attribute，主要用途是用來設定提示訊息</span>，例如<span style="color:#00f;">input</span>的<span style="color:#00f;">text</span>，你可能會需要設定提示<span style="color:#00f;">user</span>該輸入的資訊，一般的做法是使用<span style="color:#00f;">focus</span>和<span style="color:#00f;">blur</span>這兩個<span style="color:#00f;">event</span>，當<span style="color:#00f;">submit</span>的時候必須將未填入資訊的欄位清空，而由<span style="color:#00f;">html5</span>所提供的<span style="color:#00f;">placeholder</span>，只需要填入應該預設的提示訊息。</p>
+<h6 id="以下是一個簡單的example：">以下是一個簡單的example：</h6><pre class="brush:html">&lt;input type=&quot;text&quot; name=&quot;account&quot; placeholder=&quot;請填寫帳號...&quot; /&gt;
+&lt;textarea name=&quot;message&quot; placeholder=&quot;請填寫訊息...&quot;&gt;&lt;/textarea&gt;</pre>
+
+<p>如果希望<span style="color:#00f;">placeholder</span>支援沒有提供的<span style="color:#00f;">brower</span>，你可使用<span style="color:#00f;">js</span>的<span style="color:#00f;">event</span>去修復它，其中要特別注意的是<span style="color:#00f;">password</span>這個<span style="color:#00f;">type</span>，因為它顯示的是特殊符號，所以即使用<span style="color:#00f;">js</span>也沒有辦法改變它的符號，最簡單的方式，就是使用<span style="color:#00f;">text</span>去替換，當有填入資料時，就替換成<span style="color:#00f;">password</span>，資料為空的時候再替換成<span style="color:#00f;">text</span>，最後一步只要在<span style="color:#00f;">submit</span>的時候，將未填入資料欄位清空。</p>
+<h6 id="jquery的plugin：">jquery的<font class="Apple-style-span" color="#000000" face="'Segoe UI', 'Lucida Grande', 'Franklin Gothic Medium', 'URW Gothic L', Helvetica, sans-serif" size="2">plugin：</font></h6><div>demo：<a href="http://mathiasbynens.be/demo/placeholder" target="_blank" rel="external">http://mathiasbynens.be/demo/placeholder</a></div><br><div>plugin：<span class="Apple-style-span" style="font-family: 'Segoe UI', 'Lucida Grande', 'Franklin Gothic Medium', 'URW Gothic L', Helvetica, sans-serif; font-size: 13px; color: rgb(0, 0, 0); "><a href="https://github.com/mathiasbynens/jquery-placeholder" target="_blank" rel="external">https://github.com/mathiasbynens/Placeholder-jQuery-Plugin</a></span></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/04/03/html5-placeholder/" data-id="cih0hx1kr008itm648oopzth2" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/04/03/html5-placeholder/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-javascript-historyonpopstate、onhashchange" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/04/02/javascript-historyonpopstate、onhashchange/" class="article-date">
+  <time datetime="2011-04-02T15:33:01.000Z" itemprop="datePublished">Apr 2 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/04/02/javascript-historyonpopstate、onhashchange/">javascript history(onpopstate、onhashchange)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="color:#00f;">history</span>是<span style="color:#00f;">javascript</span>中處理上一頁與下一頁的一個<span style="color:#00f;">object</span>，在<span style="color:#00f;">ajax</span>中要有換頁的處理效果，而不做頁面切換，可以使用<span style="color:#00f;">html5</span>所提供的<span style="color:#00f;">pushState</span>和<span style="color:#00f;">replaceState</span>，其中<span style="color:#00f;">replaceState</span>與<span style="color:#00f;">pushState</span>功能類似，<span style="color:#f00;">replaceState最主要是取代目前此筆history中的紀錄，而pushState則是新增一筆</span>。</p>
+<h6 id="以下是history的function：">以下是history的function：</h6><pre class="brush:js">/**
+* 回上一頁
+*/
+history.back();
+/**
+* 下一頁
+*/
+history.forward();
+/**
+* 當參數為正數時，為下幾頁，負數則反之。
+* @param {int} page
+*/
+history.go();
+/**
+* 改變當前頁面的網址(html5)
+* @param {*} * 可為任意型態，當事件處發時，會接收到此參數
+* @param {String} title
+* @param {String} link
+*/
+history.pushState();
+history.replaceState();
+/**
+* 監聽history可使用onpopstate event
+*/
+window.onpopstate = function(){
+    console.log(arguments);
+};
+</pre>
+
+<p>如果<span style="color:#00f;">brower</span>不支援<span style="color:#00f;">html5</span>的屬性時，可以使用<span style="color:#00f;">window.location</span>，它可以前往不同的頁面，接著只要利用&quot;<span style="color:#00f;">#</span>&quot;(錨點)的特性，就可以達到不換頁的效果，那麼所謂的&quot;<span style="color:#00f;">#</span>&quot;(錨點)是指此頁面的html的id，當&quot;<span style="color:#00f;">#</span>&quot;後面不加任何值時，將會跳到頁面最上端，若有找到符合id，則會前往此id的位置，沒找到則不做任何動作。</p>
+<h6 id="window-location：">window.location：</h6><pre class="brush:js">//跳到頁面最上方
+window.location = &quot;#&quot;;
+//比對html的id，若沒此id不做任何動作
+window.location = &quot;#history&quot;;
+</pre>
+
+<p>使用以上方法時，可以使用兩個<span style="color:#00f;">onpopstate</span>、<span style="color:#00f;">onhashchange</span>去做監聽，只要執行<span style="color:#00f;">window.location</span>時，這兩個<span style="color:#00f;">event</span>都會被呼叫，<span style="color:#00f;">history.back</span>和<span style="color:#00f;">history.forward</span>也會呼叫以上的<span style="color:#00f;">event</span>，但是如果使用的是<span style="color:#00f;">pushState</span>就不同了，<span style="color:#f00;">pushState不會去呼叫任何的event，只有history的紀錄是經由pushState修改過的，切換面頁才會呼叫onpopstate這個event</span>。</p>
+<p>那麼要是<span style="color:#00f;">brower</span>都沒有支援以上的監聽事件呢(<span style="color:#00f;">IE6</span>)?那麼可以使用<span style="color:#00f;">setTimeout</span>這類的<span style="color:#00f;">function</span>，去定時檢查<span style="color:#00f;">link</span>有沒有改變，搭配<span style="color:#00f;">iframe</span>使用，這樣可以直接由<span style="color:#00f;">iframe</span>去替換，<span style="color:#00f;">brower</span>上面的<span style="color:#00f;">link</span>也不需要改變。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/04/02/javascript-historyonpopstate、onhashchange/" data-id="cih0hx1k6007ptm64j12eocmz" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/04/02/javascript-historyonpopstate、onhashchange/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-svn-serverubuntu" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/04/02/svn-serverubuntu/" class="article-date">
+  <time datetime="2011-04-01T16:18:32.000Z" itemprop="datePublished">Apr 2 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/subversion/">subversion</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/04/02/svn-serverubuntu/">svn server(ubuntu)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h6 id="1-安裝svn">1.安裝svn</h6><p>&nbsp;sudo apt-get install subversion</p>
+<h6 id="2-建立svn_repository">2.建立svn repository</h6><p>svnadmin create svnrepos</p>
+<h6 id="3-_建立svn_user，開啟svnrepos/conf/svnserve-conf，然後加入以下三行_(開頭不能有空格)">3. 建立svn user，開啟svnrepos/conf/svnserve.conf，然後加入以下三行 (開頭不能有空格)</h6><p>anon-access = none</p>
+<p>auth-access = write</p>
+<p>password-db = passwd</p>
+<h6 id="4-_建立svn使用者和密碼，開啟svnrepos/conf/passwd&nbsp;(開頭不能有空格)">4. 建立svn使用者和密碼，開啟svnrepos/conf/passwd&nbsp;(開頭不能有空格)</h6><p>user = password</p>
+<p>ex: peter = 123456</p>
+<h6 id="5-_啟動svn_server">5. 啟動svn server</h6><p>svnserve -d -r&nbsp;svnrepos</p>
+<p>-r是svn的root的路徑</p>
+<h6 id="6-關閉svn_server可以使用">6.關閉svn server可以使用</h6><p>killall svnserve</p>
+<h6 id="7-從server抓取資料">7.從server抓取資料</h6><p>svn co svn://xxx.xxx.xxx</p>
+<p>svn的port預設是3690有防火牆要記得關掉。</p>
+<h6 id="以下有幾個實用的指令：">以下有幾個實用的指令：</h6><p>svn export svn://xxx.xxx.xxx &nbsp; &nbsp;可以直接將檔案抓下來，不列入版本控制。</p>
+<p>svn mv test test1 &nbsp; 搬移、重新命名，若直接刪除svn的檔案，再以加入的方式達到重新命名，log將不會保留。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/04/02/svn-serverubuntu/" data-id="cih0hx1hb0037tm64lg7r1mfu" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/04/02/svn-serverubuntu/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/subversion/">subversion</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jquery擴充寫法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/03/31/jquery擴充寫法/" class="article-date">
+  <time datetime="2011-03-31T15:01:21.000Z" itemprop="datePublished">Mar 31 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/03/31/jquery擴充寫法/">jQuery擴充寫法(jQuery extend)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="color:#00f;">jquery</span>的擴充方式有兩種，<span style="color:#f00;">一種是靜態的擴充，另一個則是prototype擴充</span>，靜態擴充只是將<span style="color:#00f;">function、object</span>….等，添加在<span style="color:#00f;">jquery</span>底下，與沒添加前功能相同，但是<span style="color:#00f;">prototype</span>則不同，<span style="color:#f00;">prototype擴充可以將你所抓取的element做處理</span>，以下是一個很典型的做法。</p>
+<h6 id="example：">example：</h6><pre class="brush:js">(function($){
+    //prototype extend
+    $.fn.extend({
+        drawRed:function(){
+            //
+            return this.each(function(){
+
+                //$(this).css(&quot;background-color&quot;,&quot;red&quot;);
+                this.style.backgroundColor = &quot;red&quot;;
+            });
+
+        }
+    });
+    //static extend
+    $.extend({
+        draw:function(){
+            console.log(&quot;draw&quot;);
+        }
+    });
+})(jQuery);
+//
+$(&quot;div&quot;).drawRed();
+$.draw();
+</pre>
+
+<p>其中<span style="color:#00f;">each</span>是一個非常重要的東西，因為<span style="color:#f00;">使用jquery抓取的element會create一個Array，而這個Array與一般的Array的prototype是分開的，只是擁有相同的prototype attribute</span>，當呼叫到<span style="color:#00f;">each</span>時，他會將<span style="color:#00f;">array</span>裡所有存放的資料，都執行過一邊，<span style="color:#00f;">each</span>傳入的<span style="color:#00f;">function</span>中，使用<span style="color:#00f;">this</span>是指向<span style="color:#00f;">array</span>裡執行到的<span style="color:#00f;">element</span>，所以若是沒有使用<span style="color:#00f;">each</span>，<span style="color:#00f;">jquery</span>所抓取的數個<span style="color:#00f;">elements</span>，呼叫到<span style="color:#00f;">drawRed</span>只會執行一次，而且<span style="color:#00f;">this</span>指向的是<span style="color:#00f;">Array</span>本身。</p>
+<p>當<span style="color:#00f;">jquery</span>的<span style="color:#00f;">extend</span>傳入參數只有一個物件時，則是擴充<span style="color:#00f;">jquery</span>本身，若是對<span style="color:#00f;">jquery</span>的實作方式有興趣，請參考<span style="color:#00f;">jQuery.fn.init</span>和<span style="color:#00f;">jQuery.fn.extend</span>這兩個<span style="color:#00f;">function</span>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/03/31/jquery擴充寫法/" data-id="cih0hx1ji006itm64hw5jgcpn" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/03/31/jquery擴充寫法/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-android開發環境配置non-ide" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/03/27/android開發環境配置non-ide/" class="article-date">
+  <time datetime="2011-03-27T14:13:40.000Z" itemprop="datePublished">Mar 27 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/android/">android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/03/27/android開發環境配置non-ide/">Android Linux開發環境配置(non-ide)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在開始配置環境之前，你必須先安裝好<span style="color:#00f;">java</span>，接著下載<a href="http://developer.android.com/sdk/index.html" target="_blank" rel="external">android </a>sdk和<a href="http://ant.apache.org/manualdownload.cgi" target="_blank" rel="external">ant</a>。</p>
+<h6 id="接在配置-bashrc這個檔案(家目錄)：">接在配置.bashrc這個檔案(家目錄)：</h6><pre class="prettyprint" style="color: rgb(0, 112, 0); font-family: monospace; line-height: inherit; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0.5em; margin-right: 0px; margin-bottom: 0px; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="Apple-style-span" style="color: rgb(51, 51, 51); font-family: arial, sans-serif; font-size: 13px; line-height: 16px; "><span class="kwd" style="color: rgb(0, 0, 136); ">export</span><span class="pln" style="color: rgb(0, 0, 0); "> PATH</span><span class="pun" style="color: rgb(102, 102, 0); ">=</span><span class="pln" style="color: rgb(0, 0, 0); ">$</span><span class="pun" style="color: rgb(102, 102, 0); ">{</span><span class="pln" style="color: rgb(0, 0, 0); ">PATH</span><span class="pun" style="color: rgb(102, 102, 0); ">}:&lt;</span><span class="pln" style="color: rgb(0, 0, 0); ">sdk</span><span class="pun" style="color: rgb(102, 102, 0); ">&gt;</span><span class="str" style="color: rgb(0, 136, 0); ">/tools:&lt;sdk&gt;/</span><span class="pln" style="color: rgb(0, 0, 0); ">platform</span><span class="pun" style="color: rgb(102, 102, 0); ">-</span><span class="pln" style="color: rgb(0, 0, 0); ">tools</span></span></pre>
+
+<p>&nbsp;</p>
+<p>如果沒配置，將無法使用模擬器，<span style="color:#00f;">ant</span>可以直接使用或參照以上配置方法，配置好在<span style="color:#00f;">terminal</span>上打</p>
+<p><span style="color:#00f;">source .bashrc</span>。</p>
+<p>接著在<span style="color:#00f;">terminal</span>打上<span style="color:#00f;">android</span>將會出現以下視窗，將<span style="color:#00f;">available packages</span>裡面需要用到的都安裝上去，因為一開始</p>
+<p>只提供2.3.3和3.0的模擬器。</p>
+<p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/android/android_sdk.png" alt="" title="android sdk"></p>
+<h6 id="安裝好之後接著配置專案，先查看能使用的模擬器版本及id：">安裝好之後接著配置專案，先查看能使用的模擬器版本及id：</h6><pre class="prettyprint" style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0.5em; margin-right: 0px; margin-bottom: 0px; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="Apple-style-span" style="line-height: 16px;">android list targets</span></pre>
+
+<p>&nbsp;</p>
+<h6 id="接著create_project：">接著create project：</h6><pre class="prettyprint" style="color: rgb(0, 112, 0); font-family: monospace; line-height: inherit; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0px; margin-right: 0px; margin-bottom: 1em; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="pln" style="color: rgb(0, 0, 0); ">android create project </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
+<span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="pln" style="color: rgb(0, 0, 0); ">target </span><span class="pun" style="color: rgb(102, 102, 0); ">&lt;</span><span class="pln" style="color: rgb(0, 0, 0); ">target_ID</span><span class="pun" style="color: rgb(102, 102, 0); ">&gt;</span><span class="pln" style="color: rgb(0, 0, 0); "> </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
+<span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="pln" style="color: rgb(0, 0, 0); ">name </span><span class="pun" style="color: rgb(102, 102, 0); ">&lt;</span><span class="pln" style="color: rgb(0, 0, 0); ">your_project_name</span><span class="pun" style="color: rgb(102, 102, 0); ">&gt;</span><span class="pln" style="color: rgb(0, 0, 0); "> </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
+<span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="pln" style="color: rgb(0, 0, 0); ">path path</span><span class="pun" style="color: rgb(102, 102, 0); ">/</span><span class="pln" style="color: rgb(0, 0, 0); ">to</span><span class="pun" style="color: rgb(102, 102, 0); ">/</span><span class="pln" style="color: rgb(0, 0, 0); ">your</span><span class="pun" style="color: rgb(102, 102, 0); ">/</span><span class="pln" style="color: rgb(0, 0, 0); ">project </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
+<span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="pln" style="color: rgb(0, 0, 0); ">activity </span><span class="pun" style="color: rgb(102, 102, 0); ">&lt;</span><span class="pln" style="color: rgb(0, 0, 0); ">your_activity_name</span><span class="pun" style="color: rgb(102, 102, 0); ">&gt;</span><span class="pln" style="color: rgb(0, 0, 0); "> </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
+<span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="kwd" style="color: rgb(0, 0, 136); ">package</span><span class="pln" style="color: rgb(0, 0, 0); "> </span><span class="pun" style="color: rgb(102, 102, 0); ">&lt;</span><span class="pln" style="color: rgb(0, 0, 0); ">your_package_namespace</span><span class="pun" style="color: rgb(102, 102, 0); ">&gt;</span></pre>
+
+<h6 id="example：">example：</h6><pre class="prettyprint" style="color: rgb(0, 112, 0); font-family: monospace; line-height: inherit; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0px; margin-right: 0px; margin-bottom: 1em; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="Apple-style-span" style="color: rgb(51, 51, 51); font-family: arial, sans-serif; font-size: 13px; "><span class="pln" style="color: rgb(0, 0, 0); ">android create project </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
+</span><span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="pln" style="color: rgb(0, 0, 0); ">target </span><span class="lit" style="color: rgb(0, 102, 102); ">1</span><span class="pln" style="color: rgb(0, 0, 0); "> </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
+<span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="pln" style="color: rgb(0, 0, 0); ">name </span><span class="typ" style="color: rgb(102, 0, 102); ">MyAndroidApp</span><span class="pln" style="color: rgb(0, 0, 0); "> </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
+<span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="pln" style="color: rgb(0, 0, 0); ">path </span><span class="pun" style="color: rgb(102, 102, 0); ">./</span><span class="typ" style="color: rgb(102, 0, 102); ">MyAndroidAppProject</span><span class="pln" style="color: rgb(0, 0, 0); "> </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
+<span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="pln" style="color: rgb(0, 0, 0); ">activity </span><span class="typ" style="color: rgb(102, 0, 102); ">MyAndroidAppActivity</span><span class="pln" style="color: rgb(0, 0, 0); "> </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
+<span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="kwd" style="color: rgb(0, 0, 136); ">package</span><span class="pln" style="color: rgb(0, 0, 0); "> com</span><span class="pun" style="color: rgb(102, 102, 0); ">.</span><span class="pln" style="color: rgb(0, 0, 0); ">example</span><span class="pun" style="color: rgb(102, 102, 0); ">.</span><span class="pln" style="color: rgb(0, 0, 0); ">myandroid</span></pre>
+
+<p>&nbsp;</p>
+<h6 id="專案建立好後，只要在專案的根目錄下，對terminal執行以下指令，就可以產生apk：">專案建立好後，只要在專案的根目錄下，對<span style="color:#00f;">terminal</span>執行以下指令，就可以產生apk：</h6><pre class="prettyprint" style="font-family: monospace; line-height: inherit; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0px; margin-right: 0px; margin-bottom: 1em; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="Apple-style-span" style="font-family: arial, sans-serif; font-size: 13px; "><font class="Apple-style-span" color="#000000">ant debug
+    or
+ant release</font></span></pre>
+
+<p><span class="Apple-style-span" style="font-weight: bold; ">查看目前連接的裝置：</span></p>
+<pre class="prettyprint" style="font-family: monospace; line-height: inherit; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0.5em; margin-right: 0px; margin-bottom: 0px; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="Apple-style-span" style="font-family: arial, sans-serif; font-size: 13px; line-height: 16px; "><font class="Apple-style-span" color="#000000">adb devices</font><span _fck_bookmark="1" style="display: none; ">&nbsp;</span></span></pre>
+
+<h6 id="&nbsp;">&nbsp;</h6><p><strong>64位元系統是無法使用adb，需要安裝：</strong></p>
+<pre class="prettyprint" style="font-weight: normal; line-height: inherit; border: 1px solid rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding: 10px; margin-top: 0.5em; margin-bottom: 0px; margin-left: 1em; overflow: auto; "><span style="color: rgb(68, 68, 68); font-family: 'Lucida Grande', sans-serif; line-height: 14.399999618530273px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); ">sudo apt-get install ia32-libs</span></pre>
+<div>&nbsp;</div>
+
+###### 接著最後一步就是開啟你的模擬器，在<span style="color:#00f;">terminal</span>下打指令：
+
+<pre class="prettyprint" style="color: rgb(0, 112, 0); font-family: monospace; line-height: inherit; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0.5em; margin-right: 0px; margin-bottom: 0px; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="Apple-style-span" style="color: rgb(51, 51, 51); font-family: arial, sans-serif; font-size: 13px; line-height: 16px; "><span class="pln" style="color: rgb(0, 0, 0); ">adb </span><span class="pun" style="color: rgb(102, 102, 0); ">-</span><span class="pln" style="color: rgb(0, 0, 0); ">s emulator</span><span class="pun" style="color: rgb(102, 102, 0); ">-</span><span class="lit" style="color: rgb(0, 102, 102); ">5554</span><span class="pln" style="color: rgb(0, 0, 0); "> install </span>_<span class="pln" style="color: rgb(0, 0, 0); ">path</span><span class="pun" style="color: rgb(102, 102, 0); ">/</span><span class="pln" style="color: rgb(0, 0, 0); ">to</span><span class="pun" style="color: rgb(102, 102, 0); ">/</span><span class="pln" style="color: rgb(0, 0, 0); ">your</span><span class="pun" style="color: rgb(102, 102, 0); ">/</span><span class="pln" style="color: rgb(0, 0, 0); ">app</span>_<span class="pun" style="color: rgb(102, 102, 0); ">.</span><span class="pln" style="color: rgb(0, 0, 0); ">apk</span></span></pre>
+
+<p>最後你就會在模擬器上面看到，剛剛安裝到模擬器上面的專案名稱了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/03/27/android開發環境配置non-ide/" data-id="cih0hx1mo00bftm64ey0z0fq2" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/03/27/android開發環境配置non-ide/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/page/8/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/7/">7</a><a class="page-number" href="/archives/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/archives/page/10/">10</a><a class="extend next" rel="next" href="/archives/page/10/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IE/">IE</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YQL/">YQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actionscript/">actionscript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/add-on/">add-on</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone/">backbone</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bluetooth/">bluetooth</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap3/">bootstrap3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boto/">boto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome-extension/">chrome extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-prototype/">javascript prototype</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-tool/">javascript tool</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neo4j/">neo4j</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pattern/">pattern</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell-script/">shell script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlite/">sqlite</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversion/">subversion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/titanium/">titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zend-framework/">zend framework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zeromq/">zeromq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第三方登入/">第三方登入</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IE/" style="font-size: 11.25px;">IE</a> <a href="/tags/Titanium/" style="font-size: 15px;">Titanium</a> <a href="/tags/YQL/" style="font-size: 10px;">YQL</a> <a href="/tags/actionscript/" style="font-size: 10px;">actionscript</a> <a href="/tags/add-on/" style="font-size: 10px;">add-on</a> <a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/angularjs/" style="font-size: 17.5px;">angularjs</a> <a href="/tags/arduino/" style="font-size: 10px;">arduino</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/backbone/" style="font-size: 12.5px;">backbone</a> <a href="/tags/bluetooth/" style="font-size: 10px;">bluetooth</a> <a href="/tags/bootstrap3/" style="font-size: 10px;">bootstrap3</a> <a href="/tags/boto/" style="font-size: 10px;">boto</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/chrome-extension/" style="font-size: 10px;">chrome extension</a> <a href="/tags/css/" style="font-size: 11.25px;">css</a> <a href="/tags/database/" style="font-size: 15px;">database</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/html5/" style="font-size: 18.75px;">html5</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/java/" style="font-size: 13.75px;">java</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-prototype/" style="font-size: 11.25px;">javascript prototype</a> <a href="/tags/javascript-tool/" style="font-size: 16.25px;">javascript tool</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/linux/" style="font-size: 13.75px;">linux</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/neo4j/" style="font-size: 11.25px;">neo4j</a> <a href="/tags/node-js/" style="font-size: 11.25px;">node.js</a> <a href="/tags/pattern/" style="font-size: 11.25px;">pattern</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 17.5px;">python</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/shell-script/" style="font-size: 10px;">shell script</a> <a href="/tags/sqlite/" style="font-size: 11.25px;">sqlite</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/subversion/" style="font-size: 11.25px;">subversion</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/titanium/" style="font-size: 10px;">titanium</a> <a href="/tags/vim/" style="font-size: 11.25px;">vim</a> <a href="/tags/yii/" style="font-size: 11.25px;">yii</a> <a href="/tags/zend-framework/" style="font-size: 12.5px;">zend framework</a> <a href="/tags/zeromq/" style="font-size: 10px;">zeromq</a> <a href="/tags/第三方登入/" style="font-size: 10px;">第三方登入</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/01/Titanium-Android-native-module/">Titanium Android native module</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/21/Connect-Arduino-Uno-via-Android-Bluetooth/">Connect Arduino Uno via Android Bluetooth</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/25/My-github/">My github</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/11/image-converter/">Image converter</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/">The unsafe resource URL and cross origin on angular</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Sparrow Jang<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://twitter.com/Sparrow_Jang" class="mobile-nav-link">Twitter</a>
+  
+    <a href="https://github.com/SparrowJang" class="mobile-nav-link">Github</a>
+  
+    <a href="https://hub.docker.com/u/peter1209/" class="mobile-nav-link">DockerHub</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'sparrowhome';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>

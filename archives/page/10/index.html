@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives | Sparrow&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sparrow's Blog">
+<meta property="og:url" content="http://www.sparrowjang.com/archives/page/10/index.html">
+<meta property="og:site_name" content="Sparrow's Blog">
+<meta property="og:description">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sparrow's Blog">
+<meta name="twitter:description">
+<meta name="twitter:creator" content="@Sparrow_Jang">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21959339-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sparrow&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="https://twitter.com/Sparrow_Jang">Twitter</a>
+        
+          <a class="main-nav-link" href="https://github.com/SparrowJang">Github</a>
+        
+          <a class="main-nav-link" href="https://hub.docker.com/u/peter1209/">DockerHub</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.sparrowjang.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-javascript-object-oriented-concepts" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/03/26/javascript-object-oriented-concepts/" class="article-date">
+  <time datetime="2011-03-25T17:38:44.000Z" itemprop="datePublished">Mar 26 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/03/26/javascript-object-oriented-concepts/">Javascript Object Oriented Concepts</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在<span style="color:#00f;">javascript</span>中並沒有<span style="color:#00f;">class</span>這個關鍵字，而是以<span style="color:#00f;">function</span>的方式，去配置一個物件，所以<span style="color:#00f;">function</span>可以直接使用，也可拿來配置物件。接著以下都直接以配置物件的<span style="color:#00f;">function</span>，稱為<span style="color:#00f;">class</span>，那麼在<span style="color:#00f;">class</span>之中，宣告<span style="color:#00f;">var</span>來當一個<span style="color:#00f;">private</span>的變數，若是沒宣告則會是一個全域變數，在<span style="color:#00f;">function</span>裡面的code，當開使去<span style="color:#00f;">new</span>的時候，裡面的code都會被執行一次，其中<span style="color:#00f;">this</span>為指向物件本身，換句話說就是一個<span style="color:#00f;">public</span>的屬性，<span style="color:#f00;">this與prototype的差異是，this是每個物件自己擁有的，而prototype則是所有class共用的</span>。</p>
+<h6 id="以下是一個範例："><span style="color:#000;">以下是一個範例：</span></h6><pre class="brush:js">/**
+* @class
+* @constructor
+*/
+function Car(){
+    /**
+    * @private
+    */
+    var _name;
+    var _speed = 40;
+
+    /**
+    * @param {String} name
+    */
+    this.setName = function(name){
+        _name = name;
+    }
+
+    /**
+    * @param String
+    */
+    this.getName = function(){
+        return _name;
+    }
+
+    /**
+    * @type int
+    */
+    this.getSpeed = function(){
+        return _speed;
+    }
+
+    /**
+    *
+    */
+    this.run = function(){
+        console.log(&quot;moving:&quot;+_speed+&quot;km/hr&quot;);
+    }
+}
+
+/**
+*
+*/
+Car.prototype.show = function(){
+    console.log(&quot;name:&quot;+this.getName());
+    console.log(&quot;speed:&quot;+this.getSpeed()+&quot;km/hr&quot;);
+}
+
+/**
+* @static
+*/
+Car.powerRun = function(){
+    console.log(&quot;moving:&quot;+this.getSpeed()+&quot;&rarr;100km/hr&quot;);
+}
+
+var car = new Car();
+    car.setName(&quot;cloud&quot;);
+    car.run();
+    car.show();
+    //moving:40&rarr;100km/hr
+    Car.powerRun.call(car);&nbsp;</pre>
+
+<p>以上比較值得注意的是，<span style="color:#00f;">call</span>這個<span style="color:#00f;">function</span>，主要是把object丟到指定的function上面跑，簡單來說就是把<span style="color:#00f;">this</span>直接替換成<span style="color:#00f;">object</span>的名稱，例如：</p>
+<pre class="brush:js">this.getSpeed();
+car.getSpeed();</pre>
+
+<p>以上這兩行在範例中執行的，與<span style="color:#00f;">Car.powerRun.call(car)</span>是畫上等號的，再來<span style="color:#f00;">call與apply是同樣的功能</span>，差別在於傳值<span style="color:#00f;">call</span>必須寫成：</p>
+<pre class="brush:js">functionName.call(object,param1,param2....);</pre>
+
+<p>而<span style="color:#00f;">apply</span>的傳遞參數則是一個<span style="color:#00f;">array</span>：</p>
+<pre class="brush:js">functionName.apply(object,array);</pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/03/26/javascript-object-oriented-concepts/" data-id="cih0hx1k4007mtm64b5b1009p" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/03/26/javascript-object-oriented-concepts/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-javascript-closure" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/03/24/javascript-closure/" class="article-date">
+  <time datetime="2011-03-24T15:31:20.000Z" itemprop="datePublished">Mar 24 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/03/24/javascript-closure/">Javascript Closure</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h6 id="以下是一個簡單的closure_example：">以下是一個簡單的closure example：</h6><pre class="brush:js">function doSomething(){
+    var x = 100;
+    function add(y){
+        x = x + y;
+        return x;
+    }
+
+    return add;
+}
+
+var add1 = doSomething();
+var add2 = doSomething();
+    //110
+    console.log(add1(10));
+    //120
+    console.log(add1(10));
+    //115
+    console.log(add2(15));
+    //130
+    console.log(add2(15));</pre>
+
+<p>主要是呼叫<span style="color:#00f;">doSomething</span>這個<span style="color:#00f;">function</span>時，將會傳回一個內部<span style="color:#00f;">function</span>，同時這個<span style="color:#00f;">function</span>的<span style="color:#00f;">x</span>會參照上層的<span style="color:#00f;">x</span>變數，<span style="color:#f00;">此時會將x綁在add function這個scope</span>，<span style="color:#f00;">x就會相當於一個private static變數</span>，當被<span style="color:#00f;">export</span>的<span style="color:#00f;">function</span>呼叫一次，<span style="color:#00f;">x</span>變數也會跟著累加，並不會因為呼叫完<span style="color:#00f;">export</span>的<span style="color:#00f;">function</span>而釋放。另外一個很重要的是，<span style="color:#f00;">當doSomething被呼叫時</span><span style="color:#f00;">，不管他被呼叫次數幾次，每個被export function出來的scope都是不一樣的</span>，換句話說，各自綁定的x變數都是不共用的，而是都擁有各自的記憶體區塊。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/03/24/javascript-closure/" data-id="cih0hx1kb007xtm64xt4apmwk" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/03/24/javascript-closure/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jquery-extend" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/03/23/jquery-extend/" class="article-date">
+  <time datetime="2011-03-22T16:46:22.000Z" itemprop="datePublished">Mar 23 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/03/23/jquery-extend/">jQuery extend</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="color:#00f;">jquery</span>提供的<span style="color:#00f;">extend</span>，主要是將其他<span style="color:#00f;">object</span>的屬性，copy到<span style="color:#00f;">target</span>這個<span style="color:#00f;">object</span>。</p>
+<pre class="brush:js">jQuery.extend( target, [ object1 ], [ objectN ] );</pre>
+
+<p>當<span style="color:#00f;">extend return</span>時，與<span style="color:#00f;">target</span>是同一個<span style="color:#00f;">object</span>。</p>
+<h6 id="相當於以下的code：">相當於以下的code：</h6><pre class="brush:js">for(var name in object)
+target[ name ] = object[name];</pre>
+
+<p><span style="color:#f00;">但是這樣會有一個問題，當object裡的屬性有object或是array時，他並不會配置新的記憶體，而時指向同個記憶體。</span></p>
+<pre><code><span class="tag">&lt;/span&gt;</span>
+</code></pre><h6 id="例如：">例如：</h6><pre class="brush:js">var object = {key:3,data:{name:&quot;sparrow&quot;}};
+var target = {};
+    $.extend(target,object);
+    //result:sparrow
+    console.log(object.data.name);
+    target.data[&quot;name&quot;] = &quot;peter&quot;;
+    //result:peter
+    console.log(target.data.name);
+    console.log(object.data.name);
+    </pre>
+
+<p><span class="Apple-style-span" style="font-weight: bold; ">所以這時jquery有提供一個deep參數：</span></p>
+<pre class="brush:js">jQuery.extend( [ deep ], target, object1, [ objectN ] )</pre>
+
+<p>當<span style="color:#00f;">deep</span>會true時，他會用遞迴的方式，將<span style="color:#00f;">array</span>和<span style="color:#00f;">object</span>配置一個新的空間，然後將值複製過去。</p>
+<p><span class="Apple-style-span" style="font-weight: bold; ">jquery主要copy source code如下：</span></p>
+<p><pre class="brush:js">// Recurse if we&#39;re merging plain objects or arrays<br>if ( deep &amp;&amp; copy &amp;&amp; ( jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)) ) ) {<br>    if ( copyIsArray ) {<br>         copyIsArray = false;<br>         clone = src &amp;&amp; jQuery.isArray(src) ? src : [];</pre></p>
+<pre><code>} <span class="keyword">else</span> {
+     <span class="built_in">clone</span> = src &amp;amp;&amp;amp; jQuery.isPlainObject(src) ? src : {};
+}    
+
+ // Never move original objects, <span class="built_in">clone</span> them
+     target[ name ] = jQuery.extend( deep, <span class="built_in">clone</span>, copy );
+</code></pre><p>// Don&#39;t bring in undefined values<br>} else if ( copy !== undefined ) {<br>   target[ name ] = copy;<br>}&nbsp;</p>
+<div><span class="Apple-style-span" style="font-family: Arial, Verdana, sans-serif; white-space: normal; "><br><br>    </span></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/03/23/jquery-extend/" data-id="cih0hx1jo006wtm64uabljc67" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/03/23/jquery-extend/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-泛型generic" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/03/20/泛型generic/" class="article-date">
+  <time datetime="2011-03-20T14:24:05.000Z" itemprop="datePublished">Mar 20 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/03/20/泛型generic/">泛型(Generic)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h6 id="在沒使用到泛型之前，有兩個類別擁有相同的功能：">在沒使用到泛型之前，有兩個類別擁有相同的功能：</h6><pre class="brush:java">public class IntegerObj {
+    private Integer integerObj;
+    /**
+    * @param {Integer} integerObj
+    */
+    public void set(Integer integerObj) {
+        this.integerObj = integerObj;
+    }
+    /**
+    * @type Integer
+    */
+    public Integer get() {
+        return integerObj;
+    }
+}
+</pre><pre class="brush:java">public class StringObj {
+    private Integer stringObj;
+    /**
+    * @param {String} stringObj
+    */
+    public void set(String stringObj) {
+        this.stringObj = stringObj;
+    }
+    /**
+    * @type String
+    */
+    public String get() {
+        return stringObj;
+    }
+}
+
+</pre>
+
+<p>以上這兩個<span style="color:#00f;">class</span>只有<span style="color:#00f;">member型態</span>上有差異，邏輯上是一模一樣，等於必須對兩種不同型態去各自撰寫一個類別，但同樣的，這些物件的<span style="color:#f00;">最上層都是繼承Object</span>，可將<span style="color:#00f;">member成員</span>替換成<span style="color:#00f;">Object</span>，最後再經由轉型就可以了。但是由於轉型也有轉錯的可能，那麼是不是能在宣告變數時，就先將型態定義好，並且使用同一個<span style="color:#00f;">class</span>，那麼這時就要使用到<span style="color:#00f;">泛型</span>了。</p>
+<h6 id="以下是個簡單的例子(java)：">以下是個簡單的例子(java)：</h6><pre class="brush:java">class CollectionExample&lt;T&gt;{
+     private T[] _objects;
+     private int _index;
+     /**
+     *
+     */
+     CollectionExample(int total){
+        _objects =(T[]) new Object[total];
+        _index = 0;
+     }
+     /**
+     * @param {T} obj
+     */
+     public boolean add(T obj){
+        boolean result = false;
+        if(_index &lt; _objects.length){
+            _objects[_index] = obj;
+            _index++;
+            result = true;
+        }
+            return result;
+     }
+     /**
+     * @param {int} index
+     * @type T
+     */
+     public T get(int index){
+          return _objects[index];
+     }
+     /**
+     * @type int
+     */
+     public int getLength(){
+          return _objects.length;
+     }
+     /**
+     *
+     */
+     public static void main(String[] args){
+      CollectionExample&lt;Integer&gt; collection = new CollectionExample&lt;Integer&gt;(10);
+        //
+            for(int i=1;i&lt;=collection.getLength();i++)
+                collection.add(i);
+            for(int i=0;i&lt;collection.getLength();i++)
+                System.out.println(collection.get(i));
+     }
+}
+
+</pre>
+<div><span class="Apple-style-span" style="font-family: serif; font-size: 13px; color: rgb(0, 0, 0); "><span style="color:#00f;">&lt;T&gt;</span>主要是來定義<span style="color:#00f;">泛型</span>用，<span style="color:#00f;">T</span>為變數名稱，換句話說他可以是其它文字，最主要用處是拿來</span><span style="color:#f00;">替換型態</span>用，例如當你宣告：</div>
+<pre class="brush:java">//
+CollectionExample&lt;Integer&gt; collection = new CollectionExample&lt;Integer&gt;(5);</pre>
+<div>上面<span style="color:#00f;">class</span>的變數<span style="color:#00f;">T</span>，將會取代成<span style="color:#00f;">Integer</span>。CollectionExample類別提供了add、get和getLength三個method，主要功能是將object儲存起來以及取出。</div>
+<div>&nbsp;</div>
+
+###### 以下是C++的範例：
+
+CollectionExample.h
+
+<pre class="brush:c++">template &lt;class CType&gt;
+class CollectionExample{
+//
+public:
+    CollectionExample(int);
+    ~CollectionExample();
+    void add(CType);
+    int getLength();
+    CType get(int);
+private:
+    CType *_objs;
+    int _index;
+    int _length;
+};
+/**
+* @param {int} total
+*/
+template &lt;class CType&gt;
+CollectionExample&lt;CType&gt;::CollectionExample(int total){
+    _objs = new CType[total];
+    _length = total;
+    _index = 0;
+}
+/**
+*
+*/
+template &lt;class CType&gt;
+CollectionExample&lt;CType&gt;::~CollectionExample() {
+    delete [] _objs;
+}
+/**
+* @param {CType} obj 
+*/
+template &lt;class CType&gt;
+void CollectionExample&lt;CType&gt;::add(CType obj){
+    if(_index&lt;_length){
+        _objs[_index] = obj;
+        _index++;
+    }
+}
+/***
+* @param {int} index
+* @type CType
+*/
+template &lt;class CType&gt;
+CType CollectionExample&lt;CType&gt;::get(int index){
+    if(index&lt;_length)
+        return _objs[index];
+}
+/**
+* @type int
+*/
+template &lt;class CType&gt;
+int CollectionExample&lt;CType&gt;::getLength(){
+    return _length;
+}</pre>
+
+<p>main.cpp</p>
+<pre class="brush:c++">#include &lt;iostream&gt; 
+#include &quot;CollectionExample.h&quot;
+using namespace std; 
+
+int main(){
+    CollectionExample&lt;int&gt; collection(10);
+
+       for(int i=0;i&lt;collection.getLength();i++)
+           collection.add(i);
+       for(int i=0;i&lt;collection.getLength();i++)
+           cout&lt;&lt;collection.get(i)&lt;&lt;endl;
+    return 0;
+}&nbsp;</pre>
+
+<p>結果與java相同。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/03/20/泛型generic/" data-id="cih0hx1fe000ltm64uwbszgdg" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/03/20/泛型generic/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-closure-template" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/03/17/closure-template/" class="article-date">
+  <time datetime="2011-03-17T15:19:12.000Z" itemprop="datePublished">Mar 17 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/template/">template</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/03/17/closure-template/">Closure Template</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <div><strong><span style="color:#00f;">closure template</span></strong>是由<span style="color:#00f;">google release</span>的工具之一，最主要是為了讓<span style="color:#00f;">html</span>與程式邏輯分開，方</div><br><div>便程式的維護性，讓程式只要像<span style="color:#00f;">call method</span>的方式，將直塞入即可得到一個完整的<span style="color:#00f;">html</span>。</div><br><div>以下是一個簡單的範例：</div>
+
+<h6 id="soy：">soy：</h6><p><pre class="brush:js">{namespace examples.simple}</pre></p>
+<p>/**</p>
+<ul>
+<li>@param color</li>
+<li>@param name<br>*/<br>{template .car}</li>
+</ul>
+<p><span>This car is {$color} color.</span></p>
+<p><span>Its name is {$name}.</span></p>
+<p>{/template}</p>
+<p></p>
+<div><span style="color:#00f;">soy</span>檔案的定義方式，主要是定義在註解裡，再由<span style="color:#00f;">template</span>裡的<span style="color:#f00;">{$color}</span>，將值塞入。</div><br><div>此<span style="color:#00f;">soy</span>定義了兩個參數，分別為<span style="color:#00f;">name</span>和<span style="color:#00f;">color</span>，作為為塞入樣板的參數。</div><br><div><span style="color:#f00;">(即使無參數傳入時，也必須保留註解。)</span></div><br><div>&nbsp;</div>
+
+<h6 id="接著將soy檔轉成js，執行以下指令：">接著將soy檔轉成js，執行以下指令：</h6><div><span style="color:#808080;"><strong><span style="background-color:#fff;">java -jar SoyToJsSrcCompiler.jar —outputPathFormat firstExample.js firstExample.soy</span></strong></span></div><br><div>&nbsp;</div>
+
+<h6 id="javascript的使用方式：">javascript的使用方式：</h6><p><pre class="brush:js">document.write(examples.simple.car({name:&quot;cool car&quot;,color:&quot;yellow&quot;}));<br></pre></p>
+<div>要使用<span style="color:#00f;">template</span>之前必須先載入<span style="color:#00f;">soyutils.js</span>，接著載入剛剛由<span style="color:#00f;">soy</span>產生好的<span style="color:#00f;">firstExample.js，</span></div><br><div>最後只要對應好<span style="color:#00f;">template</span>的命名，由<span style="color:#00f;">js</span>呼叫就可以產生<span style="color:#00f;">html</span>了。</div><br><div>&nbsp;</div>
+
+<h6 id="java的使用方式：">java的使用方式：</h6><p><pre class="brush:java">import com.google.template.soy.SoyFileSet;<br>import com.google.template.soy.data.SoyMapData;<br>import com.google.template.soy.tofu.SoyTofu;<br>import java.io.File;</pre></p>
+<p>public class FirstExample {</p>
+<p>  public static void main (String[] args) {</p>
+<pre><code>SoyFileSet sfs = (<span class="keyword">new</span> SoyFileSet.Builder()).<span class="built_in">add</span>(<span class="keyword">new</span> File(&amp;quot;firstExample.soy&amp;quot;)).build();
+
+SoyTofu tofu = sfs.compileToJavaObj();
+
+System.out.<span class="built_in">println</span>(tofu.render(&amp;quot;examples.simple.car&amp;quot;, <span class="keyword">new</span> SoyMapData(&amp;quot;name&amp;quot;,&amp;quot;cool car&amp;quot;,&amp;quot;<span class="built_in">color</span>&amp;quot;,&amp;quot;yellow&amp;quot;), <span class="keyword">null</span>));
+</code></pre><p>  }</p>
+<p>}<br></p>
+<div>以上做法主要是讀取<span style="color:#00f;">soy</span>檔(<span style="color:#f00;">與js做法不同</span>)，接著將檔案轉成<span style="color:#00f;">java</span>的<span style="color:#00f;">object</span>，最後塞入參數即可產生<span style="color:#00f;">html</span>。</div><br><div><span style="color:#00f;">closure template</span>還有很多<span style="color:#00f;">command</span>可以使用，例如<span style="color:#00f;">if</span>、<span style="color:#00f;">for</span>和<span style="color:#00f;">switch</span>等…，詳情請參考此<a href="http://code.google.com/intl/zh-TW/closure/templates/docs/commands.html" target="_blank" rel="external">link</a>。</div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/03/17/closure-template/" data-id="cih0hx1lp009stm64dgy5fnqd" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/03/17/closure-template/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/template/">template</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-在ie中的userdata-behavior" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/03/15/在ie中的userdata-behavior/" class="article-date">
+  <time datetime="2011-03-15T14:37:08.000Z" itemprop="datePublished">Mar 15 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/03/15/在ie中的userdata-behavior/">在IE中的userData Behavior</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在<span style="color:#00f;">IE</span>中可利用<span style="color:#00f;">cookie</span>、<span style="color:#00f;">flash</span>、<span style="color:#00f;">storage</span>和<span style="color:#00f;">behavior</span>…等將資料儲存在client端。</p>
+<p>但在<span style="color:#00f;">IE6</span>並不支援<span style="color:#00f;">storage</span>屬性，要儲存較大量的資料只能透過其他方法，若</p>
+<p>不想掛載<span style="color:#00f;">flash</span>…等的情況下，可以透過<span style="color:#00f;">behavior</span>將資料存在<span style="color:#00f;">brower</span>。</p>
+<h6 id="css：">css：</h6><pre class="brush:css">.storeuserData {
+    behavior: url(#default#userData);
+}
+</pre>
+
+<p>以上是behavior在css的定義方式。 當然你也可透過以下方式以動態方式載入。</p>
+<pre class="brush:js">object.style.behavior = &quot;url(&#39;#default#userData&#39;)&quot; 
+</pre><pre class="brush:js">object.addBehavior(&quot;#default#userData&quot;)
+</pre>
+
+<h6 id="javascript：">javascript：</h6><pre class="brush:js">function save(){
+   var persist=persistForm.persistInput;
+   persist.setAttribute(&quot;persist&quot;,persist.value);
+   persist.save(&quot;oXMLBranch&quot;);
+}
+function load(){
+   var persist=persistForm.persistInput;
+   persist.load(&quot;oXMLBranch&quot;);
+   persist.value=persist.getAttribute(&quot;persist&quot;);
+}
+</pre>
+
+<p>當<span style="color:#00f;">class</span>被定義成<span class="Apple-style-span" style="font-family: monospace; white-space: pre; "><span style="color:#00f;">behavior:url(#default#userData)</span>時，</span><span style="color:#00f;"><span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">setAttribute</span></span><span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">、</span><span style="color:#00f;"><span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">getAttribute</span></span></p>
+<p><span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">將會對暫存資料操作，</span><span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">而</span><span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">不是</span><span style="color:#00f;">dom</span>的<span style="color:#00f;">attribute</span>，最後只要再設定完<span style="color:#00f;">attribute</span>後，執行<span style="color:#00f;">save</span>資料</p>
+<p>就會儲存起來了，<span style="color:#00f;">load</span>則是選擇要讀取，讀完接著就可以取得<span style="color:#00f;">attribute</span>。</p>
+<h6 id="以下html對應上方的js_code：">以下html對應上方的js code：</h6><pre class="brush:html">
+&lt;form id=&quot;persistForm&quot;&gt;&lt;input class=&quot;storeuserData&quot; id=&quot;persistInput&quot; type=&quot;text&quot; /&gt;
+    &lt;input onclick=&quot;load()&quot; type=&quot;button&quot; value=&quot;Load&quot; /&gt;
+    &lt;input onclick=&quot;save()&quot; type=&quot;button&quot; value=&quot;Save&quot; /&gt;
+&lt;/form&gt;
+</pre>
+
+<h6 id="換頁保留欄位的方法(換頁時，按上一頁，將會保留欄位資料)：">換頁保留欄位的方法(換頁時，按上一頁，將會保留欄位資料)：</h6><pre class="brush:html">
+&lt;meta content=&quot;history&quot; name=&quot;save&quot; /&gt;
+&lt;style&gt;                                                                                                                                               
+.saveHistory {behavior:url(#default#savehistory);}
+&lt;/style&gt;
+</pre>
+
+<p>這些方法只能運作在IE上。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/03/15/在ie中的userdata-behavior/" data-id="cih0hx1fm000ytm64pziz2l49" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/03/15/在ie中的userdata-behavior/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IE/">IE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-factory-pattern-for-javascript" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/03/14/factory-pattern-for-javascript/" class="article-date">
+  <time datetime="2011-03-13T16:43:35.000Z" itemprop="datePublished">Mar 14 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/03/14/factory-pattern-for-javascript/">Factory pattern for javascript</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在提到<span style="color:#00f;"><strong>factory pattern</strong></span>之前，讓我們先來理解一些基本的概念。</p>
+<p>當javascript的<span style="color:#f00;">private變數必須以var定義</span>，反之沒加var則為global變數。而由function建立的object，裡面的<span style="color:#f00;">this將會指向物件本身</span>，同時也<span style="color:#f00;">是public的屬性</span>。一般prototype與this定義的function有一個很大差異，由<span style="color:#f00;">this定義的function</span>，每個function都是獨立的，簡單來說都<span style="color:#f00;">佔由實體空間</span>，而由<span style="color:#f00;">prototype</span>定義的，則是<span style="color:#f00;">多個物件共用同</span>一個資源。</p>
+<h6 id="以下是一個簡單的factory_pattern：">以下是一個簡單的<span style="color:#00f;">factory pattern<span style="color:#000;">：</span></span></h6><pre class="brush:js">/**
+* @name Car
+* @class
+* @constructor
+* @see carFactory
+*/
+
+/** @namespace */
+var carFactory = (function(){
+    var _count = 0;
+
+    /**
+    * @lends Car
+    * @inner
+    */
+    function Car(){
+        //private
+        var _color = &quot;black&quot;;
+        var _doors = &quot;4&quot;;
+
+        /**
+        * @public
+        * @param {String} color
+        */
+        this.setColor = function(color){
+            _color = color;
+        }
+
+        /**
+        * @type {String}
+        */
+        this.getColor = function(){
+            return _color;
+        }
+
+        /**
+        * @type int
+        */
+        this.getDoorTotal = function(){
+            return _doors;
+        }
+
+    }
+
+    /**
+    * Show this car info.
+    */
+    Car.prototype.show = function(){
+
+        console.log(&quot;color:&quot;+this.getColor());
+        console.log(&quot;door total:&quot;+this.getDoorTotal());
+    }
+
+    /**
+    * @lends carFactory
+    */
+    return {
+        /**
+        * @type Car
+        * @memberOf carFactory
+        */
+        create:function(){
+            _count++;
+            return new Car();
+        },
+        /** @memberOf carFactory */
+        getCount:function(){
+            return _count;
+        }
+    };
+})();
+</pre>
+
+<p>首先我們定義了一個<strong>carFactory</strong>物件，裡面有個內部class名稱為Car，分別定義了setColor、getColor、getDoorTotal、show四個function。接著再由carFactory的create，將car object export出去，而getCount則是計算了建立car object的total。</p>
+<h6 id="最後是實際使用的code：">最後是實際使用的code：</h6><pre class="brush:js">var car1 = carFactory.create();
+    car1.setColor(&quot;blue&quot;);
+    car1.show();
+var car2 = carFactory.create();
+    car2.setColor(&quot;gray&quot;);
+    car2.show();
+var car3 = carFactory.create();
+    car3.show();
+
+    console.log(&quot;car total:&quot;+carFactory.getCount());
+
+</pre>
+
+<h6 id="result：">result：</h6><p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/jsDoc_toolkit/factorypattern.png" alt="" title="factory pattern"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/03/14/factory-pattern-for-javascript/" data-id="cih0hx1lf009btm649bnfkutz" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/03/14/factory-pattern-for-javascript/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pattern/">pattern</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-javascript的scope" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/03/11/javascript的scope/" class="article-date">
+  <time datetime="2011-03-11T07:37:05.000Z" itemprop="datePublished">Mar 11 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/03/11/javascript的scope/">javascript的scope</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>javascript和其他語言的<span style="color: #0000ff;">scope</span>有一個很大的差異。 </p>
+<p><span style="color: #ff6600;">javascript只有function裡，才能產生scope。</span></p>
+<p><strong>一般的語言特性以java為例:</strong></p>
+<pre class="brush:java">for(int i =0;i&lt;5;i++){
+       //可以看到i變數
+       System.out.println(i);
+}
+
+//看不到i變數
+
+if(true){
+      int i =53;
+      //可以看到i變數
+      System.out.println(i);
+}
+
+//看不到i變數</pre>
+
+<p>以上這段程式碼，變數i只存在於迴圈內，當離開回圈則看不到。 &nbsp; <strong>javascript example:</strong> for loop</p>
+<pre class="brush:js">for(var i = 0;i&lt;5;i++){
+
+}
+//i值會等於5
+console.log(i);</pre>
+
+<p>if &nbsp;loop</p>
+<pre class="brush:js">if(true){
+var b = 10;
+}
+//b會等於10
+console.log(b);</pre>
+
+<p><strong>在function將產生一個scope:</strong></p>
+<pre class="brush:js">(function(){
+    var a = 5;
+     //a = 5;
+     console.log(a);
+})();
+
+//將會產生錯誤，找不到a變數
+console.log(a);</pre>
+
+<p><strong>以下是javascript scope參照方式:</strong></p>
+<pre class="brush:js">var i=3;
+(function(){
+     //i會等於3
+     console.log(i);
+})();</pre>
+
+<p>當i變數無法在這個scope找到此變數時，將會往上一層去尋找。</p>
+<pre class="brush:js">var i=3;
+(function(){
+     //undefined
+     console.log(i);
+     var i=5;
+})();</pre>
+
+<p>在同一個scope已經定義了一個變數時，即使定義在印出之後，仍然會找相同<span style="color: #0000ff;">scope</span>的變數。 &nbsp; &nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/03/11/javascript的scope/" data-id="cih0hx1ju0076tm646bbvlntx" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/03/11/javascript的scope/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jsdoc-toolkit使用在anonymous-function寫法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/03/10/jsdoc-toolkit使用在anonymous-function寫法/" class="article-date">
+  <time datetime="2011-03-10T08:12:16.000Z" itemprop="datePublished">Mar 10 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/03/10/jsdoc-toolkit使用在anonymous-function寫法/">jsdoc toolkit使用在anonymous function寫法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="tag:">tag:</h4><div><span style="color: #0000ff;">@name &nbsp;<span style="color: #000000;">當無法辨識類型時，使用此tag直接定義名稱。(範例如下)</span></span> <span style="color: #0000ff;"><span style="color: #000000;"> </span></span></div><br><pre class="brush:js">//利用字串建立一個function<br>eval(&quot;window.test= function() {};&quot;)</pre><br><div><span style="color: #0000ff;">@lends</span> 幫助function去參照其他class和object。</div>
+
+<h4 id="example:"><strong>example:</strong></h4><p><pre class="brush:js">/<em>*
+</em></pre></p>
+<ul>
+<li>@name View</li>
+<li>@class</li>
+<li>@constructor<br><em>/<br>(function(){<br>/*</em></li>
+<li><p>@lends View<br>*/<br>function View(){</p>
+<pre><code><span class="keyword">var</span> _name;
+
+<span class="comment">/**
+* @param {String} name
+*/</span>
+<span class="keyword">this</span>.setName = <span class="function"><span class="keyword">function</span><span class="params">(name)</span></span>{
+        _name = name;
+};
+</code></pre><p>}</p>
+</li>
+</ul>
+<p>/**</p>
+<ul>
+<li>@param {string} str<br>*/<br>View.prototype.show = function(str){<pre><code><span class="function">alert</span>(&amp;quot;show<span class="value">:&amp;quot;</span>+str);
+</code></pre>}</li>
+</ul>
+<p>})();</p>
+<div>直接定義一個View，並將<span style="color:#00f;">type</span>設成<span style="color:#00f;">class</span>，再由內部的<span style="color:#00f;">lends tag</span>去參照之前所定義的名稱。 &nbsp;</div><br><div><strong>下圖為產生的文件:</strong> <img src="http://i198.photobucket.com/albums/aa84/foreverangle/jsDoc_toolkit/example_jsdoc_toolkit_anonymous_function.png" alt="jsDoc toolkit document" title="jsDoc toolkit document"></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/03/10/jsdoc-toolkit使用在anonymous-function寫法/" data-id="cih0hx1jd006atm646ow2dwj6" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/03/10/jsdoc-toolkit使用在anonymous-function寫法/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-tool/">javascript tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jsdoc-tookit-introduction" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/03/09/jsdoc-tookit-introduction/" class="article-date">
+  <time datetime="2011-03-09T08:00:00.000Z" itemprop="datePublished">Mar 9 2011</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/03/09/jsdoc-tookit-introduction/">Jsdoc toolkit Introduction</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>jsdoc toolkit是一個能夠將javascript註解產成文件的工具。 tag的寫法和download可以參考<a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank" rel="external">相關資訊</a>。 以下是一個簡單的example:</p>
+<pre class="brush:js">/**
+* @author Sparrow
+*/
+
+/**
+* @class Dog is an animal.
+* @constructor
+*/
+function Dog(){
+
+    var _name;
+
+    /**
+    * @description Set the dog name.
+    * @param {string} name
+    */
+    this.setName = function(name){
+        _name = name;
+    }
+
+    /**
+    * @description Get the dog name.
+    * @type String
+    */
+    this.getName = function(){
+        return _name;
+    }
+
+}
+
+/**
+* @description Attack a target.
+* @param {String} target
+*/
+Dog.prototype.attack = function(target){
+    alert(&quot;attack:&quot;+target);
+}</pre>
+
+<p>最後只要在terminal執行以下指令: java -jar jsrun.jar app/run.js Dog.js -t=templates/jsdoc/</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2011/03/09/jsdoc-tookit-introduction/" data-id="cih0hx1jf006etm640d7gpzyw" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2011/03/09/jsdoc-tookit-introduction/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-tool/">javascript tool</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/page/9/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/8/">8</a><a class="page-number" href="/archives/page/9/">9</a><span class="page-number current">10</span>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IE/">IE</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YQL/">YQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actionscript/">actionscript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/add-on/">add-on</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone/">backbone</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bluetooth/">bluetooth</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap3/">bootstrap3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boto/">boto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome-extension/">chrome extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-prototype/">javascript prototype</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-tool/">javascript tool</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neo4j/">neo4j</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pattern/">pattern</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell-script/">shell script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlite/">sqlite</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversion/">subversion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/titanium/">titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zend-framework/">zend framework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zeromq/">zeromq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第三方登入/">第三方登入</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/IE/" style="font-size: 11.25px;">IE</a> <a href="/tags/Titanium/" style="font-size: 15px;">Titanium</a> <a href="/tags/YQL/" style="font-size: 10px;">YQL</a> <a href="/tags/actionscript/" style="font-size: 10px;">actionscript</a> <a href="/tags/add-on/" style="font-size: 10px;">add-on</a> <a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/angularjs/" style="font-size: 17.5px;">angularjs</a> <a href="/tags/arduino/" style="font-size: 10px;">arduino</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/backbone/" style="font-size: 12.5px;">backbone</a> <a href="/tags/bluetooth/" style="font-size: 10px;">bluetooth</a> <a href="/tags/bootstrap3/" style="font-size: 10px;">bootstrap3</a> <a href="/tags/boto/" style="font-size: 10px;">boto</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/chrome-extension/" style="font-size: 10px;">chrome extension</a> <a href="/tags/css/" style="font-size: 11.25px;">css</a> <a href="/tags/database/" style="font-size: 15px;">database</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/html5/" style="font-size: 18.75px;">html5</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/java/" style="font-size: 13.75px;">java</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-prototype/" style="font-size: 11.25px;">javascript prototype</a> <a href="/tags/javascript-tool/" style="font-size: 16.25px;">javascript tool</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/linux/" style="font-size: 13.75px;">linux</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/neo4j/" style="font-size: 11.25px;">neo4j</a> <a href="/tags/node-js/" style="font-size: 11.25px;">node.js</a> <a href="/tags/pattern/" style="font-size: 11.25px;">pattern</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 17.5px;">python</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/shell-script/" style="font-size: 10px;">shell script</a> <a href="/tags/sqlite/" style="font-size: 11.25px;">sqlite</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/subversion/" style="font-size: 11.25px;">subversion</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/titanium/" style="font-size: 10px;">titanium</a> <a href="/tags/vim/" style="font-size: 11.25px;">vim</a> <a href="/tags/yii/" style="font-size: 11.25px;">yii</a> <a href="/tags/zend-framework/" style="font-size: 12.5px;">zend framework</a> <a href="/tags/zeromq/" style="font-size: 10px;">zeromq</a> <a href="/tags/第三方登入/" style="font-size: 10px;">第三方登入</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/01/Titanium-Android-native-module/">Titanium Android native module</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/21/Connect-Arduino-Uno-via-Android-Bluetooth/">Connect Arduino Uno via Android Bluetooth</a>
+          </li>
+        
+          <li>
+            <a href="/2014/10/25/My-github/">My github</a>
+          </li>
+        
+          <li>
+            <a href="/2014/07/11/image-converter/">Image converter</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/">The unsafe resource URL and cross origin on angular</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Sparrow Jang<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+    <a href="https://twitter.com/Sparrow_Jang" class="mobile-nav-link">Twitter</a>
+  
+    <a href="https://github.com/SparrowJang" class="mobile-nav-link">Github</a>
+  
+    <a href="https://hub.docker.com/u/peter1209/" class="mobile-nav-link">DockerHub</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'sparrowhome';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//go.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>

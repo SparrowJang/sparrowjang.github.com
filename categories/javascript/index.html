@@ -145,7 +145,10 @@
 </table>
 <p>比較值得注意的是，angular(1.2)以上的版本，是依據<code>directive</code>的目前的status，替換不同的<code>class</code>，它會在每個不同的status加上<code>ng-....</code>的class，如<code>ng-enter</code>和<code>ng-leave</code>等的。</p>
 <p>以<code>ngRepeat</code>為例，定義一個html結構:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">ng-repeat</span>=<span class="value">"role in roles"</span> <span class="attribute">class</span>=<span class="value">"demo"</span>&gt;</span></span><br><span class="line">  &#123;% raw %&#125;&#123;&#123;role&#125;&#125;&#123;% endraw %&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<!--￼0-->
+
+
 <p>加入一個值到<code>roles</code>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.roles.push( <span class="string">"programer"</span> );</span><br></pre></td></tr></table></figure>
 <p>則此時會先插入一個<code>ng-enter</code>的<code>class</code>，做初始配置用，接著在插入<code>ng-enter-active</code>的class，改變後的狀態，只有設定<code>transition</code>，這時就會產生動畫效果。</p>
@@ -164,7 +167,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/02/20/the-nganimate-on-angular(1213)/" data-id="cih4eu3h40030ti643hqq6s0d" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/02/20/the-nganimate-on-angular(1213)/" data-id="cih4exeze0030um64tpyrdwri" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/02/20/the-nganimate-on-angular(1213)/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -225,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/01/31/capture-a-image-block-on-angular/" data-id="cih4eu3me00a6ti64jhht9t84" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/01/31/capture-a-image-block-on-angular/" data-id="cih4exf3t00a6um64c1d4w9an" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/01/31/capture-a-image-block-on-angular/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -288,7 +291,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/01/11/jquery-detach-on-angular-directive/" data-id="cih4eu3jv0072ti64yy2thoya" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/01/11/jquery-detach-on-angular-directive/" data-id="cih4exf1z0072um64jolg0z9b" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/01/11/jquery-detach-on-angular-directive/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -352,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/12/26/copy-canvas-on-html5/" data-id="cih4eu3m3009kti64r2zv9tmk" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/12/26/copy-canvas-on-html5/" data-id="cih4exf3l009kum64if0pzhiz" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/12/26/copy-canvas-on-html5/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -410,7 +413,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/11/26/angularjs-timepicker-on-bootstrap3/" data-id="cih4eu3my00auti64eocwij66" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/11/26/angularjs-timepicker-on-bootstrap3/" data-id="cih4exf4800auum645slkxjag" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/11/26/angularjs-timepicker-on-bootstrap3/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -460,7 +463,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-transclude-attribute/" data-id="cih4eu3n900b9ti648t285e7a" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-transclude-attribute/" data-id="cih4exf4g00b9um64hn0da7ez" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-transclude-attribute/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -516,7 +519,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-attributes-of-scope/" data-id="cih4eu3nd00bdti64zyqe6brg" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-attributes-of-scope/" data-id="cih4exf4j00bdum64wevppe6m" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-attributes-of-scope/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -570,7 +573,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/09/在angularjs限制同時間的request的數量/" data-id="cih4eu3fi0012ti644ko72911" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/09/在angularjs限制同時間的request的數量/" data-id="cih4exey50012um6445ciy2on" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/09/在angularjs限制同時間的request的數量/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -621,7 +624,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/01/網頁已過期在ie7、ie8/" data-id="cih4eu3f2000eti64uv6wv8nl" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/01/網頁已過期在ie7、ie8/" data-id="cih4exexs000eum649wrvh1iv" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/01/網頁已過期在ie7、ie8/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -670,7 +673,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/01/angularjs-placeholder-submit-a-form-on-ie/" data-id="cih4eu3n200b0ti64gzgxmk8v" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/01/angularjs-placeholder-submit-a-form-on-ie/" data-id="cih4exf4a00b0um64v8ljiqf7" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/01/angularjs-placeholder-submit-a-form-on-ie/#disqus_thread" class="article-comment-link">Comments</a>
       

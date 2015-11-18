@@ -105,17 +105,17 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Placeholder要支援老舊的IE7~IE9，使用jQuery也都有一堆plugin可以使用了。如果要在angularjs上使用，但是又不想載入jQuery，這時候可以使用<a href="https://github.com/SparrowJang/angularjs-placeholder" target="_blank" rel="external">angularjs-placeholder</a> module。</p>
-<h1 id="使用angularjs-placeholder">使用angularjs-placeholder</h1><h4 id="載入angular_module：">載入angular module：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34; src=&#34;../src/angularjs-placeholder.js&#34;&#62;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
-<h4 id="定義需要使用到的module，和初始化ng-app：">定義需要使用到的module，和初始化ng-app：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34;&#62;&#10;  var app = angular.module( &#34;demoApp&#34;, [&#34;html5.placeholder&#34;] );&#10;  angular.bootstrap( document, [app.name] );&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
+<h1 id="使用angularjs-placeholder">使用angularjs-placeholder</h1><h4 id="載入angular_module：">載入angular module：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"../src/angularjs-placeholder.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="定義需要使用到的module，和初始化ng-app：">定義需要使用到的module，和初始化ng-app：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">  <span class="keyword">var</span> app = angular.module( <span class="string">"demoApp"</span>, [<span class="string">"html5.placeholder"</span>] );</span><br><span class="line">  angular.bootstrap( <span class="built_in">document</span>, [app.name] );</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="實作angularjs-placeholder遇到的小問題">實作angularjs-placeholder遇到的小問題</h2><p>在實作angularjs-placeholder module時，在<strong>IE7</strong>發現一個小問題，<strong>無法取得placeholder的值</strong>，但是在有的<strong>jQuery</strong>情況，都會幫忙處理掉了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/**&#10;* input default: &#60;input placeholder=&#34;Please,enter your name!&#34; type=&#34;text&#34; /&#62;&#10;*/&#10;&#10;//use native&#10;&#10;var attr = input.getAttribute(&#34;placeholder&#34;);&#10;&#10;// attr == null&#10;console.log( attr );&#10;&#10;//use jqlite&#10;var $elem = angular.element( input );&#10;&#10;// attr == null&#10;console.log( $elem.attr( &#34;placeholder&#34; ) );</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* input default: &lt;input placeholder="Please,enter your name!" type="text" /&gt;</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//use native</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> attr = input.getAttribute(<span class="string">"placeholder"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// attr == null</span></span><br><span class="line"><span class="built_in">console</span>.log( attr );</span><br><span class="line"></span><br><span class="line"><span class="comment">//use jqlite</span></span><br><span class="line"><span class="keyword">var</span> $elem = angular.element( input );</span><br><span class="line"></span><br><span class="line"><span class="comment">// attr == null</span></span><br><span class="line"><span class="built_in">console</span>.log( $elem.attr( <span class="string">"placeholder"</span> ) );</span><br></pre></td></tr></table></figure>
 <p>所以如果要在<strong>IE7</strong>取得<strong>placeholder</strong>，這時候<strong>native</strong>有提供另一個api可以使用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var node = input.getAttributeNode( &#34;placeholder&#34; );&#10;&#10;var attr = node?node.nodeValue:node;&#10;&#10;//Please,enter your name!&#10;console.log( attr );</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> node = input.getAttributeNode( <span class="string">"placeholder"</span> );</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> attr = node?node.nodeValue:node;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Please,enter your name!</span></span><br><span class="line"><span class="built_in">console</span>.log( attr );</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/27/angularjs-fixed-a-placeholder-feature-on-ie/" data-id="cih4ehz5800b4mk64glfgcnca" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/27/angularjs-fixed-a-placeholder-feature-on-ie/" data-id="cih4eqkqt00b4ro64969xuzfi" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/27/angularjs-fixed-a-placeholder-feature-on-ie/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -162,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/26/titanium相同檔名會拋出錯誤/" data-id="cih4ehyyx002gmk6461yvfe9c" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/26/titanium相同檔名會拋出錯誤/" data-id="cih4eqkku002gro64ako5ygup" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/26/titanium相同檔名會拋出錯誤/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -218,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/17/Javascript-prototype-and-this記憶體用量/" data-id="cih4ehz5w00c6mk64otrd26k3" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/17/Javascript-prototype-and-this記憶體用量/" data-id="cih4eqkrp00c6ro642a3ygysy" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/17/Javascript-prototype-and-this記憶體用量/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -271,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/17/javascript-prototype的概念/" data-id="cih4ehz2g007jmk649ygv7f5m" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/17/javascript-prototype的概念/" data-id="cih4eqko7007jro64yyu3y4w0" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/17/javascript-prototype的概念/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -322,7 +322,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/15/python-encode/" data-id="cih4ehz0w0055mk64mqjqnzbz" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/15/python-encode/" data-id="cih4eqkmn0055ro643apojurq" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/15/python-encode/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -373,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/13/running-angularjs-app-on-ie7/" data-id="cih4ehz050040mk64szedtie8" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/13/running-angularjs-app-on-ie7/" data-id="cih4eqklw0040ro64hsjg5ufs" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/13/running-angularjs-app-on-ie7/#disqus_thread" class="article-comment-link">Comments</a>
       

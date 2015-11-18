@@ -111,16 +111,16 @@
 <li>&amp; or &amp;attr ： 將預設的function，委託給其他event呼叫。</li>
 </ul>
 <p><em>只要directive有設定scope對應的值，或者設定<code>scope:true</code>，則directive將會自行建立一個新的scope。</em></p>
-<h2 id="使用_&amp;_和_@_屬性來設定scope">使用 &amp; 和 @ 屬性來設定scope</h2><h4 id="定義一個alert屬性：">定義一個alert屬性：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;div alert on-enter=&#34;$window.alert(&#39;Hello world&#39;)&#34; message=&#34;Say hello world!&#34;&#62;&#60;/div&#62;</span><br></pre></td></tr></table></figure>
+<h2 id="使用_&amp;_和_@_屬性來設定scope">使用 &amp; 和 @ 屬性來設定scope</h2><h4 id="定義一個alert屬性：">定義一個alert屬性：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">alert</span> <span class="attribute">on-enter</span>=<span class="value">"$window.alert('Hello world')"</span> <span class="attribute">message</span>=<span class="value">"Say hello world!"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>其中<code>message</code>屬性為alert呈現的訊息，<code>on-enter</code>則會在按鈕被點擊即時會觸發。</p>
-<h4 id="實作一個alert_directive：">實作一個alert directive：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.directive( &#34;alert&#34;, function()&#123;&#10;&#10;  return &#123;&#10;&#10;  restrict: &#34;A&#34;,&#10;    template: &#34;&#60;div class=&#39;alert-container&#39;&#62;&#60;p ng-bind=&#34;message&#34;&#62;&#60;/p&#62;&#60;button ng-click=&#39;onEnter();&#39;&#62;Enter&#60;/botton&#62;&#60;/div&#62;&#34;,&#10;    scope:&#123;&#10;      &#34;onEnter&#34;:&#34;&#38;&#34;,&#10;      &#34;message&#34;:&#34;@&#34;&#10;    &#125;,&#10;    replace: true&#10;&#10;  &#125;;&#10;&#10;&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="實作一個alert_directive：">實作一個alert directive：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">app.directive( <span class="string">"alert"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line"></span><br><span class="line">  restrict: <span class="string">"A"</span>,</span><br><span class="line">    template: <span class="string">"&lt;div class='alert-container'&gt;&lt;p ng-bind="</span>message<span class="string">"&gt;&lt;/p&gt;&lt;button ng-click='onEnter();'&gt;Enter&lt;/botton&gt;&lt;/div&gt;"</span>,</span><br><span class="line">    scope:&#123;</span><br><span class="line">      <span class="string">"onEnter"</span>:<span class="string">"&amp;"</span>,</span><br><span class="line">      <span class="string">"message"</span>:<span class="string">"@"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    replace: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>alert的<code>scope</code>將會取得<code>onEnter</code>和<code>message</code>的屬性，分別去對照template的<code>ng-click=&quot;onEnter()&quot;</code>和<code>ng-bind=&quot;message&quot;</code>。</p>
 <h2 id="Demo">Demo</h2><p>完整的範例，請參考<a href="http://jsfiddle.net/jecGR/" target="_blank" rel="external">jsfiddle</a>上的code。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-attributes-of-scope/" data-id="cih4ehz5d00bdmk64jfja4nkw" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-attributes-of-scope/" data-id="cih4eqkr000bdro642yep4oxk" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-attributes-of-scope/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -174,7 +174,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/09/在angularjs限制同時間的request的數量/" data-id="cih4ehyxo0012mk643pw3k544" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/09/在angularjs限制同時間的request的數量/" data-id="cih4eqkjn0012ro64gvo3rrgt" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/09/在angularjs限制同時間的request的數量/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -225,7 +225,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/01/網頁已過期在ie7、ie8/" data-id="cih4ehyx7000emk64tv1xdjac" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/01/網頁已過期在ie7、ie8/" data-id="cih4eqkj3000ero64ycl6bsi8" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/01/網頁已過期在ie7、ie8/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -266,15 +266,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>使用<a href="https://github.com/SparrowJang/angularjs-placeholder" target="_blank" rel="external">angularjs-placeholder</a>可以在老舊<strong>IE</strong>上，支援<strong>placeholder</strong>這個屬性，但是底層還是去實作<strong>foucs</strong>和<strong>blur</strong>這兩個<strong>event</strong>，並且用<strong>替換value的方式</strong>，達到<strong>模擬placeholder</strong>的效果。在一般使用上沒什麼太大問題，但是假設今天有一個<strong>form</strong>要<strong>submit</strong>的時候，會把<strong>placeholder</strong>的預設值也一起送出，這時就必須在<strong>submit</strong>之前，就將預設值清除，或者在取值得時候，暫時將欄位值清除，之後在還原。</p>
-<h2 id="使用placeholder-ensure取值：">使用placeholder.ensure取值：</h2><h4 id="ensure接受兩個參數："><strong>ensure</strong>接受兩個參數：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;/**&#10;* @param &#123;jQlite&#125; $elem &#21487;&#20197;&#26159;form&#25110;&#32773;&#28858;&#22810;&#20491;elements&#10;* @param &#123;function&#125; callback &#23526;&#38555;&#21462;&#20540;&#30340;&#22320;&#26041;&#10;*/&#10;&#10;placeholder.ensure( $elem, callback );</span><br></pre></td></tr></table></figure>
-<h4 id="在callback裡面取得值後，可使用record-back來回復placeholder的預設值。">在<strong>callback</strong>裡面取得值後，可使用<strong>record.back</strong>來回復<strong>placeholder</strong>的預設值。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.controller( &#34;formController&#34;, [ &#34;placeholder&#34;, &#34;$element&#34;, function( placeholder, $form )&#123;&#10;&#10;  placeholder.ensure( $form , function( record )&#123;&#10;&#10;    var $textarea = $form.find(&#34;textarea&#34;);&#10;    alert( $textarea );&#10;&#10;    //&#24489;&#21407;&#10;    record.back();&#10;  &#125;);&#10;&#10;&#125;);</span><br></pre></td></tr></table></figure>
-<h4 id="若要直接submit可直接呼叫ensure，不須使用callback。">若要直接submit可直接呼叫<strong>ensure</strong>，不須使用callback。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">placeholder.ensure( $form )</span><br></pre></td></tr></table></figure>
+<h2 id="使用placeholder-ensure取值：">使用placeholder.ensure取值：</h2><h4 id="ensure接受兩個參數："><strong>ensure</strong>接受兩個參數：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;jQlite&#125; $elem 可以是form或者為多個elements</span><br><span class="line">* @param &#123;function&#125; callback 實際取值的地方</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line">placeholder.ensure( $elem, callback );</span><br></pre></td></tr></table></figure>
+<h4 id="在callback裡面取得值後，可使用record-back來回復placeholder的預設值。">在<strong>callback</strong>裡面取得值後，可使用<strong>record.back</strong>來回復<strong>placeholder</strong>的預設值。</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">app.controller( <span class="string">"formController"</span>, [ <span class="string">"placeholder"</span>, <span class="string">"$element"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> placeholder, $form </span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  placeholder.ensure( $form , <span class="function"><span class="keyword">function</span>(<span class="params"> record </span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> $textarea = $form.find(<span class="string">"textarea"</span>);</span><br><span class="line">    alert( $textarea );</span><br><span class="line"></span><br><span class="line">    <span class="comment">//復原</span></span><br><span class="line">    record.back();</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="若要直接submit可直接呼叫ensure，不須使用callback。">若要直接submit可直接呼叫<strong>ensure</strong>，不須使用callback。</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">placeholder.ensure( $form )</span><br></pre></td></tr></table></figure>
 <p>如果使用有<strong>支援placeholder的瀏覽器</strong>，還是會有<strong>ensure可以使用</strong>，但是<strong>將不會改變任何屬性</strong>，純粹只是個包裝過後的function。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/01/angularjs-placeholder-submit-a-form-on-ie/" data-id="cih4ehz5500b0mk64610zblmm" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/01/angularjs-placeholder-submit-a-form-on-ie/" data-id="cih4eqkqq00b0ro64bdeni5or" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/01/angularjs-placeholder-submit-a-form-on-ie/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -315,17 +315,17 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Placeholder要支援老舊的IE7~IE9，使用jQuery也都有一堆plugin可以使用了。如果要在angularjs上使用，但是又不想載入jQuery，這時候可以使用<a href="https://github.com/SparrowJang/angularjs-placeholder" target="_blank" rel="external">angularjs-placeholder</a> module。</p>
-<h1 id="使用angularjs-placeholder">使用angularjs-placeholder</h1><h4 id="載入angular_module：">載入angular module：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34; src=&#34;../src/angularjs-placeholder.js&#34;&#62;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
-<h4 id="定義需要使用到的module，和初始化ng-app：">定義需要使用到的module，和初始化ng-app：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;script type=&#34;text/javascript&#34;&#62;&#10;  var app = angular.module( &#34;demoApp&#34;, [&#34;html5.placeholder&#34;] );&#10;  angular.bootstrap( document, [app.name] );&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure>
+<h1 id="使用angularjs-placeholder">使用angularjs-placeholder</h1><h4 id="載入angular_module：">載入angular module：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"../src/angularjs-placeholder.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="定義需要使用到的module，和初始化ng-app：">定義需要使用到的module，和初始化ng-app：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">  <span class="keyword">var</span> app = angular.module( <span class="string">"demoApp"</span>, [<span class="string">"html5.placeholder"</span>] );</span><br><span class="line">  angular.bootstrap( <span class="built_in">document</span>, [app.name] );</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="實作angularjs-placeholder遇到的小問題">實作angularjs-placeholder遇到的小問題</h2><p>在實作angularjs-placeholder module時，在<strong>IE7</strong>發現一個小問題，<strong>無法取得placeholder的值</strong>，但是在有的<strong>jQuery</strong>情況，都會幫忙處理掉了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/**&#10;* input default: &#60;input placeholder=&#34;Please,enter your name!&#34; type=&#34;text&#34; /&#62;&#10;*/&#10;&#10;//use native&#10;&#10;var attr = input.getAttribute(&#34;placeholder&#34;);&#10;&#10;// attr == null&#10;console.log( attr );&#10;&#10;//use jqlite&#10;var $elem = angular.element( input );&#10;&#10;// attr == null&#10;console.log( $elem.attr( &#34;placeholder&#34; ) );</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* input default: &lt;input placeholder="Please,enter your name!" type="text" /&gt;</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//use native</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> attr = input.getAttribute(<span class="string">"placeholder"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// attr == null</span></span><br><span class="line"><span class="built_in">console</span>.log( attr );</span><br><span class="line"></span><br><span class="line"><span class="comment">//use jqlite</span></span><br><span class="line"><span class="keyword">var</span> $elem = angular.element( input );</span><br><span class="line"></span><br><span class="line"><span class="comment">// attr == null</span></span><br><span class="line"><span class="built_in">console</span>.log( $elem.attr( <span class="string">"placeholder"</span> ) );</span><br></pre></td></tr></table></figure>
 <p>所以如果要在<strong>IE7</strong>取得<strong>placeholder</strong>，這時候<strong>native</strong>有提供另一個api可以使用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var node = input.getAttributeNode( &#34;placeholder&#34; );&#10;&#10;var attr = node?node.nodeValue:node;&#10;&#10;//Please,enter your name!&#10;console.log( attr );</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> node = input.getAttributeNode( <span class="string">"placeholder"</span> );</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> attr = node?node.nodeValue:node;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Please,enter your name!</span></span><br><span class="line"><span class="built_in">console</span>.log( attr );</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/27/angularjs-fixed-a-placeholder-feature-on-ie/" data-id="cih4ehz5800b4mk64glfgcnca" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/27/angularjs-fixed-a-placeholder-feature-on-ie/" data-id="cih4eqkqt00b4ro64969xuzfi" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/27/angularjs-fixed-a-placeholder-feature-on-ie/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -372,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/26/titanium相同檔名會拋出錯誤/" data-id="cih4ehyyx002gmk6461yvfe9c" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/26/titanium相同檔名會拋出錯誤/" data-id="cih4eqkku002gro64ako5ygup" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/26/titanium相同檔名會拋出錯誤/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -428,7 +428,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/17/Javascript-prototype-and-this記憶體用量/" data-id="cih4ehz5w00c6mk64otrd26k3" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/17/Javascript-prototype-and-this記憶體用量/" data-id="cih4eqkrp00c6ro642a3ygysy" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/17/Javascript-prototype-and-this記憶體用量/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -481,7 +481,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/17/javascript-prototype的概念/" data-id="cih4ehz2g007jmk649ygv7f5m" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/17/javascript-prototype的概念/" data-id="cih4eqko7007jro64yyu3y4w0" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/17/javascript-prototype的概念/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -532,7 +532,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/15/python-encode/" data-id="cih4ehz0w0055mk64mqjqnzbz" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/15/python-encode/" data-id="cih4eqkmn0055ro643apojurq" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/15/python-encode/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -583,7 +583,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/13/running-angularjs-app-on-ie7/" data-id="cih4ehz050040mk64szedtie8" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/13/running-angularjs-app-on-ie7/" data-id="cih4eqklw0040ro64hsjg5ufs" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/13/running-angularjs-app-on-ie7/#disqus_thread" class="article-comment-link">Comments</a>
       

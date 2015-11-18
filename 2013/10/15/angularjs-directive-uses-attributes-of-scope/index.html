@@ -23,7 +23,7 @@
 &amp;amp; or &amp;amp;attr ： 將預設的function，委託給其他event呼叫。
 
 只要direct">
-<meta property="og:updated_time" content="2014-07-11T13:38:48.000Z">
+<meta property="og:updated_time" content="2015-11-18T06:06:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angularjs directive uses attributes of scope">
 <meta name="twitter:description" content="在angularjs中的directive的scope，分別有以下3種設定方式：
@@ -128,16 +128,16 @@
 <li>&amp; or &amp;attr ： 將預設的function，委託給其他event呼叫。</li>
 </ul>
 <p><em>只要directive有設定scope對應的值，或者設定<code>scope:true</code>，則directive將會自行建立一個新的scope。</em></p>
-<h2 id="使用_&amp;_和_@_屬性來設定scope">使用 &amp; 和 @ 屬性來設定scope</h2><h4 id="定義一個alert屬性：">定義一個alert屬性：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;div alert on-enter=&#34;$window.alert(&#39;Hello world&#39;)&#34; message=&#34;Say hello world!&#34;&#62;&#60;/div&#62;</span><br></pre></td></tr></table></figure>
+<h2 id="使用_&amp;_和_@_屬性來設定scope">使用 &amp; 和 @ 屬性來設定scope</h2><h4 id="定義一個alert屬性：">定義一個alert屬性：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">alert</span> <span class="attribute">on-enter</span>=<span class="value">"$window.alert('Hello world')"</span> <span class="attribute">message</span>=<span class="value">"Say hello world!"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>其中<code>message</code>屬性為alert呈現的訊息，<code>on-enter</code>則會在按鈕被點擊即時會觸發。</p>
-<h4 id="實作一個alert_directive：">實作一個alert directive：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.directive( &#34;alert&#34;, function()&#123;&#10;&#10;  return &#123;&#10;&#10;  restrict: &#34;A&#34;,&#10;    template: &#34;&#60;div class=&#39;alert-container&#39;&#62;&#60;p ng-bind=&#34;message&#34;&#62;&#60;/p&#62;&#60;button ng-click=&#39;onEnter();&#39;&#62;Enter&#60;/botton&#62;&#60;/div&#62;&#34;,&#10;    scope:&#123;&#10;      &#34;onEnter&#34;:&#34;&#38;&#34;,&#10;      &#34;message&#34;:&#34;@&#34;&#10;    &#125;,&#10;    replace: true&#10;&#10;  &#125;;&#10;&#10;&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="實作一個alert_directive：">實作一個alert directive：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">app.directive( <span class="string">"alert"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line"></span><br><span class="line">  restrict: <span class="string">"A"</span>,</span><br><span class="line">    template: <span class="string">"&lt;div class='alert-container'&gt;&lt;p ng-bind="</span>message<span class="string">"&gt;&lt;/p&gt;&lt;button ng-click='onEnter();'&gt;Enter&lt;/botton&gt;&lt;/div&gt;"</span>,</span><br><span class="line">    scope:&#123;</span><br><span class="line">      <span class="string">"onEnter"</span>:<span class="string">"&amp;"</span>,</span><br><span class="line">      <span class="string">"message"</span>:<span class="string">"@"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    replace: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>alert的<code>scope</code>將會取得<code>onEnter</code>和<code>message</code>的屬性，分別去對照template的<code>ng-click=&quot;onEnter()&quot;</code>和<code>ng-bind=&quot;message&quot;</code>。</p>
 <h2 id="Demo">Demo</h2><p>完整的範例，請參考<a href="http://jsfiddle.net/jecGR/" target="_blank" rel="external">jsfiddle</a>上的code。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-attributes-of-scope/" data-id="cih4ehz5d00bdmk64jfja4nkw" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-attributes-of-scope/" data-id="cih4eqkr000bdro642yep4oxk" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-attributes-of-scope/#disqus_thread" class="article-comment-link">Comments</a>
       

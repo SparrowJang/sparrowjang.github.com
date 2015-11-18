@@ -10,7 +10,7 @@ Cross origin以下是一個video的範例，設定影片的source:
 &amp;lt;!--￼0--&amp;gt;
 
 
-設定source的影片來源：1$scope.source = &amp;#34;http://other.sparrowhome.twb">
+設定source的影片來源：1$scope.source = &quot;http://other.sparrowhome.twbbs.o">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The unsafe resource URL and cross origin on angular">
 <meta property="og:url" content="http://www.sparrowjang.com/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/index.html">
@@ -20,9 +20,9 @@ Cross origin以下是一個video的範例，設定影片的source:
 &amp;lt;!--￼0--&amp;gt;
 
 
-設定source的影片來源：1$scope.source = &amp;#34;http://other.sparrowhome.twb">
+設定source的影片來源：1$scope.source = &quot;http://other.sparrowhome.twbbs.o">
 <meta property="og:image" content="http://www.sparrowjang.com/images/article/the-unsafe-resource-url-and-cross-origin-on-angular/screenshot.png">
-<meta property="og:updated_time" content="2014-07-11T13:38:48.000Z">
+<meta property="og:updated_time" content="2015-11-18T06:10:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The unsafe resource URL and cross origin on angular">
 <meta name="twitter:description" content="在angular很常遇到compile template時出錯的情況，因為在angular中，使用比較嚴謹的判斷方式，只要看到不符合規範，會直接拋出exception。
@@ -30,7 +30,7 @@ Cross origin以下是一個video的範例，設定影片的source:
 &amp;lt;!--￼0--&amp;gt;
 
 
-設定source的影片來源：1$scope.source = &amp;#34;http://other.sparrowhome.twb">
+設定source的影片來源：1$scope.source = &quot;http://other.sparrowhome.twbbs.o">
 <meta name="twitter:creator" content="@Sparrow_Jang">
   
   
@@ -121,27 +121,27 @@ Cross origin以下是一個video的範例，設定影片的source:
 <!--￼0-->
 
 </p>
-<p>設定<code>source</code>的影片來源：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.source = &#34;http://other.sparrowhome.twbbs.org/movie.mp4&#34;</span><br></pre></td></tr></table></figure></p>
+<p>設定<code>source</code>的影片來源：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.source = <span class="string">"http://other.sparrowhome.twbbs.org/movie.mp4"</span></span><br></pre></td></tr></table></figure></p>
 <p>這時就會發現angular拋出<strong>exception</strong>，出現<strong>cross domain</strong>的問題。</p>
 <p>但是若是直接寫在html上呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;video width=&#34;320&#34; height=&#34;240&#34; controls&#62;&#10;  &#60;source src=&#34;http://other.sparrowhome.twbbs.org/movie.mp4&#34; type=&#34;video/mp4&#34;&#62;&#10;&#60;/video&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">video</span> <span class="attribute">width</span>=<span class="value">"320"</span> <span class="attribute">height</span>=<span class="value">"240"</span> <span class="attribute">controls</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">source</span> <span class="attribute">src</span>=<span class="value">"http://other.sparrowhome.twbbs.org/movie.mp4"</span> <span class="attribute">type</span>=<span class="value">"video/mp4"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>此時你可以發現能正常的播放，但是在angular就是會拋錯，這時你可以透過<a href="http://docs.angularjs.org/api/ng/provider/$sceDelegateProvider" target="_blank" rel="external">$sceDelegateProvider</a>，來設定<strong>黑名單</strong>和<strong>白名單</strong>，決定哪個domain可以讀取這隻影片。</p>
-<p>假設你要讓所有domain都能使用，在<strong>白名單</strong>可以這樣寫：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">angular&#10;.module(&#39;MyApp&#39;)&#10;.config([&#39;$sceDelegateProvider&#39;, function($sceDelegateProvider) &#123;&#10;  $sceDelegateProvider.resourceUrlWhitelist([&#39;**&#39;]);&#10;&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>假設你要讓所有domain都能使用，在<strong>白名單</strong>可以這樣寫：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">angular</span><br><span class="line">.module(<span class="string">'MyApp'</span>)</span><br><span class="line">.config([<span class="string">'$sceDelegateProvider'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$sceDelegateProvider</span>) </span>&#123;</span><br><span class="line">  $sceDelegateProvider.resourceUrlWhitelist([<span class="string">'**'</span>]);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 <p>若是你只要<strong>目前網域</strong>底下的<strong>子網域</strong>都可以讀取的話，可以這樣寫：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sceDelegateProvider.resourceUrlWhitelist([&#39;http://*.sparrowhome.twbbs.org&#39;])</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sceDelegateProvider.resourceUrlWhitelist([<span class="string">'http://*.sparrowhome.twbbs.org'</span>])</span><br></pre></td></tr></table></figure>
 <p>如果要透過黑名單可以直接使用<code>resourceUrlBlacklist</code>。</p>
 <h2 id="Unsafe_resource_URL">Unsafe resource URL</h2><p>如果是讀取<code>img</code>，不管是<strong>cross domain</strong>都能正常讀取，不過還是會有不讀取的狀況。</p>
 <p>例如你透過一個<code>&lt;input type=&quot;file&quot;&gt;</code>，去取得顯示<code>image</code>，像是<code>&lt;img ng-src=&quot;{{img}}&quot; /&gt;</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.img = URL.createObjectURL(imgFile);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.img = URL.createObjectURL(imgFile);</span><br></pre></td></tr></table></figure>
 <p>此時就會拋出<code>unsafe:blob</code>的<code>exception</code>，依據<code>URL.createObjectURL</code>所取得url，可以很容易發現，最前方協定是不同的。例如<code>URL.createObjectURL</code>回傳一個<code>blob:http%3A%2F%2Fsparrowhome.twbbs.org%2Fimage.png</code>，此時不在預設的允許名單中，這時就要透過<code>$compileProvider.imgSrcSanitizationWhitelist</code>去改寫。</p>
 <p>像是讓所有協定都通過：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">angular.module(&#39;MyApp&#39;).config([&#39;$sceDelegateProvider&#39;, function( $compileProvider ) &#123;&#10;&#10;  $compileProvider.imgSrcSanitizationWhitelist(/^.*/);&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'MyApp'</span>).config([<span class="string">'$sceDelegateProvider'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> $compileProvider </span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  $compileProvider.imgSrcSanitizationWhitelist(<span class="regexp">/^.*/</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>也可自訂要通過特定的協定，像是<code>/^(https?|ftp|file|blob|data):/</code>，同樣的<code>href</code>也有<code>aHrefSanitizationWhitelist</code>可以去設定。在angular中使用要嚴謹的判斷方式，當然也可透過<strong>jquery</strong>或原生<strong>javascript</strong>繞過這問題，不過這樣就有點失去用angular的意義了，畢竟用<strong>template</strong>的方式，比起寫<strong>code</strong>跟為簡潔。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/" data-id="cih4eqkl6002xro64l22tbupp" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/" data-id="cih4eu3h0002xti64i9ixgttj" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/#disqus_thread" class="article-comment-link">Comments</a>
       

@@ -111,7 +111,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/07/11/image-converter/" data-id="cih4f0cxt008bvt64y8k69mg4" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/07/11/image-converter/" data-id="cih4f32um008bwr649jh5h2l7" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/07/11/image-converter/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -150,10 +150,7 @@
         <p><img src="/images/article/the-unsafe-resource-url-and-cross-origin-on-angular/screenshot.png" alt=""></p>
 <p>在angular很常遇到<strong>compile template</strong>時出錯的情況，因為在angular中，使用比較嚴謹的判斷方式，只要看到不符合規範，會直接拋出<strong>exception</strong>。</p>
 <h2 id="Cross_origin">Cross origin</h2><p>以下是一個video的範例，設定影片的<code>source</code>:</p>
-
-<!--￼0-->
-
-
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">video</span> <span class="attribute">width</span>=<span class="value">"320"</span> <span class="attribute">height</span>=<span class="value">"240"</span> <span class="attribute">controls</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">source</span> <span class="attribute">src</span>=<span class="value">"&#123;&#123;source&#125;&#125;"</span> <span class="attribute">type</span>=<span class="value">"video/mp4"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>設定<code>source</code>的影片來源：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.source = <span class="string">"http://other.sparrowhome.twbbs.org/movie.mp4"</span></span><br></pre></td></tr></table></figure></p>
 <p>這時就會發現angular拋出<strong>exception</strong>，出現<strong>cross domain</strong>的問題。</p>
 <p>但是若是直接寫在html上呢？</p>
@@ -174,7 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/" data-id="cih4f0cug002xvt641lf3qzpm" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/" data-id="cih4f32qt002xwr64iklomq9c" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -255,10 +252,7 @@
 </table>
 <p>比較值得注意的是，angular(1.2)以上的版本，是依據<code>directive</code>的目前的status，替換不同的<code>class</code>，它會在每個不同的status加上<code>ng-....</code>的class，如<code>ng-enter</code>和<code>ng-leave</code>等的。</p>
 <p>以<code>ngRepeat</code>為例，定義一個html結構:</p>
-
-<!--￼0-->
-
-
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">ng-repeat</span>=<span class="value">"role in roles"</span> <span class="attribute">class</span>=<span class="value">"demo"</span>&gt;</span></span><br><span class="line">  &#123;&#123;role&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>加入一個值到<code>roles</code>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.roles.push( <span class="string">"programer"</span> );</span><br></pre></td></tr></table></figure>
 <p>則此時會先插入一個<code>ng-enter</code>的<code>class</code>，做初始配置用，接著在插入<code>ng-enter-active</code>的class，改變後的狀態，只有設定<code>transition</code>，這時就會產生動畫效果。</p>
@@ -277,7 +271,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/02/20/the-nganimate-on-angular(1213)/" data-id="cih4f0cum0030vt64hz4fmkzy" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/02/20/the-nganimate-on-angular(1213)/" data-id="cih4f32qx0030wr64wrgovw70" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/02/20/the-nganimate-on-angular(1213)/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -338,7 +332,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/01/31/capture-a-image-block-on-angular/" data-id="cih4f0cyq00a6vt64whnmhz9r" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/01/31/capture-a-image-block-on-angular/" data-id="cih4f32vy00a6wr64dpq4qb3z" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/01/31/capture-a-image-block-on-angular/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -401,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/01/11/jquery-detach-on-angular-directive/" data-id="cih4f0cwy0072vt647hn9cudt" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/01/11/jquery-detach-on-angular-directive/" data-id="cih4f32tk0072wr6496jvo198" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/01/11/jquery-detach-on-angular-directive/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -465,7 +459,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/12/26/copy-canvas-on-html5/" data-id="cih4f0cyh009kvt64kn2kp502" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/12/26/copy-canvas-on-html5/" data-id="cih4f32vg009kwr647h3pihwa" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/12/26/copy-canvas-on-html5/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -523,7 +517,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/11/26/angularjs-timepicker-on-bootstrap3/" data-id="cih4f0czc00auvt64lgr1iqhv" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/11/26/angularjs-timepicker-on-bootstrap3/" data-id="cih4f32wh00auwr6441gci74v" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/11/26/angularjs-timepicker-on-bootstrap3/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -593,7 +587,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/17/在titanium-httpclient使用cookie與header/" data-id="cih4f0crv000svt64w3fjcihf" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/17/在titanium-httpclient使用cookie與header/" data-id="cih4f32oz000swr64dggi0fd7" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/17/在titanium-httpclient使用cookie與header/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -643,7 +637,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-transclude-attribute/" data-id="cih4f0czj00b9vt6413hh6uo8" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-transclude-attribute/" data-id="cih4f32wq00b9wr640v2mb08t" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-transclude-attribute/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -699,7 +693,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-attributes-of-scope/" data-id="cih4f0czl00bdvt64yuwg8q0i" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-attributes-of-scope/" data-id="cih4f32wt00bdwr64wrgcmfiz" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/15/angularjs-directive-uses-attributes-of-scope/#disqus_thread" class="article-comment-link">Comments</a>
       

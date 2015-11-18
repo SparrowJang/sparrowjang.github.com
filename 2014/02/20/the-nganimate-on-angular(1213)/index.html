@@ -57,7 +57,7 @@ enter and leave
 
 ngSwitch
 ent">
-<meta property="og:updated_time" content="2015-11-18T06:12:20.000Z">
+<meta property="og:updated_time" content="2015-11-18T06:17:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The ngAnimate on angular(1.2.13)">
 <meta name="twitter:description" content="angular的ngAnimate主要是依照不同的Directive，對照不同的class做切換，以下有一張官方提供的對照表：
@@ -213,10 +213,7 @@ ent">
 </table>
 <p>比較值得注意的是，angular(1.2)以上的版本，是依據<code>directive</code>的目前的status，替換不同的<code>class</code>，它會在每個不同的status加上<code>ng-....</code>的class，如<code>ng-enter</code>和<code>ng-leave</code>等的。</p>
 <p>以<code>ngRepeat</code>為例，定義一個html結構:</p>
-
-<!--￼0-->
-
-
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">li</span> <span class="attribute">ng-repeat</span>=<span class="value">"role in roles"</span> <span class="attribute">class</span>=<span class="value">"demo"</span>&gt;</span></span><br><span class="line">  &#123;&#123;role&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>加入一個值到<code>roles</code>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.roles.push( <span class="string">"programer"</span> );</span><br></pre></td></tr></table></figure>
 <p>則此時會先插入一個<code>ng-enter</code>的<code>class</code>，做初始配置用，接著在插入<code>ng-enter-active</code>的class，改變後的狀態，只有設定<code>transition</code>，這時就會產生動畫效果。</p>
@@ -235,7 +232,7 @@ ent">
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/02/20/the-nganimate-on-angular(1213)/" data-id="cih4f0cum0030vt64hz4fmkzy" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/02/20/the-nganimate-on-angular(1213)/" data-id="cih4f32qx0030wr64wrgovw70" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/02/20/the-nganimate-on-angular(1213)/#disqus_thread" class="article-comment-link">Comments</a>
       

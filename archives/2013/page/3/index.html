@@ -134,7 +134,7 @@ $( &quot;input[name=&#39;file&#39;],input[name=&#39;id&#39;]&quot; ).upload( url
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/04/17/jquery-uploader/" data-id="cih1cvm68006n5k6452yibjgu" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/04/17/jquery-uploader/" data-id="cih4ea2tf006nhl64elmje6rt" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/04/17/jquery-uploader/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -242,7 +242,7 @@ node server.js
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/04/11/x-frame-options-response-header/" data-id="cih1cvm24001t5k648evtsy84" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/04/11/x-frame-options-response-header/" data-id="cih4ea2py001thl64yd0skyr0" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/04/11/x-frame-options-response-header/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -349,7 +349,7 @@ $this-&gt;_helper-&gt;cache(array(
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/04/11/zend-framework-page-cache/" data-id="cih1cvm1r001d5k64uomeiq68" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/04/11/zend-framework-page-cache/" data-id="cih4ea2po001dhl643m87qzam" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/04/11/zend-framework-page-cache/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -453,7 +453,7 @@ cp -r ./ZendFramework-1.12.3/library ./newproject/library</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/04/11/installation-zend-framework/" data-id="cih1cvm7m00805k64ie9kk8d0" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/04/11/installation-zend-framework/" data-id="cih4ea2u50080hl64bpp6rm7u" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/04/11/installation-zend-framework/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -577,7 +577,7 @@ print_r( $result );</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/04/10/zend-framework-cache/" data-id="cih1cvm1u001k5k64blmk62so" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/04/10/zend-framework-cache/" data-id="cih4ea2ps001khl6420uupmjd" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/04/10/zend-framework-cache/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -618,52 +618,24 @@ print_r( $result );</pre>
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="http://www.appcelerator.com/" target="_blank" rel="external">titanium</a>的環境都安裝好之後，就可以找到~/.titanium這路徑，然後在.bashrc加上以下配置。</p>
-<pre>alias titanium.py=$HOME/.titanium/mobilesdk/linux/3.0.0.GA/titanium.py</pre>
-
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> titanium.py=<span class="variable">$HOME</span>/.titanium/mobilesdk/linux/<span class="number">3.0</span>.<span class="number">0</span>.GA/titanium.py</span><br></pre></td></tr></table></figure>
 <p>接著執行：</p>
-<pre>source .bashrc</pre>
-
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> .bashrc</span><br></pre></td></tr></table></figure>
 <p>然後建立一個project：</p>
-<pre>titanium.py create --platform=android --android=/path/to/android-sdk --id=com.mycompany.myApp --name=myApp</pre>
-
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">titanium.py create --platform=android --android=/path/to/android-sdk --id=com.mycompany.myApp --name=myApp</span><br></pre></td></tr></table></figure>
 <p>會建立出以下檔案：</p>
-<pre>.
-|-- build
-|   `-- android
-|       |-- AndroidManifest.xml
-|       |-- assets
-|       |-- bin
-|       |-- default.properties
-|       |-- gen
-|       |-- lib
-|       |-- res
-|       `-- src
-|-- LICENSE
-|-- manifest
-|-- README
-|-- Resources
-|   |-- android
-|   |   |-- appicon.png
-|   |   |-- default.png
-|   |   `-- images
-|   |-- app.js
-|   |-- KS_nav_ui.png
-|   `-- KS_nav_views.png
-`-- tiapp.xml</pre>
-
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">|-- build</span><br><span class="line">|   `-- android</span><br><span class="line">|       |-- AndroidManifest.xml</span><br><span class="line">|       |-- assets</span><br><span class="line">|       |-- bin</span><br><span class="line">|       |-- default.properties</span><br><span class="line">|       |-- gen</span><br><span class="line">|       |-- lib</span><br><span class="line">|       |-- res</span><br><span class="line">|       `-- src</span><br><span class="line">|-- LICENSE</span><br><span class="line">|-- manifest</span><br><span class="line">|-- README</span><br><span class="line">|-- Resources</span><br><span class="line">|   |-- android</span><br><span class="line">|   |   |-- appicon.png</span><br><span class="line">|   |   |-- default.png</span><br><span class="line">|   |   `-- images</span><br><span class="line">|   |-- app.js</span><br><span class="line">|   |-- KS_nav_ui.png</span><br><span class="line">|   `-- KS_nav_views.png</span><br><span class="line">`-- tiapp.xml</span><br></pre></td></tr></table></figure>
 <p>啟動android的模擬器：</p>
-<pre>titanium.py emulator --platform=android --android=/path/to/android-sdk</pre>
-
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">titanium.py emulator --platform=android --android=/path/to/android-sdk</span><br></pre></td></tr></table></figure>
 <p>如果需要使用到google api，可等待建立後，至<a href="http://developer.android.com/tools/help/avd-manager.html" target="_blank" rel="external">avd</a>調整。</p>
 <p>最後在把project run在模擬器上：</p>
-<pre>titanium.py run --platform=android --android=/path/to/android-sdk</pre>
-
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">titanium.py run --platform=android --android=/path/to/android-sdk</span><br></pre></td></tr></table></figure>
 <p>可參考<a href="https://wiki.appcelerator.org/display/guides/Titanium+Command+Line+Interface#TitaniumCommandLineInterface-Commands" target="_blank" rel="external">官方文件</a>。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/04/09/titanium-command-line/" data-id="cih1cvm2q002m5k644o8654me" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/04/09/titanium-command-line/" data-id="cih4ea2qm002mhl64htsloese" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/04/09/titanium-command-line/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -765,7 +737,7 @@ print &quot;with column names:&quot;, cur.fetchone()[0]</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/28/sqlite-adapter-and-converter/" data-id="cih1cvm3l003k5k6435et13vm" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/28/sqlite-adapter-and-converter/" data-id="cih4ea2ra003khl647ffqj21v" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/28/sqlite-adapter-and-converter/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -898,7 +870,7 @@ print type(row[0])</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/27/python-sqlite3-row_factory-and-text_factory/" data-id="cih1cvm4k004p5k64122rom0e" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/27/python-sqlite3-row_factory-and-text_factory/" data-id="cih4ea2s3004phl64g1abdp7p" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/27/python-sqlite3-row_factory-and-text_factory/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1018,7 +990,7 @@ string1 &gt; string 2 回傳 1</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/26/python-sqlite3-create-function、aggregate-and-collation/" data-id="cih1cvm4o004v5k64ye9dszur" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/26/python-sqlite3-create-function、aggregate-and-collation/" data-id="cih4ea2s8004vhl64fw79k2pz" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/26/python-sqlite3-create-function、aggregate-and-collation/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1088,7 +1060,7 @@ book.save({name:&quot;Tom&quot;}); </pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/25/backbone-js-emulatehttp-and-emulatejson/" data-id="cih1cvm9c00ak5k647sg2iqqj" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/25/backbone-js-emulatehttp-and-emulatejson/" data-id="cih4ea2vs00akhl64won4j570" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/25/backbone-js-emulatehttp-and-emulatejson/#disqus_thread" class="article-comment-link">Comments</a>
       

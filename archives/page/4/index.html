@@ -141,7 +141,7 @@ f.close()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/06/20/icon-converter/" data-id="cih1cvm7w008f5k64ing50ogn" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/06/20/icon-converter/" data-id="cih4ea2uf008fhl644bci6isd" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/06/20/icon-converter/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -183,10 +183,11 @@ f.close()
       
         <iframe src="http://slid.es/sparrowjang/titanium-for-tishadow/embed" width="100%" height="420" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
 
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/05/26/titanium-for-tishadow/" data-id="cih1cvm2o002j5k640c5n220m" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/05/26/titanium-for-tishadow/" data-id="cih4ea2qi002jhl64b8vysows" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/05/26/titanium-for-tishadow/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -227,71 +228,12 @@ f.close()
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>今天在其他電腦裝<a href="http://www.appcelerator.com/" target="_blank" rel="external">titanium</a>遇到以下錯誤：</strong></p>
-<pre class="brush:bash">[TRACE] Writing out AndroidManifest.xml
-[ERROR] Exception occured while building Android project:
-[ERROR] Traceback (most recent call last):
-[ERROR]   File &quot;/home/sparrow/.titanium/mobilesdk/linux/3.1.0.GA/android/builder.py&quot;, line 2480, in &lt;module&gt;
-[ERROR]     builder.build_and_run(False, avd_id)
-[ERROR]   File &quot;/home/sparrow/.titanium/mobilesdk/linux/3.1.0.GA/android/builder.py&quot;, line 2264, in build_and_run
-[ERROR]     self.manifest_changed = self.generate_android_manifest(compiler)
-[ERROR]   File &quot;/home/sparrow/.titanium/mobilesdk/linux/3.1.0.GA/android/builder.py&quot;, line 1404, in generate_android_manifest
-[ERROR]     &#39;-I&#39;, self.android_jar], warning_regex=r&#39;skipping&#39;)
-[ERROR]   File &quot;/home/sparrow/.titanium/mobilesdk/linux/3.1.0.GA/android/run.py&quot;, line 38, in run
-[ERROR]     print &quot;[DEBUG] %s&quot; % subprocess.list2cmdline(args_to_log)
-[ERROR]   File &quot;/usr/lib/python2.7/subprocess.py&quot;, line 587, in list2cmdline
-[ERROR]     needquote = (&quot; &quot; in arg) or (&quot;\t&quot; in arg) or not arg
-[ERROR] TypeError: argument of type &#39;NoneType&#39; is not iterable
-</pre>
-
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[TRACE] Writing out AndroidManifest.xml</span><br><span class="line">[ERROR] Exception occured <span class="keyword">while</span> building Android project:</span><br><span class="line">[ERROR] Traceback (most recent call last):</span><br><span class="line">[ERROR]   File &amp;quot;/home/sparrow/.titanium/mobilesdk/linux/<span class="number">3.1</span>.<span class="number">0</span>.GA/android/builder.py&amp;quot;, line <span class="number">2480</span>, <span class="keyword">in</span> &amp;lt;module&amp;gt;</span><br><span class="line">[ERROR]     builder.build_and_run(False, avd_id)</span><br><span class="line">[ERROR]   File &amp;quot;/home/sparrow/.titanium/mobilesdk/linux/<span class="number">3.1</span>.<span class="number">0</span>.GA/android/builder.py&amp;quot;, line <span class="number">2264</span>, <span class="keyword">in</span> build_and_run</span><br><span class="line">[ERROR]     self.manifest_changed = self.generate_android_manifest(compiler)</span><br><span class="line">[ERROR]   File &amp;quot;/home/sparrow/.titanium/mobilesdk/linux/<span class="number">3.1</span>.<span class="number">0</span>.GA/android/builder.py&amp;quot;, line <span class="number">1404</span>, <span class="keyword">in</span> generate_android_manifest</span><br><span class="line">[ERROR]     &amp;<span class="comment">#39;-I&amp;#39;, self.android_jar], warning_regex=r&amp;#39;skipping&amp;#39;)</span></span><br><span class="line">[ERROR]   File &amp;quot;/home/sparrow/.titanium/mobilesdk/linux/<span class="number">3.1</span>.<span class="number">0</span>.GA/android/run.py&amp;quot;, line <span class="number">38</span>, <span class="keyword">in</span> run</span><br><span class="line">[ERROR]     <span class="built_in">print</span> &amp;quot;[DEBUG] %s&amp;quot; % subprocess.list2cmdline(args_to_<span class="built_in">log</span>)</span><br><span class="line">[ERROR]   File &amp;quot;/usr/lib/python2.<span class="number">7</span>/subprocess.py&amp;quot;, line <span class="number">587</span>, <span class="keyword">in</span> list2cmdline</span><br><span class="line">[ERROR]     needquote = (&amp;quot; &amp;quot; <span class="keyword">in</span> arg) or (&amp;quot;\t&amp;quot; <span class="keyword">in</span> arg) or not arg</span><br><span class="line">[ERROR] TypeError: argument of <span class="built_in">type</span> &amp;<span class="comment">#39;NoneType&amp;#39; is not iterable</span></span><br></pre></td></tr></table></figure>
 <p>查了~/.titanium/mobilesdk/linux/3.1.0.GA/android/run.py這隻程式，發現有些參數是空的。</p>
 <p><strong>然後在androidsdk.py找到這段，功能是取得android sdk的aapt路徑：</strong></p>
-<pre class="brush:py">    def get_aapt(self):  
-        # for aapt (and maybe eventually for others) we
-        # want to favor platform-tools over android-x/tools
-        # because of new resource qualifiers for honeycomb
-        sdk_platform_tools_dir = self.get_sdk_platform_tools_dir()
-        if not sdk_platform_tools_dir is None and os.path.exists(os.path.join(sdk_platform_tools_dir, &#39;aapt&#39;)):
-            return os.path.join(sdk_platform_tools_dir, &#39;aapt&#39;)
-
-        return self.get_platform_tool(&#39;aapt&#39;)
-</pre>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_aapt</span><span class="params">(self)</span>:</span>  </span><br><span class="line">    <span class="comment"># for aapt (and maybe eventually for others) we</span></span><br><span class="line">    <span class="comment"># want to favor platform-tools over android-x/tools</span></span><br><span class="line">    <span class="comment"># because of new resource qualifiers for honeycomb</span></span><br><span class="line">    sdk_platform_tools_dir = self.get_sdk_platform_tools_dir()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> sdk_platform_tools_dir <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">and</span> os.path.exists(os.path.join(sdk_platform_tools_dir, &amp;<span class="comment">#39;aapt&amp;#39;)):</span></span><br><span class="line">        <span class="keyword">return</span> os.path.join(sdk_platform_tools_dir, &amp;<span class="comment">#39;aapt&amp;#39;)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> self.get_platform_tool(&amp;<span class="comment">#39;aapt&amp;#39;)</span></span><br></pre></td></tr></table></figure>
 <p>比對另一台電腦sdk的platform-tools（舊）：</p>
-<pre class="brush:bash">|-- platform-tools
-|   |-- aapt
-|   |-- adb
-|   |-- aidl
-|   |-- api
-|   |-- dexdump
-|   |-- dx
-|   |-- fastboot
-|   |-- lib
-|   |-- llvm-rs-cc
-|   |-- NOTICE.txt
-|   |-- renderscript
-|   `-- source.properties</pre>
-
-<p>新下載的sdk：</p>
-<pre class="brush:bash">├── platform-tools
-│&nbsp;&nbsp; ├── adb
-│&nbsp;&nbsp; ├── api
-│&nbsp;&nbsp; ├── fastboot
-│&nbsp;&nbsp; ├── NOTICE.txt
-│&nbsp;&nbsp; └── source.properties
-├── build-tools
-│&nbsp;&nbsp; └── 17.0.0
-│&nbsp;&nbsp;     ├── aapt
-│&nbsp;&nbsp;     ├── aidl
-│&nbsp;&nbsp;     ├── dexdump
-│&nbsp;&nbsp;     ├── dx
-│&nbsp;&nbsp;     ├── lib
-│&nbsp;&nbsp;     ├── llvm-rs-cc
-│&nbsp;&nbsp;     ├── NOTICE.txt
-│&nbsp;&nbsp;     ├── renderscript
-│&nbsp;&nbsp;     └── source.properties
-
-</pre>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|-- platform-tools&#10;|   |-- aapt&#10;|   |-- adb&#10;|   |-- aidl&#10;|   |-- api&#10;|   |-- dexdump&#10;|   |-- dx&#10;|   |-- fastboot&#10;|   |-- lib&#10;|   |-- llvm-rs-cc&#10;|   |-- NOTICE.txt&#10;|   |-- renderscript&#10;|   `-- source.properties&#60;/pre&#62;&#10;&#10;&#26032;&#19979;&#36617;&#30340;sdk&#65306;&#10;&#10;&#60;pre class=&#34;brush:bash&#34;&#62;&#9500;&#9472;&#9472; platform-tools&#10;&#9474;&#38;nbsp;&#38;nbsp; &#9500;&#9472;&#9472; adb&#10;&#9474;&#38;nbsp;&#38;nbsp; &#9500;&#9472;&#9472; api&#10;&#9474;&#38;nbsp;&#38;nbsp; &#9500;&#9472;&#9472; fastboot&#10;&#9474;&#38;nbsp;&#38;nbsp; &#9500;&#9472;&#9472; NOTICE.txt&#10;&#9474;&#38;nbsp;&#38;nbsp; &#9492;&#9472;&#9472; source.properties&#10;&#9500;&#9472;&#9472; build-tools&#10;&#9474;&#38;nbsp;&#38;nbsp; &#9492;&#9472;&#9472; 17.0.0&#10;&#9474;&#38;nbsp;&#38;nbsp;     &#9500;&#9472;&#9472; aapt&#10;&#9474;&#38;nbsp;&#38;nbsp;     &#9500;&#9472;&#9472; aidl&#10;&#9474;&#38;nbsp;&#38;nbsp;     &#9500;&#9472;&#9472; dexdump&#10;&#9474;&#38;nbsp;&#38;nbsp;     &#9500;&#9472;&#9472; dx&#10;&#9474;&#38;nbsp;&#38;nbsp;     &#9500;&#9472;&#9472; lib&#10;&#9474;&#38;nbsp;&#38;nbsp;     &#9500;&#9472;&#9472; llvm-rs-cc&#10;&#9474;&#38;nbsp;&#38;nbsp;     &#9500;&#9472;&#9472; NOTICE.txt&#10;&#9474;&#38;nbsp;&#38;nbsp;     &#9500;&#9472;&#9472; renderscript&#10;&#9474;&#38;nbsp;&#38;nbsp;     &#9492;&#9472;&#9472; source.properties</span><br></pre></td></tr></table></figure>
 <p><strong>所以新版的sdk目錄結構有變動，在加上titanium執行檔案有預設路徑，解決方式有下列幾種：</strong></p>
 <ol>
 <li>修改androidsdk.py裡面的get_dx、get_dx_jar、get_aapt…回傳路徑</li>
@@ -299,25 +241,14 @@ f.close()
 <li>直接使用link</li>
 </ol>
 <p><strong>我使用直接採用link的方式：</strong></p>
-<pre class="brush:bash">cd ~/tool/android-sdk/platform-tools
-ln -s ../build-tools/17.0.0/aapt
-ln -s ../build-tools/17.0.0/dx
-ln -s ../build-tools/17.0.0/dexdump
-ln -s ../build-tools/17.0.0/llvm-rs-cc
-ln -s ../build-tools/17.0.0/aidl
-</pre>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/tool/android-sdk/platform-tools&#10;ln -s ../build-tools/17.0.0/aapt&#10;ln -s ../build-tools/17.0.0/dx&#10;ln -s ../build-tools/17.0.0/dexdump&#10;ln -s ../build-tools/17.0.0/llvm-rs-cc&#10;ln -s ../build-tools/17.0.0/aidl</span><br></pre></td></tr></table></figure>
 <p><strong>最後還要還要記得設定jarsigner、keytool：</strong></p>
-<pre class="brush:bash">sudo update-alternatives --install &quot;/usr/bin/jarsigner&quot; &quot;jarsigner&quot; &quot;/usr/lib/jvm/java-6-sun/bin/jarsigner&quot; 1
-sudo update-alternatives --install &quot;/usr/bin/keytool&quot; &quot;keytool&quot; &quot;/usr/lib/jvm/java-6-sun/bin/keytool&quot; 1
-sudo update-alternatives --config jarsigner
-sudo update-alternatives --config keytool
-</pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install &#38;quot;/usr/bin/jarsigner&#38;quot; &#38;quot;jarsigner&#38;quot; &#38;quot;/usr/lib/jvm/java-6-sun/bin/jarsigner&#38;quot; 1&#10;sudo update-alternatives --install &#38;quot;/usr/bin/keytool&#38;quot; &#38;quot;keytool&#38;quot; &#38;quot;/usr/lib/jvm/java-6-sun/bin/keytool&#38;quot; 1&#10;sudo update-alternatives --config jarsigner&#10;sudo update-alternatives --config keytool</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/05/17/titanium-build-failedandroid/" data-id="cih1cvm2u002q5k64e7rzusnz" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/05/17/titanium-build-failedandroid/" data-id="cih4ea2qp002qhl64dxtebwtq" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/05/17/titanium-build-failedandroid/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -391,7 +322,7 @@ sudo update-alternatives --config keytool
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/05/15/weinre/" data-id="cih1cvm27001x5k64kx7krl3k" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/05/15/weinre/" data-id="cih4ea2q1001xhl64xxxgoj4w" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/05/15/weinre/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -461,7 +392,7 @@ $( &quot;input[name=&#39;file&#39;],input[name=&#39;id&#39;]&quot; ).upload( url
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/04/17/jquery-uploader/" data-id="cih1cvm68006n5k6452yibjgu" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/04/17/jquery-uploader/" data-id="cih4ea2tf006nhl64elmje6rt" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/04/17/jquery-uploader/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -569,7 +500,7 @@ node server.js
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/04/11/x-frame-options-response-header/" data-id="cih1cvm24001t5k648evtsy84" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/04/11/x-frame-options-response-header/" data-id="cih4ea2py001thl64yd0skyr0" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/04/11/x-frame-options-response-header/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -676,7 +607,7 @@ $this-&gt;_helper-&gt;cache(array(
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/04/11/zend-framework-page-cache/" data-id="cih1cvm1r001d5k64uomeiq68" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/04/11/zend-framework-page-cache/" data-id="cih4ea2po001dhl643m87qzam" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/04/11/zend-framework-page-cache/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -780,7 +711,7 @@ cp -r ./ZendFramework-1.12.3/library ./newproject/library</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/04/11/installation-zend-framework/" data-id="cih1cvm7m00805k64ie9kk8d0" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/04/11/installation-zend-framework/" data-id="cih4ea2u50080hl64bpp6rm7u" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/04/11/installation-zend-framework/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -904,7 +835,7 @@ print_r( $result );</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/04/10/zend-framework-cache/" data-id="cih1cvm1u001k5k64blmk62so" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/04/10/zend-framework-cache/" data-id="cih4ea2ps001khl6420uupmjd" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/04/10/zend-framework-cache/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -945,52 +876,24 @@ print_r( $result );</pre>
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="http://www.appcelerator.com/" target="_blank" rel="external">titanium</a>的環境都安裝好之後，就可以找到~/.titanium這路徑，然後在.bashrc加上以下配置。</p>
-<pre>alias titanium.py=$HOME/.titanium/mobilesdk/linux/3.0.0.GA/titanium.py</pre>
-
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> titanium.py=<span class="variable">$HOME</span>/.titanium/mobilesdk/linux/<span class="number">3.0</span>.<span class="number">0</span>.GA/titanium.py</span><br></pre></td></tr></table></figure>
 <p>接著執行：</p>
-<pre>source .bashrc</pre>
-
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> .bashrc</span><br></pre></td></tr></table></figure>
 <p>然後建立一個project：</p>
-<pre>titanium.py create --platform=android --android=/path/to/android-sdk --id=com.mycompany.myApp --name=myApp</pre>
-
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">titanium.py create --platform=android --android=/path/to/android-sdk --id=com.mycompany.myApp --name=myApp</span><br></pre></td></tr></table></figure>
 <p>會建立出以下檔案：</p>
-<pre>.
-|-- build
-|   `-- android
-|       |-- AndroidManifest.xml
-|       |-- assets
-|       |-- bin
-|       |-- default.properties
-|       |-- gen
-|       |-- lib
-|       |-- res
-|       `-- src
-|-- LICENSE
-|-- manifest
-|-- README
-|-- Resources
-|   |-- android
-|   |   |-- appicon.png
-|   |   |-- default.png
-|   |   `-- images
-|   |-- app.js
-|   |-- KS_nav_ui.png
-|   `-- KS_nav_views.png
-`-- tiapp.xml</pre>
-
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">|-- build</span><br><span class="line">|   `-- android</span><br><span class="line">|       |-- AndroidManifest.xml</span><br><span class="line">|       |-- assets</span><br><span class="line">|       |-- bin</span><br><span class="line">|       |-- default.properties</span><br><span class="line">|       |-- gen</span><br><span class="line">|       |-- lib</span><br><span class="line">|       |-- res</span><br><span class="line">|       `-- src</span><br><span class="line">|-- LICENSE</span><br><span class="line">|-- manifest</span><br><span class="line">|-- README</span><br><span class="line">|-- Resources</span><br><span class="line">|   |-- android</span><br><span class="line">|   |   |-- appicon.png</span><br><span class="line">|   |   |-- default.png</span><br><span class="line">|   |   `-- images</span><br><span class="line">|   |-- app.js</span><br><span class="line">|   |-- KS_nav_ui.png</span><br><span class="line">|   `-- KS_nav_views.png</span><br><span class="line">`-- tiapp.xml</span><br></pre></td></tr></table></figure>
 <p>啟動android的模擬器：</p>
-<pre>titanium.py emulator --platform=android --android=/path/to/android-sdk</pre>
-
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">titanium.py emulator --platform=android --android=/path/to/android-sdk</span><br></pre></td></tr></table></figure>
 <p>如果需要使用到google api，可等待建立後，至<a href="http://developer.android.com/tools/help/avd-manager.html" target="_blank" rel="external">avd</a>調整。</p>
 <p>最後在把project run在模擬器上：</p>
-<pre>titanium.py run --platform=android --android=/path/to/android-sdk</pre>
-
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">titanium.py run --platform=android --android=/path/to/android-sdk</span><br></pre></td></tr></table></figure>
 <p>可參考<a href="https://wiki.appcelerator.org/display/guides/Titanium+Command+Line+Interface#TitaniumCommandLineInterface-Commands" target="_blank" rel="external">官方文件</a>。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/04/09/titanium-command-line/" data-id="cih1cvm2q002m5k644o8654me" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/04/09/titanium-command-line/" data-id="cih4ea2qm002mhl64htsloese" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/04/09/titanium-command-line/#disqus_thread" class="article-comment-link">Comments</a>
       

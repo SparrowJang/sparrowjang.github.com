@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: Titanium | Sparrow&#39;s Blog</title>
+  <title>Category: titanium | Sparrow&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sparrow's Blog">
-<meta property="og:url" content="http://www.sparrowjang.com/categories/Titanium/index.html">
+<meta property="og:url" content="http://www.sparrowjang.com/categories/titanium/index.html">
 <meta property="og:site_name" content="Sparrow's Blog">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -78,76 +78,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-在titanium-httpclient使用cookie與header" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/10/17/在titanium-httpclient使用cookie與header/" class="article-date">
-  <time datetime="2013-10-17T12:24:00.000Z" itemprop="datePublished">Oct 17 2013</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Titanium/">Titanium</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/10/17/在titanium-httpclient使用cookie與header/">在Titanium HTTPClient使用cookie與header</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在<a href="http://www.appcelerator.com/titanium/" target="_blank" rel="external">titanium</a>內建的<a href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.Network.HTTPClient" target="_blank" rel="external"><code>HTTPClient</code></a>本身就有實作cookie的功能，使用起來跟瀏覽器一樣，會自動解析response header，及發送以設定的cookie，而不需要額外去解析header，和添加request的header，要清除cookie可以使用<a href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.Network.HTTPClient-method-clearCookies" target="_blank" rel="external"><code>clearCookies</code></a>，若要在client端設定cookie，可以使用<a href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.Network.HTTPClient-method-setRequestHeader" target="_blank" rel="external"><code>setRequestHeader</code></a>。</p>
-<h2 id="清除與設定cookie">清除與設定cookie</h2><h4 id="建立一個HTTPClient：">建立一個HTTPClient：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var client = Ti.Network.createHTTPClient(&#123;&#125;);</span><br></pre></td></tr></table></figure>
-<h4 id="指定清除某個網域底下的cookie：">指定清除某個網域底下的cookie：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.clearCookies( &#34;www.example.com&#34; );</span><br></pre></td></tr></table></figure>
-<h4 id="由client設定cookie：">由client設定cookie：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.setRequestHeader( &#34;cookie&#34;, &#34;name=sparrow;&#34; );</span><br></pre></td></tr></table></figure>
-<h2 id="使用cookie常見問題">使用cookie常見問題</h2><h4 id="通常cookie能不能被存取，會依照expires、path、domain、HttpOnly、secure這幾項辨識：">通常cookie能不能被存取，會依照<strong>expires、path、domain、HttpOnly、secure</strong>這幾項辨識：</h4><ul>
-<li><p>expires ： cookie的時效性，當時間超過expires設定的日期，這個cookie將會被捨棄。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expires=Sat, 17-Oct-2015 14:11:09 GMT;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>path ： 在domain下，cookie允許存取的路徑。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path=/;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>domain ： cookie允許存取的domain。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">domain=.google.com.tw;&#10;&#26368;&#21069;&#38754;&#30340;.&#25351;&#24471;&#26159;&#23376;&#32178;&#22495;&#30342;&#21487;&#23384;&#21462;&#65292;&#20363;&#22914;&#65306;&#10;www.google.com.tw&#10;ad.google.com.tw</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>HttpOnly ： 在瀏覽器下看到這個屬性時，<strong>只允許server端操作此cookie</strong>，換句話說client雖然存此cookie，卻無權操作，可防止透過xss將cookie偷走。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HttpOnly</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>secure ：<strong>只允許在https上操作此cookie</strong>，在一般http接無法存取。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">secure;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>如果有用到nginx、apache這類的server去做proxy，需要檢查path或domain，才不會遇到cookie無效的狀況。</p>
-<h2 id="解析response的header">解析response的header</h2><p>在android的device，如果想要取得header的內容可以使用<a href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.Network.HTTPClient-property-allResponseHeaders" target="_blank" rel="external"><code>allResponseHeaders</code></a>，雖然titanium有提供<a href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.Network.HTTPClient-method-getResponseHeader" target="_blank" rel="external"><code>getResponseHeader</code></a>的功能，實際使用過都無法取得到值。</p>
-<h4 id="在onload取值：">在onload取值：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.onload = function()&#123;&#10;&#10;  Ti.API.info( client.allResponseHeaders );&#10;&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="如果你想取得一個header的json，可以實作一個類似這種function：">如果你想取得一個header的json，可以實作一個類似這種function：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;/**&#10;* @param &#123;*&#125; ary&#10;* @type boolean&#10;*/&#10;var isArray = function( ary )&#123;&#10;&#10;  return Object.prototype.toString.call( ary ) === &#34;[object Array]&#34;;&#10;&#125;;&#10;&#10;/**&#10;* @param &#123;String&#125; allResHeaders&#10;* @type Object&#10;*/&#10;var getHeaders = function( allResHeaders )&#123;&#10;&#10;  var result = &#123;&#125;,&#10;&#10;  headerStrs = allResHeaders.split( &#34;\n&#34; );&#10;&#10;  for ( var index in headerStrs ) &#123;&#10;&#10;    if ( headerStrs[index] ) &#123;&#10;&#10;      var header = result[index].split( &#34;:&#34;, 2 ),&#10;&#10;      name = header[0].toLowerCase(),&#10;&#10;      value = header[1];&#10;&#10;      if ( result[name] &#38;&#38; !isArray( result[name] ) ) result[name] = [ result[name], value];&#10;&#10;      else if ( isArray( result[name] ) ) result[name].push( value );&#10;&#10;      else result[name] = value;&#10;&#10;    &#125;&#10;  &#125;&#10;&#10;  return result;&#10;&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="透過getHeaders取值：">透過getHeaders取值：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var headers = getHeaders( client.allResponseHeaders );&#10;Ti.API.info( headers );</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/17/在titanium-httpclient使用cookie與header/" data-id="cih4ea2p9000shl643nes7ot2" class="article-share-link">Share</a>
-      
-        <a href="http://www.sparrowjang.com/2013/10/17/在titanium-httpclient使用cookie與header/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Titanium/">Titanium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-titanium相同檔名會拋出錯誤" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/09/26/titanium相同檔名會拋出錯誤/" class="article-date">
@@ -155,7 +85,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Titanium/">Titanium</a>
+    <a class="article-category-link" href="/categories/titanium/">titanium</a>
   </div>
 
   </div>
@@ -181,12 +111,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/26/titanium相同檔名會拋出錯誤/" data-id="cih4ea2qf002ghl64n46haein" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/26/titanium相同檔名會拋出錯誤/" data-id="cih4ehyyx002gmk6461yvfe9c" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/26/titanium相同檔名會拋出錯誤/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Titanium/">Titanium</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/titanium/">titanium</a></li></ul>
 
     </footer>
   </div>
@@ -202,7 +132,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Titanium/">Titanium</a>
+    <a class="article-category-link" href="/categories/titanium/">titanium</a>
   </div>
 
   </div>
@@ -227,12 +157,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/05/26/titanium-for-tishadow/" data-id="cih4ea2qi002jhl64b8vysows" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/05/26/titanium-for-tishadow/" data-id="cih4ehyz1002lmk64bmxwf8d1" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/05/26/titanium-for-tishadow/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Titanium/">Titanium</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/titanium/">titanium</a></li></ul>
 
     </footer>
   </div>
@@ -248,7 +178,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Titanium/">Titanium</a>
+    <a class="article-category-link" href="/categories/titanium/">titanium</a>
   </div>
 
   </div>
@@ -288,12 +218,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/05/17/titanium-build-failedandroid/" data-id="cih4ea2qp002qhl64dxtebwtq" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/05/17/titanium-build-failedandroid/" data-id="cih4ehyz8002smk6429mnja7m" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/05/17/titanium-build-failedandroid/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Titanium/">Titanium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/titanium/">titanium</a></li></ul>
 
     </footer>
   </div>
@@ -309,7 +239,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Titanium/">Titanium</a>
+    <a class="article-category-link" href="/categories/titanium/">titanium</a>
   </div>
 
   </div>
@@ -346,12 +276,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/04/09/titanium-command-line/" data-id="cih4ea2qm002mhl64htsloese" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/04/09/titanium-command-line/" data-id="cih4ehyz5002omk64zbygqbch" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/04/09/titanium-command-line/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Titanium/">Titanium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/titanium/">titanium</a></li></ul>
 
     </footer>
   </div>
@@ -369,7 +299,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IE/">IE</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YQL/">YQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actionscript/">actionscript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/add-on/">add-on</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone/">backbone</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bluetooth/">bluetooth</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap3/">bootstrap3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boto/">boto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome-extension/">chrome extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-prototype/">javascript prototype</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-tool/">javascript tool</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neo4j/">neo4j</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pattern/">pattern</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell-script/">shell script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlite/">sqlite</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversion/">subversion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/titanium/">titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zend-framework/">zend framework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zeromq/">zeromq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第三方登入/">第三方登入</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IE/">IE</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YQL/">YQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actionscript/">actionscript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/add-on/">add-on</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone/">backbone</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bluetooth/">bluetooth</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap3/">bootstrap3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boto/">boto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome-extension/">chrome extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-prototype/">javascript prototype</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-tool/">javascript tool</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neo4j/">neo4j</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pattern/">pattern</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell-script/">shell script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlite/">sqlite</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversion/">subversion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/titanium/">titanium</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zend-framework/">zend framework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zeromq/">zeromq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第三方登入/">第三方登入</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -378,7 +308,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/IE/" style="font-size: 11.25px;">IE</a> <a href="/tags/Titanium/" style="font-size: 15px;">Titanium</a> <a href="/tags/YQL/" style="font-size: 10px;">YQL</a> <a href="/tags/actionscript/" style="font-size: 10px;">actionscript</a> <a href="/tags/add-on/" style="font-size: 10px;">add-on</a> <a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/angularjs/" style="font-size: 17.5px;">angularjs</a> <a href="/tags/arduino/" style="font-size: 10px;">arduino</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/backbone/" style="font-size: 12.5px;">backbone</a> <a href="/tags/bluetooth/" style="font-size: 10px;">bluetooth</a> <a href="/tags/bootstrap3/" style="font-size: 10px;">bootstrap3</a> <a href="/tags/boto/" style="font-size: 10px;">boto</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/chrome-extension/" style="font-size: 10px;">chrome extension</a> <a href="/tags/css/" style="font-size: 11.25px;">css</a> <a href="/tags/database/" style="font-size: 15px;">database</a> <a href="/tags/docker/" style="font-size: 11.25px;">docker</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/html5/" style="font-size: 18.75px;">html5</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/java/" style="font-size: 13.75px;">java</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-prototype/" style="font-size: 11.25px;">javascript prototype</a> <a href="/tags/javascript-tool/" style="font-size: 16.25px;">javascript tool</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/linux/" style="font-size: 13.75px;">linux</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/neo4j/" style="font-size: 11.25px;">neo4j</a> <a href="/tags/node-js/" style="font-size: 11.25px;">node.js</a> <a href="/tags/pattern/" style="font-size: 11.25px;">pattern</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 17.5px;">python</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/shell-script/" style="font-size: 10px;">shell script</a> <a href="/tags/sqlite/" style="font-size: 11.25px;">sqlite</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/subversion/" style="font-size: 11.25px;">subversion</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/titanium/" style="font-size: 10px;">titanium</a> <a href="/tags/vim/" style="font-size: 11.25px;">vim</a> <a href="/tags/yii/" style="font-size: 11.25px;">yii</a> <a href="/tags/zend-framework/" style="font-size: 12.5px;">zend framework</a> <a href="/tags/zeromq/" style="font-size: 10px;">zeromq</a> <a href="/tags/第三方登入/" style="font-size: 10px;">第三方登入</a>
+      <a href="/tags/IE/" style="font-size: 11.25px;">IE</a> <a href="/tags/Titanium/" style="font-size: 10px;">Titanium</a> <a href="/tags/YQL/" style="font-size: 10px;">YQL</a> <a href="/tags/actionscript/" style="font-size: 10px;">actionscript</a> <a href="/tags/add-on/" style="font-size: 10px;">add-on</a> <a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/angularjs/" style="font-size: 17.5px;">angularjs</a> <a href="/tags/arduino/" style="font-size: 10px;">arduino</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/backbone/" style="font-size: 12.5px;">backbone</a> <a href="/tags/bluetooth/" style="font-size: 10px;">bluetooth</a> <a href="/tags/bootstrap3/" style="font-size: 10px;">bootstrap3</a> <a href="/tags/boto/" style="font-size: 10px;">boto</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/chrome-extension/" style="font-size: 10px;">chrome extension</a> <a href="/tags/css/" style="font-size: 11.25px;">css</a> <a href="/tags/database/" style="font-size: 15px;">database</a> <a href="/tags/docker/" style="font-size: 11.25px;">docker</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/html5/" style="font-size: 18.75px;">html5</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/java/" style="font-size: 13.75px;">java</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-prototype/" style="font-size: 11.25px;">javascript prototype</a> <a href="/tags/javascript-tool/" style="font-size: 16.25px;">javascript tool</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/linux/" style="font-size: 13.75px;">linux</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/neo4j/" style="font-size: 11.25px;">neo4j</a> <a href="/tags/node-js/" style="font-size: 11.25px;">node.js</a> <a href="/tags/pattern/" style="font-size: 11.25px;">pattern</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 17.5px;">python</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/shell-script/" style="font-size: 10px;">shell script</a> <a href="/tags/sqlite/" style="font-size: 11.25px;">sqlite</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/subversion/" style="font-size: 11.25px;">subversion</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/titanium/" style="font-size: 15px;">titanium</a> <a href="/tags/vim/" style="font-size: 11.25px;">vim</a> <a href="/tags/yii/" style="font-size: 11.25px;">yii</a> <a href="/tags/zend-framework/" style="font-size: 12.5px;">zend framework</a> <a href="/tags/zeromq/" style="font-size: 10px;">zeromq</a> <a href="/tags/第三方登入/" style="font-size: 10px;">第三方登入</a>
     </div>
   </div>
 

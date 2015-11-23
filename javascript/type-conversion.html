@@ -3,30 +3,36 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Backbone.js emulateHTTP and emulateJSON | Sparrow&#39;s Blog</title>
+  <title>型態轉換 | Sparrow&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Backbone.emulateHTTP值為true時，會模擬restful的動作，將delete和put(update) method，全部都用post method代替，然後添加X-HTTP-Method-Override的header和_method的參數。
-Example如下：
-先建立一個Book Model。
-Backbone.emulateHTTP = true;
-Backbone.e">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Backbone.js emulateHTTP and emulateJSON">
-<meta property="og:url" content="http://www.sparrowjang.com/2013/03/25/backbone-js-emulatehttp-and-emulatejson/index.html">
+  <meta name="description" content="javascript本身是弱型別，與java、c++這類的強行別不同，弱型別語言在某些情況下會自動幫你作轉換。
+像是數值相減，雖然是型態是字串，但仍然可以做運算：範例
+1alert(&quot;10&quot; - &quot;9&quot;);
+但是如果是相加的話，則會被當作一般字串相加，而不會轉能數字運算：範例
+1alert(&quot;10&quot; + &quot;9&quot;);
+另外使用==時，字串會自動轉換成數字比對：範例
+1alert( &quot;10&quot; == 1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="型態轉換">
+<meta property="og:url" content="http://www.sparrowjang.com/javascript/type-conversion.html">
 <meta property="og:site_name" content="Sparrow's Blog">
-<meta property="og:description" content="Backbone.emulateHTTP值為true時，會模擬restful的動作，將delete和put(update) method，全部都用post method代替，然後添加X-HTTP-Method-Override的header和_method的參數。
-Example如下：
-先建立一個Book Model。
-Backbone.emulateHTTP = true;
-Backbone.e">
-<meta property="og:updated_time" content="2014-07-11T13:38:48.000Z">
+<meta property="og:description" content="javascript本身是弱型別，與java、c++這類的強行別不同，弱型別語言在某些情況下會自動幫你作轉換。
+像是數值相減，雖然是型態是字串，但仍然可以做運算：範例
+1alert(&quot;10&quot; - &quot;9&quot;);
+但是如果是相加的話，則會被當作一般字串相加，而不會轉能數字運算：範例
+1alert(&quot;10&quot; + &quot;9&quot;);
+另外使用==時，字串會自動轉換成數字比對：範例
+1alert( &quot;10&quot; == 1">
+<meta property="og:updated_time" content="2015-11-23T15:14:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Backbone.js emulateHTTP and emulateJSON">
-<meta name="twitter:description" content="Backbone.emulateHTTP值為true時，會模擬restful的動作，將delete和put(update) method，全部都用post method代替，然後添加X-HTTP-Method-Override的header和_method的參數。
-Example如下：
-先建立一個Book Model。
-Backbone.emulateHTTP = true;
-Backbone.e">
+<meta name="twitter:title" content="型態轉換">
+<meta name="twitter:description" content="javascript本身是弱型別，與java、c++這類的強行別不同，弱型別語言在某些情況下會自動幫你作轉換。
+像是數值相減，雖然是型態是字串，但仍然可以做運算：範例
+1alert(&quot;10&quot; - &quot;9&quot;);
+但是如果是相加的話，則會被當作一般字串相加，而不會轉能數字運算：範例
+1alert(&quot;10&quot; + &quot;9&quot;);
+另外使用==時，字串會自動轉換成數字比對：範例
+1alert( &quot;10&quot; == 1">
 <meta name="twitter:creator" content="@Sparrow_Jang">
   
   
@@ -91,16 +97,12 @@ Backbone.e">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-backbone-js-emulatehttp-and-emulatejson" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2013/03/25/backbone-js-emulatehttp-and-emulatejson/" class="article-date">
-  <time datetime="2013-03-25T03:54:13.000Z" itemprop="datePublished">Mar 25 2013</time>
+    <a href="/javascript/type-conversion.html" class="article-date">
+  <time datetime="2015-11-23T14:12:20.000Z" itemprop="datePublished">Nov 23 2015</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -109,7 +111,7 @@ Backbone.e">
         
   
     <h1 class="article-title" itemprop="name">
-      Backbone.js emulateHTTP and emulateJSON
+      型態轉換
     </h1>
   
 
@@ -117,66 +119,50 @@ Backbone.e">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://backbonejs.org/#Sync-emulateHTTP" target="_blank" rel="external">Backbone.emulateHTTP</a>值為true時，會模擬restful的動作，將delete和put(update) method，全部都用post method代替，然後添加X-HTTP-Method-Override的header和_method的參數。</p>
-<p><strong>Example如下：</strong></p>
-<p>先建立一個Book Model。</p>
-<pre class="brush:js">Backbone.emulateHTTP = true;
-Backbone.emulateJSON = true;
-var Book = Backbone.Model.extend({
-  urlRoot:&quot;/books&quot;     
-});                      
-var book = new Book({id:32});
-</pre>
-
-<p>執行save時，會發送request到server。(在backbone的model id有值的時候，save會是update功能，反之則為create。)</p>
-<pre class="brush:js">                                                                                                                                                                                            
-book.save({name:&quot;Tom&quot;}); </pre>
-
-<p>發送request到server端的header，會添加以下這段：</p>
-<pre>X-HTTP-Method-Override:PUT
-</pre>
-
-<p>當<a href="http://backbonejs.org/#Sync-emulateJSON" target="_blank" rel="external">Backbone.emulateJSON</a>為true時，request的content-type會設定為application/x-www-form-urlencoded，傳遞到server參數如下：</p>
-<pre class="brush:js">model={&quot;id&quot;:32,&quot;name&quot;:&quot;Tom&quot;}&amp;_method=PUT</pre>
-
-<p><a href="http://backbonejs.org/#Sync-emulateJSON" target="_blank" rel="external">Backbone.emulateJSON</a>為false時，request的content-type會設定為application/json，傳遞到server參數如下：</p>
-<pre class="brush:js">{&quot;id&quot;:32,&quot;name&quot;:&quot;Tom&quot;}</pre>
-
-<p>所以當request的content-type不是application/json時，使用emulateHTTP，會多傳一個_method的參數到server端，可供server辨識。</p>
+        <p><strong>javascript</strong>本身是弱型別，與<strong>java</strong>、<strong>c++</strong>這類的強行別不同，弱型別語言在某些情況下會自動幫你作轉換。</p>
+<p>像是數值相減，雖然是型態是<strong>字串</strong>，但仍然可以做運算：<a href="https://jsfiddle.net/nwzkyLya/" target="_blank" rel="external">範例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">"10"</span> - <span class="string">"9"</span>);</span><br></pre></td></tr></table></figure>
+<p>但是如果是相加的話，則會被當作一般字串相加，而不會轉能數字運算：<a href="https://jsfiddle.net/ctyhve3x/" target="_blank" rel="external">範例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">"10"</span> + <span class="string">"9"</span>);</span><br></pre></td></tr></table></figure>
+<p>另外使用<code>==</code>時，字串會自動轉換成數字比對：<a href="https://jsfiddle.net/yqh3ost3/" target="_blank" rel="external">範例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert( <span class="string">"10"</span> == <span class="number">10</span> );</span><br></pre></td></tr></table></figure>
+<p>但如果想要真正的比對是否為一樣的值，這時可以用<code>===</code>：<a href="https://jsfiddle.net/6kLchxh8/" target="_blank" rel="external">範例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert( <span class="string">"10"</span> === <span class="number">10</span> );</span><br></pre></td></tr></table></figure>
+<h3 id="數字轉字串">數字轉字串</h3><p>數字轉字串可以直接使用<code>.toString</code>這個<code>function</code>：<a href="https://jsfiddle.net/gne60hku/" target="_blank" rel="external">範例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="keyword">typeof</span> (<span class="number">10</span>).toString());</span><br></pre></td></tr></table></figure>
+<p>當然你也可以直接用<strong>字串</strong>與數字相加，同樣也會得到你要：<a href="https://jsfiddle.net/Lppx4w1d/" target="_blank" rel="external">範例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="keyword">typeof</span> (<span class="number">10</span> + <span class="string">""</span>))</span><br></pre></td></tr></table></figure>
+<p>另外<code>.toString</code>還有另一個功能，可以將數值轉換成其他進位的字串，例如轉成16進位：<a href="https://jsfiddle.net/3q3e86bg/" target="_blank" rel="external">範例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert((<span class="number">12</span>).toString(<span class="number">16</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="字串轉數值">字串轉數值</h3><p>字串轉數字可以透過<code>Number</code>來轉換：<a href="https://jsfiddle.net/emh9jk89/" target="_blank" rel="external">範例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="keyword">typeof</span> <span class="built_in">Number</span>(<span class="string">"10"</span>));</span><br></pre></td></tr></table></figure>
+<p>那同樣也可以透過<code>parseInt</code>和<code>parseFloat</code>來轉換，<code>parseInt</code>會只留下整數，而<code>parseFloat</code>還會保留：<a href="https://jsfiddle.net/Lgmfvzzk/" target="_blank" rel="external">範例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="string">"2.3"</span>;</span><br><span class="line"></span><br><span class="line">alert(<span class="string">"parseInt: "</span>+ <span class="built_in">parseInt</span>(value) + <span class="string">"\nparseFloat: "</span> + <span class="built_in">parseFloat</span>(value));</span><br></pre></td></tr></table></figure>
+<p>另外使用<code>parseInt</code>或<code>parseFloat</code>會自動忽略字尾非數字的部分：<a href="https://jsfiddle.net/zhes4r7p/" target="_blank" rel="external">範例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert( <span class="built_in">parseInt</span>(<span class="string">"2a"</span>) );</span><br></pre></td></tr></table></figure>
+<p><code>parseInt</code>還能將數值轉成其他進位，第二個參數可以設定要轉換的進位，例如轉成2進位：<a href="https://jsfiddle.net/muj0fg34/" target="_blank" rel="external">範例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="built_in">parseInt</span>(<span class="string">"100"</span>, <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="布林(boolean)">布林(boolean)</h3><p>因為<strong>布林</strong>本身就只有<code>true</code>跟<code>false</code>兩種，要轉換直接使用<strong>條件判斷</strong>即可：<a href="https://jsfiddle.net/hby80y55/" target="_blank" rel="external">範例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="literal">true</span>? <span class="number">1</span>: <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>比較值得注意的是，在弱型別中，<code>true</code>相等於<code>1</code>，<code>false</code>則將等於<code>0</code>：<a href="https://jsfiddle.net/738yherq/" target="_blank" rel="external">範例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="literal">true</span> == <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>但如果數值是<code>1</code>以上，例如<code>2</code>，這時不會是成立：<a href="https://jsfiddle.net/b6uu8xhb/" target="_blank" rel="external">範例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="literal">true</span> == <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>一個最容易將當前值，轉成<strong>布林</strong>方式，就是透過<code>!!</code>的語法，其實就是看到<code>!</code><strong>反向</strong>一次，此時的值會得到<code>true</code>或<code>false</code>，在執行一次<code>!</code>再轉回來：<a href="https://jsfiddle.net/q1dd0nzc/" target="_blank" rel="external">範例</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert( <span class="string">"!!2: "</span> + (!!<span class="number">2</span>) + <span class="string">"\n!!0: "</span> +  (!!<span class="number">0</span>) + <span class="string">"\n!!test: "</span> + (!!<span class="string">"test"</span>) + <span class="string">"\n!!\"\": "</span> + (!!<span class="string">""</span>) );</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/25/backbone-js-emulatehttp-and-emulatejson/" data-id="cihc3hsrh00as1q64vmbkbual" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/javascript/type-conversion.html" data-id="cihc3hsir00031q64t8r8t2nu" class="article-share-link">Share</a>
       
-        <a href="http://www.sparrowjang.com/2013/03/25/backbone-js-emulatehttp-and-emulatejson/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://www.sparrowjang.com/javascript/type-conversion.html#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/backbone/">backbone</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
     </footer>
   </div>
   
     
-<nav id="article-nav">
-  
-    <a href="/2013/03/26/python-sqlite3-create-function、aggregate-and-collation/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          python sqlite3 create function、aggregate and collation
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2013/03/22/javascript-event偵錯-visual-event-2/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">javascript event偵錯-Visual Event 2</div>
-    </a>
-  
-</nav>
-
   
 </article>
 
@@ -282,7 +268,7 @@ book.save({name:&quot;Tom&quot;}); </pre>
 <script>
   var disqus_shortname = 'sparrowhome';
   
-  var disqus_url = 'http://www.sparrowjang.com/2013/03/25/backbone-js-emulatehttp-and-emulatejson/';
+  var disqus_url = 'http://www.sparrowjang.com/javascript/type-conversion.html';
   
   (function(){
     var dsq = document.createElement('script');

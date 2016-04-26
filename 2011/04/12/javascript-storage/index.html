@@ -33,7 +33,7 @@ getItem(key);">
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -118,7 +118,7 @@ getItem(key);">
     <div class="article-entry" itemprop="articleBody">
       
         <p><span style="color:#00f;">storage</span>是<span style="color:#00f;">html5</span>的儲存資料的方式之一，主要分為<span style="color:#00f;">sessionStorage</span>和<span style="color:#00f;">localStorage</span>，這兩種儲存方式都只能在相同的<span style="color:#00f;">domain</span>才能讀取到，<span style="color:#00f;">sessionStorage</span>只要頁面關掉後，就會釋放儲存的資料，而<span style="color:#00f;">localStorage</span>是直接儲存在<span style="color:#00f;">brower</span>。</p>
-<h6 id="storage的物件成員有：">storage的物件成員有：</h6><pre class="brush:js">//設定資料
+<h6 id="storage的物件成員有："><a href="#storage的物件成員有：" class="headerlink" title="storage的物件成員有："></a>storage的物件成員有：</h6><pre class="brush:js">//設定資料
 setItem(key,val);
 //取得資料
 getItem(key);
@@ -131,13 +131,13 @@ key(index)&#39;
 //清除所有資料
 clear();</pre>
 
-<h6 id="其中以下方式功能是一樣的：">其中以下方式功能是一樣的：</h6><pre class="brush:js">sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
+<h6 id="其中以下方式功能是一樣的："><a href="#其中以下方式功能是一樣的：" class="headerlink" title="其中以下方式功能是一樣的："></a>其中以下方式功能是一樣的：</h6><pre class="brush:js">sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
 sessionStorage[&quot;test&quot;] = &quot;test&quot;;
 //以上這兩種方式，是相同的效果。
 </pre>
 
 <p>從以上範例可以看出，<span style="color:#f00;">實際上是把直塞到object裡，所以要是儲存本身物件所擁有的成員，將會加以覆蓋</span>，所以不能用相同名稱。</p>
-<h6 id="例如：">例如：</h6><pre class="brush:js">sessionStorage.setItem(&quot;setItem&quot;,&quot;test&quot;);
+<h6 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h6><pre class="brush:js">sessionStorage.setItem(&quot;setItem&quot;,&quot;test&quot;);
 //將會出錯
 sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
 </pre>
@@ -145,7 +145,7 @@ sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/04/12/javascript-storage/" data-id="cihc3k8em007l3264w3vold8z" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/04/12/javascript-storage/" data-id="cinhl1p2m004a5164xeeizss9" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/04/12/javascript-storage/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -253,7 +253,7 @@ sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -299,7 +299,7 @@ sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

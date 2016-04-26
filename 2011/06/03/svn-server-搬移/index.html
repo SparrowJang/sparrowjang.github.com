@@ -6,7 +6,7 @@
   <title>svn server 搬移 | Sparrow&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="當svn server網址改變時，或者移動資料夾，可以使用switch指令，將client導向正確的svn server位置。
-command line如下：svn switch —relocate http://xxx.xxx.xxx/ http://xxx.xxx.xxx/new/
+command line如下：svn switch –relocate http://xxx.xxx.xxx/ http://xxx.xxx.xxx/new/
 前面path為目前指向位置，後面則為新的path位置。
 &amp;nbsp;
 需要將專案，分開到不同的版本控制記錄，只要">
@@ -15,7 +15,7 @@ command line如下：svn switch —relocate http://xxx.xxx.xxx/ http://xxx.xxx.x
 <meta property="og:url" content="http://www.sparrowjang.com/2011/06/03/svn-server-搬移/index.html">
 <meta property="og:site_name" content="Sparrow's Blog">
 <meta property="og:description" content="當svn server網址改變時，或者移動資料夾，可以使用switch指令，將client導向正確的svn server位置。
-command line如下：svn switch —relocate http://xxx.xxx.xxx/ http://xxx.xxx.xxx/new/
+command line如下：svn switch –relocate http://xxx.xxx.xxx/ http://xxx.xxx.xxx/new/
 前面path為目前指向位置，後面則為新的path位置。
 &amp;nbsp;
 需要將專案，分開到不同的版本控制記錄，只要">
@@ -23,7 +23,7 @@ command line如下：svn switch —relocate http://xxx.xxx.xxx/ http://xxx.xxx.x
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="svn server 搬移">
 <meta name="twitter:description" content="當svn server網址改變時，或者移動資料夾，可以使用switch指令，將client導向正確的svn server位置。
-command line如下：svn switch —relocate http://xxx.xxx.xxx/ http://xxx.xxx.xxx/new/
+command line如下：svn switch –relocate http://xxx.xxx.xxx/ http://xxx.xxx.xxx/new/
 前面path為目前指向位置，後面則為新的path位置。
 &amp;nbsp;
 需要將專案，分開到不同的版本控制記錄，只要">
@@ -33,7 +33,7 @@ command line如下：svn switch —relocate http://xxx.xxx.xxx/ http://xxx.xxx.x
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -118,22 +118,22 @@ command line如下：svn switch —relocate http://xxx.xxx.xxx/ http://xxx.xxx.x
     <div class="article-entry" itemprop="articleBody">
       
         <p>當svn server網址改變時，或者移動資料夾，可以使用switch指令，將client導向正確的svn server位置。</p>
-<h6 id="command_line如下：">command line如下：</h6><p><span style="color:#00f;">svn switch —relocate <a href="http://xxx.xxx.xxx/" target="_blank" rel="external">http://xxx.xxx.xxx/</a> <a href="http://xxx.xxx.xxx/new/" target="_blank" rel="external">http://xxx.xxx.xxx/new/</a></span></p>
+<h6 id="command-line如下："><a href="#command-line如下：" class="headerlink" title="command line如下："></a>command line如下：</h6><p><span style="color:#00f;">svn switch –relocate <a href="http://xxx.xxx.xxx/" target="_blank" rel="external">http://xxx.xxx.xxx/</a> <a href="http://xxx.xxx.xxx/new/" target="_blank" rel="external">http://xxx.xxx.xxx/new/</a></span></p>
 <p>前面path為目前指向位置，後面則為新的path位置。</p>
 <p>&nbsp;</p>
 <p><span style="color:#f00;">需要將專案，分開到不同的版本控制記錄，只要多新增幾個repository。</span></p>
-<h6 id="例如：">例如：</h6><p>svn &lt;—-建立一個folder</p>
-<p>svnadmin create svn/project1&nbsp;&lt;—-建立一個project版本控制</p>
-<p>svnadmin create svn/project2&nbsp;&lt;—-建立一個project版本控制</p>
-<h6 id="然後再啟動svn_server即可：">然後再啟動svn server即可：</h6><p>svnserve -d -r&nbsp;svn</p>
+<h6 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h6><p>svn &lt;—建立一個folder</p>
+<p>svnadmin create svn/project1&nbsp;&lt;—建立一個project版本控制</p>
+<p>svnadmin create svn/project2&nbsp;&lt;—建立一個project版本控制</p>
+<h6 id="然後再啟動svn-server即可："><a href="#然後再啟動svn-server即可：" class="headerlink" title="然後再啟動svn server即可："></a>然後再啟動svn server即可：</h6><p>svnserve -d -r&nbsp;svn</p>
 <p>&nbsp;</p>
-<h6 id="svn_checkout路徑：">svn checkout路徑：</h6><p>svn co <a href="http://xxx.xxx.xxx/project1" target="_blank" rel="external">http://xxx.xxx.xxx/project1</a></p>
+<h6 id="svn-checkout路徑："><a href="#svn-checkout路徑：" class="headerlink" title="svn checkout路徑："></a>svn checkout路徑：</h6><p>svn co <a href="http://xxx.xxx.xxx/project1" target="_blank" rel="external">http://xxx.xxx.xxx/project1</a></p>
 <p>svn co <a href="http://xxx.xxx.xxx/project2" target="_blank" rel="external">http://xxx.xxx.xxx/project2</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/06/03/svn-server-搬移/" data-id="cihc3k8cg003k326477jfnajc" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/06/03/svn-server-搬移/" data-id="cinhl1p4e007j5164nnm9llen" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/06/03/svn-server-搬移/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -241,7 +241,7 @@ command line如下：svn switch —relocate http://xxx.xxx.xxx/ http://xxx.xxx.x
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -287,7 +287,7 @@ command line如下：svn switch —relocate http://xxx.xxx.xxx/ http://xxx.xxx.x
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

@@ -20,7 +20,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -107,27 +107,27 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>最近需要使用到一個圖片切割的工具，在angular的package中找了一下，沒有找到比較合適，因為只需要支援html5的瀏覽器，就實作了一個間單的工具(<a href="https://github.com/SparrowJang/ngImageEditor" target="_blank" rel="external">ngImageEditor</a>)。</p>
-<h2 id="以下是demo實際執行的畫面：">以下是demo實際執行的畫面：</h2><p><img src="/images/article/capture-a-image-block-on-angular/screenprint.png" alt="explain"></p>
-<h2 id="使用與安裝：">使用與安裝：</h2><h3 id="Demo">Demo</h3><p><a href="http://www.sparrowjang.com/ngImageEditor/public/index.html">demo</a></p>
-<h3 id="Install">Install</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bower install ngImageEditor</span><br></pre></td></tr></table></figure>
-<h3 id="Support">Support</h3><ul>
+<h2 id="以下是demo實際執行的畫面："><a href="#以下是demo實際執行的畫面：" class="headerlink" title="以下是demo實際執行的畫面："></a>以下是demo實際執行的畫面：</h2><p><img src="/images/article/capture-a-image-block-on-angular/screenprint.png" alt="explain"></p>
+<h2 id="使用與安裝："><a href="#使用與安裝：" class="headerlink" title="使用與安裝："></a>使用與安裝：</h2><h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p><a href="http://www.sparrowjang.com/ngImageEditor/public/index.html">demo</a></p>
+<h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bower install ngImageEditor</span><br></pre></td></tr></table></figure>
+<h3 id="Support"><a href="#Support" class="headerlink" title="Support"></a>Support</h3><ul>
 <li>IE9+</li>
 <li>chrome</li>
 <li>firefox</li>
 </ul>
-<h3 id="設定editor的attributes">設定editor的attributes</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;div img-src=&#34;imgSrc&#34; ng-image-editor=&#34;imageEditor&#34; selected=&#34;selected&#34;&#62;&#60;/div&#62;</span><br></pre></td></tr></table></figure>
-<h3 id="載入要切割的圖片">載入要切割的圖片</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.imgSrc=&#39;/images/head.jpeg&#39;;</span><br></pre></td></tr></table></figure>
-<h3 id="設定切割的區塊位置及大小">設定切割的區塊位置及大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.selected = &#123;width:150,height:150,top:0,left:0&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="將區塊大小的image取出">將區塊大小的image取出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.imageEditor.toDataURL();</span><br></pre></td></tr></table></figure>
+<h3 id="設定editor的attributes"><a href="#設定editor的attributes" class="headerlink" title="設定editor的attributes"></a>設定editor的attributes</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div img-src=&quot;imgSrc&quot; ng-image-editor=&quot;imageEditor&quot; selected=&quot;selected&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="載入要切割的圖片"><a href="#載入要切割的圖片" class="headerlink" title="載入要切割的圖片"></a>載入要切割的圖片</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.imgSrc=&apos;/images/head.jpeg&apos;;</span><br></pre></td></tr></table></figure>
+<h3 id="設定切割的區塊位置及大小"><a href="#設定切割的區塊位置及大小" class="headerlink" title="設定切割的區塊位置及大小"></a>設定切割的區塊位置及大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.selected = &#123;width:150,height:150,top:0,left:0&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="將區塊大小的image取出"><a href="#將區塊大小的image取出" class="headerlink" title="將區塊大小的image取出"></a>將區塊大小的image取出</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.imageEditor.toDataURL();</span><br></pre></td></tr></table></figure>
 <p>實作方式主要是透過canvas作轉換，至於cross domain，必須是同個domain，否則要從server上設定，允許哪個domain可以存取作編輯。</p>
-<h4 id="在server上設定你要跨網域的domain：">在server上設定你要跨網域的domain：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: http://your.domain.com</span><br></pre></td></tr></table></figure>
-<h4 id="在javascript中呼叫img-src之前，加入以下設定：">在javascript中呼叫<code>img.src</code>之前，加入以下設定：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img.crossOrigin = &#34;Anonymous&#34;;</span><br></pre></td></tr></table></figure>
+<h4 id="在server上設定你要跨網域的domain："><a href="#在server上設定你要跨網域的domain：" class="headerlink" title="在server上設定你要跨網域的domain："></a>在server上設定你要跨網域的domain：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: http://your.domain.com</span><br></pre></td></tr></table></figure>
+<h4 id="在javascript中呼叫img-src之前，加入以下設定："><a href="#在javascript中呼叫img-src之前，加入以下設定：" class="headerlink" title="在javascript中呼叫img.src之前，加入以下設定："></a>在javascript中呼叫<code>img.src</code>之前，加入以下設定：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img.crossOrigin = &quot;Anonymous&quot;;</span><br></pre></td></tr></table></figure>
 <p><a href="http://blog.codepen.io/2013/10/08/cross-domain-images-tainted-canvas/" target="_blank" rel="external">可參考這篇</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/01/31/capture-a-image-block-on-angular/" data-id="cihc3k8gb00ac3264lbud8oa2" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/01/31/capture-a-image-block-on-angular/" data-id="cinhl1p1500285164efttwm57" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/01/31/capture-a-image-block-on-angular/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -168,21 +168,21 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>要複製整張<code>canvas</code>，可以使用<code>getImageData</code>和<code>putImageData</code>。透過<code>getImageData</code>這個method，將整張<code>canvas</code>的資料取出來，在經由<code>putImageData</code>將資料覆蓋上去。</p>
-<h2 id="Copy：">Copy：</h2><p>取得整張canvas的data：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var ctx = canvas.getContext(&#34;2d&#34;);&#10;var imageData = ctx.getImageData( 0, 0, canvas.width, canvas.height );</span><br></pre></td></tr></table></figure></p>
-<p>在將<code>imageData</code>的資料，塞到copyCanvas對應的data區塊：(在這預設兩張canvas大小都相同)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var cctx = copyCanvas.getContext(&#34;2d&#34;);&#10;cctx.putImageData( imageData, 0 ,0 );</span><br></pre></td></tr></table></figure></p>
+<h2 id="Copy："><a href="#Copy：" class="headerlink" title="Copy："></a>Copy：</h2><p>取得整張canvas的data：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var ctx = canvas.getContext(&quot;2d&quot;);</span><br><span class="line">var imageData = ctx.getImageData( 0, 0, canvas.width, canvas.height );</span><br></pre></td></tr></table></figure></p>
+<p>在將<code>imageData</code>的資料，塞到copyCanvas對應的data區塊：(在這預設兩張canvas大小都相同)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var cctx = copyCanvas.getContext(&quot;2d&quot;);</span><br><span class="line">cctx.putImageData( imageData, 0 ,0 );</span><br></pre></td></tr></table></figure></p>
 <p>這樣你就會看到第一張的canvas，完整的copy到第二張上面。</p>
-<h2 id="Example：">Example：</h2><p><img src="/images/article/copy-canvas-on-html5/default.png" alt="最初的兩張canvas"></p>
-<p><strong>style</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">canvas &#123;                     &#10;    border:1px solid gray;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>html</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;canvas id=&#34;main&#34; width=&#34;300&#34; height=&#34;200&#34;&#62;&#60;/canvas&#62;&#10;&#60;canvas id=&#34;copy&#34; width=&#34;300&#34; height=&#34;200&#34;&#62;&#60;/canvas&#62;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Example："><a href="#Example：" class="headerlink" title="Example："></a>Example：</h2><p><img src="/images/article/copy-canvas-on-html5/default.png" alt="最初的兩張canvas"></p>
+<p><strong>style</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">canvas &#123;                     </span><br><span class="line">    border:1px solid gray;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>html</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas id=&quot;main&quot; width=&quot;300&quot; height=&quot;200&quot;&gt;&lt;/canvas&gt;</span><br><span class="line">&lt;canvas id=&quot;copy&quot; width=&quot;300&quot; height=&quot;200&quot;&gt;&lt;/canvas&gt;</span><br></pre></td></tr></table></figure></p>
 <p><strong>javascript</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//left canvas&#10;var canvas = document.querySelector( &#34;#main&#34; );&#10;var ctx = canvas.getContext(&#34;2d&#34;);&#10;ctx.fillStyle=&#34;#FF0000&#34;;  &#10;ctx.fillRect(0,0,150,75); &#10;&#10;//right canvas             &#10;var copy = document.querySelector( &#34;#copy&#34; );&#10;var cctx = copy.getContext(&#34;2d&#34;);&#10;cctx.fillStyle=&#34;#FF00FF&#34;; &#10;cctx.fillRect(20,20,150,75);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//left canvas</span><br><span class="line">var canvas = document.querySelector( &quot;#main&quot; );</span><br><span class="line">var ctx = canvas.getContext(&quot;2d&quot;);</span><br><span class="line">ctx.fillStyle=&quot;#FF0000&quot;;  </span><br><span class="line">ctx.fillRect(0,0,150,75); </span><br><span class="line"></span><br><span class="line">//right canvas             </span><br><span class="line">var copy = document.querySelector( &quot;#copy&quot; );</span><br><span class="line">var cctx = copy.getContext(&quot;2d&quot;);</span><br><span class="line">cctx.fillStyle=&quot;#FF00FF&quot;; </span><br><span class="line">cctx.fillRect(20,20,150,75);</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>把左邊的<code>canvas</code>透過<code>drawImage</code>畫到右邊的canvas：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cctx.drawImage( canvas, 0 ,0 );</span><br></pre></td></tr></table></figure>
 <p><img src="/images/article/copy-canvas-on-html5/drawImage.png" alt="透過drawImage畫到右邊canvas"></p>
 </li>
 <li><p>將左邊的<code>canvas</code>的資料，透過<code>putImageData</code>取代右邊<code>canvas</code>資料：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var imageData = ctx.getImageData( 0, 0, canvas.width, canvas.height );&#10;cctx.putImageData( imageData, 0 ,0 );</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var imageData = ctx.getImageData( 0, 0, canvas.width, canvas.height );</span><br><span class="line">cctx.putImageData( imageData, 0 ,0 );</span><br></pre></td></tr></table></figure>
 <p><img src="/images/article/copy-canvas-on-html5/putImageData.png" alt="透過putImageData畫到右邊canvas"></p>
 </li>
 </ul>
@@ -191,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/12/26/copy-canvas-on-html5/" data-id="cihc3k8g0009q3264c6rs5ax7" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/12/26/copy-canvas-on-html5/" data-id="cinhl1p1f002l51648dtt30qq" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/12/26/copy-canvas-on-html5/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -232,9 +232,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Placeholder要支援老舊的IE7~IE9，使用jQuery也都有一堆plugin可以使用了。如果要在angularjs上使用，但是又不想載入jQuery，這時候可以使用<a href="https://github.com/SparrowJang/angularjs-placeholder" target="_blank" rel="external">angularjs-placeholder</a> module。</p>
-<h1 id="使用angularjs-placeholder">使用angularjs-placeholder</h1><h4 id="載入angular_module：">載入angular module：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"../src/angularjs-placeholder.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="定義需要使用到的module，和初始化ng-app：">定義需要使用到的module，和初始化ng-app：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">  <span class="keyword">var</span> app = angular.module( <span class="string">"demoApp"</span>, [<span class="string">"html5.placeholder"</span>] );</span><br><span class="line">  angular.bootstrap( <span class="built_in">document</span>, [app.name] );</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="實作angularjs-placeholder遇到的小問題">實作angularjs-placeholder遇到的小問題</h2><p>在實作angularjs-placeholder module時，在<strong>IE7</strong>發現一個小問題，<strong>無法取得placeholder的值</strong>，但是在有的<strong>jQuery</strong>情況，都會幫忙處理掉了。</p>
+<h1 id="使用angularjs-placeholder"><a href="#使用angularjs-placeholder" class="headerlink" title="使用angularjs-placeholder"></a>使用angularjs-placeholder</h1><h4 id="載入angular-module："><a href="#載入angular-module：" class="headerlink" title="載入angular module："></a>載入angular module：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../src/angularjs-placeholder.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="定義需要使用到的module，和初始化ng-app："><a href="#定義需要使用到的module，和初始化ng-app：" class="headerlink" title="定義需要使用到的module，和初始化ng-app："></a>定義需要使用到的module，和初始化ng-app：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">  <span class="keyword">var</span> app = angular.module( <span class="string">"demoApp"</span>, [<span class="string">"html5.placeholder"</span>] );</span><br><span class="line">  angular.bootstrap( <span class="built_in">document</span>, [app.name] );</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="實作angularjs-placeholder遇到的小問題"><a href="#實作angularjs-placeholder遇到的小問題" class="headerlink" title="實作angularjs-placeholder遇到的小問題"></a>實作angularjs-placeholder遇到的小問題</h2><p>在實作angularjs-placeholder module時，在<strong>IE7</strong>發現一個小問題，<strong>無法取得placeholder的值</strong>，但是在有的<strong>jQuery</strong>情況，都會幫忙處理掉了。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* input default: &lt;input placeholder="Please,enter your name!" type="text" /&gt;</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//use native</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> attr = input.getAttribute(<span class="string">"placeholder"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// attr == null</span></span><br><span class="line"><span class="built_in">console</span>.log( attr );</span><br><span class="line"></span><br><span class="line"><span class="comment">//use jqlite</span></span><br><span class="line"><span class="keyword">var</span> $elem = angular.element( input );</span><br><span class="line"></span><br><span class="line"><span class="comment">// attr == null</span></span><br><span class="line"><span class="built_in">console</span>.log( $elem.attr( <span class="string">"placeholder"</span> ) );</span><br></pre></td></tr></table></figure>
 <p>所以如果要在<strong>IE7</strong>取得<strong>placeholder</strong>，這時候<strong>native</strong>有提供另一個api可以使用。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> node = input.getAttributeNode( <span class="string">"placeholder"</span> );</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> attr = node?node.nodeValue:node;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Please,enter your name!</span></span><br><span class="line"><span class="built_in">console</span>.log( attr );</span><br></pre></td></tr></table></figure>
@@ -242,7 +242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/27/angularjs-fixed-a-placeholder-feature-on-ie/" data-id="cihc3k8gs00ba3264r0p55efb" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/27/angularjs-fixed-a-placeholder-feature-on-ie/" data-id="cinhl1p06001g5164aorz5m0o" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/27/angularjs-fixed-a-placeholder-feature-on-ie/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -283,11 +283,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>使用ajax upload還滿常使用到，但是又不需要一些複雜的功能，所以就寫了一個簡單的<a href="https://github.com/SparrowJang/jquery-uploader" target="_blank" rel="external">jquery uploader</a>。</p>
-<h6 id="需求如下：">需求如下：</h6><ol>
+<h6 id="需求如下："><a href="#需求如下：" class="headerlink" title="需求如下："></a>需求如下：</h6><ol>
 <li>將form經用ajax post出去。</li>
 <li>選擇要post的欄位包括file。</li>
 </ol>
-<h6 id="支援：">支援：</h6><ol>
+<h6 id="支援："><a href="#支援：" class="headerlink" title="支援："></a>支援：</h6><ol>
 <li>firefox</li>
 <li>chrome</li>
 <li>IE10+</li>
@@ -312,7 +312,7 @@ $( &quot;input[name=&#39;file&#39;],input[name=&#39;id&#39;]&quot; ).upload( url
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/04/17/jquery-uploader/" data-id="cihc3k8e8006v32644qg7b62q" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/04/17/jquery-uploader/" data-id="cinhl1p30004v5164brstyhfb" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/04/17/jquery-uploader/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -411,7 +411,7 @@ $( &quot;input[name=&#39;file&#39;],input[name=&#39;id&#39;]&quot; ).upload( url
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/12/17/camera-snapshotgetusermedia/" data-id="cihc3k8gg00al3264tmqljaei" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/12/17/camera-snapshotgetusermedia/" data-id="cinhl1p0x00205164q5grnldc" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/12/17/camera-snapshotgetusermedia/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -554,7 +554,7 @@ FALLBACK:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/12/14/html5-cache-manifest/" data-id="cihc3k8fe008v3264aecp2t2f" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/12/14/html5-cache-manifest/" data-id="cinhl1p1y00395164s90gr9fp" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/12/14/html5-cache-manifest/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -596,7 +596,7 @@ FALLBACK:
       
         <p>在canvas上監聽event，最簡單的方式，就是將event綁在canvas，但是當canvas畫上各種不同的shape時，這時就必須另外實作監聽各個shape的event。另一種方式，則是在canvas上，在疊加一塊image或<strong>html5</strong>的<strong>svg</strong>(利用現成html的tag)，用來監聽不規則的形狀。</p>
 <p><strong>用image的方式，則是搭配map和area tag，這種方式再大部份的瀏覽器都支援。</strong></p>
-<h5 id="以下是個map_tag搭配canvas的example：">以下是個map tag搭配canvas的example：</h5><pre class="brush:html">&lt;canvas id=&quot;canvas&quot; width=&quot;200&quot; height=&quot;200&quot;&gt;&lt;/canvas&gt;
+<h5 id="以下是個map-tag搭配canvas的example："><a href="#以下是個map-tag搭配canvas的example：" class="headerlink" title="以下是個map tag搭配canvas的example："></a>以下是個map tag搭配canvas的example：</h5><pre class="brush:html">&lt;canvas id=&quot;canvas&quot; width=&quot;200&quot; height=&quot;200&quot;&gt;&lt;/canvas&gt;
 &lt;img src=&quot;&quot; width=&quot;200&quot; height=&quot;200&quot; usemap=&quot;#map&quot; style=&quot;border:0px;position:absolute;z-index:1;opacity:0;&quot; id=&quot;mapImage&quot; /&gt;
 
 &lt;map name=&quot;map&quot; id=&quot;map&quot;&gt;
@@ -640,7 +640,7 @@ ctx.fill();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/04/17/canvas-event/" data-id="cihc3k8gd00ah3264sidyaa19" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/04/17/canvas-event/" data-id="cinhl1p1300245164zvi3f17a" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/04/17/canvas-event/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -681,7 +681,7 @@ ctx.fill();
     <div class="article-entry" itemprop="articleBody">
       
         <p>讀取<span style="color:#00f;">file</span>的內容，可以使用<span style="color:#00f;">FileReader</span>，這功能是<span style="color:#00f;">html5</span>才加入的，依照不同瀏覽器，支援<span style="color:#00f;">file</span>相關物件的method，實作完整度不同。</p>
-<h6 id="example：">example：</h6><pre class="brush:js">&lt;script type=&quot;text/javascript&quot;&gt;
+<h6 id="example："><a href="#example：" class="headerlink" title="example："></a>example：</h6><pre class="brush:js">&lt;script type=&quot;text/javascript&quot;&gt;
   function load() {
     var finput = document.getElementById(&quot;file&quot;);
     //取得file
@@ -713,7 +713,7 @@ ctx.fill();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/07/09/讀取file的內容filereader/" data-id="cihc3k8al000d3264wvdtgnry" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/07/09/讀取file的內容filereader/" data-id="cinhl1p5m00a451647konl9ju" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/07/09/讀取file的內容filereader/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -754,16 +754,16 @@ ctx.fill();
     <div class="article-entry" itemprop="articleBody">
       
         <p>在大部分的瀏覽器中(chrome、firefox、IE8…)，可以<span style="color:#f00;">使用postMessage和onmessage，去互相傳遞資料</span>。<span class="Apple-style-span" style="color: rgb(255, 0, 0); ">postMessage負責丟到不同網域，</span><span class="Apple-style-span" style="color: rgb(255, 0, 0); ">onmessage則是監聽其他網域丟來的資料。</span></p>
-<h6 id="主要domain：">主要domain：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">window.onmessage = function()&#123;</span><br><span class="line">    console.log(arguments);</span><br><span class="line">&#125;;</span><br><span class="line">/*if(window.addEventListener)&#123;</span><br><span class="line">    window.addEventListener(&amp;quot;message&amp;quot;,function()&#123;</span><br><span class="line">        console.log(arguments);</span><br><span class="line">    &#125;,false);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    window.attachEvent(&amp;quot;onmessage&amp;quot;, function()&#123;</span><br><span class="line">        console.log(arguments);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;*/</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;iframe src=&amp;quot;http://127.0.0.1/otherDomain.html&amp;quot; id=&amp;quot;iframe1&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">var win = document.getElementById(&amp;quot;iframe1&amp;quot;).contentWindow;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">win.postMessage(&amp;quot;Hello Sparrow!&amp;quot;,&amp;quot;http://127.0.0.1/&amp;quot;);</span><br><span class="line">&#125;,1000);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;&amp;nbsp;</span><br></pre></td></tr></table></figure>
-<h6 id="其他domain(otherDomain-html)：">其他domain(<span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">otherDomain.html</span>)：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">window.onmessage = function()&#123;</span><br><span class="line">    console.log(arguments);</span><br><span class="line">&#125;;</span><br><span class="line">parent.postMessage(&amp;quot;test&amp;quot;,&amp;quot;http://localhost/&amp;quot;);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;</span><br></pre></td></tr></table></figure>
-<h6 id="那麼如果要運行在IE7、IE6底下呢?">那麼如果要運行在IE7、IE6底下呢?</h6><p>這時候可以<span style="color:#f00;">建立一個proxy.html</span>，<span style="color:#f00;">利用iframe的src嵌入一個proxy.html</span>，<span style="color:#f00;">至於proxy.html需要抓取網址上的參數</span>，<span style="color:#f00;">透過window.frames[&quot;iframe1&quot;]得方式傳遞</span>。動態載入proxy.html，當資料傳遞完畢，將proxy.html的iframe動態移除，監聽事件可以使用onload去監聽。(換句話說，每次傳遞資料都是一次request，另外也可以使用hash&quot;#&quot;去實作)</p>
+<h6 id="主要domain："><a href="#主要domain：" class="headerlink" title="主要domain："></a>主要domain：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">window.onmessage = function()&#123;</span><br><span class="line">    console.log(arguments);</span><br><span class="line">&#125;;</span><br><span class="line">/*if(window.addEventListener)&#123;</span><br><span class="line">    window.addEventListener(&amp;quot;message&amp;quot;,function()&#123;</span><br><span class="line">        console.log(arguments);</span><br><span class="line">    &#125;,false);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    window.attachEvent(&amp;quot;onmessage&amp;quot;, function()&#123;</span><br><span class="line">        console.log(arguments);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;*/</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;iframe src=&amp;quot;http://127.0.0.1/otherDomain.html&amp;quot; id=&amp;quot;iframe1&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">var win = document.getElementById(&amp;quot;iframe1&amp;quot;).contentWindow;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">win.postMessage(&amp;quot;Hello Sparrow!&amp;quot;,&amp;quot;http://127.0.0.1/&amp;quot;);</span><br><span class="line">&#125;,1000);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<h6 id="其他domain-otherDomain-html-："><a href="#其他domain-otherDomain-html-：" class="headerlink" title="其他domain(otherDomain.html)："></a>其他domain(<span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">otherDomain.html</span>)：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">window.onmessage = function()&#123;</span><br><span class="line">    console.log(arguments);</span><br><span class="line">&#125;;</span><br><span class="line">parent.postMessage(&amp;quot;test&amp;quot;,&amp;quot;http://localhost/&amp;quot;);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;</span><br></pre></td></tr></table></figure>
+<h6 id="那麼如果要運行在IE7、IE6底下呢"><a href="#那麼如果要運行在IE7、IE6底下呢" class="headerlink" title="那麼如果要運行在IE7、IE6底下呢?"></a>那麼如果要運行在IE7、IE6底下呢?</h6><p>這時候可以<span style="color:#f00;">建立一個proxy.html</span>，<span style="color:#f00;">利用iframe的src嵌入一個proxy.html</span>，<span style="color:#f00;">至於proxy.html需要抓取網址上的參數</span>，<span style="color:#f00;">透過window.frames[&quot;iframe1&quot;]得方式傳遞</span>。動態載入proxy.html，當資料傳遞完畢，將proxy.html的iframe動態移除，監聽事件可以使用onload去監聽。(換句話說，每次傳遞資料都是一次request，另外也可以使用hash&quot;#&quot;去實作)</p>
 <p>圖中灰色的<span style="color:#00f;">proxy.html</span>可透過<span style="color:#00f;">window.parent.frames[&quot;iframe1&quot;]</span>的方式，而綠色則要使用<span style="color:#00f;">parent.parent</span> ，或<span style="color:#00f;">parent.frames[&quot;parent&quot;]</span>。同顏色可透過js語法直接呼叫，不同顏色必須透過<span style="color:#00f;">proxy.html</span>去抓取<span style="color:#00f;">url</span>參數，再丟到同網域的頁面。</p>
 <p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/iframe/1aac4d43.png" alt="" title="crossFrame"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/06/22/iframe跨網域/" data-id="cihc3k8f9008j32648dzb3x0t" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/06/22/iframe跨網域/" data-id="cinhl1p22003g5164t49jie7f" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/06/22/iframe跨網域/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -804,7 +804,7 @@ ctx.fill();
     <div class="article-entry" itemprop="articleBody">
       
         <p><span style="color:#00f;">storage</span>是<span style="color:#00f;">html5</span>的儲存資料的方式之一，主要分為<span style="color:#00f;">sessionStorage</span>和<span style="color:#00f;">localStorage</span>，這兩種儲存方式都只能在相同的<span style="color:#00f;">domain</span>才能讀取到，<span style="color:#00f;">sessionStorage</span>只要頁面關掉後，就會釋放儲存的資料，而<span style="color:#00f;">localStorage</span>是直接儲存在<span style="color:#00f;">brower</span>。</p>
-<h6 id="storage的物件成員有：">storage的物件成員有：</h6><pre class="brush:js">//設定資料
+<h6 id="storage的物件成員有："><a href="#storage的物件成員有：" class="headerlink" title="storage的物件成員有："></a>storage的物件成員有：</h6><pre class="brush:js">//設定資料
 setItem(key,val);
 //取得資料
 getItem(key);
@@ -817,13 +817,13 @@ key(index)&#39;
 //清除所有資料
 clear();</pre>
 
-<h6 id="其中以下方式功能是一樣的：">其中以下方式功能是一樣的：</h6><pre class="brush:js">sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
+<h6 id="其中以下方式功能是一樣的："><a href="#其中以下方式功能是一樣的：" class="headerlink" title="其中以下方式功能是一樣的："></a>其中以下方式功能是一樣的：</h6><pre class="brush:js">sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
 sessionStorage[&quot;test&quot;] = &quot;test&quot;;
 //以上這兩種方式，是相同的效果。
 </pre>
 
 <p>從以上範例可以看出，<span style="color:#f00;">實際上是把直塞到object裡，所以要是儲存本身物件所擁有的成員，將會加以覆蓋</span>，所以不能用相同名稱。</p>
-<h6 id="例如：">例如：</h6><pre class="brush:js">sessionStorage.setItem(&quot;setItem&quot;,&quot;test&quot;);
+<h6 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h6><pre class="brush:js">sessionStorage.setItem(&quot;setItem&quot;,&quot;test&quot;);
 //將會出錯
 sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
 </pre>
@@ -831,7 +831,7 @@ sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/04/12/javascript-storage/" data-id="cihc3k8em007l3264w3vold8z" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/04/12/javascript-storage/" data-id="cinhl1p2m004a5164xeeizss9" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/04/12/javascript-storage/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -919,7 +919,7 @@ sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -963,7 +963,7 @@ sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

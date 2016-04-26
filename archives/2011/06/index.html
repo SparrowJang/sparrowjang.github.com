@@ -20,7 +20,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -107,16 +107,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在大部分的瀏覽器中(chrome、firefox、IE8…)，可以<span style="color:#f00;">使用postMessage和onmessage，去互相傳遞資料</span>。<span class="Apple-style-span" style="color: rgb(255, 0, 0); ">postMessage負責丟到不同網域，</span><span class="Apple-style-span" style="color: rgb(255, 0, 0); ">onmessage則是監聽其他網域丟來的資料。</span></p>
-<h6 id="主要domain：">主要domain：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">window.onmessage = function()&#123;</span><br><span class="line">    console.log(arguments);</span><br><span class="line">&#125;;</span><br><span class="line">/*if(window.addEventListener)&#123;</span><br><span class="line">    window.addEventListener(&amp;quot;message&amp;quot;,function()&#123;</span><br><span class="line">        console.log(arguments);</span><br><span class="line">    &#125;,false);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    window.attachEvent(&amp;quot;onmessage&amp;quot;, function()&#123;</span><br><span class="line">        console.log(arguments);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;*/</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;iframe src=&amp;quot;http://127.0.0.1/otherDomain.html&amp;quot; id=&amp;quot;iframe1&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">var win = document.getElementById(&amp;quot;iframe1&amp;quot;).contentWindow;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">win.postMessage(&amp;quot;Hello Sparrow!&amp;quot;,&amp;quot;http://127.0.0.1/&amp;quot;);</span><br><span class="line">&#125;,1000);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;&amp;nbsp;</span><br></pre></td></tr></table></figure>
-<h6 id="其他domain(otherDomain-html)：">其他domain(<span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">otherDomain.html</span>)：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">window.onmessage = function()&#123;</span><br><span class="line">    console.log(arguments);</span><br><span class="line">&#125;;</span><br><span class="line">parent.postMessage(&amp;quot;test&amp;quot;,&amp;quot;http://localhost/&amp;quot;);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;</span><br></pre></td></tr></table></figure>
-<h6 id="那麼如果要運行在IE7、IE6底下呢?">那麼如果要運行在IE7、IE6底下呢?</h6><p>這時候可以<span style="color:#f00;">建立一個proxy.html</span>，<span style="color:#f00;">利用iframe的src嵌入一個proxy.html</span>，<span style="color:#f00;">至於proxy.html需要抓取網址上的參數</span>，<span style="color:#f00;">透過window.frames[&quot;iframe1&quot;]得方式傳遞</span>。動態載入proxy.html，當資料傳遞完畢，將proxy.html的iframe動態移除，監聽事件可以使用onload去監聽。(換句話說，每次傳遞資料都是一次request，另外也可以使用hash&quot;#&quot;去實作)</p>
+<h6 id="主要domain："><a href="#主要domain：" class="headerlink" title="主要domain："></a>主要domain：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">window.onmessage = function()&#123;</span><br><span class="line">    console.log(arguments);</span><br><span class="line">&#125;;</span><br><span class="line">/*if(window.addEventListener)&#123;</span><br><span class="line">    window.addEventListener(&amp;quot;message&amp;quot;,function()&#123;</span><br><span class="line">        console.log(arguments);</span><br><span class="line">    &#125;,false);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    window.attachEvent(&amp;quot;onmessage&amp;quot;, function()&#123;</span><br><span class="line">        console.log(arguments);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;*/</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;iframe src=&amp;quot;http://127.0.0.1/otherDomain.html&amp;quot; id=&amp;quot;iframe1&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">var win = document.getElementById(&amp;quot;iframe1&amp;quot;).contentWindow;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">win.postMessage(&amp;quot;Hello Sparrow!&amp;quot;,&amp;quot;http://127.0.0.1/&amp;quot;);</span><br><span class="line">&#125;,1000);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<h6 id="其他domain-otherDomain-html-："><a href="#其他domain-otherDomain-html-：" class="headerlink" title="其他domain(otherDomain.html)："></a>其他domain(<span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">otherDomain.html</span>)：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">window.onmessage = function()&#123;</span><br><span class="line">    console.log(arguments);</span><br><span class="line">&#125;;</span><br><span class="line">parent.postMessage(&amp;quot;test&amp;quot;,&amp;quot;http://localhost/&amp;quot;);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;</span><br></pre></td></tr></table></figure>
+<h6 id="那麼如果要運行在IE7、IE6底下呢"><a href="#那麼如果要運行在IE7、IE6底下呢" class="headerlink" title="那麼如果要運行在IE7、IE6底下呢?"></a>那麼如果要運行在IE7、IE6底下呢?</h6><p>這時候可以<span style="color:#f00;">建立一個proxy.html</span>，<span style="color:#f00;">利用iframe的src嵌入一個proxy.html</span>，<span style="color:#f00;">至於proxy.html需要抓取網址上的參數</span>，<span style="color:#f00;">透過window.frames[&quot;iframe1&quot;]得方式傳遞</span>。動態載入proxy.html，當資料傳遞完畢，將proxy.html的iframe動態移除，監聽事件可以使用onload去監聽。(換句話說，每次傳遞資料都是一次request，另外也可以使用hash&quot;#&quot;去實作)</p>
 <p>圖中灰色的<span style="color:#00f;">proxy.html</span>可透過<span style="color:#00f;">window.parent.frames[&quot;iframe1&quot;]</span>的方式，而綠色則要使用<span style="color:#00f;">parent.parent</span> ，或<span style="color:#00f;">parent.frames[&quot;parent&quot;]</span>。同顏色可透過js語法直接呼叫，不同顏色必須透過<span style="color:#00f;">proxy.html</span>去抓取<span style="color:#00f;">url</span>參數，再丟到同網域的頁面。</p>
 <p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/iframe/1aac4d43.png" alt="" title="crossFrame"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/06/22/iframe跨網域/" data-id="cihc3k8f9008j32648dzb3x0t" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/06/22/iframe跨網域/" data-id="cinhl1p22003g5164t49jie7f" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/06/22/iframe跨網域/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -157,7 +157,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><span style="color:#f00;">在android使用google map api時，必須需要有一個key，才能使用google map api。</span></p>
-<h6 id="首先在linux環境底下，執行以下command_line：">首先在linux環境底下，執行以下command line：</h6><p>keytool -list -keystore ~/.android/debug.keystore</p>
+<h6 id="首先在linux環境底下，執行以下command-line："><a href="#首先在linux環境底下，執行以下command-line：" class="headerlink" title="首先在linux環境底下，執行以下command line："></a>首先在linux環境底下，執行以下command line：</h6><p>keytool -list -keystore ~/.android/debug.keystore</p>
 <p>輸入密碼可以直接按enter，接著你會得到一串md5。</p>
 <p>接著你可以<a href="http://code.google.com/intl/zh-TW/android/maps-api-signup.html" target="_blank" rel="external">經由google</a>得到一串key，<span style="color:#f00;">把key加入到layout裡，或者直接建立MapView object也可輸入</span>。</p>
 <pre class="brush:xml">&lt;com.google.android.maps.MapView
@@ -169,7 +169,7 @@
     android:clickable=&quot;true&quot;
 /&gt;</pre>
 
-<h6 id="配置AndroidManifest-xml">配置AndroidManifest.xml</h6><pre class="brush:xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+<h6 id="配置AndroidManifest-xml"><a href="#配置AndroidManifest-xml" class="headerlink" title="配置AndroidManifest.xml"></a>配置AndroidManifest.xml</h6><pre class="brush:xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
       package=&quot;com.test.test&quot;
       android:versionCode=&quot;1&quot;
@@ -191,12 +191,12 @@
 <p>其中<span style="color:#00f;">uses-library</span>是必須的，<span style="color:#00f;">uses-permission</span>則是根據你使用的api功能決定。</p>
 <p>&nbsp;</p>
 <p><span style="color:#f00;">如果要能到android market上，你必須另外申請一組key，而不是用android debug key。</span></p>
-<h6 id="你可以使用以下command_line去建立一個keystore：">你可以使用以下command line去建立一個keystore：</h6><p>keytool -genkey -v -keystore test.keystore -alias test -keyalg RSA -keysize 2048 -validity 10000</p>
-<h6 id="同樣使用md5去取得key，執行以下command_line：">同樣使用md5去取得key，執行以下command line：</h6><p>keytool -list -keystore test.keystore</p>
+<h6 id="你可以使用以下command-line去建立一個keystore："><a href="#你可以使用以下command-line去建立一個keystore：" class="headerlink" title="你可以使用以下command line去建立一個keystore："></a>你可以使用以下command line去建立一個keystore：</h6><p>keytool -genkey -v -keystore test.keystore -alias test -keyalg RSA -keysize 2048 -validity 10000</p>
+<h6 id="同樣使用md5去取得key，執行以下command-line："><a href="#同樣使用md5去取得key，執行以下command-line：" class="headerlink" title="同樣使用md5去取得key，執行以下command line："></a>同樣使用md5去取得key，執行以下command line：</h6><p>keytool -list -keystore test.keystore</p>
 <p>接著拿去google取得key配置方法如上。</p>
-<h6 id="最後一個步驟，就是將你的未驗證的apk，去做驗證，command_line如下：">最後一個步驟，就是將你的未驗證的apk，去做驗證，command line如下：</h6><p>jarsigner -verbose -keystore my-release-key.keystore my_application.apk alias_name</p>
-<h6 id="以及優化指令：">以及優化指令：</h6><p>zipalign -v 4 your_project_name-unaligned.apk your_project_name.apk</p>
-<h6 id="若是使用ant，只要在build-properties加入以下兩行：">若是使用ant，只要在build.properties加入以下兩行：</h6><div><br><br>key.store=my-release-key.keystore<br><br>key.alias=alias_name<br><br></div>
+<h6 id="最後一個步驟，就是將你的未驗證的apk，去做驗證，command-line如下："><a href="#最後一個步驟，就是將你的未驗證的apk，去做驗證，command-line如下：" class="headerlink" title="最後一個步驟，就是將你的未驗證的apk，去做驗證，command line如下："></a>最後一個步驟，就是將你的未驗證的apk，去做驗證，command line如下：</h6><p>jarsigner -verbose -keystore my-release-key.keystore my_application.apk alias_name</p>
+<h6 id="以及優化指令："><a href="#以及優化指令：" class="headerlink" title="以及優化指令："></a>以及優化指令：</h6><p>zipalign -v 4 your_project_name-unaligned.apk your_project_name.apk</p>
+<h6 id="若是使用ant，只要在build-properties加入以下兩行："><a href="#若是使用ant，只要在build-properties加入以下兩行：" class="headerlink" title="若是使用ant，只要在build.properties加入以下兩行："></a>若是使用ant，只要在build.properties加入以下兩行：</h6><div><br><br>key.store=my-release-key.keystore<br><br>key.alias=alias_name<br><br></div>
 
 <p>再執行ant release，即可產生驗證後的apk</p>
 <p><a href="http://developer.android.com/guide/publishing/app-signing.html" target="_blank" rel="external">申請keystore及驗證頁面</a></p>
@@ -206,7 +206,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/06/17/android-google-map-key/" data-id="cihc3k8h200br3264xhp1o4su" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/06/17/android-google-map-key/" data-id="cinhl1ozx00135164emt7w0ez" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/06/17/android-google-map-key/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -247,22 +247,22 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>當svn server網址改變時，或者移動資料夾，可以使用switch指令，將client導向正確的svn server位置。</p>
-<h6 id="command_line如下：">command line如下：</h6><p><span style="color:#00f;">svn switch —relocate <a href="http://xxx.xxx.xxx/" target="_blank" rel="external">http://xxx.xxx.xxx/</a> <a href="http://xxx.xxx.xxx/new/" target="_blank" rel="external">http://xxx.xxx.xxx/new/</a></span></p>
+<h6 id="command-line如下："><a href="#command-line如下：" class="headerlink" title="command line如下："></a>command line如下：</h6><p><span style="color:#00f;">svn switch –relocate <a href="http://xxx.xxx.xxx/" target="_blank" rel="external">http://xxx.xxx.xxx/</a> <a href="http://xxx.xxx.xxx/new/" target="_blank" rel="external">http://xxx.xxx.xxx/new/</a></span></p>
 <p>前面path為目前指向位置，後面則為新的path位置。</p>
 <p>&nbsp;</p>
 <p><span style="color:#f00;">需要將專案，分開到不同的版本控制記錄，只要多新增幾個repository。</span></p>
-<h6 id="例如：">例如：</h6><p>svn &lt;—-建立一個folder</p>
-<p>svnadmin create svn/project1&nbsp;&lt;—-建立一個project版本控制</p>
-<p>svnadmin create svn/project2&nbsp;&lt;—-建立一個project版本控制</p>
-<h6 id="然後再啟動svn_server即可：">然後再啟動svn server即可：</h6><p>svnserve -d -r&nbsp;svn</p>
+<h6 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h6><p>svn &lt;—建立一個folder</p>
+<p>svnadmin create svn/project1&nbsp;&lt;—建立一個project版本控制</p>
+<p>svnadmin create svn/project2&nbsp;&lt;—建立一個project版本控制</p>
+<h6 id="然後再啟動svn-server即可："><a href="#然後再啟動svn-server即可：" class="headerlink" title="然後再啟動svn server即可："></a>然後再啟動svn server即可：</h6><p>svnserve -d -r&nbsp;svn</p>
 <p>&nbsp;</p>
-<h6 id="svn_checkout路徑：">svn checkout路徑：</h6><p>svn co <a href="http://xxx.xxx.xxx/project1" target="_blank" rel="external">http://xxx.xxx.xxx/project1</a></p>
+<h6 id="svn-checkout路徑："><a href="#svn-checkout路徑：" class="headerlink" title="svn checkout路徑："></a>svn checkout路徑：</h6><p>svn co <a href="http://xxx.xxx.xxx/project1" target="_blank" rel="external">http://xxx.xxx.xxx/project1</a></p>
 <p>svn co <a href="http://xxx.xxx.xxx/project2" target="_blank" rel="external">http://xxx.xxx.xxx/project2</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/06/03/svn-server-搬移/" data-id="cihc3k8cg003k326477jfnajc" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/06/03/svn-server-搬移/" data-id="cinhl1p4e007j5164nnm9llen" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/06/03/svn-server-搬移/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -346,7 +346,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -390,7 +390,7 @@
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

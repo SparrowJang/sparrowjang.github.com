@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Sparrow's Blog">
 <meta property="og:description" content="在titanium內建的HTTPClient本身就有實作cookie的功能，使用起來跟瀏覽器一樣，會自動解析response header，及發送以設定的cookie，而不需要額外去解析header，和添加request的header，要清除cookie可以使用clearCookies，若要在client端設定cookie，可以使用setRequestHeader。
 清除與設定cookie建立一個">
-<meta property="og:updated_time" content="2014-07-11T13:38:48.000Z">
+<meta property="og:updated_time" content="2016-04-26T15:21:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Titanium HTTPClient使用cookie與header">
 <meta name="twitter:description" content="在titanium內建的HTTPClient本身就有實作cookie的功能，使用起來跟瀏覽器一樣，會自動解析response header，及發送以設定的cookie，而不需要額外去解析header，和添加request的header，要清除cookie可以使用clearCookies，若要在client端設定cookie，可以使用setRequestHeader。
@@ -24,7 +24,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -109,10 +109,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在<a href="http://www.appcelerator.com/titanium/" target="_blank" rel="external">titanium</a>內建的<a href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.Network.HTTPClient" target="_blank" rel="external"><code>HTTPClient</code></a>本身就有實作cookie的功能，使用起來跟瀏覽器一樣，會自動解析response header，及發送以設定的cookie，而不需要額外去解析header，和添加request的header，要清除cookie可以使用<a href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.Network.HTTPClient-method-clearCookies" target="_blank" rel="external"><code>clearCookies</code></a>，若要在client端設定cookie，可以使用<a href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.Network.HTTPClient-method-setRequestHeader" target="_blank" rel="external"><code>setRequestHeader</code></a>。</p>
-<h2 id="清除與設定cookie">清除與設定cookie</h2><h4 id="建立一個HTTPClient：">建立一個HTTPClient：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var client = Ti.Network.createHTTPClient(&#123;&#125;);</span><br></pre></td></tr></table></figure>
-<h4 id="指定清除某個網域底下的cookie：">指定清除某個網域底下的cookie：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.clearCookies( &#34;www.example.com&#34; );</span><br></pre></td></tr></table></figure>
-<h4 id="由client設定cookie：">由client設定cookie：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.setRequestHeader( &#34;cookie&#34;, &#34;name=sparrow;&#34; );</span><br></pre></td></tr></table></figure>
-<h2 id="使用cookie常見問題">使用cookie常見問題</h2><h4 id="通常cookie能不能被存取，會依照expires、path、domain、HttpOnly、secure這幾項辨識：">通常cookie能不能被存取，會依照<strong>expires、path、domain、HttpOnly、secure</strong>這幾項辨識：</h4><ul>
+<h2 id="清除與設定cookie"><a href="#清除與設定cookie" class="headerlink" title="清除與設定cookie"></a>清除與設定cookie</h2><h4 id="建立一個HTTPClient："><a href="#建立一個HTTPClient：" class="headerlink" title="建立一個HTTPClient："></a>建立一個HTTPClient：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var client = Ti.Network.createHTTPClient(&#123;&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="指定清除某個網域底下的cookie："><a href="#指定清除某個網域底下的cookie：" class="headerlink" title="指定清除某個網域底下的cookie："></a>指定清除某個網域底下的cookie：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.clearCookies( &quot;www.example.com&quot; );</span><br></pre></td></tr></table></figure>
+<h4 id="由client設定cookie："><a href="#由client設定cookie：" class="headerlink" title="由client設定cookie："></a>由client設定cookie：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.setRequestHeader( &quot;cookie&quot;, &quot;name=sparrow;&quot; );</span><br></pre></td></tr></table></figure>
+<h2 id="使用cookie常見問題"><a href="#使用cookie常見問題" class="headerlink" title="使用cookie常見問題"></a>使用cookie常見問題</h2><h4 id="通常cookie能不能被存取，會依照expires、path、domain、HttpOnly、secure這幾項辨識："><a href="#通常cookie能不能被存取，會依照expires、path、domain、HttpOnly、secure這幾項辨識：" class="headerlink" title="通常cookie能不能被存取，會依照expires、path、domain、HttpOnly、secure這幾項辨識："></a>通常cookie能不能被存取，會依照<strong>expires、path、domain、HttpOnly、secure</strong>這幾項辨識：</h4><ul>
 <li><p>expires ： cookie的時效性，當時間超過expires設定的日期，這個cookie將會被捨棄。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expires=Sat, 17-Oct-2015 14:11:09 GMT;</span><br></pre></td></tr></table></figure>
 </li>
@@ -120,7 +120,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path=/;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>domain ： cookie允許存取的domain。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">domain=.google.com.tw;&#10;&#26368;&#21069;&#38754;&#30340;.&#25351;&#24471;&#26159;&#23376;&#32178;&#22495;&#30342;&#21487;&#23384;&#21462;&#65292;&#20363;&#22914;&#65306;&#10;www.google.com.tw&#10;ad.google.com.tw</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">domain=.google.com.tw;</span><br><span class="line">最前面的.指得是子網域皆可存取，例如：</span><br><span class="line">www.google.com.tw</span><br><span class="line">ad.google.com.tw</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>HttpOnly ： 在瀏覽器下看到這個屬性時，<strong>只允許server端操作此cookie</strong>，換句話說client雖然存此cookie，卻無權操作，可防止透過xss將cookie偷走。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HttpOnly</span><br></pre></td></tr></table></figure>
@@ -130,15 +130,15 @@
 </li>
 </ul>
 <p>如果有用到nginx、apache這類的server去做proxy，需要檢查path或domain，才不會遇到cookie無效的狀況。</p>
-<h2 id="解析response的header">解析response的header</h2><p>在android的device，如果想要取得header的內容可以使用<a href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.Network.HTTPClient-property-allResponseHeaders" target="_blank" rel="external"><code>allResponseHeaders</code></a>，雖然titanium有提供<a href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.Network.HTTPClient-method-getResponseHeader" target="_blank" rel="external"><code>getResponseHeader</code></a>的功能，實際使用過都無法取得到值。</p>
-<h4 id="在onload取值：">在onload取值：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client.onload = function()&#123;&#10;&#10;  Ti.API.info( client.allResponseHeaders );&#10;&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="如果你想取得一個header的json，可以實作一個類似這種function：">如果你想取得一個header的json，可以實作一個類似這種function：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;/**&#10;* @param &#123;*&#125; ary&#10;* @type boolean&#10;*/&#10;var isArray = function( ary )&#123;&#10;&#10;  return Object.prototype.toString.call( ary ) === &#34;[object Array]&#34;;&#10;&#125;;&#10;&#10;/**&#10;* @param &#123;String&#125; allResHeaders&#10;* @type Object&#10;*/&#10;var getHeaders = function( allResHeaders )&#123;&#10;&#10;  var result = &#123;&#125;,&#10;&#10;  headerStrs = allResHeaders.split( &#34;\n&#34; );&#10;&#10;  for ( var index in headerStrs ) &#123;&#10;&#10;    if ( headerStrs[index] ) &#123;&#10;&#10;      var header = result[index].split( &#34;:&#34;, 2 ),&#10;&#10;      name = header[0].toLowerCase(),&#10;&#10;      value = header[1];&#10;&#10;      if ( result[name] &#38;&#38; !isArray( result[name] ) ) result[name] = [ result[name], value];&#10;&#10;      else if ( isArray( result[name] ) ) result[name].push( value );&#10;&#10;      else result[name] = value;&#10;&#10;    &#125;&#10;  &#125;&#10;&#10;  return result;&#10;&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="透過getHeaders取值：">透過getHeaders取值：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var headers = getHeaders( client.allResponseHeaders );&#10;Ti.API.info( headers );</span><br></pre></td></tr></table></figure>
+<h2 id="解析response的header"><a href="#解析response的header" class="headerlink" title="解析response的header"></a>解析response的header</h2><p>在android的device，如果想要取得header的內容可以使用<a href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.Network.HTTPClient-property-allResponseHeaders" target="_blank" rel="external"><code>allResponseHeaders</code></a>，雖然titanium有提供<a href="http://docs.appcelerator.com/titanium/3.0/#!/api/Titanium.Network.HTTPClient-method-getResponseHeader" target="_blank" rel="external"><code>getResponseHeader</code></a>的功能，實際使用過都無法取得到值。</p>
+<h4 id="在onload取值："><a href="#在onload取值：" class="headerlink" title="在onload取值："></a>在onload取值：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">client.onload = function()&#123;</span><br><span class="line"></span><br><span class="line">  Ti.API.info( client.allResponseHeaders );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="如果你想取得一個header的json，可以實作一個類似這種function："><a href="#如果你想取得一個header的json，可以實作一個類似這種function：" class="headerlink" title="如果你想取得一個header的json，可以實作一個類似這種function："></a>如果你想取得一個header的json，可以實作一個類似這種function：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line">* @param &#123;*&#125; ary</span><br><span class="line">* @type boolean</span><br><span class="line">*/</span><br><span class="line">var isArray = function( ary )&#123;</span><br><span class="line"></span><br><span class="line">  return Object.prototype.toString.call( ary ) === &quot;[object Array]&quot;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">* @param &#123;String&#125; allResHeaders</span><br><span class="line">* @type Object</span><br><span class="line">*/</span><br><span class="line">var getHeaders = function( allResHeaders )&#123;</span><br><span class="line"></span><br><span class="line">  var result = &#123;&#125;,</span><br><span class="line"></span><br><span class="line">  headerStrs = allResHeaders.split( &quot;\n&quot; );</span><br><span class="line"></span><br><span class="line">  for ( var index in headerStrs ) &#123;</span><br><span class="line"></span><br><span class="line">    if ( headerStrs[index] ) &#123;</span><br><span class="line"></span><br><span class="line">      var header = result[index].split( &quot;:&quot;, 2 ),</span><br><span class="line"></span><br><span class="line">      name = header[0].toLowerCase(),</span><br><span class="line"></span><br><span class="line">      value = header[1];</span><br><span class="line"></span><br><span class="line">      if ( result[name] &amp;&amp; !isArray( result[name] ) ) result[name] = [ result[name], value];</span><br><span class="line"></span><br><span class="line">      else if ( isArray( result[name] ) ) result[name].push( value );</span><br><span class="line"></span><br><span class="line">      else result[name] = value;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="透過getHeaders取值："><a href="#透過getHeaders取值：" class="headerlink" title="透過getHeaders取值："></a>透過getHeaders取值：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var headers = getHeaders( client.allResponseHeaders );</span><br><span class="line">Ti.API.info( headers );</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/17/在titanium-httpclient使用cookie與header/" data-id="cihc3k8au000y3264zm0vohnx" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/17/在titanium-httpclient使用cookie與header/" data-id="cinhl1p5i009t5164xr9jw6ea" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/17/在titanium-httpclient使用cookie與header/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -246,7 +246,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -292,7 +292,7 @@
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

@@ -20,7 +20,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -106,7 +106,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h6 id="以下是一個簡單的closure_example：">以下是一個簡單的closure example：</h6><pre class="brush:js">function doSomething(){
+        <h6 id="以下是一個簡單的closure-example："><a href="#以下是一個簡單的closure-example：" class="headerlink" title="以下是一個簡單的closure example："></a>以下是一個簡單的closure example：</h6><pre class="brush:js">function doSomething(){
     var x = 100;
     function add(y){
         x = x + y;
@@ -132,7 +132,7 @@ var add2 = doSomething();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/03/24/javascript-closure/" data-id="cihc3k8f000853264in2oymi2" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/03/24/javascript-closure/" data-id="cinhl1p2d003u5164y46nfyvh" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/03/24/javascript-closure/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -176,12 +176,12 @@ var add2 = doSomething();
 <pre class="brush:js">jQuery.extend( target, [ object1 ], [ objectN ] );</pre>
 
 <p>當<span style="color:#00f;">extend return</span>時，與<span style="color:#00f;">target</span>是同一個<span style="color:#00f;">object</span>。</p>
-<h6 id="相當於以下的code：">相當於以下的code：</h6><pre class="brush:js">for(var name in object)
+<h6 id="相當於以下的code："><a href="#相當於以下的code：" class="headerlink" title="相當於以下的code："></a>相當於以下的code：</h6><pre class="brush:js">for(var name in object)
 target[ name ] = object[name];</pre>
 
 <p><span style="color:#f00;">但是這樣會有一個問題，當object裡的屬性有object或是array時，他並不會配置新的記憶體，而時指向同個記憶體。</span></p>
-<pre><code><span class="tag">&lt;/span&gt;</span>
-</code></pre><h6 id="例如：">例如：</h6><pre class="brush:js">var object = {key:3,data:{name:&quot;sparrow&quot;}};
+<pre><code>&lt;/span&gt;
+</code></pre><h6 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h6><pre class="brush:js">var object = {key:3,data:{name:&quot;sparrow&quot;}};
 var target = {};
     $.extend(target,object);
     //result:sparrow
@@ -198,19 +198,19 @@ var target = {};
 <p>當<span style="color:#00f;">deep</span>會true時，他會用遞迴的方式，將<span style="color:#00f;">array</span>和<span style="color:#00f;">object</span>配置一個新的空間，然後將值複製過去。</p>
 <p><span class="Apple-style-span" style="font-weight: bold; ">jquery主要copy source code如下：</span></p>
 <p><pre class="brush:js">// Recurse if we&#39;re merging plain objects or arrays<br>if ( deep &amp;&amp; copy &amp;&amp; ( jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)) ) ) {<br>    if ( copyIsArray ) {<br>         copyIsArray = false;<br>         clone = src &amp;&amp; jQuery.isArray(src) ? src : [];</pre></p>
-<pre><code>} <span class="keyword">else</span> {
-     <span class="built_in">clone</span> = src &amp;amp;&amp;amp; jQuery.isPlainObject(src) ? src : {};
+<pre><code>} else {
+     clone = src &amp;amp;&amp;amp; jQuery.isPlainObject(src) ? src : {};
 }    
 
- // Never move original objects, <span class="built_in">clone</span> them
-     target[ name ] = jQuery.extend( deep, <span class="built_in">clone</span>, copy );
+ // Never move original objects, clone them
+     target[ name ] = jQuery.extend( deep, clone, copy );
 </code></pre><p>// Don&#39;t bring in undefined values<br>} else if ( copy !== undefined ) {<br>   target[ name ] = copy;<br>}&nbsp;</p>
 <div><span class="Apple-style-span" style="font-family: Arial, Verdana, sans-serif; white-space: normal; "><br><br>    </span></div>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/03/23/jquery-extend/" data-id="cihc3k8ec00743264v3jd1b71" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/03/23/jquery-extend/" data-id="cinhl1p2x004o5164p56l2hws" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/03/23/jquery-extend/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -252,7 +252,7 @@ var target = {};
       
         <div><strong><span style="color:#00f;">closure template</span></strong>是由<span style="color:#00f;">google release</span>的工具之一，最主要是為了讓<span style="color:#00f;">html</span>與程式邏輯分開，方</div><br><div>便程式的維護性，讓程式只要像<span style="color:#00f;">call method</span>的方式，將直塞入即可得到一個完整的<span style="color:#00f;">html</span>。</div><br><div>以下是一個簡單的範例：</div>
 
-<h6 id="soy：">soy：</h6><p><pre class="brush:js">{namespace examples.simple}</pre></p>
+<h6 id="soy："><a href="#soy：" class="headerlink" title="soy："></a>soy：</h6><p><pre class="brush:js">{namespace examples.simple}</pre></p>
 <p>/**</p>
 <ul>
 <li>@param color</li>
@@ -264,19 +264,19 @@ var target = {};
 <p></p>
 <div><span style="color:#00f;">soy</span>檔案的定義方式，主要是定義在註解裡，再由<span style="color:#00f;">template</span>裡的<span style="color:#f00;">{$color}</span>，將值塞入。</div><br><div>此<span style="color:#00f;">soy</span>定義了兩個參數，分別為<span style="color:#00f;">name</span>和<span style="color:#00f;">color</span>，作為為塞入樣板的參數。</div><br><div><span style="color:#f00;">(即使無參數傳入時，也必須保留註解。)</span></div><br><div>&nbsp;</div>
 
-<h6 id="接著將soy檔轉成js，執行以下指令：">接著將soy檔轉成js，執行以下指令：</h6><div><span style="color:#808080;"><strong><span style="background-color:#fff;">java -jar SoyToJsSrcCompiler.jar —outputPathFormat firstExample.js firstExample.soy</span></strong></span></div><br><div>&nbsp;</div>
+<h6 id="接著將soy檔轉成js，執行以下指令："><a href="#接著將soy檔轉成js，執行以下指令：" class="headerlink" title="接著將soy檔轉成js，執行以下指令："></a>接著將soy檔轉成js，執行以下指令：</h6><div><span style="color:#808080;"><strong><span style="background-color:#fff;">java -jar SoyToJsSrcCompiler.jar –outputPathFormat firstExample.js firstExample.soy</span></strong></span></div><br><div>&nbsp;</div>
 
-<h6 id="javascript的使用方式：">javascript的使用方式：</h6><p><pre class="brush:js">document.write(examples.simple.car({name:&quot;cool car&quot;,color:&quot;yellow&quot;}));<br></pre></p>
+<h6 id="javascript的使用方式："><a href="#javascript的使用方式：" class="headerlink" title="javascript的使用方式："></a>javascript的使用方式：</h6><p><pre class="brush:js">document.write(examples.simple.car({name:&quot;cool car&quot;,color:&quot;yellow&quot;}));<br></pre></p>
 <div>要使用<span style="color:#00f;">template</span>之前必須先載入<span style="color:#00f;">soyutils.js</span>，接著載入剛剛由<span style="color:#00f;">soy</span>產生好的<span style="color:#00f;">firstExample.js，</span></div><br><div>最後只要對應好<span style="color:#00f;">template</span>的命名，由<span style="color:#00f;">js</span>呼叫就可以產生<span style="color:#00f;">html</span>了。</div><br><div>&nbsp;</div>
 
-<h6 id="java的使用方式：">java的使用方式：</h6><p><pre class="brush:java">import com.google.template.soy.SoyFileSet;<br>import com.google.template.soy.data.SoyMapData;<br>import com.google.template.soy.tofu.SoyTofu;<br>import java.io.File;</pre></p>
+<h6 id="java的使用方式："><a href="#java的使用方式：" class="headerlink" title="java的使用方式："></a>java的使用方式：</h6><p><pre class="brush:java">import com.google.template.soy.SoyFileSet;<br>import com.google.template.soy.data.SoyMapData;<br>import com.google.template.soy.tofu.SoyTofu;<br>import java.io.File;</pre></p>
 <p>public class FirstExample {</p>
 <p>  public static void main (String[] args) {</p>
-<pre><code>SoyFileSet sfs = (<span class="keyword">new</span> SoyFileSet.Builder()).<span class="built_in">add</span>(<span class="keyword">new</span> File(&amp;quot;firstExample.soy&amp;quot;)).build();
+<pre><code>SoyFileSet sfs = (new SoyFileSet.Builder()).add(new File(&amp;quot;firstExample.soy&amp;quot;)).build();
 
 SoyTofu tofu = sfs.compileToJavaObj();
 
-System.out.<span class="built_in">println</span>(tofu.render(&amp;quot;examples.simple.car&amp;quot;, <span class="keyword">new</span> SoyMapData(&amp;quot;name&amp;quot;,&amp;quot;cool car&amp;quot;,&amp;quot;<span class="built_in">color</span>&amp;quot;,&amp;quot;yellow&amp;quot;), <span class="keyword">null</span>));
+System.out.println(tofu.render(&amp;quot;examples.simple.car&amp;quot;, new SoyMapData(&amp;quot;name&amp;quot;,&amp;quot;cool car&amp;quot;,&amp;quot;color&amp;quot;,&amp;quot;yellow&amp;quot;), null));
 </code></pre><p>  }</p>
 <p>}<br></p>
 <div>以上做法主要是讀取<span style="color:#00f;">soy</span>檔(<span style="color:#f00;">與js做法不同</span>)，接著將檔案轉成<span style="color:#00f;">java</span>的<span style="color:#00f;">object</span>，最後塞入參數即可產生<span style="color:#00f;">html</span>。</div><br><div><span style="color:#00f;">closure template</span>還有很多<span style="color:#00f;">command</span>可以使用，例如<span style="color:#00f;">if</span>、<span style="color:#00f;">for</span>和<span style="color:#00f;">switch</span>等…，詳情請參考此<a href="http://code.google.com/intl/zh-TW/closure/templates/docs/commands.html" target="_blank" rel="external">link</a>。</div>
@@ -284,7 +284,7 @@ System.out.<span class="built_in">println</span>(tofu.render(&amp;quot;examples.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/03/17/closure-template/" data-id="cihc3k8g400a032647ql4plc8" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/03/17/closure-template/" data-id="cinhl1p1c002f5164b1h3p1sj" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/03/17/closure-template/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -327,7 +327,7 @@ System.out.<span class="built_in">println</span>(tofu.render(&amp;quot;examples.
         <p>在<span style="color:#00f;">IE</span>中可利用<span style="color:#00f;">cookie</span>、<span style="color:#00f;">flash</span>、<span style="color:#00f;">storage</span>和<span style="color:#00f;">behavior</span>…等將資料儲存在client端。</p>
 <p>但在<span style="color:#00f;">IE6</span>並不支援<span style="color:#00f;">storage</span>屬性，要儲存較大量的資料只能透過其他方法，若</p>
 <p>不想掛載<span style="color:#00f;">flash</span>…等的情況下，可以透過<span style="color:#00f;">behavior</span>將資料存在<span style="color:#00f;">brower</span>。</p>
-<h6 id="css：">css：</h6><pre class="brush:css">.storeuserData {
+<h6 id="css："><a href="#css：" class="headerlink" title="css："></a>css：</h6><pre class="brush:css">.storeuserData {
     behavior: url(#default#userData);
 }
 </pre>
@@ -337,7 +337,7 @@ System.out.<span class="built_in">println</span>(tofu.render(&amp;quot;examples.
 </pre><pre class="brush:js">object.addBehavior(&quot;#default#userData&quot;)
 </pre>
 
-<h6 id="javascript：">javascript：</h6><pre class="brush:js">function save(){
+<h6 id="javascript："><a href="#javascript：" class="headerlink" title="javascript："></a>javascript：</h6><pre class="brush:js">function save(){
    var persist=persistForm.persistInput;
    persist.setAttribute(&quot;persist&quot;,persist.value);
    persist.save(&quot;oXMLBranch&quot;);
@@ -352,14 +352,14 @@ function load(){
 <p>當<span style="color:#00f;">class</span>被定義成<span class="Apple-style-span" style="font-family: monospace; white-space: pre; "><span style="color:#00f;">behavior:url(#default#userData)</span>時，</span><span style="color:#00f;"><span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">setAttribute</span></span><span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">、</span><span style="color:#00f;"><span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">getAttribute</span></span></p>
 <p><span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">將會對暫存資料操作，</span><span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">而</span><span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">不是</span><span style="color:#00f;">dom</span>的<span style="color:#00f;">attribute</span>，最後只要再設定完<span style="color:#00f;">attribute</span>後，執行<span style="color:#00f;">save</span>資料</p>
 <p>就會儲存起來了，<span style="color:#00f;">load</span>則是選擇要讀取，讀完接著就可以取得<span style="color:#00f;">attribute</span>。</p>
-<h6 id="以下html對應上方的js_code：">以下html對應上方的js code：</h6><pre class="brush:html">
+<h6 id="以下html對應上方的js-code："><a href="#以下html對應上方的js-code：" class="headerlink" title="以下html對應上方的js code："></a>以下html對應上方的js code：</h6><pre class="brush:html">
 &lt;form id=&quot;persistForm&quot;&gt;&lt;input class=&quot;storeuserData&quot; id=&quot;persistInput&quot; type=&quot;text&quot; /&gt;
     &lt;input onclick=&quot;load()&quot; type=&quot;button&quot; value=&quot;Load&quot; /&gt;
     &lt;input onclick=&quot;save()&quot; type=&quot;button&quot; value=&quot;Save&quot; /&gt;
 &lt;/form&gt;
 </pre>
 
-<h6 id="換頁保留欄位的方法(換頁時，按上一頁，將會保留欄位資料)：">換頁保留欄位的方法(換頁時，按上一頁，將會保留欄位資料)：</h6><pre class="brush:html">
+<h6 id="換頁保留欄位的方法-換頁時，按上一頁，將會保留欄位資料-："><a href="#換頁保留欄位的方法-換頁時，按上一頁，將會保留欄位資料-：" class="headerlink" title="換頁保留欄位的方法(換頁時，按上一頁，將會保留欄位資料)："></a>換頁保留欄位的方法(換頁時，按上一頁，將會保留欄位資料)：</h6><pre class="brush:html">
 &lt;meta content=&quot;history&quot; name=&quot;save&quot; /&gt;
 &lt;style&gt;                                                                                                                                               
 .saveHistory {behavior:url(#default#savehistory);}
@@ -371,7 +371,7 @@ function load(){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/03/15/在ie中的userdata-behavior/" data-id="cihc3k8aw00143264aw955t79" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/03/15/在ie中的userdata-behavior/" data-id="cinhl1p5g009o5164s2vrem5e" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/03/15/在ie中的userdata-behavior/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -413,7 +413,7 @@ function load(){
       
         <p>在提到<span style="color:#00f;"><strong>factory pattern</strong></span>之前，讓我們先來理解一些基本的概念。</p>
 <p>當javascript的<span style="color:#f00;">private變數必須以var定義</span>，反之沒加var則為global變數。而由function建立的object，裡面的<span style="color:#f00;">this將會指向物件本身</span>，同時也<span style="color:#f00;">是public的屬性</span>。一般prototype與this定義的function有一個很大差異，由<span style="color:#f00;">this定義的function</span>，每個function都是獨立的，簡單來說都<span style="color:#f00;">佔由實體空間</span>，而由<span style="color:#f00;">prototype</span>定義的，則是<span style="color:#f00;">多個物件共用同</span>一個資源。</p>
-<h6 id="以下是一個簡單的factory_pattern：">以下是一個簡單的<span style="color:#00f;">factory pattern<span style="color:#000;">：</span></span></h6><pre class="brush:js">/**
+<h6 id="以下是一個簡單的factory-pattern："><a href="#以下是一個簡單的factory-pattern：" class="headerlink" title="以下是一個簡單的factory pattern："></a>以下是一個簡單的<span style="color:#00f;">factory pattern<span style="color:#000;">：</span></span></h6><pre class="brush:js">/**
 * @name Car
 * @class
 * @constructor
@@ -487,7 +487,7 @@ var carFactory = (function(){
 </pre>
 
 <p>首先我們定義了一個<strong>carFactory</strong>物件，裡面有個內部class名稱為Car，分別定義了setColor、getColor、getDoorTotal、show四個function。接著再由carFactory的create，將car object export出去，而getCount則是計算了建立car object的total。</p>
-<h6 id="最後是實際使用的code：">最後是實際使用的code：</h6><pre class="brush:js">var car1 = carFactory.create();
+<h6 id="最後是實際使用的code："><a href="#最後是實際使用的code：" class="headerlink" title="最後是實際使用的code："></a>最後是實際使用的code：</h6><pre class="brush:js">var car1 = carFactory.create();
     car1.setColor(&quot;blue&quot;);
     car1.show();
 var car2 = carFactory.create();
@@ -500,12 +500,12 @@ var car3 = carFactory.create();
 
 </pre>
 
-<h6 id="result：">result：</h6><p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/jsDoc_toolkit/factorypattern.png" alt="" title="factory pattern"></p>
+<h6 id="result："><a href="#result：" class="headerlink" title="result："></a>result：</h6><p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/jsDoc_toolkit/factorypattern.png" alt="" title="factory pattern"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/03/14/factory-pattern-for-javascript/" data-id="cihc3k8fw009j32648l8l7vii" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/03/14/factory-pattern-for-javascript/" data-id="cinhl1p1j002r5164eg0yo2l8" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/03/14/factory-pattern-for-javascript/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -607,7 +607,7 @@ console.log(a);</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/03/11/javascript的scope/" data-id="cihc3k8eg007e3264gjg8r2v3" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/03/11/javascript的scope/" data-id="cinhl1p2q004h5164qjv32be6" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/03/11/javascript的scope/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -647,21 +647,21 @@ console.log(a);</pre>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="tag:">tag:</h4><div><span style="color: #0000ff;">@name &nbsp;<span style="color: #000000;">當無法辨識類型時，使用此tag直接定義名稱。(範例如下)</span></span> <span style="color: #0000ff;"><span style="color: #000000;"> </span></span></div><br><pre class="brush:js">//利用字串建立一個function<br>eval(&quot;window.test= function() {};&quot;)</pre><br><div><span style="color: #0000ff;">@lends</span> 幫助function去參照其他class和object。</div>
+        <h4 id="tag"><a href="#tag" class="headerlink" title="tag:"></a>tag:</h4><div><span style="color: #0000ff;">@name &nbsp;<span style="color: #000000;">當無法辨識類型時，使用此tag直接定義名稱。(範例如下)</span></span> <span style="color: #0000ff;"><span style="color: #000000;"> </span></span></div><br><pre class="brush:js">//利用字串建立一個function<br>eval(&quot;window.test= function() {};&quot;)</pre><br><div><span style="color: #0000ff;">@lends</span> 幫助function去參照其他class和object。</div>
 
-<h4 id="example:"><strong>example:</strong></h4><p><pre class="brush:js">/<em>*
+<h4 id="example"><a href="#example" class="headerlink" title="example:"></a><strong>example:</strong></h4><p><pre class="brush:js">/<em>*
 </em></pre></p>
 <ul>
 <li>@name View</li>
 <li>@class</li>
 <li>@constructor<br><em>/<br>(function(){<br>/*</em></li>
 <li><p>@lends View<br>*/<br>function View(){</p>
-<pre><code><span class="keyword">var</span> _name;
+<pre><code>var _name;
 
-<span class="comment">/**
+/**
 * @param {String} name
-*/</span>
-<span class="keyword">this</span>.setName = <span class="function"><span class="keyword">function</span><span class="params">(name)</span></span>{
+*/
+this.setName = function(name){
         _name = name;
 };
 </code></pre><p>}</p>
@@ -669,7 +669,7 @@ console.log(a);</pre>
 </ul>
 <p>/**</p>
 <ul>
-<li>@param {string} str<br>*/<br>View.prototype.show = function(str){<pre><code><span class="function">alert</span>(&amp;quot;show<span class="value">:&amp;quot;</span>+str);
+<li>@param {string} str<br>*/<br>View.prototype.show = function(str){<pre><code>alert(&amp;quot;show:&amp;quot;+str);
 </code></pre>}</li>
 </ul>
 <p>})();</p>
@@ -678,7 +678,7 @@ console.log(a);</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/03/10/jsdoc-toolkit使用在anonymous-function寫法/" data-id="cihc3k8e1006i3264f0gozt0c" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/03/10/jsdoc-toolkit使用在anonymous-function寫法/" data-id="cinhl1p3800595164z4cz1axf" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/03/10/jsdoc-toolkit使用在anonymous-function寫法/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -762,7 +762,7 @@ Dog.prototype.attack = function(target){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/03/09/jsdoc-tookit-introduction/" data-id="cihc3k8e2006m326413sdls2c" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/03/09/jsdoc-tookit-introduction/" data-id="cinhl1p33005251646k58e0sa" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/03/09/jsdoc-tookit-introduction/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -850,7 +850,7 @@ Dog.prototype.attack = function(target){
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -894,7 +894,7 @@ Dog.prototype.attack = function(target){
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

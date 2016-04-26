@@ -20,7 +20,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -168,7 +168,7 @@ print &quot;with column names:&quot;, cur.fetchone()[0]</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/28/sqlite-adapter-and-converter/" data-id="cihc3k8cn003s3264ipuuuft7" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/28/sqlite-adapter-and-converter/" data-id="cinhl1p4b007c516458igjhwc" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/28/sqlite-adapter-and-converter/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -208,7 +208,7 @@ print &quot;with column names:&quot;, cur.fetchone()[0]</pre>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="row_factory">row_factory</h4><p>主要功能是改變sqlite抓取到資料，回傳的output的格式。</p>
+        <h4 id="row-factory"><a href="#row-factory" class="headerlink" title="row_factory"></a>row_factory</h4><p>主要功能是改變sqlite抓取到資料，回傳的output的格式。</p>
 <p>例如原先的output type是tuple：</p>
 <pre class="brush:python">cursor.execute(&quot;select 1 as a&quot;)
 result = cursor.fetchone()
@@ -246,7 +246,7 @@ print len( result )
 print result.keys()
 </pre>
 
-<h4 id="text_factory">text_factory</h4><p>只要query出來的內容是text，就會經過這個function，可以用於字串編碼轉換，當然也可以利用這個方式去修改內容.。</p>
+<h4 id="text-factory"><a href="#text-factory" class="headerlink" title="text_factory"></a>text_factory</h4><p>只要query出來的內容是text，就會經過這個function，可以用於字串編碼轉換，當然也可以利用這個方式去修改內容.。</p>
 <p>以下是簡單example：</p>
 <pre class="brush:python">import sqlite3
 
@@ -301,7 +301,7 @@ print type(row[0])</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/27/python-sqlite3-row_factory-and-text_factory/" data-id="cihc3k8d6004x32640ro3yx5h" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/27/python-sqlite3-row_factory-and-text_factory/" data-id="cinhl1p3u006h51646qc5gw2y" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/27/python-sqlite3-row_factory-and-text_factory/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -341,7 +341,7 @@ print type(row[0])</pre>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="create_function">create_function</h4><p>如果在sqlite想自訂function，可使用<strong><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_function" target="_blank" rel="external">create_function</a></strong>來處理，以下是範例：</p>
+        <h4 id="create-function"><a href="#create-function" class="headerlink" title="create_function"></a>create_function</h4><p>如果在sqlite想自訂function，可使用<strong><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_function" target="_blank" rel="external">create_function</a></strong>來處理，以下是範例：</p>
 <pre class="brush:python">import sqlite3
 import md5       
 
@@ -362,7 +362,7 @@ print cur.fetchall()
 <pre class="brush:python">[(u&#39;c4ca4238a0b923820dcc509a6f75849b&#39;,), (u&#39;c81e728d9d4c2f636f067f89cc14862c&#39;,)]</pre>
 
 <p>從上面結果可以看出，在每筆資料中都是獨立的，只將原先輸入的值或欄位值去處理。另外connect的部份，是直接使用記憶體，而不是file方式，所以程式結束後，就釋放掉了。</p>
-<h4 id="create_aggregate">create_aggregate</h4><p>那麼如果製作一個類似count、sum之類的功能，可以使用<strong><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_aggregate" target="_blank" rel="external">create_aggregate</a></strong>，以下是官方範例：</p>
+<h4 id="create-aggregate"><a href="#create-aggregate" class="headerlink" title="create_aggregate"></a>create_aggregate</h4><p>那麼如果製作一個類似count、sum之類的功能，可以使用<strong><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_aggregate" target="_blank" rel="external">create_aggregate</a></strong>，以下是官方範例：</p>
 <pre class="brush:python">import sqlite3 
 
 class MySum:   
@@ -389,7 +389,7 @@ print cur.fetchall()
 <pre class="brush:python">[(3,)]</pre>
 
 <p>當執行select的時候，會呼叫mysum，mysum的step會將所有傳入值累加，在由finalize回傳結果，這樣就可以處理每筆資料之間的關係。</p>
-<h4 id="create_collation">create_collation</h4><p>最後<strong><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_collation" target="_blank" rel="external">create_</a><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_collation" target="_blank" rel="external">collation</a></strong>處理的功能，就是排序問題，可以依照自己自訂方式排序，官方提供的範例是反向功能(reverse)，如下：</p>
+<h4 id="create-collation"><a href="#create-collation" class="headerlink" title="create_collation"></a>create_collation</h4><p>最後<strong><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_collation" target="_blank" rel="external">create_</a><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_collation" target="_blank" rel="external">collation</a></strong>處理的功能，就是排序問題，可以依照自己自訂方式排序，官方提供的範例是反向功能(reverse)，如下：</p>
 <pre class="brush:python">import sqlite3 
 
 def collate_reverse(string1, string2):                
@@ -421,7 +421,7 @@ string1 &gt; string 2 回傳 1</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/26/python-sqlite3-create-function、aggregate-and-collation/" data-id="cihc3k8d800533264nv0ytkld" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/26/python-sqlite3-create-function、aggregate-and-collation/" data-id="cinhl1p3t006e5164bttktclk" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/26/python-sqlite3-create-function、aggregate-and-collation/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -491,7 +491,7 @@ book.save({name:&quot;Tom&quot;}); </pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/25/backbone-js-emulatehttp-and-emulatejson/" data-id="cihc3k8gj00as326425hywqn8" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/25/backbone-js-emulatehttp-and-emulatejson/" data-id="cinhl1p0t001u5164u1rkm84h" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/25/backbone-js-emulatehttp-and-emulatejson/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -557,7 +557,7 @@ javascript:alert(3);</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/22/javascript-event偵錯-visual-event-2/" data-id="cihc3k8ex00813264ki9oty2i" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/22/javascript-event偵錯-visual-event-2/" data-id="cinhl1p2f003x5164pye6akto" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/22/javascript-event偵錯-visual-event-2/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -792,7 +792,7 @@ canvas.show()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/21/python-class-decorators-for-classes/" data-id="cihc3k8di005e3264ky71n0x7" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/21/python-class-decorators-for-classes/" data-id="cinhl1p3k005z51642ww3gl4q" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/21/python-class-decorators-for-classes/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -839,7 +839,7 @@ canvas.show()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/20/restful-on-backbone-js-and-node-js/" data-id="cihc3k8cu004a3264udq1vnhn" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/20/restful-on-backbone-js-and-node-js/" data-id="cinhl1p460072516494ne5kgw" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/20/restful-on-backbone-js-and-node-js/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -896,7 +896,7 @@ canvas.show()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/13/python-無法使用-https/" data-id="cihc3k8d4004u326439ldy0dt" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/13/python-無法使用-https/" data-id="cinhl1p3w006k51647tg4i5tf" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/13/python-無法使用-https/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -955,7 +955,7 @@ canvas.show()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/11/python-install-easy_install/" data-id="cihc3k8da00583264mavjkywx" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/11/python-install-easy_install/" data-id="cinhl1p3r00695164xegqpksk" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/11/python-install-easy_install/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1015,7 +1015,7 @@ sudo easy_install pyzmq</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/09/install-libzmq-version/" data-id="cihc3k8f4008c3264yetej2hb" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/09/install-libzmq-version/" data-id="cinhl1p28003r5164tcc6uzcn" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/09/install-libzmq-version/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1103,7 +1103,7 @@ sudo easy_install pyzmq</pre>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -1147,7 +1147,7 @@ sudo easy_install pyzmq</pre>
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

@@ -45,7 +45,7 @@ Th">
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -131,7 +131,7 @@ Th">
       
         <div><strong><span style="color:#00f;">closure template</span></strong>是由<span style="color:#00f;">google release</span>的工具之一，最主要是為了讓<span style="color:#00f;">html</span>與程式邏輯分開，方</div><br><div>便程式的維護性，讓程式只要像<span style="color:#00f;">call method</span>的方式，將直塞入即可得到一個完整的<span style="color:#00f;">html</span>。</div><br><div>以下是一個簡單的範例：</div>
 
-<h6 id="soy：">soy：</h6><p><pre class="brush:js">{namespace examples.simple}</pre></p>
+<h6 id="soy："><a href="#soy：" class="headerlink" title="soy："></a>soy：</h6><p><pre class="brush:js">{namespace examples.simple}</pre></p>
 <p>/**</p>
 <ul>
 <li>@param color</li>
@@ -143,19 +143,19 @@ Th">
 <p></p>
 <div><span style="color:#00f;">soy</span>檔案的定義方式，主要是定義在註解裡，再由<span style="color:#00f;">template</span>裡的<span style="color:#f00;">{$color}</span>，將值塞入。</div><br><div>此<span style="color:#00f;">soy</span>定義了兩個參數，分別為<span style="color:#00f;">name</span>和<span style="color:#00f;">color</span>，作為為塞入樣板的參數。</div><br><div><span style="color:#f00;">(即使無參數傳入時，也必須保留註解。)</span></div><br><div>&nbsp;</div>
 
-<h6 id="接著將soy檔轉成js，執行以下指令：">接著將soy檔轉成js，執行以下指令：</h6><div><span style="color:#808080;"><strong><span style="background-color:#fff;">java -jar SoyToJsSrcCompiler.jar —outputPathFormat firstExample.js firstExample.soy</span></strong></span></div><br><div>&nbsp;</div>
+<h6 id="接著將soy檔轉成js，執行以下指令："><a href="#接著將soy檔轉成js，執行以下指令：" class="headerlink" title="接著將soy檔轉成js，執行以下指令："></a>接著將soy檔轉成js，執行以下指令：</h6><div><span style="color:#808080;"><strong><span style="background-color:#fff;">java -jar SoyToJsSrcCompiler.jar –outputPathFormat firstExample.js firstExample.soy</span></strong></span></div><br><div>&nbsp;</div>
 
-<h6 id="javascript的使用方式：">javascript的使用方式：</h6><p><pre class="brush:js">document.write(examples.simple.car({name:&quot;cool car&quot;,color:&quot;yellow&quot;}));<br></pre></p>
+<h6 id="javascript的使用方式："><a href="#javascript的使用方式：" class="headerlink" title="javascript的使用方式："></a>javascript的使用方式：</h6><p><pre class="brush:js">document.write(examples.simple.car({name:&quot;cool car&quot;,color:&quot;yellow&quot;}));<br></pre></p>
 <div>要使用<span style="color:#00f;">template</span>之前必須先載入<span style="color:#00f;">soyutils.js</span>，接著載入剛剛由<span style="color:#00f;">soy</span>產生好的<span style="color:#00f;">firstExample.js，</span></div><br><div>最後只要對應好<span style="color:#00f;">template</span>的命名，由<span style="color:#00f;">js</span>呼叫就可以產生<span style="color:#00f;">html</span>了。</div><br><div>&nbsp;</div>
 
-<h6 id="java的使用方式：">java的使用方式：</h6><p><pre class="brush:java">import com.google.template.soy.SoyFileSet;<br>import com.google.template.soy.data.SoyMapData;<br>import com.google.template.soy.tofu.SoyTofu;<br>import java.io.File;</pre></p>
+<h6 id="java的使用方式："><a href="#java的使用方式：" class="headerlink" title="java的使用方式："></a>java的使用方式：</h6><p><pre class="brush:java">import com.google.template.soy.SoyFileSet;<br>import com.google.template.soy.data.SoyMapData;<br>import com.google.template.soy.tofu.SoyTofu;<br>import java.io.File;</pre></p>
 <p>public class FirstExample {</p>
 <p>  public static void main (String[] args) {</p>
-<pre><code>SoyFileSet sfs = (<span class="keyword">new</span> SoyFileSet.Builder()).<span class="built_in">add</span>(<span class="keyword">new</span> File(&amp;quot;firstExample.soy&amp;quot;)).build();
+<pre><code>SoyFileSet sfs = (new SoyFileSet.Builder()).add(new File(&amp;quot;firstExample.soy&amp;quot;)).build();
 
 SoyTofu tofu = sfs.compileToJavaObj();
 
-System.out.<span class="built_in">println</span>(tofu.render(&amp;quot;examples.simple.car&amp;quot;, <span class="keyword">new</span> SoyMapData(&amp;quot;name&amp;quot;,&amp;quot;cool car&amp;quot;,&amp;quot;<span class="built_in">color</span>&amp;quot;,&amp;quot;yellow&amp;quot;), <span class="keyword">null</span>));
+System.out.println(tofu.render(&amp;quot;examples.simple.car&amp;quot;, new SoyMapData(&amp;quot;name&amp;quot;,&amp;quot;cool car&amp;quot;,&amp;quot;color&amp;quot;,&amp;quot;yellow&amp;quot;), null));
 </code></pre><p>  }</p>
 <p>}<br></p>
 <div>以上做法主要是讀取<span style="color:#00f;">soy</span>檔(<span style="color:#f00;">與js做法不同</span>)，接著將檔案轉成<span style="color:#00f;">java</span>的<span style="color:#00f;">object</span>，最後塞入參數即可產生<span style="color:#00f;">html</span>。</div><br><div><span style="color:#00f;">closure template</span>還有很多<span style="color:#00f;">command</span>可以使用，例如<span style="color:#00f;">if</span>、<span style="color:#00f;">for</span>和<span style="color:#00f;">switch</span>等…，詳情請參考此<a href="http://code.google.com/intl/zh-TW/closure/templates/docs/commands.html" target="_blank" rel="external">link</a>。</div>
@@ -163,7 +163,7 @@ System.out.<span class="built_in">println</span>(tofu.render(&amp;quot;examples.
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/03/17/closure-template/" data-id="cihc3k8g400a032647ql4plc8" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/03/17/closure-template/" data-id="cinhl1p1c002f5164b1h3p1sj" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/03/17/closure-template/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -271,7 +271,7 @@ System.out.<span class="built_in">println</span>(tofu.render(&amp;quot;examples.
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -317,7 +317,7 @@ System.out.<span class="built_in">println</span>(tofu.render(&amp;quot;examples.
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

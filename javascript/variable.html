@@ -42,7 +42,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -132,15 +132,15 @@
 <p>同時也相等於指定<code>this</code>下得值：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.name = <span class="string">"Tom"</span>;</span><br></pre></td></tr></table></figure>
 <p>上述這些方式，在沒有隔一層<code>function</code>的時候，皆為<strong>全域變數</strong>，也就是你用<code>var name = &quot;Tom&quot;;</code>宣告，用<code>winodw.name</code>同樣可以取值。</p>
-<h3 id="strict">strict</h3><p>在<strong>strict</strong>模式，使用<code>use strict</code>來指定<strong>嚴格模式</strong>，且一定要使用<code>var</code>來宣告，不然會出錯。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">'use strict'</span>;</span><br><span class="line"><span class="keyword">var</span> value = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="strict"><a href="#strict" class="headerlink" title="strict"></a>strict</h3><p>在<strong>strict</strong>模式，使用<code>use strict</code>來指定<strong>嚴格模式</strong>，且一定要使用<code>var</code>來宣告，不然會出錯。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="keyword">var</span> value = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
 <p>如果直接指定值，將會出現錯誤:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">'use strict'</span>;</span><br><span class="line">value = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line">value = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/javascript/variable.html" data-id="cihc3k88v00013264pge520xp" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/javascript/variable.html" data-id="cinhl1oza000j5164zpfd2awj" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/javascript/variable.html#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -227,7 +227,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -273,7 +273,7 @@
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

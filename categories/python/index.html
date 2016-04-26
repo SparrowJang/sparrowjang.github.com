@@ -20,7 +20,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -107,25 +107,25 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在python要使用aws的s3，官方建議是透過<a href="https://github.com/boto/boto" target="_blank" rel="external">boto</a>這套libs。</p>
-<h2 id="Dependency">Dependency</h2><ul>
+<h2 id="Dependency"><a href="#Dependency" class="headerlink" title="Dependency"></a>Dependency</h2><ul>
 <li>boto</li>
 </ul>
-<h2 id="Install">Install</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install boto</span><br></pre></td></tr></table></figure>
-<h2 id="Usage">Usage</h2><h3 id="Creating_a_Connection:">Creating a Connection:</h3><p>設定access和secret key，其中host為上傳s3位置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from boto.s3.connection import S3Connection&#10;&#10;conn = S3Connection(&#39;&#60;aws access key&#62;&#39;, &#39;&#60;aws secret key&#62;&#39;, host = &#39;s3.amazonaws.com&#39; )</span><br></pre></td></tr></table></figure></p>
-<h3 id="Getting_a_bucket：">Getting a bucket：</h3><p>如果你已經在s3的頁面建立好bucket了，可以直接使用get_bucket：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bucket = conn.get_bucket( &#39;mybucket&#39; )</span><br></pre></td></tr></table></figure></p>
-<p>或者自己建立：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bucket = conn.create_bucket(&#39;mybucket&#39;)</span><br></pre></td></tr></table></figure></p>
-<h3 id="Storing_Data：">Storing Data：</h3><p>使用key去建立一個檔案，其中<code>k.key</code>這個值，假設有多層<code>folder</code>直接設定在此：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from boto.s3.key import Key&#10;&#10;k = Key(bucket)&#10;k.key = &#39;folder/test.txt&#39;&#10;k.set_contents_from_string(&#39;This is a test of S3&#39;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install boto</span><br></pre></td></tr></table></figure>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><h3 id="Creating-a-Connection"><a href="#Creating-a-Connection" class="headerlink" title="Creating a Connection:"></a>Creating a Connection:</h3><p>設定access和secret key，其中host為上傳s3位置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from boto.s3.connection import S3Connection</span><br><span class="line"></span><br><span class="line">conn = S3Connection(&apos;&lt;aws access key&gt;&apos;, &apos;&lt;aws secret key&gt;&apos;, host = &apos;s3.amazonaws.com&apos; )</span><br></pre></td></tr></table></figure></p>
+<h3 id="Getting-a-bucket："><a href="#Getting-a-bucket：" class="headerlink" title="Getting a bucket："></a>Getting a bucket：</h3><p>如果你已經在s3的頁面建立好bucket了，可以直接使用get_bucket：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bucket = conn.get_bucket( &apos;mybucket&apos; )</span><br></pre></td></tr></table></figure></p>
+<p>或者自己建立：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bucket = conn.create_bucket(&apos;mybucket&apos;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Storing-Data："><a href="#Storing-Data：" class="headerlink" title="Storing Data："></a>Storing Data：</h3><p>使用key去建立一個檔案，其中<code>k.key</code>這個值，假設有多層<code>folder</code>直接設定在此：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from boto.s3.key import Key</span><br><span class="line"></span><br><span class="line">k = Key(bucket)</span><br><span class="line">k.key = &apos;folder/test.txt&apos;</span><br><span class="line">k.set_contents_from_string(&apos;This is a test of S3&apos;)</span><br></pre></td></tr></table></figure></p>
 <p>之後只要在重新連線，透過<code>k.get_contents_as_string()</code>就可以取得到資料了。</p>
-<p>如果要上傳一個file的話，可透過<code>set_contents_from_filename</code>，會將你local端的<code>foo.jpg</code>上傳至s3：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k.set_contents_from_filename(&#39;foo.jpg&#39;)</span><br></pre></td></tr></table></figure></p>
-<p>要下載則是採用<code>get_contents_to_filename</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k.get_contents_to_filename(&#39;bar.jpg&#39;)</span><br></pre></td></tr></table></figure></p>
+<p>如果要上傳一個file的話，可透過<code>set_contents_from_filename</code>，會將你local端的<code>foo.jpg</code>上傳至s3：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k.set_contents_from_filename(&apos;foo.jpg&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>要下載則是採用<code>get_contents_to_filename</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k.get_contents_to_filename(&apos;bar.jpg&apos;)</span><br></pre></td></tr></table></figure></p>
 <p>最後如果想透過變數去儲存至s3，一樣使用<code>set_contents_from_string</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = open( &#34;foo.jpg&#34;, &#34;rb&#34; )&#10;&#10;data = f.read()&#10;&#10;f.close()&#10;&#10;k.set_contents_from_string( data )</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">f = open( &quot;foo.jpg&quot;, &quot;rb&quot; )</span><br><span class="line"></span><br><span class="line">data = f.read()</span><br><span class="line"></span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line">k.set_contents_from_string( data )</span><br></pre></td></tr></table></figure>
 <p>以上這些方式，需檢查<code>k.key</code>是否對應好s3上面的路徑。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/02/16/amazon-s3-on-python/" data-id="cihc3k8h500bu32648am8ah5p" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/02/16/amazon-s3-on-python/" data-id="cinhl1ozt00125164eg7x9t6m" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/02/16/amazon-s3-on-python/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -166,12 +166,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>flask的support多國語言的方式，與python本身的<code>gettext</code>方式相同，都是去parse檔案裡頭含有<code>gettext</code>這類的語法，然後在將檔案轉成<code>.po</code>檔，去編輯相關的對應文字，接著放在相對應的folder，例如<code>zh</code>和<code>en</code>的字眼，最後在轉成<code>.mo</code>，實際執行<code>gettext</code>會讀取<code>.mo</code>。</p>
-<h2 id="Demo_screenshot">Demo screenshot</h2><p><img src="/images/article/flask-babel-example/chrome_header.png" alt="Demo image"></p>
-<h2 id="假設預設的配置如下：">假設預設的配置如下：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#10;&#9500;&#9472;&#9472; app.py&#10;&#9500;&#9472;&#9472; babel.cfg&#10;&#9500;&#9472;&#9472; mysettings.cfg&#10;&#9500;&#9472;&#9472; README.md&#10;&#9492;&#9472;&#9472;&#9472; templates&#10; &#160;&#160; &#9492;&#9472;&#9472; index.html</span><br></pre></td></tr></table></figure>
-<p><code>mysettings.cfg</code>設定預設的語系(在多國語系找不到時，將會預設英文)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BABEL_DEFAULT_LOCALE=&#34;en&#34;</span><br></pre></td></tr></table></figure></p>
-<p>透過<code>from_pyfile</code>載入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.config.from_pyfile(&#39;mysettings.cfg&#39;)</span><br></pre></td></tr></table></figure></p>
-<p>預設web接受的語系：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@babel.localeselector&#10;def get_locale():&#10;    # if a user is logged in, use the locale from the user settings&#10;    user = getattr(g, &#39;user&#39;, None)&#10;    if user is not None:&#10;        return user.locale&#10;    # otherwise try to guess the language from the user accept&#10;    # header the browser transmits.  We support de/fr/en in this&#10;    # example.  The best match wins.&#10;    return request.accept_languages.best_match([&#39;en&#39;,&#39;zh&#39;])</span><br></pre></td></tr></table></figure></p>
-<h2 id="產生-po和-mo檔">產生.po和.mo檔</h2><p><code>babel.cfg</code>設定要parse的路徑：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[python: **.py]  &#10;[jinja2: **/templates/**.html]&#10;extensions=jinja2.ext.autoescape,jinja2.ext.with_</span><br></pre></td></tr></table></figure></p>
+<h2 id="Demo-screenshot"><a href="#Demo-screenshot" class="headerlink" title="Demo screenshot"></a>Demo screenshot</h2><p><img src="/images/article/flask-babel-example/chrome_header.png" alt="Demo image"></p>
+<h2 id="假設預設的配置如下："><a href="#假設預設的配置如下：" class="headerlink" title="假設預設的配置如下："></a>假設預設的配置如下：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── app.py</span><br><span class="line">├── babel.cfg</span><br><span class="line">├── mysettings.cfg</span><br><span class="line">├── README.md</span><br><span class="line">└─── templates</span><br><span class="line">    └── index.html</span><br></pre></td></tr></table></figure>
+<p><code>mysettings.cfg</code>設定預設的語系(在多國語系找不到時，將會預設英文)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BABEL_DEFAULT_LOCALE=&quot;en&quot;</span><br></pre></td></tr></table></figure></p>
+<p>透過<code>from_pyfile</code>載入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.config.from_pyfile(&apos;mysettings.cfg&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>預設web接受的語系：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@babel.localeselector</span><br><span class="line">def get_locale():</span><br><span class="line">    # if a user is logged in, use the locale from the user settings</span><br><span class="line">    user = getattr(g, &apos;user&apos;, None)</span><br><span class="line">    if user is not None:</span><br><span class="line">        return user.locale</span><br><span class="line">    # otherwise try to guess the language from the user accept</span><br><span class="line">    # header the browser transmits.  We support de/fr/en in this</span><br><span class="line">    # example.  The best match wins.</span><br><span class="line">    return request.accept_languages.best_match([&apos;en&apos;,&apos;zh&apos;])</span><br></pre></td></tr></table></figure></p>
+<h2 id="產生-po和-mo檔"><a href="#產生-po和-mo檔" class="headerlink" title="產生.po和.mo檔"></a>產生.po和.mo檔</h2><p><code>babel.cfg</code>設定要parse的路徑：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[python: **.py]  </span><br><span class="line">[jinja2: **/templates/**.html]</span><br><span class="line">extensions=jinja2.ext.autoescape,jinja2.ext.with_</span><br></pre></td></tr></table></figure></p>
 <p>接著只要在專案的根目錄執行以下command，就會取得messages.pot檔案：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pybabel extract -F babel.cfg -o messages.pot .</span><br></pre></td></tr></table></figure>
 <p>編輯好message.mo，初始化語系路徑以及設定語系：</p>
@@ -183,7 +183,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/02/16/flask-babel-example/" data-id="cihc3k8fr00993264pr8bpcz0" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/02/16/flask-babel-example/" data-id="cinhl1p1m002x5164umq61qjp" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/02/16/flask-babel-example/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -225,16 +225,16 @@
       
         <p>在作業系統上都有預設語言，例如windows上預設可能是big5，linux則是utf8。當python要轉換編碼的時候，可以使用encode，但是有個<strong>先決條件，必須要先把編碼轉換成作業系統的預設語言</strong>。</p>
 <p><strong>以linux為例，要轉成big5，需先decode成utf8，在encode成big5：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-&#10;&#10;u_hello = &#34;&#21704;&#22217;&#34;.decode(&#34;utf8&#34;)&#10;big5_hello = u_hello.encode(&#34;big5&#34;)&#10;&#10;print big5_hello</span><br></pre></td></tr></table></figure>
-<p>接著將轉換過得字串寫入到檔案，在用gedit、word…之類的軟體，以big5編碼開啟就能看到剛剛寫入文字。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#write to file&#10;f = open( &#34;big5_text.txt&#34;, &#34;w&#34; )&#10;f.write( big5_hello )&#10;f.close()</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">u_hello = &quot;哈囉&quot;.decode(&quot;utf8&quot;)</span><br><span class="line">big5_hello = u_hello.encode(&quot;big5&quot;)</span><br><span class="line"></span><br><span class="line">print big5_hello</span><br></pre></td></tr></table></figure>
+<p>接著將轉換過得字串寫入到檔案，在用gedit、word…之類的軟體，以big5編碼開啟就能看到剛剛寫入文字。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#write to file</span><br><span class="line">f = open( &quot;big5_text.txt&quot;, &quot;w&quot; )</span><br><span class="line">f.write( big5_hello )</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure></p>
 <p><strong>另外在字串前面加個u，和decode成utf8相同：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#62;&#62;&#62; u&#34;&#21704;&#22217;&#34; == &#34;&#21704;&#22217;&#34;.decode(&#34;utf8&#34;)&#10;True&#10;&#10;&#62;&#62;&#62; type(&#34;&#21704;&#22217;&#34;)&#10;&#60;type &#39;str&#39;&#62;&#10;&#10;&#62;&#62;&#62; type(u&#34;&#21704;&#22217;&#34;)&#10;&#60;type &#39;unicode&#39;&#62;&#10;&#10;&#62;&#62;&#62; type(&#34;&#21704;&#22217;&#34;.decode(&#34;utf8&#34;))&#10;&#60;type &#39;unicode&#39;&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; u&quot;哈囉&quot; == &quot;哈囉&quot;.decode(&quot;utf8&quot;)</span><br><span class="line">True</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; type(&quot;哈囉&quot;)</span><br><span class="line">&lt;type &apos;str&apos;&gt;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; type(u&quot;哈囉&quot;)</span><br><span class="line">&lt;type &apos;unicode&apos;&gt;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; type(&quot;哈囉&quot;.decode(&quot;utf8&quot;))</span><br><span class="line">&lt;type &apos;unicode&apos;&gt;</span><br></pre></td></tr></table></figure>
 <p>如果是windows的作業系統，只要先將decode成big5，即可轉成其他編碼。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/15/python-encode/" data-id="cihc3k8dd005b3264fs0lf0cl" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/15/python-encode/" data-id="cinhl1p3p00665164o69j3aq2" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/15/python-encode/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -311,7 +311,7 @@ f.close()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/06/20/icon-converter/" data-id="cihc3k8fa008n32646h2abp4j" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/06/20/icon-converter/" data-id="cinhl1p21003d5164o6mw9oag" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/06/20/icon-converter/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -413,7 +413,7 @@ print &quot;with column names:&quot;, cur.fetchone()[0]</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/28/sqlite-adapter-and-converter/" data-id="cihc3k8cn003s3264ipuuuft7" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/28/sqlite-adapter-and-converter/" data-id="cinhl1p4b007c516458igjhwc" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/28/sqlite-adapter-and-converter/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -453,7 +453,7 @@ print &quot;with column names:&quot;, cur.fetchone()[0]</pre>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="row_factory">row_factory</h4><p>主要功能是改變sqlite抓取到資料，回傳的output的格式。</p>
+        <h4 id="row-factory"><a href="#row-factory" class="headerlink" title="row_factory"></a>row_factory</h4><p>主要功能是改變sqlite抓取到資料，回傳的output的格式。</p>
 <p>例如原先的output type是tuple：</p>
 <pre class="brush:python">cursor.execute(&quot;select 1 as a&quot;)
 result = cursor.fetchone()
@@ -491,7 +491,7 @@ print len( result )
 print result.keys()
 </pre>
 
-<h4 id="text_factory">text_factory</h4><p>只要query出來的內容是text，就會經過這個function，可以用於字串編碼轉換，當然也可以利用這個方式去修改內容.。</p>
+<h4 id="text-factory"><a href="#text-factory" class="headerlink" title="text_factory"></a>text_factory</h4><p>只要query出來的內容是text，就會經過這個function，可以用於字串編碼轉換，當然也可以利用這個方式去修改內容.。</p>
 <p>以下是簡單example：</p>
 <pre class="brush:python">import sqlite3
 
@@ -546,7 +546,7 @@ print type(row[0])</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/27/python-sqlite3-row_factory-and-text_factory/" data-id="cihc3k8d6004x32640ro3yx5h" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/27/python-sqlite3-row_factory-and-text_factory/" data-id="cinhl1p3u006h51646qc5gw2y" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/27/python-sqlite3-row_factory-and-text_factory/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -586,7 +586,7 @@ print type(row[0])</pre>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="create_function">create_function</h4><p>如果在sqlite想自訂function，可使用<strong><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_function" target="_blank" rel="external">create_function</a></strong>來處理，以下是範例：</p>
+        <h4 id="create-function"><a href="#create-function" class="headerlink" title="create_function"></a>create_function</h4><p>如果在sqlite想自訂function，可使用<strong><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_function" target="_blank" rel="external">create_function</a></strong>來處理，以下是範例：</p>
 <pre class="brush:python">import sqlite3
 import md5       
 
@@ -607,7 +607,7 @@ print cur.fetchall()
 <pre class="brush:python">[(u&#39;c4ca4238a0b923820dcc509a6f75849b&#39;,), (u&#39;c81e728d9d4c2f636f067f89cc14862c&#39;,)]</pre>
 
 <p>從上面結果可以看出，在每筆資料中都是獨立的，只將原先輸入的值或欄位值去處理。另外connect的部份，是直接使用記憶體，而不是file方式，所以程式結束後，就釋放掉了。</p>
-<h4 id="create_aggregate">create_aggregate</h4><p>那麼如果製作一個類似count、sum之類的功能，可以使用<strong><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_aggregate" target="_blank" rel="external">create_aggregate</a></strong>，以下是官方範例：</p>
+<h4 id="create-aggregate"><a href="#create-aggregate" class="headerlink" title="create_aggregate"></a>create_aggregate</h4><p>那麼如果製作一個類似count、sum之類的功能，可以使用<strong><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_aggregate" target="_blank" rel="external">create_aggregate</a></strong>，以下是官方範例：</p>
 <pre class="brush:python">import sqlite3 
 
 class MySum:   
@@ -634,7 +634,7 @@ print cur.fetchall()
 <pre class="brush:python">[(3,)]</pre>
 
 <p>當執行select的時候，會呼叫mysum，mysum的step會將所有傳入值累加，在由finalize回傳結果，這樣就可以處理每筆資料之間的關係。</p>
-<h4 id="create_collation">create_collation</h4><p>最後<strong><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_collation" target="_blank" rel="external">create_</a><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_collation" target="_blank" rel="external">collation</a></strong>處理的功能，就是排序問題，可以依照自己自訂方式排序，官方提供的範例是反向功能(reverse)，如下：</p>
+<h4 id="create-collation"><a href="#create-collation" class="headerlink" title="create_collation"></a>create_collation</h4><p>最後<strong><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_collation" target="_blank" rel="external">create_</a><a href="http://docs.python.org/2/library/sqlite3.html#sqlite3.Connection.create_collation" target="_blank" rel="external">collation</a></strong>處理的功能，就是排序問題，可以依照自己自訂方式排序，官方提供的範例是反向功能(reverse)，如下：</p>
 <pre class="brush:python">import sqlite3 
 
 def collate_reverse(string1, string2):                
@@ -666,7 +666,7 @@ string1 &gt; string 2 回傳 1</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/26/python-sqlite3-create-function、aggregate-and-collation/" data-id="cihc3k8d800533264nv0ytkld" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/26/python-sqlite3-create-function、aggregate-and-collation/" data-id="cinhl1p3t006e5164bttktclk" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/26/python-sqlite3-create-function、aggregate-and-collation/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -901,7 +901,7 @@ canvas.show()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/21/python-class-decorators-for-classes/" data-id="cihc3k8di005e3264ky71n0x7" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/21/python-class-decorators-for-classes/" data-id="cinhl1p3k005z51642ww3gl4q" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/21/python-class-decorators-for-classes/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -958,7 +958,7 @@ canvas.show()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/13/python-無法使用-https/" data-id="cihc3k8d4004u326439ldy0dt" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/13/python-無法使用-https/" data-id="cinhl1p3w006k51647tg4i5tf" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/13/python-無法使用-https/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1017,7 +1017,7 @@ canvas.show()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/11/python-install-easy_install/" data-id="cihc3k8da00583264mavjkywx" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/11/python-install-easy_install/" data-id="cinhl1p3r00695164xegqpksk" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/11/python-install-easy_install/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1105,7 +1105,7 @@ canvas.show()
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -1149,7 +1149,7 @@ canvas.show()
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

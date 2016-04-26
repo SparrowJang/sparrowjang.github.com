@@ -20,7 +20,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -107,25 +107,25 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在python要使用aws的s3，官方建議是透過<a href="https://github.com/boto/boto" target="_blank" rel="external">boto</a>這套libs。</p>
-<h2 id="Dependency">Dependency</h2><ul>
+<h2 id="Dependency"><a href="#Dependency" class="headerlink" title="Dependency"></a>Dependency</h2><ul>
 <li>boto</li>
 </ul>
-<h2 id="Install">Install</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install boto</span><br></pre></td></tr></table></figure>
-<h2 id="Usage">Usage</h2><h3 id="Creating_a_Connection:">Creating a Connection:</h3><p>設定access和secret key，其中host為上傳s3位置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from boto.s3.connection import S3Connection&#10;&#10;conn = S3Connection(&#39;&#60;aws access key&#62;&#39;, &#39;&#60;aws secret key&#62;&#39;, host = &#39;s3.amazonaws.com&#39; )</span><br></pre></td></tr></table></figure></p>
-<h3 id="Getting_a_bucket：">Getting a bucket：</h3><p>如果你已經在s3的頁面建立好bucket了，可以直接使用get_bucket：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bucket = conn.get_bucket( &#39;mybucket&#39; )</span><br></pre></td></tr></table></figure></p>
-<p>或者自己建立：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bucket = conn.create_bucket(&#39;mybucket&#39;)</span><br></pre></td></tr></table></figure></p>
-<h3 id="Storing_Data：">Storing Data：</h3><p>使用key去建立一個檔案，其中<code>k.key</code>這個值，假設有多層<code>folder</code>直接設定在此：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from boto.s3.key import Key&#10;&#10;k = Key(bucket)&#10;k.key = &#39;folder/test.txt&#39;&#10;k.set_contents_from_string(&#39;This is a test of S3&#39;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install boto</span><br></pre></td></tr></table></figure>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><h3 id="Creating-a-Connection"><a href="#Creating-a-Connection" class="headerlink" title="Creating a Connection:"></a>Creating a Connection:</h3><p>設定access和secret key，其中host為上傳s3位置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from boto.s3.connection import S3Connection</span><br><span class="line"></span><br><span class="line">conn = S3Connection(&apos;&lt;aws access key&gt;&apos;, &apos;&lt;aws secret key&gt;&apos;, host = &apos;s3.amazonaws.com&apos; )</span><br></pre></td></tr></table></figure></p>
+<h3 id="Getting-a-bucket："><a href="#Getting-a-bucket：" class="headerlink" title="Getting a bucket："></a>Getting a bucket：</h3><p>如果你已經在s3的頁面建立好bucket了，可以直接使用get_bucket：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bucket = conn.get_bucket( &apos;mybucket&apos; )</span><br></pre></td></tr></table></figure></p>
+<p>或者自己建立：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bucket = conn.create_bucket(&apos;mybucket&apos;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Storing-Data："><a href="#Storing-Data：" class="headerlink" title="Storing Data："></a>Storing Data：</h3><p>使用key去建立一個檔案，其中<code>k.key</code>這個值，假設有多層<code>folder</code>直接設定在此：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from boto.s3.key import Key</span><br><span class="line"></span><br><span class="line">k = Key(bucket)</span><br><span class="line">k.key = &apos;folder/test.txt&apos;</span><br><span class="line">k.set_contents_from_string(&apos;This is a test of S3&apos;)</span><br></pre></td></tr></table></figure></p>
 <p>之後只要在重新連線，透過<code>k.get_contents_as_string()</code>就可以取得到資料了。</p>
-<p>如果要上傳一個file的話，可透過<code>set_contents_from_filename</code>，會將你local端的<code>foo.jpg</code>上傳至s3：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k.set_contents_from_filename(&#39;foo.jpg&#39;)</span><br></pre></td></tr></table></figure></p>
-<p>要下載則是採用<code>get_contents_to_filename</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k.get_contents_to_filename(&#39;bar.jpg&#39;)</span><br></pre></td></tr></table></figure></p>
+<p>如果要上傳一個file的話，可透過<code>set_contents_from_filename</code>，會將你local端的<code>foo.jpg</code>上傳至s3：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k.set_contents_from_filename(&apos;foo.jpg&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>要下載則是採用<code>get_contents_to_filename</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k.get_contents_to_filename(&apos;bar.jpg&apos;)</span><br></pre></td></tr></table></figure></p>
 <p>最後如果想透過變數去儲存至s3，一樣使用<code>set_contents_from_string</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f = open( &#34;foo.jpg&#34;, &#34;rb&#34; )&#10;&#10;data = f.read()&#10;&#10;f.close()&#10;&#10;k.set_contents_from_string( data )</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">f = open( &quot;foo.jpg&quot;, &quot;rb&quot; )</span><br><span class="line"></span><br><span class="line">data = f.read()</span><br><span class="line"></span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line">k.set_contents_from_string( data )</span><br></pre></td></tr></table></figure>
 <p>以上這些方式，需檢查<code>k.key</code>是否對應好s3上面的路徑。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/02/16/amazon-s3-on-python/" data-id="cihc3k8h500bu32648am8ah5p" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/02/16/amazon-s3-on-python/" data-id="cinhl1ozt00125164eg7x9t6m" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/02/16/amazon-s3-on-python/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -209,7 +209,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -253,7 +253,7 @@
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

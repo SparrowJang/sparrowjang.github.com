@@ -45,7 +45,7 @@ import">
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -129,7 +129,7 @@ import">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="row_factory">row_factory</h4><p>主要功能是改變sqlite抓取到資料，回傳的output的格式。</p>
+        <h4 id="row-factory"><a href="#row-factory" class="headerlink" title="row_factory"></a>row_factory</h4><p>主要功能是改變sqlite抓取到資料，回傳的output的格式。</p>
 <p>例如原先的output type是tuple：</p>
 <pre class="brush:python">cursor.execute(&quot;select 1 as a&quot;)
 result = cursor.fetchone()
@@ -167,7 +167,7 @@ print len( result )
 print result.keys()
 </pre>
 
-<h4 id="text_factory">text_factory</h4><p>只要query出來的內容是text，就會經過這個function，可以用於字串編碼轉換，當然也可以利用這個方式去修改內容.。</p>
+<h4 id="text-factory"><a href="#text-factory" class="headerlink" title="text_factory"></a>text_factory</h4><p>只要query出來的內容是text，就會經過這個function，可以用於字串編碼轉換，當然也可以利用這個方式去修改內容.。</p>
 <p>以下是簡單example：</p>
 <pre class="brush:python">import sqlite3
 
@@ -222,7 +222,7 @@ print type(row[0])</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/27/python-sqlite3-row_factory-and-text_factory/" data-id="cihc3k8d6004x32640ro3yx5h" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/27/python-sqlite3-row_factory-and-text_factory/" data-id="cinhl1p3u006h51646qc5gw2y" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/27/python-sqlite3-row_factory-and-text_factory/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -330,7 +330,7 @@ print type(row[0])</pre>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -376,7 +376,7 @@ print type(row[0])</pre>
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

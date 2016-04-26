@@ -20,7 +20,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -103,17 +103,17 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在很多情況要顯示圖片清單時，都會需要固定的圖片size，如果想保留原始圖片，又想要有固定size的大小，大部份都會採用overflow的方式，將不需要的地方隱藏起來，或者是直接使用瀑布流的方式，這樣就不需要理會圖片高度，只要設定一個固定寬度即可，但是有時候的圖片，可能會過於龐大，所以需要裁剪適當的小，這時候可能就需要自動截取適當的大小。</p>
-<h2 id="Quick_Start">Quick Start</h2><p><img src="/images/article/imageConverter/imageConverter.png" alt="imageConverter"></p>
-<h3 id="LiveDemo">LiveDemo</h3><p><a href="http://www.sparrowjang.com/imageConverter/demo/index.html">imageConverter</a></p>
-<h3 id="Install">Install</h3><p>使用bower安裝。</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><p><img src="/images/article/imageConverter/imageConverter.png" alt="imageConverter"></p>
+<h3 id="LiveDemo"><a href="#LiveDemo" class="headerlink" title="LiveDemo"></a>LiveDemo</h3><p><a href="http://www.sparrowjang.com/imageConverter/demo/index.html">imageConverter</a></p>
+<h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><p>使用bower安裝。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bower install imageConverter</span><br></pre></td></tr></table></figure>
-<h3 id="Usage">Usage</h3><p>截取圖片200x150，如果圖片比這size還要小，同樣也能截取出來，只是圖片可能會變成模糊不清。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> im = <span class="keyword">new</span> Image();</span><br><span class="line">im.src = <span class="string">"pig_head.png"</span>;</span><br><span class="line"></span><br><span class="line">imageConverter.resizeAndOptimize( im, <span class="number">200</span> ,<span class="number">150</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> data </span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> outIm = <span class="keyword">new</span> Image();</span><br><span class="line">  outIm.src = data;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild( outIm );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><p>截取圖片200x150，如果圖片比這size還要小，同樣也能截取出來，只是圖片可能會變成模糊不清。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> im = <span class="keyword">new</span> Image();</span><br><span class="line">im.src = <span class="string">"pig_head.png"</span>;</span><br><span class="line"></span><br><span class="line">imageConverter.resizeAndOptimize( im, <span class="number">200</span> ,<span class="number">150</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> data </span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> outIm = <span class="keyword">new</span> Image();</span><br><span class="line">  outIm.src = data;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild( outIm );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>以上範例為js版的<a href="https://github.com/SparrowJang/imageConverter" target="_blank" rel="external">imageConverter</a>，若要使用後端處理，也可透過python版本的<a href="https://github.com/SparrowJang/image_converter" target="_blank" rel="external">imageConverter</a>。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/07/11/image-converter/" data-id="cihc3k8f7008h3264tdc4u5qm" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/07/11/image-converter/" data-id="cinhl1p24003k5164q41w41lk" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/07/11/image-converter/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -197,7 +197,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -241,7 +241,7 @@
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

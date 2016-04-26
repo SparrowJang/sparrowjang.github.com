@@ -36,7 +36,7 @@ ALLOW-FROM&amp;nbsp;uri允許某個domain嵌入。
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -121,11 +121,11 @@ ALLOW-FROM&amp;nbsp;uri允許某個domain嵌入。
     <div class="article-entry" itemprop="articleBody">
       
         <p>如果要防止頁面被iframe或frame嵌入，比較常用的方法是，在頁面上加入一串script做判斷，或者加入<a href="https://developer.mozilla.org/en-US/docs/HTTP/X-Frame-Options" target="_blank" rel="external">X-Frame-Options</a> header。</p>
-<h5 id="X-Frame-Options有下列3個參數值可用：">X-Frame-Options有下列3個參數值可用：</h5><h6 id="deny"><span style="color: rgb(51, 51, 51); font-family: 'Courier New', 'Andale Mono', monospace; font-size: 14px; font-weight: bold;">deny</span></h6><p>拒絕被任何嵌入頁面。</p>
-<h6 id="SAMEORIGIN"><span style="color: rgb(51, 51, 51); font-family: 'Courier New', 'Andale Mono', monospace; font-size: 14px; font-weight: bold;">SAMEORIGIN</span></h6><p>允許來至於相同domain的嵌入。</p>
-<h6 id="ALLOW-FROM&nbsp;uri"><span style="color: rgb(51, 51, 51); font-family: 'Courier New', 'Andale Mono', monospace; font-size: 14px; font-weight: bold;">ALLOW-FROM&nbsp;</span><em>uri</em></h6><p>允許某個domain嵌入。</p>
+<h5 id="X-Frame-Options有下列3個參數值可用："><a href="#X-Frame-Options有下列3個參數值可用：" class="headerlink" title="X-Frame-Options有下列3個參數值可用："></a>X-Frame-Options有下列3個參數值可用：</h5><h6 id="deny"><a href="#deny" class="headerlink" title="deny"></a><span style="color: rgb(51, 51, 51); font-family: 'Courier New', 'Andale Mono', monospace; font-size: 14px; font-weight: bold;">deny</span></h6><p>拒絕被任何嵌入頁面。</p>
+<h6 id="SAMEORIGIN"><a href="#SAMEORIGIN" class="headerlink" title="SAMEORIGIN"></a><span style="color: rgb(51, 51, 51); font-family: 'Courier New', 'Andale Mono', monospace; font-size: 14px; font-weight: bold;">SAMEORIGIN</span></h6><p>允許來至於相同domain的嵌入。</p>
+<h6 id="ALLOW-FROM-nbsp-uri"><a href="#ALLOW-FROM-nbsp-uri" class="headerlink" title="ALLOW-FROM&nbsp;uri"></a><span style="color: rgb(51, 51, 51); font-family: 'Courier New', 'Andale Mono', monospace; font-size: 14px; font-weight: bold;">ALLOW-FROM&nbsp;</span><em>uri</em></h6><p>允許某個domain嵌入。</p>
 <p>&nbsp;</p>
-<h6 id="以下是用node-js寫得example：">以下是用node.js寫得example：</h6><pre class="brush:js">var express = require(&#39;express&#39;);
+<h6 id="以下是用node-js寫得example："><a href="#以下是用node-js寫得example：" class="headerlink" title="以下是用node.js寫得example："></a>以下是用node.js寫得example：</h6><pre class="brush:js">var express = require(&#39;express&#39;);
 
 var html = &quot;from http://localhost:3001/SAMEORIGIN&lt;br&gt;&quot; +
             &#39;&lt;iframe src=&quot;http://localhost:3001/SAMEORIGIN&quot;&gt;&lt;/iframe&gt;&lt;br&gt;&#39;+
@@ -188,7 +188,7 @@ node server.js
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/04/11/x-frame-options-response-header/" data-id="cihc3k8bf001z326408f4xgpl" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/04/11/x-frame-options-response-header/" data-id="cinhl1p5700915164iyr4ikl5" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/04/11/x-frame-options-response-header/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -296,7 +296,7 @@ node server.js
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -342,7 +342,7 @@ node server.js
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

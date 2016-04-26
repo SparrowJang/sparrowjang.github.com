@@ -21,13 +21,14 @@
 <meta name="twitter:title" content="weinre">
 <meta name="twitter:description" content="weinre是一個用於瀏覽器的遠端除錯工具，運作方式與jsconsole相同，都是透過include一隻外部js script，來與server溝通傳遞資料。但是jsconsole只提供一些很基本功能，如果要能像chrome一樣，查看dom element、network等功能，可以使用weinre。
 使用時機：使用android、ios等手持裝置的browser，或者對IE除錯的時候，都很適合。">
+<meta name="twitter:image" content="http://www.sparrowjang.com/images/article/weinre.png">
 <meta name="twitter:creator" content="@Sparrow_Jang">
   
   
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -112,12 +113,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="http://people.apache.org/~pmuellr/weinre/docs/latest/" target="_blank" rel="external">weinre</a>是一個用於瀏覽器的遠端除錯工具，運作方式與<a href="http://jsconsole.com/" target="_blank" rel="external">jsconsole</a>相同，都是透過include一隻外部js script，來與server溝通傳遞資料。但是<a href="http://jsconsole.com/" target="_blank" rel="external">jsconsole</a>只提供一些很基本功能，如果要能像chrome一樣，查看dom element、network等功能，可以使用<a href="http://people.apache.org/~pmuellr/weinre/docs/latest/" target="_blank" rel="external">weinre</a>。</p>
-<h6 id="使用時機：">使用時機：</h6><p>使用android、ios等手持裝置的browser，或者對IE除錯的時候，都很適合。</p>
-<h6 id="weinre原理：">weinre原理：</h6><p><a href="http://people.apache.org/~pmuellr/weinre/docs/latest/" target="_blank" rel="external">weinre</a>基本原理是，建立一個console page，然後經由<a href="http://people.apache.org/~pmuellr/weinre/docs/latest/" target="_blank" rel="external">weinre</a>&nbsp;server，與development page（你要除錯的page）互相傳遞資料溝通。（&nbsp;溝通方式採用long polling）</p>
-<h6 id="時序圖如下：">時序圖如下：</h6><p><img src="/images/article/weinre.png" alt=""></p>
-<h6 id="&nbsp;">&nbsp;</h6><h6 id="透過node-js安裝：">透過node.js安裝：</h6><pre class="brush:shell">sudo npm install -g weinre</pre>
+<h6 id="使用時機："><a href="#使用時機：" class="headerlink" title="使用時機："></a>使用時機：</h6><p>使用android、ios等手持裝置的browser，或者對IE除錯的時候，都很適合。</p>
+<h6 id="weinre原理："><a href="#weinre原理：" class="headerlink" title="weinre原理："></a>weinre原理：</h6><p><a href="http://people.apache.org/~pmuellr/weinre/docs/latest/" target="_blank" rel="external">weinre</a>基本原理是，建立一個console page，然後經由<a href="http://people.apache.org/~pmuellr/weinre/docs/latest/" target="_blank" rel="external">weinre</a>&nbsp;server，與development page（你要除錯的page）互相傳遞資料溝通。（&nbsp;溝通方式採用long polling）</p>
+<h6 id="時序圖如下："><a href="#時序圖如下：" class="headerlink" title="時序圖如下："></a>時序圖如下：</h6><p><img src="/images/article/weinre.png" alt=""></p>
+<h6 id="nbsp"><a href="#nbsp" class="headerlink" title="&nbsp;"></a>&nbsp;</h6><h6 id="透過node-js安裝："><a href="#透過node-js安裝：" class="headerlink" title="透過node.js安裝："></a>透過node.js安裝：</h6><pre class="brush:shell">sudo npm install -g weinre</pre>
 
-<h6 id="操作流程：">操作流程：</h6><p>開啟weinre server：</p>
+<h6 id="操作流程："><a href="#操作流程：" class="headerlink" title="操作流程："></a>操作流程：</h6><p>開啟weinre server：</p>
 <pre class="brush:shell">weinre --httpPort 8081 --boundHost localhost</pre>
 
 <p>打開瀏覽器輸入<a href="http://localhost:8081/" target="_blank" rel="external">http://localhost:8081/</a>：</p>
@@ -141,11 +142,11 @@
 </pre>
 
 <p>開啟<a href="http://localhost:8081/client/#anonymous" target="_blank" rel="external">http://localhost:8081/client/#anonymous</a>，就可以開始除錯了。</p>
-<h6 id=""><img src="/images/article/weinre-debug2.png" alt=""></h6>
+<h6 id=""><a href="#" class="headerlink" title=""></a><img src="/images/article/weinre-debug2.png" alt=""></h6>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/05/15/weinre/" data-id="cihc3k8bh00233264i0ax6lf4" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/05/15/weinre/" data-id="cinhl1p55008x5164bb85eidq" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/05/15/weinre/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -253,7 +254,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -299,7 +300,7 @@
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

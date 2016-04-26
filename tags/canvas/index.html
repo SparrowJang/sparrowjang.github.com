@@ -20,7 +20,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -107,21 +107,21 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>要複製整張<code>canvas</code>，可以使用<code>getImageData</code>和<code>putImageData</code>。透過<code>getImageData</code>這個method，將整張<code>canvas</code>的資料取出來，在經由<code>putImageData</code>將資料覆蓋上去。</p>
-<h2 id="Copy：">Copy：</h2><p>取得整張canvas的data：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var ctx = canvas.getContext(&#34;2d&#34;);&#10;var imageData = ctx.getImageData( 0, 0, canvas.width, canvas.height );</span><br></pre></td></tr></table></figure></p>
-<p>在將<code>imageData</code>的資料，塞到copyCanvas對應的data區塊：(在這預設兩張canvas大小都相同)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var cctx = copyCanvas.getContext(&#34;2d&#34;);&#10;cctx.putImageData( imageData, 0 ,0 );</span><br></pre></td></tr></table></figure></p>
+<h2 id="Copy："><a href="#Copy：" class="headerlink" title="Copy："></a>Copy：</h2><p>取得整張canvas的data：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var ctx = canvas.getContext(&quot;2d&quot;);</span><br><span class="line">var imageData = ctx.getImageData( 0, 0, canvas.width, canvas.height );</span><br></pre></td></tr></table></figure></p>
+<p>在將<code>imageData</code>的資料，塞到copyCanvas對應的data區塊：(在這預設兩張canvas大小都相同)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var cctx = copyCanvas.getContext(&quot;2d&quot;);</span><br><span class="line">cctx.putImageData( imageData, 0 ,0 );</span><br></pre></td></tr></table></figure></p>
 <p>這樣你就會看到第一張的canvas，完整的copy到第二張上面。</p>
-<h2 id="Example：">Example：</h2><p><img src="/images/article/copy-canvas-on-html5/default.png" alt="最初的兩張canvas"></p>
-<p><strong>style</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">canvas &#123;                     &#10;    border:1px solid gray;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>html</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;canvas id=&#34;main&#34; width=&#34;300&#34; height=&#34;200&#34;&#62;&#60;/canvas&#62;&#10;&#60;canvas id=&#34;copy&#34; width=&#34;300&#34; height=&#34;200&#34;&#62;&#60;/canvas&#62;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Example："><a href="#Example：" class="headerlink" title="Example："></a>Example：</h2><p><img src="/images/article/copy-canvas-on-html5/default.png" alt="最初的兩張canvas"></p>
+<p><strong>style</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">canvas &#123;                     </span><br><span class="line">    border:1px solid gray;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>html</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas id=&quot;main&quot; width=&quot;300&quot; height=&quot;200&quot;&gt;&lt;/canvas&gt;</span><br><span class="line">&lt;canvas id=&quot;copy&quot; width=&quot;300&quot; height=&quot;200&quot;&gt;&lt;/canvas&gt;</span><br></pre></td></tr></table></figure></p>
 <p><strong>javascript</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//left canvas&#10;var canvas = document.querySelector( &#34;#main&#34; );&#10;var ctx = canvas.getContext(&#34;2d&#34;);&#10;ctx.fillStyle=&#34;#FF0000&#34;;  &#10;ctx.fillRect(0,0,150,75); &#10;&#10;//right canvas             &#10;var copy = document.querySelector( &#34;#copy&#34; );&#10;var cctx = copy.getContext(&#34;2d&#34;);&#10;cctx.fillStyle=&#34;#FF00FF&#34;; &#10;cctx.fillRect(20,20,150,75);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//left canvas</span><br><span class="line">var canvas = document.querySelector( &quot;#main&quot; );</span><br><span class="line">var ctx = canvas.getContext(&quot;2d&quot;);</span><br><span class="line">ctx.fillStyle=&quot;#FF0000&quot;;  </span><br><span class="line">ctx.fillRect(0,0,150,75); </span><br><span class="line"></span><br><span class="line">//right canvas             </span><br><span class="line">var copy = document.querySelector( &quot;#copy&quot; );</span><br><span class="line">var cctx = copy.getContext(&quot;2d&quot;);</span><br><span class="line">cctx.fillStyle=&quot;#FF00FF&quot;; </span><br><span class="line">cctx.fillRect(20,20,150,75);</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>把左邊的<code>canvas</code>透過<code>drawImage</code>畫到右邊的canvas：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cctx.drawImage( canvas, 0 ,0 );</span><br></pre></td></tr></table></figure>
 <p><img src="/images/article/copy-canvas-on-html5/drawImage.png" alt="透過drawImage畫到右邊canvas"></p>
 </li>
 <li><p>將左邊的<code>canvas</code>的資料，透過<code>putImageData</code>取代右邊<code>canvas</code>資料：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var imageData = ctx.getImageData( 0, 0, canvas.width, canvas.height );&#10;cctx.putImageData( imageData, 0 ,0 );</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var imageData = ctx.getImageData( 0, 0, canvas.width, canvas.height );</span><br><span class="line">cctx.putImageData( imageData, 0 ,0 );</span><br></pre></td></tr></table></figure>
 <p><img src="/images/article/copy-canvas-on-html5/putImageData.png" alt="透過putImageData畫到右邊canvas"></p>
 </li>
 </ul>
@@ -130,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/12/26/copy-canvas-on-html5/" data-id="cihc3k8g0009q3264c6rs5ax7" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/12/26/copy-canvas-on-html5/" data-id="cinhl1p1f002l51648dtt30qq" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/12/26/copy-canvas-on-html5/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -214,7 +214,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -258,7 +258,7 @@
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

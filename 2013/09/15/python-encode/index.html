@@ -7,27 +7,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="在作業系統上都有預設語言，例如windows上預設可能是big5，linux則是utf8。當python要轉換編碼的時候，可以使用encode，但是有個先決條件，必須要先把編碼轉換成作業系統的預設語言。
 以linux為例，要轉成big5，需先decode成utf8，在encode成big5：
-1# -*- coding: utf-8 -*-&amp;#10;&amp;#10;u_hello = &amp;#34;&amp;#21">
+123456# -*- coding: utf-8 -*-u_hello = &amp;quot;哈囉&amp;quot;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python encode">
 <meta property="og:url" content="http://www.sparrowjang.com/2013/09/15/python-encode/index.html">
 <meta property="og:site_name" content="Sparrow's Blog">
 <meta property="og:description" content="在作業系統上都有預設語言，例如windows上預設可能是big5，linux則是utf8。當python要轉換編碼的時候，可以使用encode，但是有個先決條件，必須要先把編碼轉換成作業系統的預設語言。
 以linux為例，要轉成big5，需先decode成utf8，在encode成big5：
-1# -*- coding: utf-8 -*-&amp;#10;&amp;#10;u_hello = &amp;#34;&amp;#21">
+123456# -*- coding: utf-8 -*-u_hello = &amp;quot;哈囉&amp;quot;">
 <meta property="og:updated_time" content="2014-07-11T13:38:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python encode">
 <meta name="twitter:description" content="在作業系統上都有預設語言，例如windows上預設可能是big5，linux則是utf8。當python要轉換編碼的時候，可以使用encode，但是有個先決條件，必須要先把編碼轉換成作業系統的預設語言。
 以linux為例，要轉成big5，需先decode成utf8，在encode成big5：
-1# -*- coding: utf-8 -*-&amp;#10;&amp;#10;u_hello = &amp;#34;&amp;#21">
+123456# -*- coding: utf-8 -*-u_hello = &amp;quot;哈囉&amp;quot;">
 <meta name="twitter:creator" content="@Sparrow_Jang">
   
   
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -113,16 +113,16 @@
       
         <p>在作業系統上都有預設語言，例如windows上預設可能是big5，linux則是utf8。當python要轉換編碼的時候，可以使用encode，但是有個<strong>先決條件，必須要先把編碼轉換成作業系統的預設語言</strong>。</p>
 <p><strong>以linux為例，要轉成big5，需先decode成utf8，在encode成big5：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-&#10;&#10;u_hello = &#34;&#21704;&#22217;&#34;.decode(&#34;utf8&#34;)&#10;big5_hello = u_hello.encode(&#34;big5&#34;)&#10;&#10;print big5_hello</span><br></pre></td></tr></table></figure>
-<p>接著將轉換過得字串寫入到檔案，在用gedit、word…之類的軟體，以big5編碼開啟就能看到剛剛寫入文字。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#write to file&#10;f = open( &#34;big5_text.txt&#34;, &#34;w&#34; )&#10;f.write( big5_hello )&#10;f.close()</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">u_hello = &quot;哈囉&quot;.decode(&quot;utf8&quot;)</span><br><span class="line">big5_hello = u_hello.encode(&quot;big5&quot;)</span><br><span class="line"></span><br><span class="line">print big5_hello</span><br></pre></td></tr></table></figure>
+<p>接著將轉換過得字串寫入到檔案，在用gedit、word…之類的軟體，以big5編碼開啟就能看到剛剛寫入文字。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#write to file</span><br><span class="line">f = open( &quot;big5_text.txt&quot;, &quot;w&quot; )</span><br><span class="line">f.write( big5_hello )</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure></p>
 <p><strong>另外在字串前面加個u，和decode成utf8相同：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#62;&#62;&#62; u&#34;&#21704;&#22217;&#34; == &#34;&#21704;&#22217;&#34;.decode(&#34;utf8&#34;)&#10;True&#10;&#10;&#62;&#62;&#62; type(&#34;&#21704;&#22217;&#34;)&#10;&#60;type &#39;str&#39;&#62;&#10;&#10;&#62;&#62;&#62; type(u&#34;&#21704;&#22217;&#34;)&#10;&#60;type &#39;unicode&#39;&#62;&#10;&#10;&#62;&#62;&#62; type(&#34;&#21704;&#22217;&#34;.decode(&#34;utf8&#34;))&#10;&#60;type &#39;unicode&#39;&#62;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; u&quot;哈囉&quot; == &quot;哈囉&quot;.decode(&quot;utf8&quot;)</span><br><span class="line">True</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; type(&quot;哈囉&quot;)</span><br><span class="line">&lt;type &apos;str&apos;&gt;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; type(u&quot;哈囉&quot;)</span><br><span class="line">&lt;type &apos;unicode&apos;&gt;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; type(&quot;哈囉&quot;.decode(&quot;utf8&quot;))</span><br><span class="line">&lt;type &apos;unicode&apos;&gt;</span><br></pre></td></tr></table></figure>
 <p>如果是windows的作業系統，只要先將decode成big5，即可轉成其他編碼。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/15/python-encode/" data-id="cihc3k8dd005b3264fs0lf0cl" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/15/python-encode/" data-id="cinhl1p3p00665164o69j3aq2" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/15/python-encode/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -230,7 +230,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -276,7 +276,7 @@
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

@@ -20,7 +20,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -152,7 +152,7 @@ $(&quot;#content&quot;).append(html)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/04/20/jquery-mobile/" data-id="cihc3k8ea00703264hrk8nle8" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/04/20/jquery-mobile/" data-id="cinhl1p2y004s51647ga6b54n" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/04/20/jquery-mobile/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -193,7 +193,7 @@ $(&quot;#content&quot;).append(html)
     <div class="article-entry" itemprop="articleBody">
       
         <p><span style="color:#00f;">storage</span>是<span style="color:#00f;">html5</span>的儲存資料的方式之一，主要分為<span style="color:#00f;">sessionStorage</span>和<span style="color:#00f;">localStorage</span>，這兩種儲存方式都只能在相同的<span style="color:#00f;">domain</span>才能讀取到，<span style="color:#00f;">sessionStorage</span>只要頁面關掉後，就會釋放儲存的資料，而<span style="color:#00f;">localStorage</span>是直接儲存在<span style="color:#00f;">brower</span>。</p>
-<h6 id="storage的物件成員有：">storage的物件成員有：</h6><pre class="brush:js">//設定資料
+<h6 id="storage的物件成員有："><a href="#storage的物件成員有：" class="headerlink" title="storage的物件成員有："></a>storage的物件成員有：</h6><pre class="brush:js">//設定資料
 setItem(key,val);
 //取得資料
 getItem(key);
@@ -206,13 +206,13 @@ key(index)&#39;
 //清除所有資料
 clear();</pre>
 
-<h6 id="其中以下方式功能是一樣的：">其中以下方式功能是一樣的：</h6><pre class="brush:js">sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
+<h6 id="其中以下方式功能是一樣的："><a href="#其中以下方式功能是一樣的：" class="headerlink" title="其中以下方式功能是一樣的："></a>其中以下方式功能是一樣的：</h6><pre class="brush:js">sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
 sessionStorage[&quot;test&quot;] = &quot;test&quot;;
 //以上這兩種方式，是相同的效果。
 </pre>
 
 <p>從以上範例可以看出，<span style="color:#f00;">實際上是把直塞到object裡，所以要是儲存本身物件所擁有的成員，將會加以覆蓋</span>，所以不能用相同名稱。</p>
-<h6 id="例如：">例如：</h6><pre class="brush:js">sessionStorage.setItem(&quot;setItem&quot;,&quot;test&quot;);
+<h6 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h6><pre class="brush:js">sessionStorage.setItem(&quot;setItem&quot;,&quot;test&quot;);
 //將會出錯
 sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
 </pre>
@@ -220,7 +220,7 @@ sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/04/12/javascript-storage/" data-id="cihc3k8em007l3264w3vold8z" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/04/12/javascript-storage/" data-id="cinhl1p2m004a5164xeeizss9" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/04/12/javascript-storage/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -261,18 +261,18 @@ sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
     <div class="article-entry" itemprop="articleBody">
       
         <p><span style="color:#f00;">Worker是javascript的thead</span>，只有在支援<span style="color:#00f;">html5</span>的brower才提供，<span style="color:#f00;">目前支援最完整的是firefox，firefox可以在Worker理面在使用Worker</span>。Worker目前只提供簡單的傳值、物件、陣列，並沒辦法傳遞function，其中要特別注意的是object，當<span style="color:#f00;">Worker接收到的是一個object，會與原先的object屬於不同記憶體位址</span>。</p>
-<h6 id="example：">example：</h6><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">var ary = [2,3,4];</span><br><span class="line">var thead = new Worker(&amp;quot;./thead.js&amp;quot;);</span><br><span class="line">    thead.onmessage = function(event)&#123;</span><br><span class="line">        console.log(&amp;quot;new:&amp;quot;+event.data);</span><br><span class="line">        console.log(&amp;quot;old:&amp;quot;+ary);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    thead.postMessage(ary);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;</span><br></pre></td></tr></table></figure>
+<h6 id="example："><a href="#example：" class="headerlink" title="example："></a>example：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="keyword">var</span> ary = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="keyword">var</span> thead = <span class="keyword">new</span> Worker(&amp;quot;./thead.js&amp;quot;);</span><br><span class="line">    thead.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(&amp;quot;<span class="keyword">new</span>:&amp;quot;+event.data);</span><br><span class="line">        <span class="built_in">console</span>.log(&amp;quot;old:&amp;quot;+ary);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    thead.postMessage(ary);</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <div><span style="color:#00f;">index.html</span></div><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;                                                                                                                         </span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> event.data ===&amp;quot;object&amp;quot;)                                              </span><br><span class="line">    event.data.push(<span class="number">5</span>);                                                            </span><br><span class="line">    postMessage(event.data);                                                       </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br><br><div><span style="color:#00f;">thead.js</span></div>
 
-<h6 id="result：">result：</h6><div><span class="Apple-style-span" style="font-family: Consolas, 'Lucida Console', monospace; white-space: pre-wrap; color: rgb(0, 0, 0); ">new:2,3,4,5</span></div><br><div><span class="Apple-style-span" style="font-family: Consolas, 'Lucida Console', monospace; white-space: pre-wrap; color: rgb(0, 0, 0); ">old:2,3,4</span></div><br><div>&nbsp;</div>
+<h6 id="result："><a href="#result：" class="headerlink" title="result："></a>result：</h6><div><span class="Apple-style-span" style="font-family: Consolas, 'Lucida Console', monospace; white-space: pre-wrap; color: rgb(0, 0, 0); ">new:2,3,4,5</span></div><br><div><span class="Apple-style-span" style="font-family: Consolas, 'Lucida Console', monospace; white-space: pre-wrap; color: rgb(0, 0, 0); ">old:2,3,4</span></div><br><div>&nbsp;</div>
 
-<h6 id="Worker的Global成員(指的是上方範例的thead-js)：">Worker的Global成員(指的是上方範例的thead.js)：</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//寄送訊息</span></span><br><span class="line">postMessage(msg);</span><br><span class="line"><span class="comment">//關閉thead</span></span><br><span class="line">close();</span><br><span class="line"><span class="comment">//與時間有關的</span></span><br><span class="line">setTimeout(func,num);</span><br><span class="line">clearTimeout(num);</span><br><span class="line">setInterVal(func,num);</span><br><span class="line">clearInterVal(num);</span><br><span class="line"><span class="comment">//目前只有firefox有提供</span></span><br><span class="line">Worker</span><br><span class="line"><span class="comment">//</span></span><br><span class="line">XMLHttpRequest</span><br><span class="line"><span class="comment">//接收訊息的event</span></span><br><span class="line">onmessage</span><br><span class="line"><span class="comment">//引用其他程式</span></span><br><span class="line">importScripts(url1,url2....);</span><br></pre></td></tr></table></figure>
-<h6 id="Worker的物件成員：">Worker的物件成員：</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//寄送訊息</span></span><br><span class="line">postMessage(msg);</span><br><span class="line"><span class="comment">//event</span></span><br><span class="line">onerror</span><br><span class="line"><span class="comment">//接收訊息的event</span></span><br><span class="line">onMessage</span><br><span class="line"><span class="comment">//立即關閉thread</span></span><br><span class="line">terminate()</span><br></pre></td></tr></table></figure>
+<h6 id="Worker的Global成員-指的是上方範例的thead-js-："><a href="#Worker的Global成員-指的是上方範例的thead-js-：" class="headerlink" title="Worker的Global成員(指的是上方範例的thead.js)："></a>Worker的Global成員(指的是上方範例的thead.js)：</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//寄送訊息</span></span><br><span class="line">postMessage(msg);</span><br><span class="line"><span class="comment">//關閉thead</span></span><br><span class="line">close();</span><br><span class="line"><span class="comment">//與時間有關的</span></span><br><span class="line">setTimeout(func,num);</span><br><span class="line">clearTimeout(num);</span><br><span class="line">setInterVal(func,num);</span><br><span class="line">clearInterVal(num);</span><br><span class="line"><span class="comment">//目前只有firefox有提供</span></span><br><span class="line">Worker</span><br><span class="line"><span class="comment">//</span></span><br><span class="line">XMLHttpRequest</span><br><span class="line"><span class="comment">//接收訊息的event</span></span><br><span class="line">onmessage</span><br><span class="line"><span class="comment">//引用其他程式</span></span><br><span class="line">importScripts(url1,url2....);</span><br></pre></td></tr></table></figure>
+<h6 id="Worker的物件成員："><a href="#Worker的物件成員：" class="headerlink" title="Worker的物件成員："></a>Worker的物件成員：</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//寄送訊息</span></span><br><span class="line">postMessage(msg);</span><br><span class="line"><span class="comment">//event</span></span><br><span class="line">onerror</span><br><span class="line"><span class="comment">//接收訊息的event</span></span><br><span class="line">onMessage</span><br><span class="line"><span class="comment">//立即關閉thread</span></span><br><span class="line">terminate()</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/04/05/javascript-workerhtml5/" data-id="cihc3k8ej007h3264z9es6tor" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/04/05/javascript-workerhtml5/" data-id="cinhl1p2p004e5164rs3k9p99" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/04/05/javascript-workerhtml5/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -313,16 +313,16 @@ sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
     <div class="article-entry" itemprop="articleBody">
       
         <p><span style="color:#f00;">placeholder是html5新增的attribute，主要用途是用來設定提示訊息</span>，例如<span style="color:#00f;">input</span>的<span style="color:#00f;">text</span>，你可能會需要設定提示<span style="color:#00f;">user</span>該輸入的資訊，一般的做法是使用<span style="color:#00f;">focus</span>和<span style="color:#00f;">blur</span>這兩個<span style="color:#00f;">event</span>，當<span style="color:#00f;">submit</span>的時候必須將未填入資訊的欄位清空，而由<span style="color:#00f;">html5</span>所提供的<span style="color:#00f;">placeholder</span>，只需要填入應該預設的提示訊息。</p>
-<h6 id="以下是一個簡單的example：">以下是一個簡單的example：</h6><pre class="brush:html">&lt;input type=&quot;text&quot; name=&quot;account&quot; placeholder=&quot;請填寫帳號...&quot; /&gt;
+<h6 id="以下是一個簡單的example："><a href="#以下是一個簡單的example：" class="headerlink" title="以下是一個簡單的example："></a>以下是一個簡單的example：</h6><pre class="brush:html">&lt;input type=&quot;text&quot; name=&quot;account&quot; placeholder=&quot;請填寫帳號...&quot; /&gt;
 &lt;textarea name=&quot;message&quot; placeholder=&quot;請填寫訊息...&quot;&gt;&lt;/textarea&gt;</pre>
 
 <p>如果希望<span style="color:#00f;">placeholder</span>支援沒有提供的<span style="color:#00f;">brower</span>，你可使用<span style="color:#00f;">js</span>的<span style="color:#00f;">event</span>去修復它，其中要特別注意的是<span style="color:#00f;">password</span>這個<span style="color:#00f;">type</span>，因為它顯示的是特殊符號，所以即使用<span style="color:#00f;">js</span>也沒有辦法改變它的符號，最簡單的方式，就是使用<span style="color:#00f;">text</span>去替換，當有填入資料時，就替換成<span style="color:#00f;">password</span>，資料為空的時候再替換成<span style="color:#00f;">text</span>，最後一步只要在<span style="color:#00f;">submit</span>的時候，將未填入資料欄位清空。</p>
-<h6 id="jquery的plugin：">jquery的<font class="Apple-style-span" color="#000000" face="'Segoe UI', 'Lucida Grande', 'Franklin Gothic Medium', 'URW Gothic L', Helvetica, sans-serif" size="2">plugin：</font></h6><div>demo：<a href="http://mathiasbynens.be/demo/placeholder" target="_blank" rel="external">http://mathiasbynens.be/demo/placeholder</a></div><br><div>plugin：<span class="Apple-style-span" style="font-family: 'Segoe UI', 'Lucida Grande', 'Franklin Gothic Medium', 'URW Gothic L', Helvetica, sans-serif; font-size: 13px; color: rgb(0, 0, 0); "><a href="https://github.com/mathiasbynens/jquery-placeholder" target="_blank" rel="external">https://github.com/mathiasbynens/Placeholder-jQuery-Plugin</a></span></div>
+<h6 id="jquery的plugin："><a href="#jquery的plugin：" class="headerlink" title="jquery的plugin："></a>jquery的<font class="Apple-style-span" color="#000000" face="'Segoe UI', 'Lucida Grande', 'Franklin Gothic Medium', 'URW Gothic L', Helvetica, sans-serif" size="2">plugin：</font></h6><div>demo：<a href="http://mathiasbynens.be/demo/placeholder" target="_blank" rel="external">http://mathiasbynens.be/demo/placeholder</a></div><br><div>plugin：<span class="Apple-style-span" style="font-family: 'Segoe UI', 'Lucida Grande', 'Franklin Gothic Medium', 'URW Gothic L', Helvetica, sans-serif; font-size: 13px; color: rgb(0, 0, 0); "><a href="https://github.com/mathiasbynens/jquery-placeholder" target="_blank" rel="external">https://github.com/mathiasbynens/Placeholder-jQuery-Plugin</a></span></div>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/04/03/html5-placeholder/" data-id="cihc3k8fc008q32645lxo8kup" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/04/03/html5-placeholder/" data-id="cinhl1p1w00365164p6q6cesl" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/04/03/html5-placeholder/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -363,7 +363,7 @@ sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
     <div class="article-entry" itemprop="articleBody">
       
         <p><span style="color:#00f;">history</span>是<span style="color:#00f;">javascript</span>中處理上一頁與下一頁的一個<span style="color:#00f;">object</span>，在<span style="color:#00f;">ajax</span>中要有換頁的處理效果，而不做頁面切換，可以使用<span style="color:#00f;">html5</span>所提供的<span style="color:#00f;">pushState</span>和<span style="color:#00f;">replaceState</span>，其中<span style="color:#00f;">replaceState</span>與<span style="color:#00f;">pushState</span>功能類似，<span style="color:#f00;">replaceState最主要是取代目前此筆history中的紀錄，而pushState則是新增一筆</span>。</p>
-<h6 id="以下是history的function：">以下是history的function：</h6><pre class="brush:js">/**
+<h6 id="以下是history的function："><a href="#以下是history的function：" class="headerlink" title="以下是history的function："></a>以下是history的function：</h6><pre class="brush:js">/**
 * 回上一頁
 */
 history.back();
@@ -393,7 +393,7 @@ window.onpopstate = function(){
 </pre>
 
 <p>如果<span style="color:#00f;">brower</span>不支援<span style="color:#00f;">html5</span>的屬性時，可以使用<span style="color:#00f;">window.location</span>，它可以前往不同的頁面，接著只要利用&quot;<span style="color:#00f;">#</span>&quot;(錨點)的特性，就可以達到不換頁的效果，那麼所謂的&quot;<span style="color:#00f;">#</span>&quot;(錨點)是指此頁面的html的id，當&quot;<span style="color:#00f;">#</span>&quot;後面不加任何值時，將會跳到頁面最上端，若有找到符合id，則會前往此id的位置，沒找到則不做任何動作。</p>
-<h6 id="window-location：">window.location：</h6><pre class="brush:js">//跳到頁面最上方
+<h6 id="window-location："><a href="#window-location：" class="headerlink" title="window.location："></a>window.location：</h6><pre class="brush:js">//跳到頁面最上方
 window.location = &quot;#&quot;;
 //比對html的id，若沒此id不做任何動作
 window.location = &quot;#history&quot;;
@@ -405,7 +405,7 @@ window.location = &quot;#history&quot;;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/04/02/javascript-historyonpopstate、onhashchange/" data-id="cihc3k8eu007x3264qykikgrg" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/04/02/javascript-historyonpopstate、onhashchange/" data-id="cinhl1p2g00405164b0t1ct4k" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/04/02/javascript-historyonpopstate、onhashchange/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -445,25 +445,25 @@ window.location = &quot;#history&quot;;
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h6 id="1-安裝svn">1.安裝svn</h6><p>&nbsp;sudo apt-get install subversion</p>
-<h6 id="2-建立svn_repository">2.建立svn repository</h6><p>svnadmin create svnrepos</p>
-<h6 id="3-_建立svn_user，開啟svnrepos/conf/svnserve-conf，然後加入以下三行_(開頭不能有空格)">3. 建立svn user，開啟svnrepos/conf/svnserve.conf，然後加入以下三行 (開頭不能有空格)</h6><p>anon-access = none</p>
+        <h6 id="1-安裝svn"><a href="#1-安裝svn" class="headerlink" title="1.安裝svn"></a>1.安裝svn</h6><p>&nbsp;sudo apt-get install subversion</p>
+<h6 id="2-建立svn-repository"><a href="#2-建立svn-repository" class="headerlink" title="2.建立svn repository"></a>2.建立svn repository</h6><p>svnadmin create svnrepos</p>
+<h6 id="3-建立svn-user，開啟svnrepos-conf-svnserve-conf，然後加入以下三行-開頭不能有空格"><a href="#3-建立svn-user，開啟svnrepos-conf-svnserve-conf，然後加入以下三行-開頭不能有空格" class="headerlink" title="3. 建立svn user，開啟svnrepos/conf/svnserve.conf，然後加入以下三行 (開頭不能有空格)"></a>3. 建立svn user，開啟svnrepos/conf/svnserve.conf，然後加入以下三行 (開頭不能有空格)</h6><p>anon-access = none</p>
 <p>auth-access = write</p>
 <p>password-db = passwd</p>
-<h6 id="4-_建立svn使用者和密碼，開啟svnrepos/conf/passwd&nbsp;(開頭不能有空格)">4. 建立svn使用者和密碼，開啟svnrepos/conf/passwd&nbsp;(開頭不能有空格)</h6><p>user = password</p>
+<h6 id="4-建立svn使用者和密碼，開啟svnrepos-conf-passwd-nbsp-開頭不能有空格"><a href="#4-建立svn使用者和密碼，開啟svnrepos-conf-passwd-nbsp-開頭不能有空格" class="headerlink" title="4. 建立svn使用者和密碼，開啟svnrepos/conf/passwd&nbsp;(開頭不能有空格)"></a>4. 建立svn使用者和密碼，開啟svnrepos/conf/passwd&nbsp;(開頭不能有空格)</h6><p>user = password</p>
 <p>ex: peter = 123456</p>
-<h6 id="5-_啟動svn_server">5. 啟動svn server</h6><p>svnserve -d -r&nbsp;svnrepos</p>
+<h6 id="5-啟動svn-server"><a href="#5-啟動svn-server" class="headerlink" title="5. 啟動svn server"></a>5. 啟動svn server</h6><p>svnserve -d -r&nbsp;svnrepos</p>
 <p>-r是svn的root的路徑</p>
-<h6 id="6-關閉svn_server可以使用">6.關閉svn server可以使用</h6><p>killall svnserve</p>
-<h6 id="7-從server抓取資料">7.從server抓取資料</h6><p>svn co svn://xxx.xxx.xxx</p>
+<h6 id="6-關閉svn-server可以使用"><a href="#6-關閉svn-server可以使用" class="headerlink" title="6.關閉svn server可以使用"></a>6.關閉svn server可以使用</h6><p>killall svnserve</p>
+<h6 id="7-從server抓取資料"><a href="#7-從server抓取資料" class="headerlink" title="7.從server抓取資料"></a>7.從server抓取資料</h6><p>svn co svn://xxx.xxx.xxx</p>
 <p>svn的port預設是3690有防火牆要記得關掉。</p>
-<h6 id="以下有幾個實用的指令：">以下有幾個實用的指令：</h6><p>svn export svn://xxx.xxx.xxx &nbsp; &nbsp;可以直接將檔案抓下來，不列入版本控制。</p>
+<h6 id="以下有幾個實用的指令："><a href="#以下有幾個實用的指令：" class="headerlink" title="以下有幾個實用的指令："></a>以下有幾個實用的指令：</h6><p>svn export svn://xxx.xxx.xxx &nbsp; &nbsp;可以直接將檔案抓下來，不列入版本控制。</p>
 <p>svn mv test test1 &nbsp; 搬移、重新命名，若直接刪除svn的檔案，再以加入的方式達到重新命名，log將不會保留。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/04/02/svn-serverubuntu/" data-id="cihc3k8ce003f3264y3okkwje" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/04/02/svn-serverubuntu/" data-id="cinhl1p4f007n5164xkkeicwd" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/04/02/svn-serverubuntu/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -504,7 +504,7 @@ window.location = &quot;#history&quot;;
     <div class="article-entry" itemprop="articleBody">
       
         <p><span style="color:#00f;">jquery</span>的擴充方式有兩種，<span style="color:#f00;">一種是靜態的擴充，另一個則是prototype擴充</span>，靜態擴充只是將<span style="color:#00f;">function、object</span>….等，添加在<span style="color:#00f;">jquery</span>底下，與沒添加前功能相同，但是<span style="color:#00f;">prototype</span>則不同，<span style="color:#f00;">prototype擴充可以將你所抓取的element做處理</span>，以下是一個很典型的做法。</p>
-<h6 id="example：">example：</h6><pre class="brush:js">(function($){
+<h6 id="example："><a href="#example：" class="headerlink" title="example："></a>example：</h6><pre class="brush:js">(function($){
     //prototype extend
     $.fn.extend({
         drawRed:function(){
@@ -535,7 +535,7 @@ $.draw();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/03/31/jquery擴充寫法/" data-id="cihc3k8e4006q3264bypo6rzc" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/03/31/jquery擴充寫法/" data-id="cinhl1p31004z5164eul42v61" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/03/31/jquery擴充寫法/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -576,7 +576,7 @@ $.draw();
     <div class="article-entry" itemprop="articleBody">
       
         <p>在開始配置環境之前，你必須先安裝好<span style="color:#00f;">java</span>，接著下載<a href="http://developer.android.com/sdk/index.html" target="_blank" rel="external">android </a>sdk和<a href="http://ant.apache.org/manualdownload.cgi" target="_blank" rel="external">ant</a>。</p>
-<h6 id="接在配置-bashrc這個檔案(家目錄)：">接在配置.bashrc這個檔案(家目錄)：</h6><pre class="prettyprint" style="color: rgb(0, 112, 0); font-family: monospace; line-height: inherit; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0.5em; margin-right: 0px; margin-bottom: 0px; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="Apple-style-span" style="color: rgb(51, 51, 51); font-family: arial, sans-serif; font-size: 13px; line-height: 16px; "><span class="kwd" style="color: rgb(0, 0, 136); ">export</span><span class="pln" style="color: rgb(0, 0, 0); "> PATH</span><span class="pun" style="color: rgb(102, 102, 0); ">=</span><span class="pln" style="color: rgb(0, 0, 0); ">$</span><span class="pun" style="color: rgb(102, 102, 0); ">{</span><span class="pln" style="color: rgb(0, 0, 0); ">PATH</span><span class="pun" style="color: rgb(102, 102, 0); ">}:&lt;</span><span class="pln" style="color: rgb(0, 0, 0); ">sdk</span><span class="pun" style="color: rgb(102, 102, 0); ">&gt;</span><span class="str" style="color: rgb(0, 136, 0); ">/tools:&lt;sdk&gt;/</span><span class="pln" style="color: rgb(0, 0, 0); ">platform</span><span class="pun" style="color: rgb(102, 102, 0); ">-</span><span class="pln" style="color: rgb(0, 0, 0); ">tools</span></span></pre>
+<h6 id="接在配置-bashrc這個檔案-家目錄-："><a href="#接在配置-bashrc這個檔案-家目錄-：" class="headerlink" title="接在配置.bashrc這個檔案(家目錄)："></a>接在配置.bashrc這個檔案(家目錄)：</h6><pre class="prettyprint" style="color: rgb(0, 112, 0); font-family: monospace; line-height: inherit; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0.5em; margin-right: 0px; margin-bottom: 0px; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="Apple-style-span" style="color: rgb(51, 51, 51); font-family: arial, sans-serif; font-size: 13px; line-height: 16px; "><span class="kwd" style="color: rgb(0, 0, 136); ">export</span><span class="pln" style="color: rgb(0, 0, 0); "> PATH</span><span class="pun" style="color: rgb(102, 102, 0); ">=</span><span class="pln" style="color: rgb(0, 0, 0); ">$</span><span class="pun" style="color: rgb(102, 102, 0); ">{</span><span class="pln" style="color: rgb(0, 0, 0); ">PATH</span><span class="pun" style="color: rgb(102, 102, 0); ">}:&lt;</span><span class="pln" style="color: rgb(0, 0, 0); ">sdk</span><span class="pun" style="color: rgb(102, 102, 0); ">&gt;</span><span class="str" style="color: rgb(0, 136, 0); ">/tools:&lt;sdk&gt;/</span><span class="pln" style="color: rgb(0, 0, 0); ">platform</span><span class="pun" style="color: rgb(102, 102, 0); ">-</span><span class="pln" style="color: rgb(0, 0, 0); ">tools</span></span></pre>
 
 <p>&nbsp;</p>
 <p>如果沒配置，將無法使用模擬器，<span style="color:#00f;">ant</span>可以直接使用或參照以上配置方法，配置好在<span style="color:#00f;">terminal</span>上打</p>
@@ -584,17 +584,17 @@ $.draw();
 <p>接著在<span style="color:#00f;">terminal</span>打上<span style="color:#00f;">android</span>將會出現以下視窗，將<span style="color:#00f;">available packages</span>裡面需要用到的都安裝上去，因為一開始</p>
 <p>只提供2.3.3和3.0的模擬器。</p>
 <p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/android/android_sdk.png" alt="" title="android sdk"></p>
-<h6 id="安裝好之後接著配置專案，先查看能使用的模擬器版本及id：">安裝好之後接著配置專案，先查看能使用的模擬器版本及id：</h6><pre class="prettyprint" style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0.5em; margin-right: 0px; margin-bottom: 0px; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="Apple-style-span" style="line-height: 16px;">android list targets</span></pre>
+<h6 id="安裝好之後接著配置專案，先查看能使用的模擬器版本及id："><a href="#安裝好之後接著配置專案，先查看能使用的模擬器版本及id：" class="headerlink" title="安裝好之後接著配置專案，先查看能使用的模擬器版本及id："></a>安裝好之後接著配置專案，先查看能使用的模擬器版本及id：</h6><pre class="prettyprint" style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0.5em; margin-right: 0px; margin-bottom: 0px; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="Apple-style-span" style="line-height: 16px;">android list targets</span></pre>
 
 <p>&nbsp;</p>
-<h6 id="接著create_project：">接著create project：</h6><pre class="prettyprint" style="color: rgb(0, 112, 0); font-family: monospace; line-height: inherit; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0px; margin-right: 0px; margin-bottom: 1em; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="pln" style="color: rgb(0, 0, 0); ">android create project </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
+<h6 id="接著create-project："><a href="#接著create-project：" class="headerlink" title="接著create project："></a>接著create project：</h6><pre class="prettyprint" style="color: rgb(0, 112, 0); font-family: monospace; line-height: inherit; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0px; margin-right: 0px; margin-bottom: 1em; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="pln" style="color: rgb(0, 0, 0); ">android create project </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
 <span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="pln" style="color: rgb(0, 0, 0); ">target </span><span class="pun" style="color: rgb(102, 102, 0); ">&lt;</span><span class="pln" style="color: rgb(0, 0, 0); ">target_ID</span><span class="pun" style="color: rgb(102, 102, 0); ">&gt;</span><span class="pln" style="color: rgb(0, 0, 0); "> </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
 <span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="pln" style="color: rgb(0, 0, 0); ">name </span><span class="pun" style="color: rgb(102, 102, 0); ">&lt;</span><span class="pln" style="color: rgb(0, 0, 0); ">your_project_name</span><span class="pun" style="color: rgb(102, 102, 0); ">&gt;</span><span class="pln" style="color: rgb(0, 0, 0); "> </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
 <span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="pln" style="color: rgb(0, 0, 0); ">path path</span><span class="pun" style="color: rgb(102, 102, 0); ">/</span><span class="pln" style="color: rgb(0, 0, 0); ">to</span><span class="pun" style="color: rgb(102, 102, 0); ">/</span><span class="pln" style="color: rgb(0, 0, 0); ">your</span><span class="pun" style="color: rgb(102, 102, 0); ">/</span><span class="pln" style="color: rgb(0, 0, 0); ">project </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
 <span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="pln" style="color: rgb(0, 0, 0); ">activity </span><span class="pun" style="color: rgb(102, 102, 0); ">&lt;</span><span class="pln" style="color: rgb(0, 0, 0); ">your_activity_name</span><span class="pun" style="color: rgb(102, 102, 0); ">&gt;</span><span class="pln" style="color: rgb(0, 0, 0); "> </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
 <span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="kwd" style="color: rgb(0, 0, 136); ">package</span><span class="pln" style="color: rgb(0, 0, 0); "> </span><span class="pun" style="color: rgb(102, 102, 0); ">&lt;</span><span class="pln" style="color: rgb(0, 0, 0); ">your_package_namespace</span><span class="pun" style="color: rgb(102, 102, 0); ">&gt;</span></pre>
 
-<h6 id="example：">example：</h6><pre class="prettyprint" style="color: rgb(0, 112, 0); font-family: monospace; line-height: inherit; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0px; margin-right: 0px; margin-bottom: 1em; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="Apple-style-span" style="color: rgb(51, 51, 51); font-family: arial, sans-serif; font-size: 13px; "><span class="pln" style="color: rgb(0, 0, 0); ">android create project </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
+<h6 id="example："><a href="#example：" class="headerlink" title="example："></a>example：</h6><pre class="prettyprint" style="color: rgb(0, 112, 0); font-family: monospace; line-height: inherit; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0px; margin-right: 0px; margin-bottom: 1em; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="Apple-style-span" style="color: rgb(51, 51, 51); font-family: arial, sans-serif; font-size: 13px; "><span class="pln" style="color: rgb(0, 0, 0); ">android create project </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
 </span><span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="pln" style="color: rgb(0, 0, 0); ">target </span><span class="lit" style="color: rgb(0, 102, 102); ">1</span><span class="pln" style="color: rgb(0, 0, 0); "> </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
 <span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="pln" style="color: rgb(0, 0, 0); ">name </span><span class="typ" style="color: rgb(102, 0, 102); ">MyAndroidApp</span><span class="pln" style="color: rgb(0, 0, 0); "> </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
 <span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="pln" style="color: rgb(0, 0, 0); ">path </span><span class="pun" style="color: rgb(102, 102, 0); ">./</span><span class="typ" style="color: rgb(102, 0, 102); ">MyAndroidAppProject</span><span class="pln" style="color: rgb(0, 0, 0); "> </span><span class="pun" style="color: rgb(102, 102, 0); ">\</span>
@@ -602,14 +602,14 @@ $.draw();
 <span class="pun" style="color: rgb(102, 102, 0); ">--</span><span class="kwd" style="color: rgb(0, 0, 136); ">package</span><span class="pln" style="color: rgb(0, 0, 0); "> com</span><span class="pun" style="color: rgb(102, 102, 0); ">.</span><span class="pln" style="color: rgb(0, 0, 0); ">example</span><span class="pun" style="color: rgb(102, 102, 0); ">.</span><span class="pln" style="color: rgb(0, 0, 0); ">myandroid</span></pre>
 
 <p>&nbsp;</p>
-<h6 id="專案建立好後，只要在專案的根目錄下，對terminal執行以下指令，就可以產生apk：">專案建立好後，只要在專案的根目錄下，對<span style="color:#00f;">terminal</span>執行以下指令，就可以產生apk：</h6><pre class="prettyprint" style="font-family: monospace; line-height: inherit; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0px; margin-right: 0px; margin-bottom: 1em; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="Apple-style-span" style="font-family: arial, sans-serif; font-size: 13px; "><font class="Apple-style-span" color="#000000">ant debug
+<h6 id="專案建立好後，只要在專案的根目錄下，對terminal執行以下指令，就可以產生apk："><a href="#專案建立好後，只要在專案的根目錄下，對terminal執行以下指令，就可以產生apk：" class="headerlink" title="專案建立好後，只要在專案的根目錄下，對terminal執行以下指令，就可以產生apk："></a>專案建立好後，只要在專案的根目錄下，對<span style="color:#00f;">terminal</span>執行以下指令，就可以產生apk：</h6><pre class="prettyprint" style="font-family: monospace; line-height: inherit; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0px; margin-right: 0px; margin-bottom: 1em; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="Apple-style-span" style="font-family: arial, sans-serif; font-size: 13px; "><font class="Apple-style-span" color="#000000">ant debug
     or
 ant release</font></span></pre>
 
 <p><span class="Apple-style-span" style="font-weight: bold; ">查看目前連接的裝置：</span></p>
 <pre class="prettyprint" style="font-family: monospace; line-height: inherit; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(204, 204, 204); border-right-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 0.5em; margin-right: 0px; margin-bottom: 0px; margin-left: 1em; overflow-x: auto; overflow-y: auto; "><span class="Apple-style-span" style="font-family: arial, sans-serif; font-size: 13px; line-height: 16px; "><font class="Apple-style-span" color="#000000">adb devices</font><span _fck_bookmark="1" style="display: none; ">&nbsp;</span></span></pre>
 
-<h6 id="&nbsp;">&nbsp;</h6><p><strong>64位元系統是無法使用adb，需要安裝：</strong></p>
+<h6 id="nbsp"><a href="#nbsp" class="headerlink" title="&nbsp;"></a>&nbsp;</h6><p><strong>64位元系統是無法使用adb，需要安裝：</strong></p>
 <pre class="prettyprint" style="font-weight: normal; line-height: inherit; border: 1px solid rgb(204, 204, 204); background-color: rgb(250, 250, 250); padding: 10px; margin-top: 0.5em; margin-bottom: 0px; margin-left: 1em; overflow: auto; "><span style="color: rgb(68, 68, 68); font-family: 'Lucida Grande', sans-serif; line-height: 14.399999618530273px; text-align: justify; white-space: normal; background-color: rgb(255, 255, 255); ">sudo apt-get install ia32-libs</span></pre>
 <div>&nbsp;</div>
 
@@ -622,7 +622,7 @@ ant release</font></span></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/03/27/android開發環境配置non-ide/" data-id="cihc3k8gz00bn3264381tklo5" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/03/27/android開發環境配置non-ide/" data-id="cinhl1p00001751645zlii286" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/03/27/android開發環境配置non-ide/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -663,7 +663,7 @@ ant release</font></span></pre>
     <div class="article-entry" itemprop="articleBody">
       
         <p>在<span style="color:#00f;">javascript</span>中並沒有<span style="color:#00f;">class</span>這個關鍵字，而是以<span style="color:#00f;">function</span>的方式，去配置一個物件，所以<span style="color:#00f;">function</span>可以直接使用，也可拿來配置物件。接著以下都直接以配置物件的<span style="color:#00f;">function</span>，稱為<span style="color:#00f;">class</span>，那麼在<span style="color:#00f;">class</span>之中，宣告<span style="color:#00f;">var</span>來當一個<span style="color:#00f;">private</span>的變數，若是沒宣告則會是一個全域變數，在<span style="color:#00f;">function</span>裡面的code，當開使去<span style="color:#00f;">new</span>的時候，裡面的code都會被執行一次，其中<span style="color:#00f;">this</span>為指向物件本身，換句話說就是一個<span style="color:#00f;">public</span>的屬性，<span style="color:#f00;">this與prototype的差異是，this是每個物件自己擁有的，而prototype則是所有class共用的</span>。</p>
-<h6 id="以下是一個範例："><span style="color:#000;">以下是一個範例：</span></h6><pre class="brush:js">/**
+<h6 id="以下是一個範例："><a href="#以下是一個範例：" class="headerlink" title="以下是一個範例："></a><span style="color:#000;">以下是一個範例：</span></h6><pre class="brush:js">/**
 * @class
 * @constructor
 */
@@ -738,7 +738,7 @@ car.getSpeed();</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/03/26/javascript-object-oriented-concepts/" data-id="cihc3k8er007u3264z1fy8ifp" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/03/26/javascript-object-oriented-concepts/" data-id="cinhl1p2j00445164q2z62gno" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/03/26/javascript-object-oriented-concepts/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -778,7 +778,7 @@ car.getSpeed();</pre>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h6 id="以下是一個簡單的closure_example：">以下是一個簡單的closure example：</h6><pre class="brush:js">function doSomething(){
+        <h6 id="以下是一個簡單的closure-example："><a href="#以下是一個簡單的closure-example：" class="headerlink" title="以下是一個簡單的closure example："></a>以下是一個簡單的closure example：</h6><pre class="brush:js">function doSomething(){
     var x = 100;
     function add(y){
         x = x + y;
@@ -804,7 +804,7 @@ var add2 = doSomething();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/03/24/javascript-closure/" data-id="cihc3k8f000853264in2oymi2" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/03/24/javascript-closure/" data-id="cinhl1p2d003u5164y46nfyvh" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/03/24/javascript-closure/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -892,7 +892,7 @@ var add2 = doSomething();
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -936,7 +936,7 @@ var add2 = doSomething();
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

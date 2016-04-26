@@ -30,7 +30,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -115,7 +115,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><span style="color:#f00;">在android使用google map api時，必須需要有一個key，才能使用google map api。</span></p>
-<h6 id="首先在linux環境底下，執行以下command_line：">首先在linux環境底下，執行以下command line：</h6><p>keytool -list -keystore ~/.android/debug.keystore</p>
+<h6 id="首先在linux環境底下，執行以下command-line："><a href="#首先在linux環境底下，執行以下command-line：" class="headerlink" title="首先在linux環境底下，執行以下command line："></a>首先在linux環境底下，執行以下command line：</h6><p>keytool -list -keystore ~/.android/debug.keystore</p>
 <p>輸入密碼可以直接按enter，接著你會得到一串md5。</p>
 <p>接著你可以<a href="http://code.google.com/intl/zh-TW/android/maps-api-signup.html" target="_blank" rel="external">經由google</a>得到一串key，<span style="color:#f00;">把key加入到layout裡，或者直接建立MapView object也可輸入</span>。</p>
 <pre class="brush:xml">&lt;com.google.android.maps.MapView
@@ -127,7 +127,7 @@
     android:clickable=&quot;true&quot;
 /&gt;</pre>
 
-<h6 id="配置AndroidManifest-xml">配置AndroidManifest.xml</h6><pre class="brush:xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+<h6 id="配置AndroidManifest-xml"><a href="#配置AndroidManifest-xml" class="headerlink" title="配置AndroidManifest.xml"></a>配置AndroidManifest.xml</h6><pre class="brush:xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
       package=&quot;com.test.test&quot;
       android:versionCode=&quot;1&quot;
@@ -149,12 +149,12 @@
 <p>其中<span style="color:#00f;">uses-library</span>是必須的，<span style="color:#00f;">uses-permission</span>則是根據你使用的api功能決定。</p>
 <p>&nbsp;</p>
 <p><span style="color:#f00;">如果要能到android market上，你必須另外申請一組key，而不是用android debug key。</span></p>
-<h6 id="你可以使用以下command_line去建立一個keystore：">你可以使用以下command line去建立一個keystore：</h6><p>keytool -genkey -v -keystore test.keystore -alias test -keyalg RSA -keysize 2048 -validity 10000</p>
-<h6 id="同樣使用md5去取得key，執行以下command_line：">同樣使用md5去取得key，執行以下command line：</h6><p>keytool -list -keystore test.keystore</p>
+<h6 id="你可以使用以下command-line去建立一個keystore："><a href="#你可以使用以下command-line去建立一個keystore：" class="headerlink" title="你可以使用以下command line去建立一個keystore："></a>你可以使用以下command line去建立一個keystore：</h6><p>keytool -genkey -v -keystore test.keystore -alias test -keyalg RSA -keysize 2048 -validity 10000</p>
+<h6 id="同樣使用md5去取得key，執行以下command-line："><a href="#同樣使用md5去取得key，執行以下command-line：" class="headerlink" title="同樣使用md5去取得key，執行以下command line："></a>同樣使用md5去取得key，執行以下command line：</h6><p>keytool -list -keystore test.keystore</p>
 <p>接著拿去google取得key配置方法如上。</p>
-<h6 id="最後一個步驟，就是將你的未驗證的apk，去做驗證，command_line如下：">最後一個步驟，就是將你的未驗證的apk，去做驗證，command line如下：</h6><p>jarsigner -verbose -keystore my-release-key.keystore my_application.apk alias_name</p>
-<h6 id="以及優化指令：">以及優化指令：</h6><p>zipalign -v 4 your_project_name-unaligned.apk your_project_name.apk</p>
-<h6 id="若是使用ant，只要在build-properties加入以下兩行：">若是使用ant，只要在build.properties加入以下兩行：</h6><div><br><br>key.store=my-release-key.keystore<br><br>key.alias=alias_name<br><br></div>
+<h6 id="最後一個步驟，就是將你的未驗證的apk，去做驗證，command-line如下："><a href="#最後一個步驟，就是將你的未驗證的apk，去做驗證，command-line如下：" class="headerlink" title="最後一個步驟，就是將你的未驗證的apk，去做驗證，command line如下："></a>最後一個步驟，就是將你的未驗證的apk，去做驗證，command line如下：</h6><p>jarsigner -verbose -keystore my-release-key.keystore my_application.apk alias_name</p>
+<h6 id="以及優化指令："><a href="#以及優化指令：" class="headerlink" title="以及優化指令："></a>以及優化指令：</h6><p>zipalign -v 4 your_project_name-unaligned.apk your_project_name.apk</p>
+<h6 id="若是使用ant，只要在build-properties加入以下兩行："><a href="#若是使用ant，只要在build-properties加入以下兩行：" class="headerlink" title="若是使用ant，只要在build.properties加入以下兩行："></a>若是使用ant，只要在build.properties加入以下兩行：</h6><div><br><br>key.store=my-release-key.keystore<br><br>key.alias=alias_name<br><br></div>
 
 <p>再執行ant release，即可產生驗證後的apk</p>
 <p><a href="http://developer.android.com/guide/publishing/app-signing.html" target="_blank" rel="external">申請keystore及驗證頁面</a></p>
@@ -164,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/06/17/android-google-map-key/" data-id="cihc3k8h200br3264xhp1o4su" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/06/17/android-google-map-key/" data-id="cinhl1ozx00135164emt7w0ez" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/06/17/android-google-map-key/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -272,7 +272,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -318,7 +318,7 @@
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

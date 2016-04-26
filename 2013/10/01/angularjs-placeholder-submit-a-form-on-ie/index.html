@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://www.sparrowjang.com/2013/10/01/angularjs-placeholder-submit-a-form-on-ie/index.html">
 <meta property="og:site_name" content="Sparrow's Blog">
 <meta property="og:description" content="使用angularjs-placeholder可以在老舊IE上，支援placeholder這個屬性，但是底層還是去實作foucs和blur這兩個event，並且用替換value的方式，達到模擬placeholder的效果。在一般使用上沒什麼太大問題，但是假設今天有一個form要submit的時候，會把placeholder的預設值也一起送出，這時就必須在submit之前，就將預設值清除，或者在取值">
-<meta property="og:updated_time" content="2015-11-18T06:07:19.000Z">
+<meta property="og:updated_time" content="2016-04-26T15:11:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="angularjs-placeholder submit a form on IE">
 <meta name="twitter:description" content="使用angularjs-placeholder可以在老舊IE上，支援placeholder這個屬性，但是底層還是去實作foucs和blur這兩個event，並且用替換value的方式，達到模擬placeholder的效果。在一般使用上沒什麼太大問題，但是假設今天有一個form要submit的時候，會把placeholder的預設值也一起送出，這時就必須在submit之前，就將預設值清除，或者在取值">
@@ -21,7 +21,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -106,15 +106,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>使用<a href="https://github.com/SparrowJang/angularjs-placeholder" target="_blank" rel="external">angularjs-placeholder</a>可以在老舊<strong>IE</strong>上，支援<strong>placeholder</strong>這個屬性，但是底層還是去實作<strong>foucs</strong>和<strong>blur</strong>這兩個<strong>event</strong>，並且用<strong>替換value的方式</strong>，達到<strong>模擬placeholder</strong>的效果。在一般使用上沒什麼太大問題，但是假設今天有一個<strong>form</strong>要<strong>submit</strong>的時候，會把<strong>placeholder</strong>的預設值也一起送出，這時就必須在<strong>submit</strong>之前，就將預設值清除，或者在取值得時候，暫時將欄位值清除，之後在還原。</p>
-<h2 id="使用placeholder-ensure取值：">使用placeholder.ensure取值：</h2><h4 id="ensure接受兩個參數："><strong>ensure</strong>接受兩個參數：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;jQlite&#125; $elem 可以是form或者為多個elements</span><br><span class="line">* @param &#123;function&#125; callback 實際取值的地方</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line">placeholder.ensure( $elem, callback );</span><br></pre></td></tr></table></figure>
-<h4 id="在callback裡面取得值後，可使用record-back來回復placeholder的預設值。">在<strong>callback</strong>裡面取得值後，可使用<strong>record.back</strong>來回復<strong>placeholder</strong>的預設值。</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">app.controller( <span class="string">"formController"</span>, [ <span class="string">"placeholder"</span>, <span class="string">"$element"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> placeholder, $form </span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  placeholder.ensure( $form , <span class="function"><span class="keyword">function</span>(<span class="params"> record </span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> $textarea = $form.find(<span class="string">"textarea"</span>);</span><br><span class="line">    alert( $textarea );</span><br><span class="line"></span><br><span class="line">    <span class="comment">//復原</span></span><br><span class="line">    record.back();</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h4 id="若要直接submit可直接呼叫ensure，不須使用callback。">若要直接submit可直接呼叫<strong>ensure</strong>，不須使用callback。</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">placeholder.ensure( $form )</span><br></pre></td></tr></table></figure>
+<h2 id="使用placeholder-ensure取值："><a href="#使用placeholder-ensure取值：" class="headerlink" title="使用placeholder.ensure取值："></a>使用placeholder.ensure取值：</h2><h4 id="ensure接受兩個參數："><a href="#ensure接受兩個參數：" class="headerlink" title="ensure接受兩個參數："></a><strong>ensure</strong>接受兩個參數：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">* @param &#123;jQlite&#125; $elem 可以是form或者為多個elements</span><br><span class="line">* @param &#123;function&#125; callback 實際取值的地方</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line">placeholder.ensure( $elem, callback );</span><br></pre></td></tr></table></figure>
+<h4 id="在callback裡面取得值後，可使用record-back來回復placeholder的預設值。"><a href="#在callback裡面取得值後，可使用record-back來回復placeholder的預設值。" class="headerlink" title="在callback裡面取得值後，可使用record.back來回復placeholder的預設值。"></a>在<strong>callback</strong>裡面取得值後，可使用<strong>record.back</strong>來回復<strong>placeholder</strong>的預設值。</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">app.controller( <span class="string">"formController"</span>, [ <span class="string">"placeholder"</span>, <span class="string">"$element"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> placeholder, $form </span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">  placeholder.ensure( $form , <span class="function"><span class="keyword">function</span>(<span class="params"> record </span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> $textarea = $form.find(<span class="string">"textarea"</span>);</span><br><span class="line">    alert( $textarea );</span><br><span class="line"></span><br><span class="line">    <span class="comment">//復原</span></span><br><span class="line">    record.back();</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="若要直接submit可直接呼叫ensure，不須使用callback。"><a href="#若要直接submit可直接呼叫ensure，不須使用callback。" class="headerlink" title="若要直接submit可直接呼叫ensure，不須使用callback。"></a>若要直接submit可直接呼叫<strong>ensure</strong>，不須使用callback。</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">placeholder.ensure( $form )</span><br></pre></td></tr></table></figure>
 <p>如果使用有<strong>支援placeholder的瀏覽器</strong>，還是會有<strong>ensure可以使用</strong>，但是<strong>將不會改變任何屬性</strong>，純粹只是個包裝過後的function。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/01/angularjs-placeholder-submit-a-form-on-ie/" data-id="cihc3k8gr00b632648az0dsjj" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/01/angularjs-placeholder-submit-a-form-on-ie/" data-id="cinhl1p0b001k5164k76qsurz" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/01/angularjs-placeholder-submit-a-form-on-ie/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -222,7 +222,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -268,7 +268,7 @@
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

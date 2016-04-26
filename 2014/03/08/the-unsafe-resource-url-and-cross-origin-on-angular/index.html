@@ -6,29 +6,33 @@
   <title>The unsafe resource URL and cross origin on angular | Sparrow&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="在angular很常遇到compile template時出錯的情況，因為在angular中，使用比較嚴謹的判斷方式，只要看到不符合規範，會直接拋出exception。
-Cross origin以下是一個video的範例，設定影片的source:
-123&amp;lt;video width=&quot;320&quot; height=&quot;240&quot; controls&amp;gt;  &amp;lt;source src=&quot;&amp;#123;&amp;#">
+##Cross origin
+以下是一個video的範例，設定影片的source:
+123&amp;lt;video width=&quot;320&quot; height=&quot;240&quot; controls&amp;gt;  &amp;lt;source src=&quot;&amp;#12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The unsafe resource URL and cross origin on angular">
 <meta property="og:url" content="http://www.sparrowjang.com/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/index.html">
 <meta property="og:site_name" content="Sparrow's Blog">
 <meta property="og:description" content="在angular很常遇到compile template時出錯的情況，因為在angular中，使用比較嚴謹的判斷方式，只要看到不符合規範，會直接拋出exception。
-Cross origin以下是一個video的範例，設定影片的source:
-123&amp;lt;video width=&quot;320&quot; height=&quot;240&quot; controls&amp;gt;  &amp;lt;source src=&quot;&amp;#123;&amp;#">
+##Cross origin
+以下是一個video的範例，設定影片的source:
+123&amp;lt;video width=&quot;320&quot; height=&quot;240&quot; controls&amp;gt;  &amp;lt;source src=&quot;&amp;#12">
 <meta property="og:image" content="http://www.sparrowjang.com/images/article/the-unsafe-resource-url-and-cross-origin-on-angular/screenshot.png">
 <meta property="og:updated_time" content="2015-11-18T06:17:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The unsafe resource URL and cross origin on angular">
 <meta name="twitter:description" content="在angular很常遇到compile template時出錯的情況，因為在angular中，使用比較嚴謹的判斷方式，只要看到不符合規範，會直接拋出exception。
-Cross origin以下是一個video的範例，設定影片的source:
-123&amp;lt;video width=&quot;320&quot; height=&quot;240&quot; controls&amp;gt;  &amp;lt;source src=&quot;&amp;#123;&amp;#">
+##Cross origin
+以下是一個video的範例，設定影片的source:
+123&amp;lt;video width=&quot;320&quot; height=&quot;240&quot; controls&amp;gt;  &amp;lt;source src=&quot;&amp;#12">
+<meta name="twitter:image" content="http://www.sparrowjang.com/images/article/the-unsafe-resource-url-and-cross-origin-on-angular/screenshot.png">
 <meta name="twitter:creator" content="@Sparrow_Jang">
   
   
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -110,18 +114,20 @@ Cross origin以下是一個video的範例，設定影片的source:
       
         <p><img src="/images/article/the-unsafe-resource-url-and-cross-origin-on-angular/screenshot.png" alt=""></p>
 <p>在angular很常遇到<strong>compile template</strong>時出錯的情況，因為在angular中，使用比較嚴謹的判斷方式，只要看到不符合規範，會直接拋出<strong>exception</strong>。</p>
-<h2 id="Cross_origin">Cross origin</h2><p>以下是一個video的範例，設定影片的<code>source</code>:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">video</span> <span class="attribute">width</span>=<span class="value">"320"</span> <span class="attribute">height</span>=<span class="value">"240"</span> <span class="attribute">controls</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">source</span> <span class="attribute">src</span>=<span class="value">"&#123;&#123;source&#125;&#125;"</span> <span class="attribute">type</span>=<span class="value">"video/mp4"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>##Cross origin</p>
+<p>以下是一個video的範例，設定影片的<code>source</code>:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">width</span>=<span class="string">"320"</span> <span class="attr">height</span>=<span class="string">"240"</span> <span class="attr">controls</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"&#123;&#123;source&#125;&#125;"</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>設定<code>source</code>的影片來源：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.source = <span class="string">"http://other.sparrowhome.twbbs.org/movie.mp4"</span></span><br></pre></td></tr></table></figure></p>
 <p>這時就會發現angular拋出<strong>exception</strong>，出現<strong>cross domain</strong>的問題。</p>
 <p>但是若是直接寫在html上呢？</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">video</span> <span class="attribute">width</span>=<span class="value">"320"</span> <span class="attribute">height</span>=<span class="value">"240"</span> <span class="attribute">controls</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">source</span> <span class="attribute">src</span>=<span class="value">"http://other.sparrowhome.twbbs.org/movie.mp4"</span> <span class="attribute">type</span>=<span class="value">"video/mp4"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">width</span>=<span class="string">"320"</span> <span class="attr">height</span>=<span class="string">"240"</span> <span class="attr">controls</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"http://other.sparrowhome.twbbs.org/movie.mp4"</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>此時你可以發現能正常的播放，但是在angular就是會拋錯，這時你可以透過<a href="http://docs.angularjs.org/api/ng/provider/$sceDelegateProvider" target="_blank" rel="external">$sceDelegateProvider</a>，來設定<strong>黑名單</strong>和<strong>白名單</strong>，決定哪個domain可以讀取這隻影片。</p>
 <p>假設你要讓所有domain都能使用，在<strong>白名單</strong>可以這樣寫：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">angular</span><br><span class="line">.module(<span class="string">'MyApp'</span>)</span><br><span class="line">.config([<span class="string">'$sceDelegateProvider'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$sceDelegateProvider</span>) </span>&#123;</span><br><span class="line">  $sceDelegateProvider.resourceUrlWhitelist([<span class="string">'**'</span>]);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 <p>若是你只要<strong>目前網域</strong>底下的<strong>子網域</strong>都可以讀取的話，可以這樣寫：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$sceDelegateProvider.resourceUrlWhitelist([<span class="string">'http://*.sparrowhome.twbbs.org'</span>])</span><br></pre></td></tr></table></figure>
 <p>如果要透過黑名單可以直接使用<code>resourceUrlBlacklist</code>。</p>
-<h2 id="Unsafe_resource_URL">Unsafe resource URL</h2><p>如果是讀取<code>img</code>，不管是<strong>cross domain</strong>都能正常讀取，不過還是會有不讀取的狀況。</p>
+<p>##Unsafe resource URL</p>
+<p>如果是讀取<code>img</code>，不管是<strong>cross domain</strong>都能正常讀取，不過還是會有不讀取的狀況。</p>
 <p>例如你透過一個<code>&lt;input type=&quot;file&quot;&gt;</code>，去取得顯示<code>image</code>，像是<code>&lt;img ng-src=&quot;{{img}}&quot; /&gt;</code>：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$scope.img = URL.createObjectURL(imgFile);</span><br></pre></td></tr></table></figure>
 <p>此時就會拋出<code>unsafe:blob</code>的<code>exception</code>，依據<code>URL.createObjectURL</code>所取得url，可以很容易發現，最前方協定是不同的。例如<code>URL.createObjectURL</code>回傳一個<code>blob:http%3A%2F%2Fsparrowhome.twbbs.org%2Fimage.png</code>，此時不在預設的允許名單中，這時就要透過<code>$compileProvider.imgSrcSanitizationWhitelist</code>去改寫。</p>
@@ -132,7 +138,7 @@ Cross origin以下是一個video的範例，設定影片的source:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/" data-id="cihc3k8c400333264ioamug34" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/" data-id="cinhl1p4k007z5164r4gvelu5" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2014/03/08/the-unsafe-resource-url-and-cross-origin-on-angular/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -240,7 +246,7 @@ Cross origin以下是一個video的範例，設定影片的source:
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -286,7 +292,7 @@ Cross origin以下是一個video的範例，設定影片的source:
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

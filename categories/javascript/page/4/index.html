@@ -20,7 +20,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -107,13 +107,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>之前有介紹用<a href="/wordpress/?p=414">iframe做跨網域方式</a>，那如果想直接對其他網域發送呢?我們可透過<span style="color:#f00;">callback的機制，來實現跨網域</span>，簡單來說就是，就是依照參數，<span style="color:#f00;">include一隻script</span>。</p>
-<h6 id="例如：">例如：</h6><pre class="brush:js">function test( result ){
+<h6 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h6><pre class="brush:js">function test( result ){
    alert(result);
 }
 $.getScript(&quot;http://localhost/jsonp.php?callback=test&quot;);
 </pre>
 
-<h6 id="jsonp-php">jsonp.php</h6><pre class="brush:php">echo $_GET[&quot;callback&quot;].&quot;(\&quot;Hello!\&quot;)&quot;;
+<h6 id="jsonp-php"><a href="#jsonp-php" class="headerlink" title="jsonp.php"></a>jsonp.php</h6><pre class="brush:php">echo $_GET[&quot;callback&quot;].&quot;(\&quot;Hello!\&quot;)&quot;;
 </pre>
 
 <p>&nbsp;</p>
@@ -121,7 +121,7 @@ $.getScript(&quot;http://localhost/jsonp.php?callback=test&quot;);
 <pre class="brush:js">Access-Control-Allow-Origin:http://localhost/
 </pre>
 
-<h6 id="ajax_cross_domain範例:">ajax cross domain範例:</h6><pre class="brush:html">&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js&quot;&gt;&lt;/script&gt;
+<h6 id="ajax-cross-domain範例"><a href="#ajax-cross-domain範例" class="headerlink" title="ajax cross domain範例:"></a>ajax cross domain範例:</h6><pre class="brush:html">&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
 $.get(&quot;http://localhost:8080&quot;,function(){
     console.log(arguments);
@@ -129,7 +129,7 @@ $.get(&quot;http://localhost:8080&quot;,function(){
 &lt;/script&gt;
 </pre>
 
-<h6 id="server_side(node-js):">server side(node.js):</h6><pre class="brush:js">var http = require(&#39;http&#39;);
+<h6 id="server-side-node-js"><a href="#server-side-node-js" class="headerlink" title="server side(node.js):"></a>server side(node.js):</h6><pre class="brush:js">var http = require(&#39;http&#39;);
 http.createServer(function (req, res) {
   res.writeHead(200, {
         &#39;Content-Type&#39;: &#39;text/plain&#39;,
@@ -149,7 +149,7 @@ http.createServer(function (req, res) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/11/21/ajax-cross-domain/" data-id="cihc3k8h900c13264uer0az1n" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/11/21/ajax-cross-domain/" data-id="cinhl1ozq000z5164pz6m8q18" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/11/21/ajax-cross-domain/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -198,7 +198,7 @@ http.createServer(function (req, res) {
 <p>cfx run</p>
 <p><strong>匯出檔案：</strong></p>
 <p>cfx xpi</p>
-<h6 id="以下是一個簡單範例：">以下是一個簡單範例：</h6><p><strong>main.js</strong></p>
+<h6 id="以下是一個簡單範例："><a href="#以下是一個簡單範例：" class="headerlink" title="以下是一個簡單範例："></a>以下是一個簡單範例：</h6><p><strong>main.js</strong></p>
 <pre class="brush:js">const widgets = require(&quot;widget&quot;);
 const pageMod = require(&#39;page-mod&#39;);
 const data = require(&#39;self&#39;).data;
@@ -242,7 +242,7 @@ console.log(&quot;The add-on is running.&quot;);&nbsp;</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/07/21/firefox-add-on/" data-id="cihc3k8ft009e3264p4hnbski" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/07/21/firefox-add-on/" data-id="cinhl1p1k002v5164he55qphd" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/07/21/firefox-add-on/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -283,7 +283,7 @@ console.log(&quot;The add-on is running.&quot;);&nbsp;</pre>
     <div class="article-entry" itemprop="articleBody">
       
         <p><span style="color:#00f;">chrome extension</span>是<span style="color:#00f;">chrome</span>的擴充元件，只需要有配置<span style="color:#00f;">manifest.json</span>，搭配一個<span style="color:#00f;">background_page</span>或<span class="Apple-style-span" style="font-family: monospace; white-space: pre; color: rgb(0, 0, 0); font-size: medium; "><span style="color:#00f;">popup</span>，就可以完成一個簡單的擴充元件。</span></p>
-<h6 id="以下是一個與頁面溝通example：">以下是一個與頁面溝通example：</h6><p><strong>manifest.json的配置：</strong></p>
+<h6 id="以下是一個與頁面溝通example："><a href="#以下是一個與頁面溝通example：" class="headerlink" title="以下是一個與頁面溝通example："></a>以下是一個與頁面溝通example：</h6><p><strong>manifest.json的配置：</strong></p>
 <pre class="brush:js">{
   &quot;name&quot;: &quot;test&quot;,
   &quot;version&quot;: &quot;1.0&quot;,
@@ -329,7 +329,7 @@ console.log(&quot;The add-on is running.&quot;);&nbsp;</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/07/21/chrome-extension/" data-id="cihc3k8g700a73264j2x8jtq7" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/07/21/chrome-extension/" data-id="cinhl1p1a002b5164mnbdkvex" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/07/21/chrome-extension/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -370,7 +370,7 @@ console.log(&quot;The add-on is running.&quot;);&nbsp;</pre>
     <div class="article-entry" itemprop="articleBody">
       
         <p>讀取<span style="color:#00f;">file</span>的內容，可以使用<span style="color:#00f;">FileReader</span>，這功能是<span style="color:#00f;">html5</span>才加入的，依照不同瀏覽器，支援<span style="color:#00f;">file</span>相關物件的method，實作完整度不同。</p>
-<h6 id="example：">example：</h6><pre class="brush:js">&lt;script type=&quot;text/javascript&quot;&gt;
+<h6 id="example："><a href="#example：" class="headerlink" title="example："></a>example：</h6><pre class="brush:js">&lt;script type=&quot;text/javascript&quot;&gt;
   function load() {
     var finput = document.getElementById(&quot;file&quot;);
     //取得file
@@ -402,7 +402,7 @@ console.log(&quot;The add-on is running.&quot;);&nbsp;</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/07/09/讀取file的內容filereader/" data-id="cihc3k8al000d3264wvdtgnry" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/07/09/讀取file的內容filereader/" data-id="cinhl1p5m00a451647konl9ju" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/07/09/讀取file的內容filereader/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -443,16 +443,16 @@ console.log(&quot;The add-on is running.&quot;);&nbsp;</pre>
     <div class="article-entry" itemprop="articleBody">
       
         <p>在大部分的瀏覽器中(chrome、firefox、IE8…)，可以<span style="color:#f00;">使用postMessage和onmessage，去互相傳遞資料</span>。<span class="Apple-style-span" style="color: rgb(255, 0, 0); ">postMessage負責丟到不同網域，</span><span class="Apple-style-span" style="color: rgb(255, 0, 0); ">onmessage則是監聽其他網域丟來的資料。</span></p>
-<h6 id="主要domain：">主要domain：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">window.onmessage = function()&#123;</span><br><span class="line">    console.log(arguments);</span><br><span class="line">&#125;;</span><br><span class="line">/*if(window.addEventListener)&#123;</span><br><span class="line">    window.addEventListener(&amp;quot;message&amp;quot;,function()&#123;</span><br><span class="line">        console.log(arguments);</span><br><span class="line">    &#125;,false);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    window.attachEvent(&amp;quot;onmessage&amp;quot;, function()&#123;</span><br><span class="line">        console.log(arguments);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;*/</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;iframe src=&amp;quot;http://127.0.0.1/otherDomain.html&amp;quot; id=&amp;quot;iframe1&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">var win = document.getElementById(&amp;quot;iframe1&amp;quot;).contentWindow;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">win.postMessage(&amp;quot;Hello Sparrow!&amp;quot;,&amp;quot;http://127.0.0.1/&amp;quot;);</span><br><span class="line">&#125;,1000);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;&amp;nbsp;</span><br></pre></td></tr></table></figure>
-<h6 id="其他domain(otherDomain-html)：">其他domain(<span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">otherDomain.html</span>)：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">window.onmessage = function()&#123;</span><br><span class="line">    console.log(arguments);</span><br><span class="line">&#125;;</span><br><span class="line">parent.postMessage(&amp;quot;test&amp;quot;,&amp;quot;http://localhost/&amp;quot;);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;</span><br></pre></td></tr></table></figure>
-<h6 id="那麼如果要運行在IE7、IE6底下呢?">那麼如果要運行在IE7、IE6底下呢?</h6><p>這時候可以<span style="color:#f00;">建立一個proxy.html</span>，<span style="color:#f00;">利用iframe的src嵌入一個proxy.html</span>，<span style="color:#f00;">至於proxy.html需要抓取網址上的參數</span>，<span style="color:#f00;">透過window.frames[&quot;iframe1&quot;]得方式傳遞</span>。動態載入proxy.html，當資料傳遞完畢，將proxy.html的iframe動態移除，監聽事件可以使用onload去監聽。(換句話說，每次傳遞資料都是一次request，另外也可以使用hash&quot;#&quot;去實作)</p>
+<h6 id="主要domain："><a href="#主要domain：" class="headerlink" title="主要domain："></a>主要domain：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">window.onmessage = function()&#123;</span><br><span class="line">    console.log(arguments);</span><br><span class="line">&#125;;</span><br><span class="line">/*if(window.addEventListener)&#123;</span><br><span class="line">    window.addEventListener(&amp;quot;message&amp;quot;,function()&#123;</span><br><span class="line">        console.log(arguments);</span><br><span class="line">    &#125;,false);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    window.attachEvent(&amp;quot;onmessage&amp;quot;, function()&#123;</span><br><span class="line">        console.log(arguments);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;*/</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;iframe src=&amp;quot;http://127.0.0.1/otherDomain.html&amp;quot; id=&amp;quot;iframe1&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">var win = document.getElementById(&amp;quot;iframe1&amp;quot;).contentWindow;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">win.postMessage(&amp;quot;Hello Sparrow!&amp;quot;,&amp;quot;http://127.0.0.1/&amp;quot;);</span><br><span class="line">&#125;,1000);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<h6 id="其他domain-otherDomain-html-："><a href="#其他domain-otherDomain-html-：" class="headerlink" title="其他domain(otherDomain.html)："></a>其他domain(<span class="Apple-style-span" style="font-family: monospace; white-space: pre; ">otherDomain.html</span>)：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">window.onmessage = function()&#123;</span><br><span class="line">    console.log(arguments);</span><br><span class="line">&#125;;</span><br><span class="line">parent.postMessage(&amp;quot;test&amp;quot;,&amp;quot;http://localhost/&amp;quot;);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;</span><br></pre></td></tr></table></figure>
+<h6 id="那麼如果要運行在IE7、IE6底下呢"><a href="#那麼如果要運行在IE7、IE6底下呢" class="headerlink" title="那麼如果要運行在IE7、IE6底下呢?"></a>那麼如果要運行在IE7、IE6底下呢?</h6><p>這時候可以<span style="color:#f00;">建立一個proxy.html</span>，<span style="color:#f00;">利用iframe的src嵌入一個proxy.html</span>，<span style="color:#f00;">至於proxy.html需要抓取網址上的參數</span>，<span style="color:#f00;">透過window.frames[&quot;iframe1&quot;]得方式傳遞</span>。動態載入proxy.html，當資料傳遞完畢，將proxy.html的iframe動態移除，監聽事件可以使用onload去監聽。(換句話說，每次傳遞資料都是一次request，另外也可以使用hash&quot;#&quot;去實作)</p>
 <p>圖中灰色的<span style="color:#00f;">proxy.html</span>可透過<span style="color:#00f;">window.parent.frames[&quot;iframe1&quot;]</span>的方式，而綠色則要使用<span style="color:#00f;">parent.parent</span> ，或<span style="color:#00f;">parent.frames[&quot;parent&quot;]</span>。同顏色可透過js語法直接呼叫，不同顏色必須透過<span style="color:#00f;">proxy.html</span>去抓取<span style="color:#00f;">url</span>參數，再丟到同網域的頁面。</p>
 <p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/iframe/1aac4d43.png" alt="" title="crossFrame"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/06/22/iframe跨網域/" data-id="cihc3k8f9008j32648dzb3x0t" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/06/22/iframe跨網域/" data-id="cinhl1p22003g5164t49jie7f" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/06/22/iframe跨網域/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -493,7 +493,7 @@ console.log(&quot;The add-on is running.&quot;);&nbsp;</pre>
     <div class="article-entry" itemprop="articleBody">
       
         <p>yahoo的weather api，可透過rss的方式，或使用YQL的方式取得。</p>
-<h6 id="以下是使用rss方式：">以下是使用rss方式：</h6><pre class="brush:js">/**
+<h6 id="以下是使用rss方式："><a href="#以下是使用rss方式：" class="headerlink" title="以下是使用rss方式："></a>以下是使用rss方式：</h6><pre class="brush:js">/**
 * w參數，為woeid(每個城市都有一個獨一無二的值)
 * p參數為zipCode
 * 以上兩個參數使用其中一個就可以了。
@@ -518,7 +518,7 @@ http://weather.yahooapis.com/forecastrss?p=USCA1116
 <p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/yahoo%20api/zipCode.png" alt="" title="準備取得zipCode"></p>
 <p>4.取得<span style="color:#f00;">zip code</span></p>
 <p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/yahoo%20api/showZipCode.png" alt="" title="取得zipCode"></p>
-<h6 id="YQL：">YQL：</h6><p>Yql的<a href="http://developer.yahoo.com/yql/console/?q=select%20*%20from%20zillow.search%20where%20address%20%3D%20%221835%2073rd%20Ave%20NE%22%20and%20citystatezip%20%3D%20%2298039%22%20and%20zwsid%20%3D%20%22X1-ZWz1cse68iatcb_13bwv%22&amp;env=http%3A%2F%2Fdatatables.org%2Falltables.env#h=desc%20weather.search" target="_blank" rel="external">console page</a></p>
+<h6 id="YQL："><a href="#YQL：" class="headerlink" title="YQL："></a>YQL：</h6><p>Yql的<a href="http://developer.yahoo.com/yql/console/?q=select%20*%20from%20zillow.search%20where%20address%20%3D%20%221835%2073rd%20Ave%20NE%22%20and%20citystatezip%20%3D%20%2298039%22%20and%20zwsid%20%3D%20%22X1-ZWz1cse68iatcb_13bwv%22&amp;env=http%3A%2F%2Fdatatables.org%2Falltables.env#h=desc%20weather.search" target="_blank" rel="external">console page</a></p>
 <pre class="brush:sql">#可以查詢table的欄位
 desc weather.search</pre>
 
@@ -543,7 +543,7 @@ http://query.yahooapis.com/v1/public/yql</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/05/30/yahoo-weather-api/" data-id="cihc3k8bd001u3264kv3m8by8" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/05/30/yahoo-weather-api/" data-id="cinhl1p5900955164574fe9h1" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/05/30/yahoo-weather-api/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -584,7 +584,7 @@ http://query.yahooapis.com/v1/public/yql</pre>
     <div class="article-entry" itemprop="articleBody">
       
         <p><span style="color:#00f;">Qunit</span>是<span style="color:#00f;">javascript</span>的<span style="color:#00f;">unit test</span>之一，這套工具由<span style="color:#00f;">jquery team</span>撰寫的，使用的方式比起<span style="color:#00f;">Jsunit</span>，更有<span style="color:#00f;">javascript</span>風格。</p>
-<h6 id="首先要先配置html：">首先要先配置html：</h6><pre class="brush:html">&lt;html&gt;
+<h6 id="首先要先配置html："><a href="#首先要先配置html：" class="headerlink" title="首先要先配置html："></a>首先要先配置html：</h6><pre class="brush:html">&lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;QUnit Test Suite&lt;/title&gt;
     &lt;link rel=&quot;stylesheet&quot; href=&quot;../qunit/qunit.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot;&gt;
@@ -601,7 +601,7 @@ http://query.yahooapis.com/v1/public/yql</pre>
 &lt;/html&gt;</pre>
 
 <p><span style="color:#f00;">在html配置部分，id名稱必須依照官方的命名，簡單來說只需要將測試的程式，加入到head裡面即可</span>。</p>
-<h6 id="Qunit所提供的幾個function：">Qunit所提供的幾個function：</h6><pre class="brush:js">/**
+<h6 id="Qunit所提供的幾個function："><a href="#Qunit所提供的幾個function：" class="headerlink" title="Qunit所提供的幾個function："></a>Qunit所提供的幾個function：</h6><pre class="brush:js">/**
 * @param {String} name 單元測試的名稱
 * @param {Number} expected 要比對的數量(可選)
 * @param {function} test 要測試的function
@@ -654,7 +654,7 @@ start()
 */
 stop(timeout)</pre>
 
-<h6 id="幾個簡單範例：">幾個簡單範例：</h6><pre class="brush:js">/*
+<h6 id="幾個簡單範例："><a href="#幾個簡單範例：" class="headerlink" title="幾個簡單範例："></a>幾個簡單範例：</h6><pre class="brush:js">/*
 * 一個簡單範例
 */
 test(&quot;module without setup/teardown (default)&quot;, function() {
@@ -717,7 +717,7 @@ asyncTest(&quot;asyncTest&quot;, 2, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/05/07/qunit/" data-id="cihc3k8d2004q3264y8lt31vq" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/05/07/qunit/" data-id="cinhl1p3x006o5164ligjd10q" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/05/07/qunit/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -803,7 +803,7 @@ $(&quot;#content&quot;).append(html)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/04/20/jquery-mobile/" data-id="cihc3k8ea00703264hrk8nle8" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/04/20/jquery-mobile/" data-id="cinhl1p2y004s51647ga6b54n" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/04/20/jquery-mobile/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -844,7 +844,7 @@ $(&quot;#content&quot;).append(html)
     <div class="article-entry" itemprop="articleBody">
       
         <p><span style="color:#00f;">storage</span>是<span style="color:#00f;">html5</span>的儲存資料的方式之一，主要分為<span style="color:#00f;">sessionStorage</span>和<span style="color:#00f;">localStorage</span>，這兩種儲存方式都只能在相同的<span style="color:#00f;">domain</span>才能讀取到，<span style="color:#00f;">sessionStorage</span>只要頁面關掉後，就會釋放儲存的資料，而<span style="color:#00f;">localStorage</span>是直接儲存在<span style="color:#00f;">brower</span>。</p>
-<h6 id="storage的物件成員有：">storage的物件成員有：</h6><pre class="brush:js">//設定資料
+<h6 id="storage的物件成員有："><a href="#storage的物件成員有：" class="headerlink" title="storage的物件成員有："></a>storage的物件成員有：</h6><pre class="brush:js">//設定資料
 setItem(key,val);
 //取得資料
 getItem(key);
@@ -857,13 +857,13 @@ key(index)&#39;
 //清除所有資料
 clear();</pre>
 
-<h6 id="其中以下方式功能是一樣的：">其中以下方式功能是一樣的：</h6><pre class="brush:js">sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
+<h6 id="其中以下方式功能是一樣的："><a href="#其中以下方式功能是一樣的：" class="headerlink" title="其中以下方式功能是一樣的："></a>其中以下方式功能是一樣的：</h6><pre class="brush:js">sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
 sessionStorage[&quot;test&quot;] = &quot;test&quot;;
 //以上這兩種方式，是相同的效果。
 </pre>
 
 <p>從以上範例可以看出，<span style="color:#f00;">實際上是把直塞到object裡，所以要是儲存本身物件所擁有的成員，將會加以覆蓋</span>，所以不能用相同名稱。</p>
-<h6 id="例如：">例如：</h6><pre class="brush:js">sessionStorage.setItem(&quot;setItem&quot;,&quot;test&quot;);
+<h6 id="例如："><a href="#例如：" class="headerlink" title="例如："></a>例如：</h6><pre class="brush:js">sessionStorage.setItem(&quot;setItem&quot;,&quot;test&quot;);
 //將會出錯
 sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
 </pre>
@@ -871,7 +871,7 @@ sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/04/12/javascript-storage/" data-id="cihc3k8em007l3264w3vold8z" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/04/12/javascript-storage/" data-id="cinhl1p2m004a5164xeeizss9" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/04/12/javascript-storage/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -912,18 +912,18 @@ sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
     <div class="article-entry" itemprop="articleBody">
       
         <p><span style="color:#f00;">Worker是javascript的thead</span>，只有在支援<span style="color:#00f;">html5</span>的brower才提供，<span style="color:#f00;">目前支援最完整的是firefox，firefox可以在Worker理面在使用Worker</span>。Worker目前只提供簡單的傳值、物件、陣列，並沒辦法傳遞function，其中要特別注意的是object，當<span style="color:#f00;">Worker接收到的是一個object，會與原先的object屬於不同記憶體位址</span>。</p>
-<h6 id="example：">example：</h6><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&amp;lt;html&amp;gt;</span><br><span class="line">&amp;lt;head&amp;gt;</span><br><span class="line">&amp;lt;/head&amp;gt;</span><br><span class="line">&amp;lt;body&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;</span><br><span class="line">var ary = [2,3,4];</span><br><span class="line">var thead = new Worker(&amp;quot;./thead.js&amp;quot;);</span><br><span class="line">    thead.onmessage = function(event)&#123;</span><br><span class="line">        console.log(&amp;quot;new:&amp;quot;+event.data);</span><br><span class="line">        console.log(&amp;quot;old:&amp;quot;+ary);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    thead.postMessage(ary);</span><br><span class="line">&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;/body&amp;gt;</span><br><span class="line">&amp;lt;/html&amp;gt;</span><br></pre></td></tr></table></figure>
+<h6 id="example："><a href="#example：" class="headerlink" title="example："></a>example：</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="keyword">var</span> ary = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line"><span class="keyword">var</span> thead = <span class="keyword">new</span> Worker(&amp;quot;./thead.js&amp;quot;);</span><br><span class="line">    thead.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(&amp;quot;<span class="keyword">new</span>:&amp;quot;+event.data);</span><br><span class="line">        <span class="built_in">console</span>.log(&amp;quot;old:&amp;quot;+ary);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    thead.postMessage(ary);</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <div><span style="color:#00f;">index.html</span></div><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;                                                                                                                         </span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> event.data ===&amp;quot;object&amp;quot;)                                              </span><br><span class="line">    event.data.push(<span class="number">5</span>);                                                            </span><br><span class="line">    postMessage(event.data);                                                       </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br><br><div><span style="color:#00f;">thead.js</span></div>
 
-<h6 id="result：">result：</h6><div><span class="Apple-style-span" style="font-family: Consolas, 'Lucida Console', monospace; white-space: pre-wrap; color: rgb(0, 0, 0); ">new:2,3,4,5</span></div><br><div><span class="Apple-style-span" style="font-family: Consolas, 'Lucida Console', monospace; white-space: pre-wrap; color: rgb(0, 0, 0); ">old:2,3,4</span></div><br><div>&nbsp;</div>
+<h6 id="result："><a href="#result：" class="headerlink" title="result："></a>result：</h6><div><span class="Apple-style-span" style="font-family: Consolas, 'Lucida Console', monospace; white-space: pre-wrap; color: rgb(0, 0, 0); ">new:2,3,4,5</span></div><br><div><span class="Apple-style-span" style="font-family: Consolas, 'Lucida Console', monospace; white-space: pre-wrap; color: rgb(0, 0, 0); ">old:2,3,4</span></div><br><div>&nbsp;</div>
 
-<h6 id="Worker的Global成員(指的是上方範例的thead-js)：">Worker的Global成員(指的是上方範例的thead.js)：</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//寄送訊息</span></span><br><span class="line">postMessage(msg);</span><br><span class="line"><span class="comment">//關閉thead</span></span><br><span class="line">close();</span><br><span class="line"><span class="comment">//與時間有關的</span></span><br><span class="line">setTimeout(func,num);</span><br><span class="line">clearTimeout(num);</span><br><span class="line">setInterVal(func,num);</span><br><span class="line">clearInterVal(num);</span><br><span class="line"><span class="comment">//目前只有firefox有提供</span></span><br><span class="line">Worker</span><br><span class="line"><span class="comment">//</span></span><br><span class="line">XMLHttpRequest</span><br><span class="line"><span class="comment">//接收訊息的event</span></span><br><span class="line">onmessage</span><br><span class="line"><span class="comment">//引用其他程式</span></span><br><span class="line">importScripts(url1,url2....);</span><br></pre></td></tr></table></figure>
-<h6 id="Worker的物件成員：">Worker的物件成員：</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//寄送訊息</span></span><br><span class="line">postMessage(msg);</span><br><span class="line"><span class="comment">//event</span></span><br><span class="line">onerror</span><br><span class="line"><span class="comment">//接收訊息的event</span></span><br><span class="line">onMessage</span><br><span class="line"><span class="comment">//立即關閉thread</span></span><br><span class="line">terminate()</span><br></pre></td></tr></table></figure>
+<h6 id="Worker的Global成員-指的是上方範例的thead-js-："><a href="#Worker的Global成員-指的是上方範例的thead-js-：" class="headerlink" title="Worker的Global成員(指的是上方範例的thead.js)："></a>Worker的Global成員(指的是上方範例的thead.js)：</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//寄送訊息</span></span><br><span class="line">postMessage(msg);</span><br><span class="line"><span class="comment">//關閉thead</span></span><br><span class="line">close();</span><br><span class="line"><span class="comment">//與時間有關的</span></span><br><span class="line">setTimeout(func,num);</span><br><span class="line">clearTimeout(num);</span><br><span class="line">setInterVal(func,num);</span><br><span class="line">clearInterVal(num);</span><br><span class="line"><span class="comment">//目前只有firefox有提供</span></span><br><span class="line">Worker</span><br><span class="line"><span class="comment">//</span></span><br><span class="line">XMLHttpRequest</span><br><span class="line"><span class="comment">//接收訊息的event</span></span><br><span class="line">onmessage</span><br><span class="line"><span class="comment">//引用其他程式</span></span><br><span class="line">importScripts(url1,url2....);</span><br></pre></td></tr></table></figure>
+<h6 id="Worker的物件成員："><a href="#Worker的物件成員：" class="headerlink" title="Worker的物件成員："></a>Worker的物件成員：</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//寄送訊息</span></span><br><span class="line">postMessage(msg);</span><br><span class="line"><span class="comment">//event</span></span><br><span class="line">onerror</span><br><span class="line"><span class="comment">//接收訊息的event</span></span><br><span class="line">onMessage</span><br><span class="line"><span class="comment">//立即關閉thread</span></span><br><span class="line">terminate()</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2011/04/05/javascript-workerhtml5/" data-id="cihc3k8ej007h3264z9es6tor" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2011/04/05/javascript-workerhtml5/" data-id="cinhl1p2p004e5164rs3k9p99" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2011/04/05/javascript-workerhtml5/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1011,7 +1011,7 @@ sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -1055,7 +1055,7 @@ sessionStorage.setItem(&quot;test&quot;,&quot;test&quot;);
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

@@ -24,7 +24,7 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -109,13 +109,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>大部分的程式，只要<strong>檔名大小寫不同</strong>，就會視為不同的檔案，但是在<strong>titanium</strong>編譯的時候，則會發生錯誤，因為titanium不允許在<strong>相同資料夾</strong>裡，有<strong>相同的檔案名稱</strong>。因為之前一直是用<strong>tishadow</strong>測試，都沒遇到這個問題，最後要build在device上，就遇到了以下錯誤。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[ERROR] /home/sparrow/Works/<span class="built_in">test</span>/build/android/bin/assets/Resources/actions/IndexAction.js: error: File is <span class="keyword">case</span>-insensitive equivalent to: /home/sparrow/Works/ec2/<span class="built_in">test</span>/build/android/bin/assets/Resources/actions/indexAction.js</span><br><span class="line">[ERROR] Exception occured <span class="keyword">while</span> building Android project:</span><br><span class="line">[ERROR] Traceback (most recent call last):</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.2.GA/android/builder.py"</span>, line <span class="number">2621</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">[ERROR]     builder.build_and_run(True, avd_id, device_args=device_args, debugger_host=debugger_host, profiler_host=profiler_host)</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.2.GA/android/builder.py"</span>, line <span class="number">2400</span>, <span class="keyword">in</span> build_and_run</span><br><span class="line">[ERROR]     launched, launch_failed = self.package_and_deploy()</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.2.GA/android/builder.py"</span>, line <span class="number">1867</span>, <span class="keyword">in</span> package_and_deploy</span><br><span class="line">[ERROR]     unsigned_apk = self.create_unsigned_apk(ap_, webview_js_files)</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.2.GA/android/builder.py"</span>, line <span class="number">1679</span>, <span class="keyword">in</span> create_unsigned_apk</span><br><span class="line">[ERROR]     resources_zip = zipfile.ZipFile(resources_zip_file)</span><br><span class="line">[ERROR]   File <span class="string">"/usr/lib/python2.7/zipfile.py"</span>, line <span class="number">701</span>, <span class="keyword">in</span> __init__</span><br><span class="line">[ERROR]     self.fp = open(file, modeDict[mode])</span><br><span class="line">[ERROR] IOError: [Errno <span class="number">2</span>] No such file or directory: <span class="string">'/home/sparrow/Works/ec2/test/build/android/bin/app.ap_'</span></span><br><span class="line">[ERROR] Build process exited with code <span class="number">1</span></span><br><span class="line">[ERROR] Project failed to build after <span class="number">1</span>m <span class="number">40</span>s <span class="number">422</span>ms</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[ERROR] /home/sparrow/Works/<span class="built_in">test</span>/build/android/bin/assets/Resources/actions/IndexAction.js: error: File is <span class="keyword">case</span>-insensitive equivalent to: /home/sparrow/Works/ec2/<span class="built_in">test</span>/build/android/bin/assets/Resources/actions/indexAction.js</span><br><span class="line">[ERROR] Exception occured <span class="keyword">while</span> building Android project:</span><br><span class="line">[ERROR] Traceback (most recent call last):</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.2.GA/android/builder.py"</span>, line 2621, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">[ERROR]     builder.build_and_run(True, avd_id, device_args=device_args, debugger_host=debugger_host, profiler_host=profiler_host)</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.2.GA/android/builder.py"</span>, line 2400, <span class="keyword">in</span> build_and_run</span><br><span class="line">[ERROR]     launched, launch_failed = self.package_and_deploy()</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.2.GA/android/builder.py"</span>, line 1867, <span class="keyword">in</span> package_and_deploy</span><br><span class="line">[ERROR]     unsigned_apk = self.create_unsigned_apk(ap_, webview_js_files)</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.2.GA/android/builder.py"</span>, line 1679, <span class="keyword">in</span> create_unsigned_apk</span><br><span class="line">[ERROR]     resources_zip = zipfile.ZipFile(resources_zip_file)</span><br><span class="line">[ERROR]   File <span class="string">"/usr/lib/python2.7/zipfile.py"</span>, line 701, <span class="keyword">in</span> __init__</span><br><span class="line">[ERROR]     self.fp = open(file, modeDict[mode])</span><br><span class="line">[ERROR] IOError: [Errno 2] No such file or directory: <span class="string">'/home/sparrow/Works/ec2/test/build/android/bin/app.ap_'</span></span><br><span class="line">[ERROR] Build process exited with code 1</span><br><span class="line">[ERROR] Project failed to build after 1m 40s 422ms</span><br></pre></td></tr></table></figure>
 <p>解決方法就是更換其中一個檔案的名稱，有了這次教訓…，以後盡量不使用相同檔案名稱。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/09/26/titanium相同檔名會拋出錯誤/" data-id="cihc3k8bw002m3264rdc30vd3" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/09/26/titanium相同檔名會拋出錯誤/" data-id="cinhl1p4v008h5164g46tlaav" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/09/26/titanium相同檔名會拋出錯誤/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -223,7 +223,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Sparrow Jang<br>
+      &copy; 2016 Sparrow Jang<br>
       Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -269,7 +269,7 @@
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
   </div>
 </body>
 </html>

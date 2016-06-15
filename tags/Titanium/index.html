@@ -80,6 +80,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Titanium-Android-native-module" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/01/Titanium-Android-native-module/" class="article-date">
+  <time datetime="2015-03-01T13:19:22.000Z" itemprop="datePublished">Mar 1 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/01/Titanium-Android-native-module/">Titanium Android native module</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.appcelerator.com/titanium/titanium-sdk/" target="_blank" rel="external">titanium</a>本身有提供建立native module的指令，可透過指令產出基本可以使用的template，然後再做修改。</p>
+<p>可參考官方的<a href="https://wiki.appcelerator.org/display/guides2/Android+Module+Quick+Start" target="_blank" rel="external">quick start</a>，或者直接參考以下教學：</p>
+<h2 id="建立一個android-native-module"><a href="#建立一個android-native-module" class="headerlink" title="建立一個android native module"></a>建立一個android native module</h2><h5 id="建立一個android-module"><a href="#建立一個android-module" class="headerlink" title="建立一個android module"></a>建立一個android module</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ti create -p android -t module <span class="_">-d</span> . -n <span class="built_in">test</span> -u http:// --id com.example.test</span><br></pre></td></tr></table></figure>
+<h5 id="build一個native-java-project"><a href="#build一個native-java-project" class="headerlink" title="build一個native java project"></a>build一個native java project</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="built_in">test</span>/android</span><br><span class="line">ant</span><br></pre></td></tr></table></figure>
+<h5 id="將build好的zip，解壓縮至titanium的module路徑"><a href="#將build好的zip，解壓縮至titanium的module路徑" class="headerlink" title="將build好的zip，解壓縮至titanium的module路徑"></a>將build好的zip，解壓縮至titanium的module路徑</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip -o com.example.test-android-1.0.0.zip <span class="_">-d</span> ~/Library/Application\ Support/Titanium/</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="KrollModule與KrollProxy"><a href="#KrollModule與KrollProxy" class="headerlink" title="KrollModule與KrollProxy"></a>KrollModule與KrollProxy</h2><p>透過titanium的指令產生的native module，會建立出Module和Proxy兩個class，分別繼承<a href="http://docs.appcelerator.com/module-apidoc/latest/android/org/appcelerator/kroll/KrollModule.html" target="_blank" rel="external">KrollModule</a>和<a href="http://docs.appcelerator.com/module-apidoc/latest/android/org/appcelerator/kroll/KrollProxy.html" target="_blank" rel="external">TiViewProxy</a>。其中會看到<a href="http://docs.appcelerator.com/module-apidoc/latest/android/org/appcelerator/kroll/annotations/Kroll.method.html" target="_blank" rel="external">Kroll.method</a>和<a href="http://docs.appcelerator.com/module-apidoc/latest/android/org/appcelerator/kroll/annotations/Kroll.getProperty.html" target="_blank" rel="external">Kroll.getProperty</a>、<a href="http://docs.appcelerator.com/module-apidoc/latest/android/org/appcelerator/kroll/annotations/Kroll.setProperty.html" target="_blank" rel="external">Kroll.setProperty</a>這些annotation，主要是會將method或者參數讓js去使用或存取寫入用。</p>
+<h5 id="取得剛建立好的native-module"><a href="#取得剛建立好的native-module" class="headerlink" title="取得剛建立好的native module"></a>取得剛建立好的native module</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> test = <span class="built_in">require</span>(<span class="string">'com.example.test'</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="若是在KrollModule宣告的Kroll-method這類annotation，將可直接讓js-module存取"><a href="#若是在KrollModule宣告的Kroll-method這類annotation，將可直接讓js-module存取" class="headerlink" title="若是在KrollModule宣告的Kroll.method這類annotation，將可直接讓js module存取"></a>若是在KrollModule宣告的Kroll.method這類annotation，將可直接讓js module存取</h5><h6 id="java-code"><a href="#java-code" class="headerlink" title="java code"></a>java code</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Kroll</span>.<span class="keyword">module</span>(name=<span class="string">"Test"</span>, id=<span class="string">"com.example.test"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestModule</span> <span class="keyword">extends</span> <span class="title">KrollModule</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Kroll</span>.<span class="function">method</span><br><span class="line">  <span class="keyword">public</span> String <span class="title">example</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"hello world"</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Kroll</span>.<span class="function">getProperty</span><br><span class="line">  <span class="keyword">public</span> String <span class="title">getExampleProp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"hello world"</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Kroll</span>.<span class="function">setProperty</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setExampleProp</span><span class="params">(String value)</span> </span>&#123; </span><br><span class="line">    Log.d(LCAT, <span class="string">"set example property: "</span> + value)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="js-code"><a href="#js-code" class="headerlink" title="js code"></a>js code</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Ti.API.info( test.example() );</span><br><span class="line">Ti.API.info(<span class="string">"module exampleProp is =&gt; "</span> + test.exampleProp);</span><br><span class="line">test.exampleProp = <span class="string">"This is a test value"</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="若透過KrollProxy宣告的Kroll-method這類annotation，會先建立一個instance，在讓js使用"><a href="#若透過KrollProxy宣告的Kroll-method這類annotation，會先建立一個instance，在讓js使用" class="headerlink" title="若透過KrollProxy宣告的Kroll.method這類annotation，會先建立一個instance，在讓js使用"></a>若透過KrollProxy宣告的Kroll.method這類annotation，會先建立一個instance，在讓js使用</h5><h6 id="java-code-1"><a href="#java-code-1" class="headerlink" title="java code"></a>java code</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Kroll</span>.proxy(creatableInModule=TestModule.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleProxy</span> <span class="keyword">extends</span> <span class="title">TiViewProxy</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ....</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> TiUIView <span class="title">createView</span><span class="params">(Activity activity)</span></span><br><span class="line">  </span>&#123;</span><br><span class="line">      TiUIView view = <span class="keyword">new</span> ExampleView(<span class="keyword">this</span>);</span><br><span class="line">      view.getLayoutParams().autoFillsHeight = <span class="keyword">true</span>;</span><br><span class="line">      view.getLayoutParams().autoFillsWidth = <span class="keyword">true</span>;</span><br><span class="line">      <span class="keyword">return</span> view;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Methods</span></span><br><span class="line">  <span class="meta">@Kroll</span>.<span class="function">method</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printMessage</span><span class="params">(String message)</span></span><br><span class="line">  </span>&#123;</span><br><span class="line">      Log.d(LCAT, <span class="string">"printing message: "</span> + message);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="meta">@Kroll</span>.getProperty <span class="meta">@Kroll</span>.<span class="function">method</span><br><span class="line">  <span class="keyword">public</span> String <span class="title">getMessage</span><span class="params">()</span></span><br><span class="line">  </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"Hello World from my module"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="meta">@Kroll</span>.setProperty <span class="meta">@Kroll</span>.<span class="function">method</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMessage</span><span class="params">(String message)</span></span><br><span class="line">  </span>&#123;</span><br><span class="line">      Log.d(LCAT, <span class="string">"Tried setting module message to: "</span> + message);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="js-code-1"><a href="#js-code-1" class="headerlink" title="js code"></a>js code</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (Ti.Platform.name == <span class="string">"android"</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> proxy = test.createExample(&#123;</span><br><span class="line">        message: <span class="string">"Creating an example Proxy"</span>,</span><br><span class="line">        backgroundColor: <span class="string">"red"</span>,</span><br><span class="line">        width: <span class="number">100</span>,</span><br><span class="line">        height: <span class="number">100</span>,</span><br><span class="line">        top: <span class="number">100</span>,</span><br><span class="line">        left: <span class="number">150</span></span><br><span class="line">    &#125;);</span><br><span class="line">     </span><br><span class="line">    proxy.printMessage(<span class="string">"Hello world!"</span>); </span><br><span class="line">    proxy.message = <span class="string">"Hi world!.  It's me again."</span>;</span><br><span class="line">    proxy.printMessage(<span class="string">"Hello world!"</span>);</span><br><span class="line">    win.add(proxy);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="若是想傳入function可透過KrollFunction"><a href="#若是想傳入function可透過KrollFunction" class="headerlink" title="若是想傳入function可透過KrollFunction"></a>若是想傳入function可透過<a href="http://docs.appcelerator.com/module-apidoc/latest/android/index.html?org/appcelerator/kroll/KrollFunction.html" target="_blank" rel="external">KrollFunction</a></h5><h6 id="java-code-2"><a href="#java-code-2" class="headerlink" title="java code"></a>java code</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Kroll</span>.<span class="function">method </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCallback</span><span class="params">(KrollFunction cb)</span> </span>&#123;</span><br><span class="line">  KrollDict dict = <span class="keyword">new</span> KrollDict();</span><br><span class="line">  dict.put(<span class="string">"test"</span>, <span class="number">123</span>);</span><br><span class="line">  cb.callAsync( getKrollObject(), dict );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="js-code-2"><a href="#js-code-2" class="headerlink" title="js code"></a>js code</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">test.testCallback(<span class="function"><span class="keyword">function</span>(<span class="params"> evt </span>)</span>&#123;</span><br><span class="line">  <span class="comment">//1</span></span><br><span class="line">  Ti.API.info(<span class="built_in">arguments</span>.length);</span><br><span class="line">  Ti.API.info(evt);            </span><br><span class="line">  <span class="comment">//&#123;"test":123&#125;</span></span><br><span class="line">  Ti.API.info(<span class="built_in">JSON</span>.stringify( evt )); </span><br><span class="line">  <span class="comment">//123</span></span><br><span class="line">  Ti.API.info(evt.test);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>以上的程式碼皆為片段。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2015/03/01/Titanium-Android-native-module/" data-id="cipgoqhq5000vzm64j4mhabez" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2015/03/01/Titanium-Android-native-module/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Titanium/">Titanium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-在titanium-httpclient使用cookie與header" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/10/17/在titanium-httpclient使用cookie與header/" class="article-date">
@@ -136,12 +191,105 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/10/17/在titanium-httpclient使用cookie與header/" data-id="cipgobp9y00ddte642dwc1jbj" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/10/17/在titanium-httpclient使用cookie與header/" data-id="cipgoqhyu00cyzm64n8mj60gi" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/10/17/在titanium-httpclient使用cookie與header/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Titanium/">Titanium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-titanium相同檔名會拋出錯誤" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/09/26/titanium相同檔名會拋出錯誤/" class="article-date">
+  <time datetime="2013-09-26T11:04:18.000Z" itemprop="datePublished">Sep 26 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Titanium/">Titanium</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/09/26/titanium相同檔名會拋出錯誤/">Titanium相同檔名會拋出錯誤</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>大部分的程式，只要<strong>檔名大小寫不同</strong>，就會視為不同的檔案，但是在<strong>titanium</strong>編譯的時候，則會發生錯誤，因為titanium不允許在<strong>相同資料夾</strong>裡，有<strong>相同的檔案名稱</strong>。因為之前一直是用<strong>tishadow</strong>測試，都沒遇到這個問題，最後要build在device上，就遇到了以下錯誤。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[ERROR] /home/sparrow/Works/<span class="built_in">test</span>/build/android/bin/assets/Resources/actions/IndexAction.js: error: File is <span class="keyword">case</span>-insensitive equivalent to: /home/sparrow/Works/ec2/<span class="built_in">test</span>/build/android/bin/assets/Resources/actions/indexAction.js</span><br><span class="line">[ERROR] Exception occured <span class="keyword">while</span> building Android project:</span><br><span class="line">[ERROR] Traceback (most recent call last):</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.2.GA/android/builder.py"</span>, line 2621, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">[ERROR]     builder.build_and_run(True, avd_id, device_args=device_args, debugger_host=debugger_host, profiler_host=profiler_host)</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.2.GA/android/builder.py"</span>, line 2400, <span class="keyword">in</span> build_and_run</span><br><span class="line">[ERROR]     launched, launch_failed = self.package_and_deploy()</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.2.GA/android/builder.py"</span>, line 1867, <span class="keyword">in</span> package_and_deploy</span><br><span class="line">[ERROR]     unsigned_apk = self.create_unsigned_apk(ap_, webview_js_files)</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.2.GA/android/builder.py"</span>, line 1679, <span class="keyword">in</span> create_unsigned_apk</span><br><span class="line">[ERROR]     resources_zip = zipfile.ZipFile(resources_zip_file)</span><br><span class="line">[ERROR]   File <span class="string">"/usr/lib/python2.7/zipfile.py"</span>, line 701, <span class="keyword">in</span> __init__</span><br><span class="line">[ERROR]     self.fp = open(file, modeDict[mode])</span><br><span class="line">[ERROR] IOError: [Errno 2] No such file or directory: <span class="string">'/home/sparrow/Works/ec2/test/build/android/bin/app.ap_'</span></span><br><span class="line">[ERROR] Build process exited with code 1</span><br><span class="line">[ERROR] Project failed to build after 1m 40s 422ms</span><br></pre></td></tr></table></figure>
+<p>解決方法就是更換其中一個檔案的名稱，有了這次教訓…，以後盡量不使用相同檔案名稱。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/09/26/titanium相同檔名會拋出錯誤/" data-id="cipgoqhxp00bkzm645mcy7bid" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/09/26/titanium相同檔名會拋出錯誤/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Titanium/">Titanium</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-titanium-for-tishadow" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/05/26/titanium-for-tishadow/" class="article-date">
+  <time datetime="2013-05-26T05:04:52.000Z" itemprop="datePublished">May 26 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Titanium/">Titanium</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/05/26/titanium-for-tishadow/">TITANIUM  for TiShadow</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe src="http://slid.es/sparrowjang/titanium-for-tishadow/embed" width="100%" height="420" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/05/26/titanium-for-tishadow/" data-id="cipgoqhxu00bnzm64jsg0h0us" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/05/26/titanium-for-tishadow/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Titanium/">Titanium</a></li></ul>
 
     </footer>
   </div>
@@ -177,10 +325,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>今天在其他電腦裝<a href="http://www.appcelerator.com/" target="_blank" rel="external">titanium</a>遇到以下錯誤：</strong></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[TRACE] Writing out AndroidManifest.xml</span><br><span class="line">[ERROR] Exception occured <span class="keyword">while</span> building Android project:</span><br><span class="line">[ERROR] Traceback (most recent call last):</span><br><span class="line">[ERROR]   File &amp;quot;/home/sparrow/.titanium/mobilesdk/linux/3.1.0.GA/android/builder.py&amp;quot;, line 2480, <span class="keyword">in</span> &amp;lt;module&amp;gt;</span><br><span class="line">[ERROR]     builder.build_and_run(False, avd_id)</span><br><span class="line">[ERROR]   File &amp;quot;/home/sparrow/.titanium/mobilesdk/linux/3.1.0.GA/android/builder.py&amp;quot;, line 2264, <span class="keyword">in</span> build_and_run</span><br><span class="line">[ERROR]     self.manifest_changed = self.generate_android_manifest(compiler)</span><br><span class="line">[ERROR]   File &amp;quot;/home/sparrow/.titanium/mobilesdk/linux/3.1.0.GA/android/builder.py&amp;quot;, line 1404, <span class="keyword">in</span> generate_android_manifest</span><br><span class="line">[ERROR]     &amp;<span class="comment">#39;-I&amp;#39;, self.android_jar], warning_regex=r&amp;#39;skipping&amp;#39;)</span></span><br><span class="line">[ERROR]   File &amp;quot;/home/sparrow/.titanium/mobilesdk/linux/3.1.0.GA/android/run.py&amp;quot;, line 38, <span class="keyword">in</span> run</span><br><span class="line">[ERROR]     <span class="built_in">print</span> &amp;quot;[DEBUG] %s&amp;quot; % subprocess.list2cmdline(args_to_<span class="built_in">log</span>)</span><br><span class="line">[ERROR]   File &amp;quot;/usr/lib/python2.7/subprocess.py&amp;quot;, line 587, <span class="keyword">in</span> list2cmdline</span><br><span class="line">[ERROR]     needquote = (&amp;quot; &amp;quot; <span class="keyword">in</span> arg) or (&amp;quot;\t&amp;quot; <span class="keyword">in</span> arg) or not arg</span><br><span class="line">[ERROR] TypeError: argument of <span class="built_in">type</span> &amp;<span class="comment">#39;NoneType&amp;#39; is not iterable</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[TRACE] Writing out AndroidManifest.xml</span><br><span class="line">[ERROR] Exception occured <span class="keyword">while</span> building Android project:</span><br><span class="line">[ERROR] Traceback (most recent call last):</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.0.GA/android/builder.py"</span>, line 2480, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">[ERROR]     builder.build_and_run(False, avd_id)</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.0.GA/android/builder.py"</span>, line 2264, <span class="keyword">in</span> build_and_run</span><br><span class="line">[ERROR]     self.manifest_changed = self.generate_android_manifest(compiler)</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.0.GA/android/builder.py"</span>, line 1404, <span class="keyword">in</span> generate_android_manifest</span><br><span class="line">[ERROR]     <span class="string">'-I'</span>, self.android_jar], warning_regex=r<span class="string">'skipping'</span>)</span><br><span class="line">[ERROR]   File <span class="string">"/home/sparrow/.titanium/mobilesdk/linux/3.1.0.GA/android/run.py"</span>, line 38, <span class="keyword">in</span> run</span><br><span class="line">[ERROR]     <span class="built_in">print</span> <span class="string">"[DEBUG] %s"</span> % subprocess.list2cmdline(args_to_<span class="built_in">log</span>)</span><br><span class="line">[ERROR]   File <span class="string">"/usr/lib/python2.7/subprocess.py"</span>, line 587, <span class="keyword">in</span> list2cmdline</span><br><span class="line">[ERROR]     needquote = (<span class="string">" "</span> <span class="keyword">in</span> arg) or (<span class="string">"\t"</span> <span class="keyword">in</span> arg) or not arg</span><br><span class="line">[ERROR] TypeError: argument of <span class="built_in">type</span> <span class="string">'NoneType'</span> is not iterable</span><br></pre></td></tr></table></figure>
 <p>查了~/.titanium/mobilesdk/linux/3.1.0.GA/android/run.py這隻程式，發現有些參數是空的。</p>
 <p><strong>然後在androidsdk.py找到這段，功能是取得android sdk的aapt路徑：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_aapt</span><span class="params">(self)</span>:</span>  </span><br><span class="line">    <span class="comment"># for aapt (and maybe eventually for others) we</span></span><br><span class="line">    <span class="comment"># want to favor platform-tools over android-x/tools</span></span><br><span class="line">    <span class="comment"># because of new resource qualifiers for honeycomb</span></span><br><span class="line">    sdk_platform_tools_dir = self.get_sdk_platform_tools_dir()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> sdk_platform_tools_dir <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">and</span> os.path.exists(os.path.join(sdk_platform_tools_dir, &amp;<span class="comment">#39;aapt&amp;#39;)):</span></span><br><span class="line">        <span class="keyword">return</span> os.path.join(sdk_platform_tools_dir, &amp;<span class="comment">#39;aapt&amp;#39;)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> self.get_platform_tool(&amp;<span class="comment">#39;aapt&amp;#39;)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_aapt</span><span class="params">(self)</span>:</span>  </span><br><span class="line">    <span class="comment"># for aapt (and maybe eventually for others) we</span></span><br><span class="line">    <span class="comment"># want to favor platform-tools over android-x/tools</span></span><br><span class="line">    <span class="comment"># because of new resource qualifiers for honeycomb</span></span><br><span class="line">    sdk_platform_tools_dir = self.get_sdk_platform_tools_dir()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> sdk_platform_tools_dir <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">and</span> os.path.exists(os.path.join(sdk_platform_tools_dir, <span class="string">'aapt'</span>)):</span><br><span class="line">        <span class="keyword">return</span> os.path.join(sdk_platform_tools_dir, <span class="string">'aapt'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> self.get_platform_tool(<span class="string">'aapt'</span>)</span><br></pre></td></tr></table></figure>
 <p>比對另一台電腦sdk的platform-tools（舊）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">|-- platform-tools</span><br><span class="line">|   |-- aapt</span><br><span class="line">|   |-- adb</span><br><span class="line">|   |-- aidl</span><br><span class="line">|   |-- api</span><br><span class="line">|   |-- dexdump</span><br><span class="line">|   |-- dx</span><br><span class="line">|   |-- fastboot</span><br><span class="line">|   |-- lib</span><br><span class="line">|   |-- llvm-rs-cc</span><br><span class="line">|   |-- NOTICE.txt</span><br><span class="line">|   |-- renderscript</span><br><span class="line">|   `-- source.properties</span><br></pre></td></tr></table></figure>
 <p>新下載的sdk：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">├── platform-tools</span><br><span class="line">│   ├── adb</span><br><span class="line">│   ├── api</span><br><span class="line">│   ├── fastboot</span><br><span class="line">│   ├── NOTICE.txt</span><br><span class="line">│   └── source.properties</span><br><span class="line">├── build-tools</span><br><span class="line">│   └── 17.0.0</span><br><span class="line">│       ├── aapt</span><br><span class="line">│       ├── aidl</span><br><span class="line">│       ├── dexdump</span><br><span class="line">│       ├── dx</span><br><span class="line">│       ├── lib</span><br><span class="line">│       ├── llvm-rs-cc</span><br><span class="line">│       ├── NOTICE.txt</span><br><span class="line">│       ├── renderscript</span><br><span class="line">│       └── source.properties</span><br></pre></td></tr></table></figure></p>
@@ -193,17 +341,75 @@
 <p><strong>我使用直接採用link的方式：</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd ~/tool/android-sdk/platform-tools</span><br><span class="line">ln -s ../build-tools/17.0.0/aapt</span><br><span class="line">ln -s ../build-tools/17.0.0/dx</span><br><span class="line">ln -s ../build-tools/17.0.0/dexdump</span><br><span class="line">ln -s ../build-tools/17.0.0/llvm-rs-cc</span><br><span class="line">ln -s ../build-tools/17.0.0/aidl</span><br></pre></td></tr></table></figure>
 <p><strong>最後還要還要記得設定jarsigner、keytool：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install &amp;quot;/usr/bin/jarsigner&amp;quot; &amp;quot;jarsigner&amp;quot; &amp;quot;/usr/lib/jvm/java-6-sun/bin/jarsigner&amp;quot; 1</span><br><span class="line">sudo update-alternatives --install &amp;quot;/usr/bin/keytool&amp;quot; &amp;quot;keytool&amp;quot; &amp;quot;/usr/lib/jvm/java-6-sun/bin/keytool&amp;quot; 1</span><br><span class="line">sudo update-alternatives --config jarsigner</span><br><span class="line">sudo update-alternatives --config keytool</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install &quot;/usr/bin/jarsigner&quot; &quot;jarsigner&quot; &quot;/usr/lib/jvm/java-6-sun/bin/jarsigner&quot; 1</span><br><span class="line">sudo update-alternatives --install &quot;/usr/bin/keytool&quot; &quot;keytool&quot; &quot;/usr/lib/jvm/java-6-sun/bin/keytool&quot; 1</span><br><span class="line">sudo update-alternatives --config jarsigner</span><br><span class="line">sudo update-alternatives --config keytool</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/05/17/titanium-build-failedandroid/" data-id="cipgobp72007gte645gefdetw" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/05/17/titanium-build-failedandroid/" data-id="cipgoqhxk00bgzm64uv31lu98" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/05/17/titanium-build-failedandroid/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Titanium/">Titanium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-titanium-command-line" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/04/09/titanium-command-line/" class="article-date">
+  <time datetime="2013-04-09T15:37:23.000Z" itemprop="datePublished">Apr 9 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Titanium/">Titanium</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/04/09/titanium-command-line/">Titanium command line</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.appcelerator.com/" target="_blank" rel="external">titanium</a>的環境都安裝好之後，就可以找到~/.titanium這路徑，然後在.bashrc加上以下配置。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> titanium.py=<span class="variable">$HOME</span>/.titanium/mobilesdk/linux/3.0.0.GA/titanium.py</span><br></pre></td></tr></table></figure>
+<p>接著執行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> .bashrc</span><br></pre></td></tr></table></figure>
+<p>然後建立一個project：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">titanium.py create --platform=android --android=/path/to/android-sdk --id=com.mycompany.myApp --name=myApp</span><br></pre></td></tr></table></figure>
+<p>會建立出以下檔案：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">|-- build</span><br><span class="line">|   `-- android</span><br><span class="line">|       |-- AndroidManifest.xml</span><br><span class="line">|       |-- assets</span><br><span class="line">|       |-- bin</span><br><span class="line">|       |-- default.properties</span><br><span class="line">|       |-- gen</span><br><span class="line">|       |-- lib</span><br><span class="line">|       |-- res</span><br><span class="line">|       `-- src</span><br><span class="line">|-- LICENSE</span><br><span class="line">|-- manifest</span><br><span class="line">|-- README</span><br><span class="line">|-- Resources</span><br><span class="line">|   |-- android</span><br><span class="line">|   |   |-- appicon.png</span><br><span class="line">|   |   |-- default.png</span><br><span class="line">|   |   `-- images</span><br><span class="line">|   |-- app.js</span><br><span class="line">|   |-- KS_nav_ui.png</span><br><span class="line">|   `-- KS_nav_views.png</span><br><span class="line">`-- tiapp.xml</span><br></pre></td></tr></table></figure>
+<p>啟動android的模擬器：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">titanium.py emulator --platform=android --android=/path/to/android-sdk</span><br></pre></td></tr></table></figure>
+<p>如果需要使用到google api，可等待建立後，至<a href="http://developer.android.com/tools/help/avd-manager.html" target="_blank" rel="external">avd</a>調整。</p>
+<p>最後在把project run在模擬器上：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">titanium.py run --platform=android --android=/path/to/android-sdk</span><br></pre></td></tr></table></figure>
+<p>可參考<a href="https://wiki.appcelerator.org/display/guides/Titanium+Command+Line+Interface#TitaniumCommandLineInterface-Commands" target="_blank" rel="external">官方文件</a>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/04/09/titanium-command-line/" data-id="cipgoqhxh00bdzm64igg9vsg7" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/04/09/titanium-command-line/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Titanium/">Titanium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 
     </footer>
   </div>
@@ -221,7 +427,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IE/">IE</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YQL/">YQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actionscript/">actionscript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/add-on/">add-on</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone/">backbone</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bluetooth/">bluetooth</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap3/">bootstrap3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boto/">boto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome-extension/">chrome extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-prototype/">javascript prototype</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-tool/">javascript tool</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neo4j/">neo4j</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pattern/">pattern</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell-script/">shell script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlite/">sqlite</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversion/">subversion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/titanium/">titanium</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zend-framework/">zend framework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zeromq/">zeromq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第三方登入/">第三方登入</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IE/">IE</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YQL/">YQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actionscript/">actionscript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/add-on/">add-on</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone/">backbone</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bluetooth/">bluetooth</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap3/">bootstrap3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boto/">boto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome-extension/">chrome extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-prototype/">javascript prototype</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-tool/">javascript tool</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neo4j/">neo4j</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pattern/">pattern</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell-script/">shell script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlite/">sqlite</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversion/">subversion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zend-framework/">zend framework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zeromq/">zeromq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第三方登入/">第三方登入</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -230,106 +436,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/IE/" style="font-size: 11.25px;">IE</a> <a href="/tags/Titanium/" style="font-size: 11.25px;">Titanium</a> <a href="/tags/YQL/" style="font-size: 10px;">YQL</a> <a href="/tags/actionscript/" style="font-size: 10px;">actionscript</a> <a href="/tags/add-on/" style="font-size: 10px;">add-on</a> <a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/angularjs/" style="font-size: 17.5px;">angularjs</a> <a href="/tags/arduino/" style="font-size: 10px;">arduino</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/backbone/" style="font-size: 12.5px;">backbone</a> <a href="/tags/bluetooth/" style="font-size: 10px;">bluetooth</a> <a href="/tags/bootstrap3/" style="font-size: 10px;">bootstrap3</a> <a href="/tags/boto/" style="font-size: 10px;">boto</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/chrome-extension/" style="font-size: 10px;">chrome extension</a> <a href="/tags/css/" style="font-size: 11.25px;">css</a> <a href="/tags/database/" style="font-size: 15px;">database</a> <a href="/tags/docker/" style="font-size: 11.25px;">docker</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/html5/" style="font-size: 18.75px;">html5</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/java/" style="font-size: 13.75px;">java</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-prototype/" style="font-size: 11.25px;">javascript prototype</a> <a href="/tags/javascript-tool/" style="font-size: 16.25px;">javascript tool</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/linux/" style="font-size: 13.75px;">linux</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/neo4j/" style="font-size: 11.25px;">neo4j</a> <a href="/tags/node-js/" style="font-size: 11.25px;">node.js</a> <a href="/tags/pattern/" style="font-size: 11.25px;">pattern</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 17.5px;">python</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/shell-script/" style="font-size: 10px;">shell script</a> <a href="/tags/sqlite/" style="font-size: 11.25px;">sqlite</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/subversion/" style="font-size: 11.25px;">subversion</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/titanium/" style="font-size: 13.75px;">titanium</a> <a href="/tags/vim/" style="font-size: 11.25px;">vim</a> <a href="/tags/yii/" style="font-size: 11.25px;">yii</a> <a href="/tags/zend-framework/" style="font-size: 12.5px;">zend framework</a> <a href="/tags/zeromq/" style="font-size: 10px;">zeromq</a> <a href="/tags/第三方登入/" style="font-size: 10px;">第三方登入</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">12</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recents</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2015/11/16/Build-a-docker-image/">Build a docker image</a>
-          </li>
-        
-          <li>
-            <a href="/2015/03/01/Titanium-Android-native-module/">Titanium Android native module</a>
-          </li>
-        
-          <li>
-            <a href="/2015/02/21/Connect-Arduino-Uno-via-Android-Bluetooth/">Connect Arduino Uno via Android Bluetooth</a>
-          </li>
-        
-          <li>
-            <a href="/2014/10/25/My-github/">My github</a>
-          </li>
-        
-          <li>
-            <a href="/2014/07/11/image-converter/">Image converter</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Sparrow Jang<br>
-      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/about" class="mobile-nav-link">About</a>
-  
-    <a href="https://twitter.com/Sparrow_Jang" class="mobile-nav-link">Twitter</a>
-  
-    <a href="https://github.com/SparrowJang" class="mobile-nav-link">Github</a>
-  
-    <a href="https://hub.docker.com/u/peter1209/" class="mobile-nav-link">DockerHub</a>
-  
-    <a href="/javascript" class="mobile-nav-link">javascript指南</a>
-  
-</nav>
-    
-<script>
-  var disqus_shortname = 'sparrowhome';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//go.disqus.com/count.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-  </div>
-</body>
-</html>">zeromq</a> <a href="/tags/第三方登入/" style="font-size: 10px;">第三方登入</a>
+      <a href="/tags/IE/" style="font-size: 11.25px;">IE</a> <a href="/tags/Titanium/" style="font-size: 16.25px;">Titanium</a> <a href="/tags/YQL/" style="font-size: 10px;">YQL</a> <a href="/tags/actionscript/" style="font-size: 10px;">actionscript</a> <a href="/tags/add-on/" style="font-size: 10px;">add-on</a> <a href="/tags/android/" style="font-size: 15px;">android</a> <a href="/tags/angularjs/" style="font-size: 17.5px;">angularjs</a> <a href="/tags/arduino/" style="font-size: 10px;">arduino</a> <a href="/tags/aws/" style="font-size: 10px;">aws</a> <a href="/tags/backbone/" style="font-size: 12.5px;">backbone</a> <a href="/tags/bluetooth/" style="font-size: 10px;">bluetooth</a> <a href="/tags/bootstrap3/" style="font-size: 10px;">bootstrap3</a> <a href="/tags/boto/" style="font-size: 10px;">boto</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/chrome-extension/" style="font-size: 10px;">chrome extension</a> <a href="/tags/css/" style="font-size: 11.25px;">css</a> <a href="/tags/database/" style="font-size: 15px;">database</a> <a href="/tags/docker/" style="font-size: 11.25px;">docker</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/html/" style="font-size: 11.25px;">html</a> <a href="/tags/html5/" style="font-size: 18.75px;">html5</a> <a href="/tags/jQuery/" style="font-size: 15px;">jQuery</a> <a href="/tags/java/" style="font-size: 13.75px;">java</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/javascript-prototype/" style="font-size: 11.25px;">javascript prototype</a> <a href="/tags/javascript-tool/" style="font-size: 16.25px;">javascript tool</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/linux/" style="font-size: 13.75px;">linux</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/neo4j/" style="font-size: 11.25px;">neo4j</a> <a href="/tags/node-js/" style="font-size: 11.25px;">node.js</a> <a href="/tags/pattern/" style="font-size: 11.25px;">pattern</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/python/" style="font-size: 17.5px;">python</a> <a href="/tags/restful/" style="font-size: 10px;">restful</a> <a href="/tags/scss/" style="font-size: 10px;">scss</a> <a href="/tags/shell-script/" style="font-size: 10px;">shell script</a> <a href="/tags/sqlite/" style="font-size: 11.25px;">sqlite</a> <a href="/tags/struts2/" style="font-size: 10px;">struts2</a> <a href="/tags/subversion/" style="font-size: 11.25px;">subversion</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/vim/" style="font-size: 11.25px;">vim</a> <a href="/tags/yii/" style="font-size: 11.25px;">yii</a> <a href="/tags/zend-framework/" style="font-size: 12.5px;">zend framework</a> <a href="/tags/zeromq/" style="font-size: 10px;">zeromq</a> <a href="/tags/第三方登入/" style="font-size: 10px;">第三方登入</a>
     </div>
   </div>
 

@@ -132,7 +132,7 @@ javascript:alert(3);</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/22/javascript-event偵錯-visual-event-2/" data-id="cipgoqhtn003szm64eqwhvujk" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/22/javascript-event偵錯-visual-event-2/" data-id="cipgoyuik005s4h64t9eg2d26" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/22/javascript-event偵錯-visual-event-2/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -367,7 +367,7 @@ canvas.show()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/21/python-class-decorators-for-classes/" data-id="cipgoqhvk0068zm643chpcc7l" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/21/python-class-decorators-for-classes/" data-id="cipgoyukl00834h64fbug7k5z" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/21/python-class-decorators-for-classes/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -414,7 +414,7 @@ canvas.show()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/20/restful-on-backbone-js-and-node-js/" data-id="cipgoqhx000amzm643v304he8" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/20/restful-on-backbone-js-and-node-js/" data-id="cipgoyule009t4h64uhry9yyh" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/20/restful-on-backbone-js-and-node-js/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -471,7 +471,7 @@ canvas.show()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/13/python-無法使用-https/" data-id="cipgoqhvl006bzm64y81b8jc0" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/13/python-無法使用-https/" data-id="cipgoyuko00874h646dvapfhy" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/13/python-無法使用-https/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -530,7 +530,7 @@ canvas.show()
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/11/python-install-easy_install/" data-id="cipgoqhvh0061zm648hu7p1r2" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/11/python-install-easy_install/" data-id="cipgoyukk00804h644ypf5j92" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/11/python-install-easy_install/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -571,26 +571,20 @@ canvas.show()
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>之前裝pyzmq，就直接下以下指令：</strong></p>
-<pre class="brush:js">sudo&nbsp;add-apt-repository ppa:chris-lea/zeromq
-sudo&nbsp;add-apt-repository ppa:chris-lea/libpgm
-sudo apt-get update
-sudo apt-get install libzmq-dev
-sudo easy_install pyzmq</pre>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:chris-lea/zeromq</span><br><span class="line">sudo add-apt-repository ppa:chris-lea/libpgm</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install libzmq-dev</span><br><span class="line">sudo easy_install pyzmq</span><br></pre></td></tr></table></figure>
 <p>然後就安裝完了，但是以往裝得都是libzmq2.2.0，最近在新的server上，安裝pyzmq，缺少了很多東西，一查才知道是版本問題，因為libzmq的版本是3.2.2。</p>
 <p><strong>如果是使用ubuntu的，可以參考以下作法：</strong></p>
-<p>1.在<span style="color:#f00;">/etc/apt/sources.list&nbsp;</span>文件裡面，加入<span style="color:#f00;">deb <a href="http://ubuntu.mirror.cambrium.nl/ubuntu/" target="_blank" rel="external">http://ubuntu.mirror.cambrium.nl/ubuntu/</a> quantal main universe</span>。</p>
-<p>2.然後執行<span style="color:#f00;">sudo&nbsp;apt-get update</span>。</p>
-<p>3.接著執行<span style="color:#f00;">&nbsp;sudo&nbsp;aptitude&nbsp;install libzmq-dev</span>，然後在重新安裝<span style="color:#f00;">pyzmq</span>就可以了，記得要先移除乾淨。</p>
+<p>1.在<code>/etc/apt/sources.list</code>文件裡面，加入<code>deb http://ubuntu.mirror.cambrium.nl/ubuntu/ quantal main universe</code>。</p>
+<p>2.然後執行<code>sudo apt-get update</code>。</p>
+<p>3.接著執行<code>sudo aptitude install libzmq-dev</code>，然後在重新安裝<strong>pyzmq</strong>就可以了，記得要先移除乾淨。</p>
 <p>可以參考此<a href="http://packages.ubuntu.com/quantal/i386/libzmq-dev/download" target="_blank" rel="external">http://packages.ubuntu.com/quantal/i386/libzmq-dev/download</a></p>
-<p>&nbsp;</p>
 <p><strong>另外一個作法，可直接到官網，直接下載source，去編譯：</strong></p>
 <p><a href="http://www.zeromq.org/area:download" target="_blank" rel="external">http://www.zeromq.org/area:download</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/09/install-libzmq-version/" data-id="cipgoqhts003zzm64djoeexdn" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/09/install-libzmq-version/" data-id="cipgoyuim005w4h64qpl6m5h8" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/09/install-libzmq-version/#disqus_thread" class="article-comment-link">Comments</a>
       

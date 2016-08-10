@@ -80,6 +80,64 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-titanium-command-line" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/04/09/titanium-command-line/" class="article-date">
+  <time datetime="2013-04-09T15:37:23.000Z" itemprop="datePublished">Apr 9 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Titanium/">Titanium</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/04/09/titanium-command-line/">Titanium command line</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.appcelerator.com/" target="_blank" rel="external">titanium</a>的環境都安裝好之後，就可以找到~/.titanium這路徑，然後在.bashrc加上以下配置。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> titanium.py=<span class="variable">$HOME</span>/.titanium/mobilesdk/linux/3.0.0.GA/titanium.py</span><br></pre></td></tr></table></figure>
+<p>接著執行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> .bashrc</span><br></pre></td></tr></table></figure>
+<p>然後建立一個project：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">titanium.py create --platform=android --android=/path/to/android-sdk --id=com.mycompany.myApp --name=myApp</span><br></pre></td></tr></table></figure>
+<p>會建立出以下檔案：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">|-- build</span><br><span class="line">|   `-- android</span><br><span class="line">|       |-- AndroidManifest.xml</span><br><span class="line">|       |-- assets</span><br><span class="line">|       |-- bin</span><br><span class="line">|       |-- default.properties</span><br><span class="line">|       |-- gen</span><br><span class="line">|       |-- lib</span><br><span class="line">|       |-- res</span><br><span class="line">|       `-- src</span><br><span class="line">|-- LICENSE</span><br><span class="line">|-- manifest</span><br><span class="line">|-- README</span><br><span class="line">|-- Resources</span><br><span class="line">|   |-- android</span><br><span class="line">|   |   |-- appicon.png</span><br><span class="line">|   |   |-- default.png</span><br><span class="line">|   |   `-- images</span><br><span class="line">|   |-- app.js</span><br><span class="line">|   |-- KS_nav_ui.png</span><br><span class="line">|   `-- KS_nav_views.png</span><br><span class="line">`-- tiapp.xml</span><br></pre></td></tr></table></figure>
+<p>啟動android的模擬器：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">titanium.py emulator --platform=android --android=/path/to/android-sdk</span><br></pre></td></tr></table></figure>
+<p>如果需要使用到google api，可等待建立後，至<a href="http://developer.android.com/tools/help/avd-manager.html" target="_blank" rel="external">avd</a>調整。</p>
+<p>最後在把project run在模擬器上：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">titanium.py run --platform=android --android=/path/to/android-sdk</span><br></pre></td></tr></table></figure>
+<p>可參考<a href="https://wiki.appcelerator.org/display/guides/Titanium+Command+Line+Interface#TitaniumCommandLineInterface-Commands" target="_blank" rel="external">官方文件</a>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2013/04/09/titanium-command-line/" data-id="cirold5j7008efw64tv03h326" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2013/04/09/titanium-command-line/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Titanium/">Titanium</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-backbone-js-emulatehttp-and-emulatejson" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/03/25/backbone-js-emulatehttp-and-emulatejson/" class="article-date">
@@ -136,7 +194,7 @@ book.save({name:&quot;Tom&quot;}); </pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/25/backbone-js-emulatehttp-and-emulatejson/" data-id="ciqrfcaw9001ta964i7c0zbm2" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/25/backbone-js-emulatehttp-and-emulatejson/" data-id="cirold5ef001xfw64kgtwov6s" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/25/backbone-js-emulatehttp-and-emulatejson/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -202,7 +260,7 @@ javascript:alert(3);</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/22/javascript-event偵錯-visual-event-2/" data-id="ciqrfcayn003ua964u04mtr14" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/22/javascript-event偵錯-visual-event-2/" data-id="cirold5g80040fw64vsrw40uz" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/22/javascript-event偵錯-visual-event-2/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -249,7 +307,7 @@ javascript:alert(3);</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2013/03/20/restful-on-backbone-js-and-node-js/" data-id="ciqrfcb10006za964ar65eews" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2013/03/20/restful-on-backbone-js-and-node-js/" data-id="cirold5il007afw6478qbder0" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2013/03/20/restful-on-backbone-js-and-node-js/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -348,7 +406,7 @@ javascript:alert(3);</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/12/17/camera-snapshotgetusermedia/" data-id="ciqrfcax30027a964wcplkcgs" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/12/17/camera-snapshotgetusermedia/" data-id="cirold5er0026fw64tqefe2un" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/12/17/camera-snapshotgetusermedia/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -491,7 +549,7 @@ FALLBACK:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/12/14/html5-cache-manifest/" data-id="ciqrfcay8003da964mxthl0h0" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/12/14/html5-cache-manifest/" data-id="cirold5fq003ffw64uwblndzo" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/12/14/html5-cache-manifest/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -545,7 +603,7 @@ FALLBACK:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/11/22/requirejs-clear-cache/" data-id="ciqrfcb0t006ma964rvatuadc" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/11/22/requirejs-clear-cache/" data-id="cirold5ij0077fw645qocefc9" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/11/22/requirejs-clear-cache/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -624,7 +682,7 @@ Modernizr.addTest(&#39;canvas&#39;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/11/08/modernizr/" data-id="ciqrfcb08005la964gwp46y24" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/11/08/modernizr/" data-id="cirold5hn005rfw64tg87t984" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/11/08/modernizr/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -721,7 +779,7 @@ Backbone.history.navigate(&quot;/search&quot;,{trigger:true});
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/11/08/backbone-history/" data-id="ciqrfcaw5001pa9641cc2hx0f" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/11/08/backbone-history/" data-id="cirold5eb001tfw64c6om5ta1" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/11/08/backbone-history/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -804,76 +862,12 @@ Connected to &quot;2A049E81-520B-4074-BB06-45BE8ADBE9E1&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/09/28/mobile-web-debug-tooljsconsole/" data-id="ciqrfcb03005ea9643duc3bku" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/09/28/mobile-web-debug-tooljsconsole/" data-id="cirold5hj005kfw64ri3s946s" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/09/28/mobile-web-debug-tooljsconsole/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript-tool/">javascript tool</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-translate-and-left-top" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/09/25/translate-and-left-top/" class="article-date">
-  <time datetime="2012-09-25T15:01:24.000Z" itemprop="datePublished">Sep 25 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/09/25/translate-and-left-top/">translate and left top</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><span style="font-family:trebuchet ms,helvetica,sans-serif;"><span style="font-size: 14px; ">常常在<a href="https://www.google.com/intl/zh-TW/chrome/browser/" target="_blank" rel="external"><strong>chrome</strong></a>發現一些奇怪的現象，工作上會接觸到一些地圖相關的東西，在<strong>windows7</strong>的<a href="http://www.google.com/intl/zh-TW/chrome/browser/" target="_blank" rel="external"><strong>chrome</strong></a>拖拉<strong>map</strong>時，會發現某些<strong>marker</strong>會漂移，而且在每次會漂移的<strong>marker</strong>，都不一定是同一個，有點像是<strong>random</strong>。並且漂移時，是沒辦法<strong>click</strong>(<strong>css</strong>的<strong>pointer</strong>也指標消失了)，<strong>ipad</strong>上的<strong>safari</strong>也有相同問題，但是同樣的在<strong>linux</strong>上的<a href="http://www.google.com/intl/zh-TW/chrome/browser/" target="_blank" rel="external"><strong>chrome</strong></a>卻不會有此現象，於是就試了一下<a href="https://maps.google.com.tw/" target="_blank" rel="external"><strong>google map</strong></a>，發現在<strong>windows7</strong>上是正常的，於是就把<strong>left</strong>和<strong>top</strong>，改用<strong>translate</strong>取代，發現就可以正常顯示了。</span></span></p>
-<p><span style="font-family:arial,helvetica,sans-serif;">以下html結構</span>：</p>
-<pre class="brush:html">&lt;div class=&quot;container&quot; style=&quot;position:relative;overflow:hidden;&quot;&gt;
-    &lt;div id=&quot;dragContainer&quot; style=&quot;left:101px;top:25px;position:absolute;&quot;&gt;
-        &lt;div class=&quot;map-image&quot; style=&quot;position:absolute;&quot;&gt;
-            &lt;img src=&quot;...&quot; style=&quot;position:absolute;top:0px;left:0px;&quot;/&gt;
-            &lt;img src=&quot;...&quot; style=&quot;position:absolute;top:256px;left:0px;&quot;/&gt;
-            &lt;img src=&quot;...&quot; style=&quot;position:absolute;top:512px;left:0px;&quot;/&gt;
-            ....
-        &lt;div&gt;
-        &lt;div class=&quot;overlay&quot; style=&quot;position::absolute;&quot;&gt;
-            &lt;div style=&quot;width:25px;height:25px;position:absolute;left:50px;top:50px;cursor:pointer;&quot;&gt;
-                &lt;img src=&quot;...&quot; style=&quot;width:25px;height:25px;&quot; /&gt;
-            &lt;/div&gt;
-            ...
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</pre>
-
-<p><span style="font-family:trebuchet ms,helvetica,sans-serif;"><span style="font-size: 14px; ">實際上在移動的是<strong>dragContainer</strong>，<strong>map-image</strong>是顯示地圖圖片，<strong>overlay</strong>則是顯示相關<strong>marker</strong>。</span></span></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/09/25/translate-and-left-top/" data-id="ciqrfcb24008ma9647bkqs4s1" class="article-share-link">Share</a>
-      
-        <a href="http://www.sparrowjang.com/2012/09/25/translate-and-left-top/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 
     </footer>
   </div>
@@ -895,7 +889,7 @@ Connected to &quot;2A049E81-520B-4074-BB06-45BE8ADBE9E1&quot;
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IE/">IE</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YQL/">YQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actionscript/">actionscript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/add-on/">add-on</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone/">backbone</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bluetooth/">bluetooth</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap3/">bootstrap3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boto/">boto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome-extension/">chrome extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-prototype/">javascript prototype</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-tool/">javascript tool</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neo4j/">neo4j</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pattern/">pattern</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell-script/">shell script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlite/">sqlite</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversion/">subversion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zend-framework/">zend framework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zeromq/">zeromq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第三方登入/">第三方登入</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IE/">IE</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YQL/">YQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actionscript/">actionscript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/add-on/">add-on</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone/">backbone</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bluetooth/">bluetooth</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap3/">bootstrap3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boto/">boto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome-extension/">chrome extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">59</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-prototype/">javascript prototype</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-tool/">javascript tool</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neo4j/">neo4j</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pattern/">pattern</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell-script/">shell script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlite/">sqlite</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversion/">subversion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zend-framework/">zend framework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zeromq/">zeromq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第三方登入/">第三方登入</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -913,7 +907,7 @@ Connected to &quot;2A049E81-520B-4074-BB06-45BE8ADBE9E1&quot;
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -923,6 +917,10 @@ Connected to &quot;2A049E81-520B-4074-BB06-45BE8ADBE9E1&quot;
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/08/09/MPEG-DASH-video-concept/">MPEG-DASH video concept</a>
+          </li>
         
           <li>
             <a href="/2015/11/16/Build-a-docker-image/">Build a docker image</a>
@@ -938,10 +936,6 @@ Connected to &quot;2A049E81-520B-4074-BB06-45BE8ADBE9E1&quot;
         
           <li>
             <a href="/2014/10/25/My-github/">My github</a>
-          </li>
-        
-          <li>
-            <a href="/2014/07/11/image-converter/">Image converter</a>
           </li>
         
       </ul>

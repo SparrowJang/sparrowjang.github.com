@@ -80,6 +80,105 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-camera-snapshotgetusermedia" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/12/17/camera-snapshotgetusermedia/" class="article-date">
+  <time datetime="2012-12-17T07:05:43.000Z" itemprop="datePublished">Dec 17 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/17/camera-snapshotgetusermedia/">Camera Snapshot(getUserMedia)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>html5有提供一個可以取得視訊的api，使用<strong>navigator.getUserMedia</strong>，可以取得鏡頭的影像及聲音，example如下。</p>
+<p>html：</p>
+<pre class="brush:html">&lt;!DOCTYPE HTML&gt;    
+&lt;html lang=&quot;en&quot;&gt;   
+&lt;head&gt;             
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;            
+&lt;body&gt;             
+    &lt;video autoplay&gt;&lt;/video&gt;
+    &lt;img src=&quot;&quot;&gt;   
+    &lt;canvas style=&quot;display:none;&quot;&gt;&lt;/canvas&gt;     
+    &lt;script type=&quot;text/javascript&quot; src=&quot;cameraSnapshot.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;            
+&lt;/html&gt;         </pre>
+
+<p>cameraSnapshot.js：</p>
+<pre class="brush:js">(function(){     
+    navigator.getUserMedia = navigator.getUserMedia || 
+                             navigator.webkitGetUserMedia || 
+                             navigator.mozGetUserMedia || 
+                             navigator.msGetUserMedia;
+
+    var video = document.querySelector(&#39;video&#39;);
+    var canvas = document.querySelector(&#39;canvas&#39;);
+    var ctx = canvas.getContext(&#39;2d&#39;);
+    var localMediaStream = null;
+    var img = document.querySelector(&#39;img&#39;);
+
+    function snapshot() {
+      if (localMediaStream) {
+        canvas.width = img.width = video.clientWidth;
+        canvas.height = img.height = video.clientHeight;
+        ctx.drawImage(video, 0, 0); 
+        img.src = canvas.toDataURL(&#39;image/webp&#39;);
+      }             
+    }               
+
+    video.addEventListener(&#39;click&#39;, snapshot, false);
+
+    if( navigator.getUserMedia ){
+        navigator.getUserMedia({video: true}, function(stream) {
+        video.src = window.URL.createObjectURL(stream);
+        localMediaStream = stream;
+
+        },function( error ){
+            alert(&quot;User denied access to their camera!&quot;);  
+        });           
+    }else{         
+        alert(&quot;The browser is not support&quot;);
+    }               
+
+})();           </pre>
+
+<p>這個範例主要是使用<strong>getUserMedia</strong>取得user的授權，將會回傳user所選的鏡頭串流，接著觸發<strong>video</strong>的click event，把目前<strong>video</strong>的畫面，繪製在<strong>canvas</strong>，在轉換成image。<a href="http://caniuse.com/stream" target="_blank" rel="external">支援的瀏覽器</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.sparrowjang.com/2012/12/17/camera-snapshotgetusermedia/" data-id="cirold5er0026fw64tqefe2un" class="article-share-link">Share</a>
+      
+        <a href="http://www.sparrowjang.com/2012/12/17/camera-snapshotgetusermedia/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-html5-cache-manifest" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2012/12/14/html5-cache-manifest/" class="article-date">
@@ -209,7 +308,7 @@ FALLBACK:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/12/14/html5-cache-manifest/" data-id="ciqrfcay8003da964mxthl0h0" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/12/14/html5-cache-manifest/" data-id="cirold5fq003ffw64uwblndzo" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/12/14/html5-cache-manifest/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -263,7 +362,7 @@ FALLBACK:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/11/22/requirejs-clear-cache/" data-id="ciqrfcb0t006ma964rvatuadc" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/11/22/requirejs-clear-cache/" data-id="cirold5ij0077fw645qocefc9" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/11/22/requirejs-clear-cache/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -342,7 +441,7 @@ Modernizr.addTest(&#39;canvas&#39;, function() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/11/08/modernizr/" data-id="ciqrfcb08005la964gwp46y24" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/11/08/modernizr/" data-id="cirold5hn005rfw64tg87t984" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/11/08/modernizr/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -439,7 +538,7 @@ Backbone.history.navigate(&quot;/search&quot;,{trigger:true});
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/11/08/backbone-history/" data-id="ciqrfcaw5001pa9641cc2hx0f" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/11/08/backbone-history/" data-id="cirold5eb001tfw64c6om5ta1" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/11/08/backbone-history/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -522,7 +621,7 @@ Connected to &quot;2A049E81-520B-4074-BB06-45BE8ADBE9E1&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/09/28/mobile-web-debug-tooljsconsole/" data-id="ciqrfcb03005ea9643duc3bku" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/09/28/mobile-web-debug-tooljsconsole/" data-id="cirold5hj005kfw64ri3s946s" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/09/28/mobile-web-debug-tooljsconsole/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -586,7 +685,7 @@ Connected to &quot;2A049E81-520B-4074-BB06-45BE8ADBE9E1&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/09/25/translate-and-left-top/" data-id="ciqrfcb24008ma9647bkqs4s1" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/09/25/translate-and-left-top/" data-id="cirold5je008ofw64z6k2dag5" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/09/25/translate-and-left-top/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -650,7 +749,7 @@ Connected to &quot;2A049E81-520B-4074-BB06-45BE8ADBE9E1&quot;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/06/06/requirejs-shim/" data-id="ciqrfcb0y006wa964ycp5zg4c" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/06/06/requirejs-shim/" data-id="cirold5ib006wfw64waajr7r4" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/06/06/requirejs-shim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -761,7 +860,7 @@ define([&quot;module1&quot;],function( module1 ){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/05/15/requirejs-example/" data-id="ciqrfcb0v006sa964nnag6cg7" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/05/15/requirejs-example/" data-id="cirold5ig0073fw64z6je860p" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/05/15/requirejs-example/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -847,131 +946,12 @@ ctx.fill();
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/04/17/canvas-event/" data-id="ciqrfcawg001xa9649oigjsel" class="article-share-link">Share</a>
+      <a data-url="http://www.sparrowjang.com/2012/04/17/canvas-event/" data-id="cirold5ew002afw64jehmjorp" class="article-share-link">Share</a>
       
         <a href="http://www.sparrowjang.com/2012/04/17/canvas-event/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-gitkit-api" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/02/28/gitkit-api/" class="article-date">
-  <time datetime="2012-02-28T08:39:27.000Z" itemprop="datePublished">Feb 28 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/02/28/gitkit-api/">GITkit API(Identity Toolkit)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><span style="color:#f00;">gitkit是一個整合各家登入機制的api</span>，可直接透過它去取得<span style="color:#00f;">gmail、yahoo、hotmail</span>…等。在使用前必須先申請<strong>api access</strong>，然後開啟<strong>Identity Toolkit</strong>服務。(經由<a href="https://code.google.com/apis/console" target="_blank" rel="external">api console</a>)</p>
-<p>1.申請<strong>Api Access</strong>，你會取得<span style="color:#f00;">Client ID</span>和<span style="color:#f00;">Client secret</span>。</p>
-<p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/Identity%20Toolkit/api_access.png" alt=""></p>
-<p>2.到Service，開啟<span style="color:#f00;">Identity Toolkit Api</span>。( api使用次數，每天有最大限制。 )</p>
-<p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/Identity%20Toolkit/open_api.png" alt=""></p>
-<p>3.申請<span style="color:#f00;">Identity Toolkit Api</span>，最下面的script，可貼到你需要登入的頁面。</p>
-<p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/Identity%20Toolkit/loginWidget.png" alt=""></p>
-<p>4.在你需要登入的page，貼上script。</p>
-<pre class="brush:html">&lt;script type=&quot;text/javascript&quot; src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;https://ajax.googleapis.com/ajax/libs/googleapis/0.0.4/googleapis.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;https://ajax.googleapis.com/jsapi&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-   google.load(&quot;identitytoolkit&quot;, &quot;1.0&quot;, {packages: [&quot;ac&quot;]});
-&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-$(function(){
-  window.google.identitytoolkit.setConfig({
-    developerKey: &quot;{your developer key}&quot;,
-    companyName: &quot;Your company&quot;,
-    callbackUrl: &quot;https://localhost/callback&quot;, // must be a full URL
-    userStatusUrl: &quot;/userStatus&quot;, // these can just be partial paths
-    loginUrl: &quot;/login&quot;,
-    signupUrl: &quot;/signup&quot;,
-    homeUrl: &quot;/home&quot;,
-    logoutUrl: &quot;/logout&quot;,
-    realm: &quot;&quot;, // optional
-    language: &quot;en&quot;,
-    idps: [&quot;Gmail&quot;, &quot;AOL&quot;, &quot;Hotmail&quot;, &quot;Yahoo&quot;],
-    tryFederatedFirst: true,
-    useCachedUserStatus: false
-  });
-  $(&#39;#navbar&#39;).accountChooser();
-});
-&lt;/script&gt;
-</pre>
-
-<p>5.接著開啟，會出現一個登入Button。</p>
-<p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/Identity%20Toolkit/login_btn.png" alt=""></p>
-<p>6.點擊後，會出現一個登入視窗。（導向各家的第三方驗證，最後導回<span style="color:#00f;">callbackUrl</span>）</p>
-<p><img src="http://i198.photobucket.com/albums/aa84/foreverangle/Identity%20Toolkit/login_panel.png" alt=""></p>
-<p>7.<span style="color:#f00;">此時<strong>callback</strong>的page，將可經由第三方驗證，<strong>取得post回來的參數</strong></span>。然後在callback page執行以下script。<span style="color:#f00;">當<strong>registered</strong>為<strong>true</strong>時，會導向<strong>homeUrl</strong>，否則將會導向<strong>signupuUrl</strong></span>。</p>
-<pre class="brush:js">&lt;script type=&#39;text/javascript&#39; src=&#39;https://ajax.googleapis.com/jsapi&#39;&gt;&lt;/script&gt;
-&lt;script type=&#39;text/javascript&#39;&gt; 
-  google.load(&quot;identitytoolkit&quot;, &quot;1.0&quot;, {packages: [&quot;notify&quot;]});
-  window.google.identitytoolkit.notifyFederatedSuccess({ &quot;email&quot;: &quot;name@email.com&quot;, &quot;registered&quot;: true });
-&lt;/script&gt;</pre>
-
-<p>8.最後從<span style="color:#00f;">callback page</span>導向回來後，在執行以下<span style="color:#00f;">script</span>，就會自動將登入button的ui，改成登入狀態了。</p>
-<pre class="brush:js">&lt;script&gt;
-  window.google.identitytoolkit.setConfig({
-    developerKey: &quot;{your developer key}&quot;,
-    companyName: &quot;Your company&quot;,
-    callbackUrl: &quot;https://localhost/callback&quot;, // must be a full URL
-    userStatusUrl: &quot;/userStatus&quot;, // these can just be partial paths
-    loginUrl: &quot;/login&quot;,
-    signupUrl: &quot;/signup&quot;,
-    homeUrl: &quot;/home&quot;,
-    logoutUrl: &quot;/logout&quot;,
-    realm: &quot;&quot;, // optional
-    language: &quot;en&quot;,
-    idps: [&quot;Gmail&quot;, &quot;AOL&quot;, &quot;Hotmail&quot;, &quot;Yahoo&quot;],
-    tryFederatedFirst: true,
-    useCachedUserStatus: false
-  });
-  $(&#39;#navbar&#39;).accountChooser();
-
-  //將狀態改為登入
-  setTimeout(function(){ 
-   window.google.identitytoolkit.showSavedAccount(&quot;login@domain.com&quot;); 
-},100); 
-&lt;/script&gt;</pre>
-
-<p><a href="https://github.com/SparrowJang/GITkit-API" target="_blank" rel="external">example for node.js</a></p>
-<p>使用此api每天有最大使用限制，和許多資訊都是經過google去取得，隱私上可能會有些疑慮，但對於只要取得一個登入的識別key，可以參考看看。(<a href="http://code.google.com/apis/identitytoolkit/v1/advanced.html" target="_blank" rel="external">關於api更多資訊</a>)</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://www.sparrowjang.com/2012/02/28/gitkit-api/" data-id="ciqrfcaxk002ta964vlsramfc" class="article-share-link">Share</a>
-      
-        <a href="http://www.sparrowjang.com/2012/02/28/gitkit-api/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/第三方登入/">第三方登入</a></li></ul>
 
     </footer>
   </div>
@@ -993,7 +973,7 @@ $(function(){
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IE/">IE</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YQL/">YQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actionscript/">actionscript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/add-on/">add-on</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone/">backbone</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bluetooth/">bluetooth</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap3/">bootstrap3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boto/">boto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome-extension/">chrome extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-prototype/">javascript prototype</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-tool/">javascript tool</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neo4j/">neo4j</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pattern/">pattern</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell-script/">shell script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlite/">sqlite</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversion/">subversion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zend-framework/">zend framework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zeromq/">zeromq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第三方登入/">第三方登入</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IE/">IE</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Titanium/">Titanium</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/YQL/">YQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/actionscript/">actionscript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/add-on/">add-on</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aws/">aws</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/backbone/">backbone</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bluetooth/">bluetooth</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bootstrap3/">bootstrap3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/boto/">boto</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome-extension/">chrome extension</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/">flask</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">html5</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/">jQuery</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">59</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-prototype/">javascript prototype</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript-tool/">javascript tool</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neo4j/">neo4j</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pattern/">pattern</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful/">restful</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scss/">scss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell-script/">shell script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlite/">sqlite</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/struts2/">struts2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/subversion/">subversion</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yii/">yii</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zend-framework/">zend framework</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zeromq/">zeromq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/第三方登入/">第三方登入</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1011,7 +991,7 @@ $(function(){
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">June 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -1021,6 +1001,10 @@ $(function(){
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/08/09/MPEG-DASH-video-concept/">MPEG-DASH video concept</a>
+          </li>
         
           <li>
             <a href="/2015/11/16/Build-a-docker-image/">Build a docker image</a>
@@ -1036,10 +1020,6 @@ $(function(){
         
           <li>
             <a href="/2014/10/25/My-github/">My github</a>
-          </li>
-        
-          <li>
-            <a href="/2014/07/11/image-converter/">Image converter</a>
           </li>
         
       </ul>
